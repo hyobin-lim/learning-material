@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>섹션4 - HTML 실무 팁 & 브라우저 지원 현황</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background: #f9f9f9;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    h2 {
+      margin-top: 40px;
+      color: #2c3e50;
+    }
+
+    table {
+      width: 95%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #34495e;
+      color: white;
+    }
+
+    caption {
+      font-weight: bold;
+      margin: 10px;
+      font-size: 1.2em;
+      color: #2c3e50;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>실무 팁 요약 & 브라우저 지원 현황</h1>
+  <p style="text-align:center;">
+    웹 개발 시 자주 쓰이는 베스트 프랙티스와 접근성 고려사항, 성능 최적화, 그리고 브라우저별 지원 현황을 정리했습니다.
+  </p>
+
+  <!-- 실무 팁 요약 -->
+  <h2>실무 팁 요약</h2>
+  <table>
+    <caption>요소별 실무 팁</caption>
+    <tr>
+      <th>요소</th>
+      <th>베스트 프랙티스</th>
+      <th>접근성 고려</th>
+      <th>실무 활용</th>
+    </tr>
+    <tr>
+      <td>링크</td>
+      <td>의미 있는 텍스트 사용, <code>rel="noopener noreferrer"</code>로 보안 강화</td>
+      <td><code>aria-label</code>, <code>title</code> 속성으로 추가 설명 제공</td>
+      <td>내비게이션 메뉴, 다운로드 버튼, SEO 최적화</td>
+    </tr>
+    <tr>
+      <td>이미지</td>
+      <td><code>srcset</code>, <code>picture</code> 요소로 반응형 이미지 제공</td>
+      <td><code>alt</code> 텍스트, <code>aria-label</code>로 대체 설명 제공</td>
+      <td>제품 이미지, 기사 삽화</td>
+    </tr>
+    <tr>
+      <td>오디오/비디오</td>
+      <td>다중 포맷 지원, <code>track</code> 자막, <code>poster</code> 썸네일</td>
+      <td>자막 제공, 자동재생 시 <code>muted</code> 필수</td>
+      <td>강의 영상, 팟캐스트</td>
+    </tr>
+    <tr>
+      <td>외부 임베드</td>
+      <td><code>sandbox</code>, <code>allowfullscreen</code>, <code>loading="lazy"</code> 활용</td>
+      <td><code>title</code> 속성으로 콘텐츠 설명</td>
+      <td>YouTube 영상, 지도 삽입</td>
+    </tr>
+    <tr>
+      <td>폰트</td>
+      <td><code>woff2</code> 우선, <code>preconnect</code>, <code>font-display</code> 활용</td>
+      <td><code>font-display: swap</code>으로 가독성 확보</td>
+      <td>브랜딩, 가독성 개선</td>
+    </tr>
+  </table>
+
+  <!-- 브라우저 지원 현황 -->
+  <h2>브라우저 지원 현황</h2>
+  <table>
+    <caption>포맷별 지원 현황 (주요 버전 포함)</caption>
+    <tr>
+      <th>포맷</th>
+      <th>Chrome</th>
+      <th>Firefox</th>
+      <th>Safari</th>
+      <th>Edge</th>
+    </tr>
+    <tr>
+      <td>MP3 (오디오)</td>
+      <td>지원</td>
+      <td>지원</td>
+      <td>지원</td>
+      <td>지원</td>
+    </tr>
+    <tr>
+      <td>OGG (오디오)</td>
+      <td>지원</td>
+      <td>지원</td>
+      <td>제한적 지원</td>
+      <td>지원</td>
+    </tr>
+    <tr>
+      <td>MP4 (H.264 비디오)</td>
+      <td>지원</td>
+      <td>지원</td>
+      <td>지원</td>
+      <td>지원</td>
+    </tr>
+    <tr>
+      <td>WebM (비디오)</td>
+      <td>지원</td>
+      <td>지원</td>
+      <td>Safari 14부터 제한적 지원</td>
+      <td>지원</td>
+    </tr>
+    <tr>
+      <td>WebP (이미지)</td>
+      <td>지원</td>
+      <td>지원</td>
+      <td>Safari 14부터 지원</td>
+      <td>지원</td>
+    </tr>
+    <tr>
+      <td>AVIF (이미지)</td>
+      <td>Chrome 85+ 지원</td>
+      <td>Firefox 93+ 지원</td>
+      <td>Safari 16+ 지원</td>
+      <td>지원</td>
+    </tr>
+    <tr>
+      <td>WOFF2 (폰트)</td>
+      <td>지원</td>
+      <td>지원</td>
+      <td>지원</td>
+      <td>지원</td>
+    </tr>
+    <tr>
+      <td>TTF/OTF (폰트)</td>
+      <td>지원</td>
+      <td>지원</td>
+      <td>지원</td>
+      <td>지원</td>
+    </tr>
+  </table>
+</body>
+
+</html>

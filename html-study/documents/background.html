@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CSS background 속성 종합 정리</title>
+  <style>
+    .demo-box {
+      width: 200px;
+      height: 100px;
+      border: 10px dashed red;
+      padding: 20px;
+      margin: 20px;
+      background-image: linear-gradient(45deg, skyblue, pink);
+      background-color: #f0f0f0;
+      overflow: auto;
+      /* local 확인용 */
+    }
+
+    /* background-color */
+    .bg-color {
+      background-color: lightgreen;
+    }
+
+    /* background-image */
+    .bg-image {
+      background-image: url("../images/book-icon.png");
+    }
+
+    /* background-repeat */
+    .repeat {
+      background-image: url("../images/book-icon.png");
+      background-repeat: repeat;
+    }
+
+    .no-repeat {
+      background-image: url("../images/book-icon.png");
+      background-repeat: no-repeat;
+    }
+
+    .repeat-x {
+      background-image: url("../images/book-icon.png");
+      background-repeat: repeat-x;
+    }
+
+    .repeat-y {
+      background-image: url("../images/book-icon.png");
+      background-repeat: repeat-y;
+    }
+
+    /* background-position */
+    .pos-left-top {
+      background-image: url("../images/book-icon.png");
+      background-repeat: no-repeat;
+      background-position: left top;
+    }
+
+    .pos-center {
+      background-image: url("../images/book-icon.png");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    .pos-right-bottom {
+      background-image: url("../images/book-icon.png");
+      background-repeat: no-repeat;
+      background-position: right bottom;
+    }
+
+    /* background-attachment */
+    .attach-scroll {
+      width: 200px;
+      height: 120px;
+      overflow: auto;
+      background-image: url("../images/book-icon.png");
+      background-repeat: no-repeat;
+      background-size: 100px 100px;
+      background-attachment: scroll;
+
+    }
+
+    .attach-fixed {
+      width: 200px;
+      height: 120px;
+      background-image: url("../images/sample_Image.png");
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-size: cover;
+      overflow: auto;
+      color: white;
+    }
+
+    .attach-local {
+      width: 200px;
+      height: 120px;
+      overflow: auto;
+      background-image: url("../images/book-icon.png");
+      background-repeat: no-repeat;
+      background-size: 100px 100px;
+      background-attachment: local;
+
+    }
+
+    /* background-size */
+    .size-auto {
+      background-image: url("../images/book-icon.png");
+      background-size: auto;
+    }
+
+    .size-cover {
+      background-image: url("../images/book-icon.png");
+      background-size: cover;
+    }
+
+    .size-contain {
+      background-image: url("../images/book-icon.png");
+      background-size: contain;
+    }
+
+    /* background-origin */
+    .origin-border {
+      background-image: url("../images/book-icon.png");
+      background-origin: border-box;
+    }
+
+    .origin-padding {
+      background-image: url("../images/book-icon.png");
+      background-origin: padding-box;
+    }
+
+    .origin-content {
+      background-image: url("../images/book-icon.png");
+      background-origin: content-box;
+    }
+
+    /* background-clip */
+    .clip-border {
+      background-image: url("../images/book-icon.png");
+      background-clip: border-box;
+    }
+
+    .clip-padding {
+      background-image: url("../images/book-icon.png");
+      background-clip: padding-box;
+    }
+
+    .clip-content {
+      background-image: url("../images/book-icon.png");
+      background-clip: content-box;
+    }
+
+    .clip-text {
+      background-image: url("../images/book-icon.png");
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      font-size: 4em;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: 1px solid #aaa;
+      padding: 10px;
+      text-align: center;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>CSS background-* 속성 종합 정리</h1>
+  <p>아래 표는 <code>background</code> 관련 모든 주요 속성을 설명과 코드, 데모로 정리한 것입니다.</p>
+
+  <h2>background-color</h2>
+  <table>
+    <tr>
+      <th>설명</th>
+      <th>코드</th>
+      <th>데모</th>
+    </tr>
+    <tr>
+      <td>배경 색상 지정</td>
+      <td>
+        <pre>background-color: lightgreen;</pre>
+      </td>
+      <td>
+        <div class="demo-box bg-color"></div>
+      </td>
+    </tr>
+  </table>
+
+  <h2>background-image</h2>
+  <table>
+    <tr>
+      <th>설명</th>
+      <th>코드</th>
+      <th>데모</th>
+    </tr>
+    <tr>
+      <td>배경 이미지 지정</td>
+      <td>
+        <pre>background-image: url("../images/book-icon.png");</pre>
+      </td>
+      <td>
+        <div class="demo-box bg-image"></div>
+      </td>
+    </tr>
+  </table>
+
+  <h2>background-repeat</h2>
+  <table>
+    <tr>
+      <th>값</th>
+      <th>설명</th>
+      <th>코드</th>
+      <th>데모</th>
+    </tr>
+    <tr>
+      <td>repeat</td>
+      <td>가로·세로 반복</td>
+      <td>
+        <pre>background-repeat: repeat;</pre>
+      </td>
+      <td>
+        <div class="demo-box repeat"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>no-repeat</td>
+      <td>반복하지 않음</td>
+      <td>
+        <pre>background-repeat: no-repeat;</pre>
+      </td>
+      <td>
+        <div class="demo-box no-repeat"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>repeat-x</td>
+      <td>가로 반복</td>
+      <td>
+        <pre>background-repeat: repeat-x;</pre>
+      </td>
+      <td>
+        <div class="demo-box repeat-x"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>repeat-y</td>
+      <td>세로 반복</td>
+      <td>
+        <pre>background-repeat: repeat-y;</pre>
+      </td>
+      <td>
+        <div class="demo-box repeat-y"></div>
+      </td>
+    </tr>
+  </table>
+
+  <h2>background-position</h2>
+  <table>
+    <tr>
+      <th>값</th>
+      <th>설명</th>
+      <th>코드</th>
+      <th>데모</th>
+    </tr>
+    <tr>
+      <td>left top</td>
+      <td>왼쪽 상단</td>
+      <td>
+        <pre>background-position: left top;</pre>
+      </td>
+      <td>
+        <div class="demo-box pos-left-top"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>center</td>
+      <td>가운데</td>
+      <td>
+        <pre>background-position: center;</pre>
+      </td>
+      <td>
+        <div class="demo-box pos-center"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>right bottom</td>
+      <td>오른쪽 하단</td>
+      <td>
+        <pre>background-position: right bottom;</pre>
+      </td>
+      <td>
+        <div class="demo-box pos-right-bottom"></div>
+      </td>
+    </tr>
+  </table>
+
+  <h2>background-attachment</h2>
+  <table>
+    <tr>
+      <th>값</th>
+      <th>설명</th>
+      <th>코드</th>
+      <th>데모</th>
+    </tr>
+    <tr>
+      <td>scroll</td>
+      <td>기본값. 페이지 스크롤 시 배경도 함께 이동</td>
+
+      <td>
+        <pre>background-attachment: scroll;</pre>
+      </td>
+      <td>
+        <div class="demo-box attach-scroll">스크롤을 내려 보세요. (scroll)<br>
+          배경은 요소 내부 스크롤과 함께 움직입니다.<br><br>
+          콘텐츠를 충분히 길게 넣어 스크롤을 발생시킵니다.<br>
+          1. 텍스트…<br>2. 텍스트…<br>3. 텍스트…<br>4. 텍스트…<br>
+          5. 텍스트…<br>6. 텍스트…<br>7. 텍스트…<br>8. 텍스트…<br>
+          9. 텍스트…<br>10. 텍스트…<br>11. 텍스트…<br>12. 텍스트…<br>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>fixed</td>
+      <td>페이지 스크롤 시 배경은 화면에 고정</td>
+      <td>
+        <pre>background-attachment: fixed;</pre>
+      </td>
+      <td>
+        <div class="demo-box attach-fixed">스크롤을 내려 보세요. (fixed)<br>
+          배경 이미지는 화면에 고정되어, 콘텐츠만 움직입니다.
+          <br><br>
+          콘텐츠를 충분히 길게 넣어 스크롤을 발생시킵니다.<br>
+          1. 텍스트…<br>2. 텍스트…<br>3. 텍스트…<br>4. 텍스트…<br>
+          5. 텍스트…<br>6. 텍스트…<br>7. 텍스트…<br>8. 텍스트…<br>
+          9. 텍스트…<br>10. 텍스트…<br>11. 텍스트…<br>12. 텍스트…<br>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>local</td>
+      <td>요소 스크롤에 맞춰 배경 이동</td>
+      <td>
+        <pre>background-attachment: local;</pre>
+      </td>
+      <td>
+        <div class="demo-box attach-local">스크롤을 내려 보세요. (local)<br>
+          배경은 요소 내부 스크롤에 맞춰 상대적으로 움직입니다.<br><br>
+          콘텐츠를 충분히 길게 넣어 스크롤을 발생시킵니다.<br>
+          1. 텍스트…<br>2. 텍스트…<br>3. 텍스트…<br>4. 텍스트…<br>
+          5. 텍스트…<br>6. 텍스트…<br>7. 텍스트…<br>8. 텍스트…<br>
+          9. 텍스트…<br>10. 텍스트…<br>11. 텍스트…<br>12. 텍스트…<br>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <h2>background-size</h2>
+  <table>
+    <tr>
+      <th>값</th>
+      <th>설명</th>
+      <th>코드</th>
+      <th>데모</th>
+    </tr>
+    <tr>
+      <td>auto</td>
+      <td>원래 크기 유지</td>
+      <td>
+        <pre>background-size: auto;</pre>
+      </td>
+      <td>
+        <div class="demo-box size-auto"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>cover</td>
+      <td>요소 전체 덮기</td>
+      <td>
+        <pre>background-size: cover;</pre>
+      </td>
+      <td>
+        <div class="demo-box size-cover"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>contain</td>
+      <td>요소 안에 이미지 포함</td>
+      <td>
+        <pre>background-size: contain;</pre>
+      </td>
+      <td>
+        <div class="demo-box size-contain"></div>
+      </td>
+    </tr>
+  </table>
+
+  <h2>background-origin</h2>
+  <table>
+    <tr>
+      <th>값</th>
+      <th>설명</th>
+      <th>코드</th>
+      <th>데모</th>
+    </tr>
+    <tr>
+      <td>border-box</td>
+      <td>테두리 기준으로 테두리 왼쪽 상단에서 시작</td>
+      <td>
+        <pre>background-origin: border-box;</pre>
+      </td>
+      <td>
+        <div class="demo-box origin-border"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>padding-box</td>
+      <td>패딩 기준으로 패딩 왼쪽 상단에서 시작</td>
+      <td>
+        <pre>background-origin: padding-box;</pre>
+      </td>
+      <td>
+        <div class="demo-box origin-padding"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>content-box</td>
+      <td>콘텐츠 기준으로 콘텐츠 중앙에서 시작</td>
+      <td>
+        <pre>background-origin: content-box;</pre>
+      </td>
+      <td>
+        <div class="demo-box origin-content"></div>
+      </td>
+    </tr>
+  </table>
+
+  <h2>background-clip</h2>
+  <table>
+    <tr>
+      <th>값</th>
+      <th>설명</th>
+      <th>코드 예제</th>
+      <th>데모</th>
+    </tr>
+    <tr>
+      <td>border-box</td>
+      <td>배경이 테두리까지 채워짐</td>
+      <td>
+        <pre>background-clip: border-box;</pre>
+      </td>
+      <td>
+        <div class="demo-box clip-border">내용</div>
+      </td>
+    </tr>
+    <tr>
+      <td>padding-box</td>
+      <td>배경이 패딩 영역까지만 채워짐</td>
+      <td>
+        <pre>background-clip: padding-box;</pre>
+      </td>
+      <td>
+        <div class="demo-box clip-padding">내용</div>
+      </td>
+    </tr>
+    <tr>
+      <td>content-box</td>
+      <td>배경이 콘텐츠 영역까지만 표시됨</td>
+      <td>
+        <pre>background-clip: content-box;</pre>
+      </td>
+      <td>
+        <div class="demo-box clip-content">내용</div>
+      </td>
+    </tr>
+    <tr>
+      <td>text</td>
+      <td>배경이 텍스트 모양에 맞게 잘려 표시됨</td>
+      <td>
+        <pre>background-clip: text;
+         color: transparent;</pre>
+      </td>
+      <td>
+        <div class="demo-box clip-text">텍스트</div>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

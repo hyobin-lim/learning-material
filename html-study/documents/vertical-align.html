@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 속성 완전 정리: vertical-align</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+    }
+
+    h1,
+    h2 {
+      color: #2c3e50;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 0.75rem;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f4f4f4;
+    }
+
+    code {
+      background: #f3f3f3;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    .demo {
+      border: 1px solid #333;
+      padding: 1rem;
+      margin-top: 1rem;
+      background: #fafafa;
+    }
+
+    /* table-cell 데모 */
+    .table-demo {
+      display: table;
+      border: 1px solid #333;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    .row {
+      display: table-row;
+    }
+
+    .cell {
+      display: table-cell;
+      border: 1px solid #999;
+      width: 150px;
+      height: 80px;
+      padding: 10px;
+    }
+
+    .top {
+      vertical-align: top;
+    }
+
+    .middle {
+      vertical-align: middle;
+    }
+
+    .bottom {
+      vertical-align: bottom;
+    }
+
+    /* 인라인 요소 데모 */
+    .inline-demo span {
+      display: inline-block;
+      width: 60px;
+      height: 40px;
+      background: lightblue;
+    }
+
+    .baseline {
+      vertical-align: baseline;
+    }
+
+    .texttop {
+      vertical-align: text-top;
+    }
+
+    .textbottom {
+      vertical-align: text-bottom;
+    }
+
+    .super {
+      vertical-align: super;
+    }
+
+    .sub {
+      vertical-align: sub;
+    }
+
+    /* 아이콘과 텍스트 정렬 */
+    .icon-text {
+      font-size: 20px;
+    }
+
+    .icon-text img {
+      vertical-align: middle;
+      width: 24px;
+      height: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>CSS 속성 완전 정리: vertical-align</h1>
+
+  <h2>1. 개념</h2>
+  <p>
+    <code>vertical-align</code>은 CSS에서 인라인 요소와 <code>table-cell</code> 요소의 콘텐츠를 세로 방향으로 정렬하는 속성입니다. <br>
+    텍스트 줄(line box) 안에서 이미지·글자 위치를 맞추거나, 테이블 셀 안에서 내용을 위·중간·아래로 배치할 때 사용합니다.
+  </p>
+
+  <h2>2. 대표 값</h2>
+  <table>
+    <tr>
+      <th>값</th>
+      <th>설명</th>
+      <th>활용 예시</th>
+    </tr>
+    <tr>
+      <td><code>baseline</code></td>
+      <td>부모 요소의 기준선에 맞춤 (기본값)</td>
+      <td>텍스트와 이미지 하단 맞추기</td>
+    </tr>
+    <tr>
+      <td><code>top</code></td>
+      <td>줄 또는 셀의 위쪽에 맞춤</td>
+      <td>테이블 셀 상단 정렬</td>
+    </tr>
+    <tr>
+      <td><code>middle</code></td>
+      <td>줄 또는 셀의 중앙에 맞춤</td>
+      <td>세로 중앙 정렬</td>
+    </tr>
+    <tr>
+      <td><code>bottom</code></td>
+      <td>줄 또는 셀의 아래쪽에 맞춤</td>
+      <td>테이블 셀 하단 정렬</td>
+    </tr>
+    <tr>
+      <td><code>text-top</code> / <code>text-bottom</code></td>
+      <td>부모 텍스트의 위/아래에 맞춤</td>
+      <td>텍스트와 아이콘 정렬</td>
+    </tr>
+    <tr>
+      <td><code>sub</code> / <code>super</code></td>
+      <td>아래첨자/위첨자 위치</td>
+      <td>수학식, 화학식 표기</td>
+    </tr>
+  </table>
+
+  <h2>3. 예제 코드 + 설명 + 데모</h2>
+  <pre><code>.cell {
+  display: table-cell;   /* 셀처럼 동작 */
+  vertical-align: middle; /* 세로 중앙 정렬 */
+  text-align: center;     /* 가로 중앙 정렬 */
+}</code></pre>
+
+  <p>
+    위 코드는 <code>display: table-cell</code>로 지정된 요소 안에서 콘텐츠를 세로 중앙에 배치합니다.
+    <code>vertical-align</code>은 블록 요소에는 적용되지 않고, 인라인 요소와 테이블 셀에서만 동작합니다.
+  </p>
+
+  <div class="demo table-demo">
+    <div class="row">
+      <div class="cell top">위(top)</div>
+      <div class="cell middle">가운데(middle)</div>
+      <div class="cell bottom">아래(bottom)</div>
+    </div>
+  </div>
+
+  <h2>4. 인라인 요소 데모</h2>
+  <p>인라인 요소에서도 <code>vertical-align</code>을 사용해 상대적 위치를 조정할 수 있습니다.</p>
+  <div class="demo inline-demo">
+    텍스트 <span class="baseline">기준선</span>
+    <span class="texttop">text-top</span>
+    <span class="textbottom">text-bottom</span>
+    <span class="super">super</span>
+    <span class="sub">sub</span>
+  </div>
+
+  <h2>5. 실무 활용 사례: 아이콘과 텍스트 정렬</h2>
+  <p>아이콘과 텍스트를 나란히 배치할 때 <code>vertical-align: middle</code>을 사용하면 깔끔하게 정렬됩니다.</p>
+  <div class="demo icon-text">
+    <img src="https://via.placeholder.com/24" alt="아이콘"> 아이콘과 텍스트 정렬
+  </div>
+
+  <h2>6. 특징과 주의사항</h2>
+  <ul>
+    <li>블록 요소에는 적용되지 않음 → 인라인/테이블 셀 전용</li>
+    <li>인라인 요소의 세로 정렬은 <code>line-height</code>에 영향을 받음</li>
+    <li>세로 중앙 정렬을 직관적으로 구현할 수 있음</li>
+    <li>현대 레이아웃에서는 Flexbox/Grid로 대체 가능</li>
+  </ul>
+
+  <h2>7. 최신 대체 기술 비교</h2>
+  <p>
+    <strong>Flexbox</strong>: <code>align-items: center;</code>로 세로 중앙 정렬 가능<br>
+    <strong>Grid</strong>: <code>align-items</code>, <code>align-self</code>로 세로 정렬 가능<br>
+    → 최신 레이아웃에서는 Flex/Grid를 기본으로 사용하고, <code>vertical-align</code>은 제한적인 상황에서만 활용
+  </p>
+
+  <h2>8. 핵심 요약</h2>
+  <p>
+    <code>vertical-align</code>은 인라인 요소와 테이블 셀의 세로 정렬을 제어하는 속성입니다. <br>
+    대표값은 <code>baseline</code>, <code>top</code>, <code>middle</code>, <code>bottom</code> 등이며,
+    특히 세로 중앙 정렬을 간단히 구현할 수 있다는 장점이 있습니다. <br>
+    하지만 블록 요소에는 적용되지 않으며, 최신 레이아웃에서는 Flexbox와 Grid가 더 자주 쓰입니다. <br>
+    실무에서는 아이콘과 텍스트 정렬, 수학식/화학식 표기, 간단한 테이블 레이아웃에서 유용하게 활용됩니다.
+  </p>
+</body>
+
+</html>

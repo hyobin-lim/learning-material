@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 박스 모델 완전 정리</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+    h1, h2 { color: #2c3e50; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background: #f4f4f4; }
+    code { background: #eee; padding: 2px 4px; border-radius: 4px; }
+
+    /* 박스 모델 시각화 */
+    .margin { background-color: #f8d7da; padding: 20px; }
+    .border { border: 5px dashed #f5c6cb; padding: 20px; background-color: #f1e7d0; }
+    .padding { padding: 20px; background-color: #d4edda; }
+    .content { background-color: #cce5ff; padding: 20px; text-align: center; font-weight: bold; }
+    .label { font-family: sans-serif; font-size: 14px; margin-bottom: 5px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>CSS 박스 모델(Box Model) 완전 정리</h1>
+
+  <h2>1. 박스 모델이란?</h2>
+  <p>
+    모든 HTML 요소는 사각형 박스로 표현되며, 이 박스는 <strong>콘텐츠(Content)</strong>, <strong>패딩(Padding)</strong>, <strong>테두리(Border)</strong>, <strong>마진(Margin)</strong>으로 구성됩니다.  
+    박스 모델은 요소의 크기와 화면 배치를 결정하는 핵심 개념입니다.
+  </p>
+
+  <h2>2. 구성 요소</h2>
+  <table>
+    <tr><th>구성</th><th>설명</th><th>관련 속성</th></tr>
+    <tr>
+      <td><strong>Content</strong></td>
+      <td>텍스트, 이미지 등 실제 내용이 들어가는 영역</td>
+      <td><code>width</code>, <code>height</code></td>
+    </tr>
+    <tr>
+      <td><strong>Padding</strong></td>
+      <td>콘텐츠와 테두리 사이의 안쪽 여백. 배경색/이미지가 패딩까지 확장됨</td>
+      <td><code>padding-top</code>, <code>padding-right</code>, <code>padding-bottom</code>, <code>padding-left</code></td>
+    </tr>
+    <tr>
+      <td><strong>Border</strong></td>
+      <td>콘텐츠와 패딩을 둘러싸는 테두리. 두께, 스타일, 색상 지정 가능</td>
+      <td><code>border-width</code>, <code>border-style</code>, <code>border-color</code></td>
+    </tr>
+    <tr>
+      <td><strong>Margin</strong></td>
+      <td>박스와 다른 요소 사이의 바깥 여백. 배경색은 적용되지 않음</td>
+      <td><code>margin-top</code>, <code>margin-right</code>, <code>margin-bottom</code>, <code>margin-left</code></td>
+    </tr>
+  </table>
+
+  <h2>3. 크기 계산</h2>
+  <p>
+    요소의 총 너비와 높이는 다음과 같이 계산됩니다:
+  </p>
+  <pre>
+총 너비 = content width + padding 좌우 + border 좌우 + margin 좌우
+총 높이 = content height + padding 상하 + border 상하 + margin 상하
+  </pre>
+
+  <h2>4. 박스 모델 시각화</h2>
+  <div class="label">margin</div>
+  <div class="margin">
+    <div class="label">border</div>
+    <div class="border">
+      <div class="label">padding</div>
+      <div class="padding">
+        <div class="label">content</div>
+        <div class="content">콘텐츠 영역</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>5. Box-sizing</h2>
+  <p>
+    <code>box-sizing</code> 속성을 사용하면 크기 계산 방식을 바꿀 수 있습니다:
+  </p>
+  <ul>
+    <li><code>content-box</code> (기본값): width/height는 콘텐츠 영역만 의미</li>
+    <li><code>border-box</code>: width/height에 padding과 border까지 포함 → 레이아웃 관리가 쉬워짐</li>
+  </ul>
+
+  <h2>6. 핵심 요약</h2>
+  <ul>
+    <li>박스 모델은 <strong>Content → Padding → Border → Margin</strong> 구조로 이루어짐</li>
+    <li>총 크기는 콘텐츠 + 패딩 + 테두리 + 마진으로 계산</li>
+    <li><code>box-sizing</code>으로 크기 계산 방식을 제어 가능</li>
+    <li>모든 HTML 요소는 박스 모델을 기반으로 화면에 배치됨</li>
+  </ul>
+</body>
+</html>

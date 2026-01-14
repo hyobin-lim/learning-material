@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS table border 속성 정리</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    table {
+      width: 60%;
+      margin: 20px auto;
+      border-collapse: collapse; /* 셀 테두리 겹침 제거 */
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+    .solid th, .solid td { border: 2px solid black; }
+    .dotted th, .dotted td { border: 2px dotted red; }
+    .double th, .double td { border: 3px double blue; }
+  </style>
+</head>
+<body>
+  <h1>CSS table border 속성 정리</h1>
+  <p><code>border</code>는 표와 셀의 테두리를 지정하는 속성입니다.</p>
+
+  <table class="solid">
+    <caption>실선 테두리 (solid)</caption>
+    <tr><th>과일</th><th>가격</th></tr>
+    <tr><td>사과</td><td>3000원</td></tr>
+    <tr><td>바나나</td><td>2000원</td></tr>
+  </table>
+
+  <table class="dotted">
+    <caption>점선 테두리 (dotted)</caption>
+    <tr><th>과일</th><th>가격</th></tr>
+    <tr><td>포도</td><td>4000원</td></tr>
+    <tr><td>오렌지</td><td>3500원</td></tr>
+  </table>
+
+  <table class="double">
+    <caption>이중선 테두리 (double)</caption>
+    <tr><th>과일</th><th>가격</th></tr>
+    <tr><td>키위</td><td>2500원</td></tr>
+    <tr><td>망고</td><td>5000원</td></tr>
+  </table>
+
+  <table>
+    <thead>
+      <tr>
+        <th>속성</th>
+        <th>설명</th>
+        <th>예시 코드</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>border-width</code></td>
+        <td>테두리 두께 지정</td>
+        <td><code>border-width: 2px;</code></td>
+      </tr>
+      <tr>
+        <td><code>border-style</code></td>
+        <td>테두리 스타일 지정 (solid, dotted, dashed, double 등)</td>
+        <td><code>border-style: dotted;</code></td>
+      </tr>
+      <tr>
+        <td><code>border-color</code></td>
+        <td>테두리 색상 지정</td>
+        <td><code>border-color: red;</code></td>
+      </tr>
+      <tr>
+        <td><code>border</code></td>
+        <td>단축 속성 (두께, 스타일, 색상 한 줄로)</td>
+        <td><code>border: 2px solid black;</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><b>정리:</b> <code>border</code> 속성은 표와 셀의 테두리를 지정하며, <code>border-collapse</code>와 함께 쓰면 겹치는 선을 하나로 합칠 수 있습니다.</p><br>
+<p>✨ 핵심 포인트</p>
+<p>border는 두께 + 스타일 + 색상을 한 줄로 지정 가능</p>
+<p>border-collapse: collapse; → 셀 테두리 겹침 제거</p>
+<p>다양한 스타일(solid, dotted, dashed, double)로 꾸밀 수 있음</p>
+
+</body>
+</html>

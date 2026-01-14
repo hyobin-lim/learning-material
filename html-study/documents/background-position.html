@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>background-position</title>
+  <style>
+    .demo-box {
+      width: 200px;
+      height: 120px;
+      border: 2px solid #333;
+      margin: 10px;
+      background-image: url(../images/book-icon.png);
+      background-repeat: no-repeat;
+      background-color: #f0f0f0;
+    }
+    .left-top { background-position: left top; }
+    .center { background-position: center; }
+    .right-bottom { background-position: right bottom; }
+    .px-position { background-position: 30px 20px; }
+    .percent-position { background-position: 80% 50%; }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS background-position 속성 이해하기</h1>
+  <p><code>background-position</code>은 요소의 배경 이미지가 어디에 위치할지를 결정하는 CSS 속성입니다.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>값</th>
+        <th>설명</th>
+        <th>코드 예제</th>
+        <th>데모</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>left top</td>
+        <td>배경 이미지를 왼쪽 상단에 위치</td>
+        <td><pre>background-position: left top;</pre></td>
+        <td><div class="demo-box left-top"></div></td>
+      </tr>
+      <tr>
+        <td>center</td>
+        <td>배경 이미지를 가운데에 위치</td>
+        <td><pre>background-position: center;</pre></td>
+        <td><div class="demo-box center"></div></td>
+      </tr>
+      <tr>
+        <td>right bottom</td>
+        <td>배경 이미지를 오른쪽 하단에 위치</td>
+        <td><pre>background-position: right bottom;</pre></td>
+        <td><div class="demo-box right-bottom"></div></td>
+      </tr>
+      <tr>
+        <td>30px 20px</td>
+        <td>배경 이미지를 x=30px, y=20px 위치에 배치</td>
+        <td><pre>background-position: 30px 20px;</pre></td>
+        <td><div class="demo-box px-position"></div></td>
+      </tr>
+      <tr>
+        <td>80% 50%</td>
+        <td>배경 이미지를 요소 너비의 80%, 높이의 50% 위치에 배치</td>
+        <td><pre>background-position: 80% 50%;</pre></td>
+        <td><div class="demo-box percent-position"></div></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

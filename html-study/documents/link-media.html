@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>섹션2 - HTML 미디어 연결</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background: #f9f9f9;
+      line-height: 1.6;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    table {
+      width: 95%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #34495e;
+      color: white;
+    }
+
+    caption {
+      font-weight: bold;
+      margin: 10px;
+      font-size: 1.2em;
+      color: #2c3e50;
+    }
+
+    pre {
+      background: #0b1020;
+      color: #e5e7eb;
+      padding: 12px;
+      border-radius: 6px;
+      overflow: auto;
+      margin: 0;
+      text-align: left;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>섹션2 - HTML 미디어 연결</h1>
+  <p style="text-align:center;">
+    문서 안에 시각·청각 자료를 포함해 풍부한 사용자 경험을 제공합니다.  
+    이미지, 오디오, 비디오, 외부 임베드(YouTube, 지도 등)로 구분되며,  
+    접근성을 위해 대체 텍스트, 자막, 설명 제공이 필수입니다.  
+    <br>실무에서는 반응형 이미지, 다양한 포맷 지원, 보안 속성 활용이 중요합니다.</p>
+    <table>
+    <caption>미디어 활용 예시</caption>
+    <tr>
+      <th>요소</th>
+      <th>설명</th>
+      <th>예제 코드</th>
+      <th>데모</th>
+    </tr>
+    <tr>
+      <td>반응형 이미지</td>
+      <td>화면 크기에 따라 다른 이미지 제공</td>
+      <td>
+        <pre>&lt;img src="small.jpg"
+     srcset="large.jpg 800w, medium.jpg 400w"
+     sizes="(max-width:600px) 400px, 800px"
+     alt="반응형 이미지"&gt;</pre>
+      </td>
+      <td><img src="https://www.w3schools.com/html/img-chania.jpg" srcset="https://www.w3schools.com/html/img-chania.jpg 400w,
+                       https://www.w3schools.com/html/img-chania.jpg 800w" sizes="(max-width:600px) 400px, 800px"
+          alt="반응형 이미지" width="200"></td>
+    </tr>
+    <tr>
+      <td>picture 요소</td>
+      <td>브라우저 지원에 따라 다른 포맷 제공</td>
+      <td>
+        <pre>&lt;picture&gt;
+  &lt;source srcset="image.webp" type="image/webp"&gt;
+  &lt;img src="image.jpg" alt="대체 이미지"&gt;
+&lt;/picture&gt;</pre>
+      </td>
+      <td>
+        <picture>
+          <source srcset="https://www.w3schools.com/html/img-chania.jpg" type="image/webp">
+          <img src="https://www.w3schools.com/html/img-chania.jpg" alt="대체 이미지" width="200">
+        </picture>
+      </td>
+    </tr>
+    <tr>
+      <td>오디오 기본</td>
+      <td>오디오 파일 재생</td>
+      <td>
+        <pre>&lt;audio controls&gt;
+  &lt;source src="song.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</pre>
+      </td>
+      <td><audio controls>
+          <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+        </audio></td>
+    </tr>
+    <tr>
+      <td>오디오 autoplay/loop</td>
+      <td>자동 재생, 반복, 음소거</td>
+      <td>
+        <pre>&lt;audio controls autoplay loop muted&gt;
+  &lt;source src="song.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</pre>
+      </td>
+      <td><audio controls autoplay loop muted>
+          <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+        </audio></td>
+    </tr>
+    <tr>
+      <td>비디오 (자막)</td>
+      <td>자막(track) 포함한 영상</td>
+      <td>
+        <pre>&lt;video controls&gt;
+  &lt;source src="movie.mp4" type="video/mp4"&gt;
+  &lt;track src="subtitles.vtt" kind="subtitles" srclang="ko" label="한국어"&gt;
+&lt;/video&gt;</pre>
+      </td>
+      <td><video controls width="200">
+          <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+          <track src="subtitles.vtt" kind="subtitles" srclang="ko" label="한국어" default>
+        </video></td>
+    </tr>
+    <tr>
+      <td>비디오 poster/preload</td>
+      <td>썸네일 이미지와 로딩 방식 지정</td>
+      <td>
+        <pre>&lt;video controls poster="thumbnail.jpg" preload="metadata"&gt;
+  &lt;source src="movie.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</pre>
+      </td>
+      <td><video controls poster="https://www.w3schools.com/html/img-chania.jpg" preload="metadata" width="200">
+          <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
+        </video></td>
+    </tr>
+    <tr>
+      <td>외부 비디오 (mp4)</td>
+      <td>외부 mp4 파일 삽입</td>
+      <td>
+        <pre>&lt;video width="360" height="215" controls&gt;
+  &lt;source src="mov-bbb.mp4" type="video/mp4"&gt;
+&lt;/video&gt;</pre>
+      </td>
+      <td><video width="360" height="215" controls>
+          <source src="https://www.w3schools.com/html/mov-bbb.mp4" type="video/mp4">
+        </video></td>
+    </tr>
+    <tr>
+      <td>YouTube 임베드</td>
+      <td>외부 플랫폼 영상 삽입</td>
+      <td>
+        <pre>&lt;iframe width="360" height="215"
+  src="https://www.youtube.com/embed/tgbNymZ7vqY"
+  title="YouTube video"
+  frameborder="0"
+  allowfullscreen&gt;&lt;/iframe&gt;</pre>
+      </td>
+      <td><iframe width="360" height="215" src="https://www.youtube.com/embed/tgbNymZ7vqY" title="YouTube video"
+          frameborder="0" allowfullscreen></iframe></td>
+    </tr>
+    <tr>
+      <td>지도 임베드</td>
+      <td>외부 지도 서비스 삽입</td>
+      <td>
+        <pre>&lt;iframe src="https://maps.google.com/...&gt;&lt;/iframe&gt;</pre>
+      </td>
+      <td><iframe src="https://maps.google.com/maps?q=seoul&t=&z=13&ie=UTF8&iwloc=&output=embed" width="300"
+          height="200"></iframe></td>
+    </tr>
+  </table>
+</body>
+
+</html>

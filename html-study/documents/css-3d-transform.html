@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 3D Transform</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fbfd;
+      color: #2c3e50;
+      line-height: 1.6;
+      margin: 40px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #ecf0f1;
+    }
+
+    pre {
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 6px;
+      margin: 0;
+    }
+
+    /* 큐브 기본 */
+    .scene {
+      width: 200px;
+      height: 200px;
+      margin: 10px auto;
+      perspective: 600px;
+      border: 1px solid #ddd;
+    }
+
+    .space {
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transform: rotateX(20deg) rotateY(30deg);
+      position: relative;
+    }
+
+    .cube {
+      width: 80px;
+      height: 80px;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform-style: preserve-3d;
+      transform: translate(-50%, -50%);
+      transition: transform 1s ease;
+    }
+
+    .face {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border: 2px solid #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .front {
+      transform: translateZ(40px);
+      background: rgba(231, 76, 60, 0.8);
+    }
+
+    .back {
+      transform: rotateY(180deg) translateZ(40px);
+      background: rgba(46, 204, 113, 0.8);
+    }
+
+    .right {
+      transform: rotateY(90deg) translateZ(40px);
+      background: rgba(241, 196, 15, 0.8);
+    }
+
+    .left {
+      transform: rotateY(-90deg) translateZ(40px);
+      background: rgba(155, 89, 182, 0.8);
+    }
+
+    .top {
+      transform: rotateX(90deg) translateZ(40px);
+      background: rgba(26, 188, 156, 0.8);
+    }
+
+    .bottom {
+      transform: rotateX(-90deg) translateZ(40px);
+      background: rgba(52, 73, 94, 0.8);
+    }
+
+    /* 데모 효과: 양수/음수 분리 */
+    .demo-rotateX-pos:hover .cube {
+      transform: translate(-50%, -50%) rotateX(60deg);
+    }
+
+    .demo-rotateX-neg:hover .cube {
+      transform: translate(-50%, -50%) rotateX(-60deg);
+    }
+
+    .demo-rotateY-pos:hover .cube {
+      transform: translate(-50%, -50%) rotateY(60deg);
+    }
+
+    .demo-rotateY-neg:hover .cube {
+      transform: translate(-50%, -50%) rotateY(-60deg);
+    }
+
+    .demo-rotateZ-pos:hover .cube {
+      transform: translate(-50%, -50%) rotateZ(60deg);
+    }
+
+    .demo-rotateZ-neg:hover .cube {
+      transform: translate(-50%, -50%) rotateZ(-60deg);
+    }
+
+    .demo-translateZ-pos:hover .cube {
+      transform: translate(-50%, -50%) translateZ(100px);
+    }
+
+    .demo-translateZ-neg:hover .cube {
+      transform: translate(-50%, -50%) translateZ(-100px);
+    }
+
+    .demo-scaleZ-x:hover .cube {
+      transform: translate(-50%, -50%) rotateX(30deg) scaleZ(2);
+    }
+
+    .demo-scaleZ-y:hover .cube {
+      transform: translate(-50%, -50%) rotateY(30deg) scaleZ(2);
+    }
+
+    /* 추가/확장 함수 데모 */
+    .demo-translate3d-pos:hover .cube {
+      transform: translate(-50%, -50%) translate3d(60px, -30px, 80px);
+    }
+
+    .demo-translate3d-neg:hover .cube {
+      transform: translate(-50%, -50%) translate3d(-60px, 30px, -80px);
+    }
+
+    .demo-scale3d-big:hover .cube {
+      transform: translate(-50%, -50%) scale3d(1.6, 1.6, 1.6);
+    }
+
+    .demo-scale3d-small:hover .cube {
+      transform: translate(-50%, -50%) scale3d(.7, .7, .7);
+    }
+
+    .demo-rotate3d-pos:hover .cube {
+      transform: translate(-50%, -50%) rotate3d(1, 1, 0, 120deg);
+    }
+
+    .demo-rotate3d-neg:hover .cube {
+      transform: translate(-50%, -50%) rotate3d(-1, -1, 0, 120deg);
+    }
+
+    /* perspective 데모 */
+    .scene-persp-near {
+      width: 200px;
+      height: 200px;
+      margin: 10px auto;
+      border: 1px solid #ddd;
+      perspective: 100px;
+    }
+
+    .scene-persp-far {
+      width: 200px;
+      height: 200px;
+      margin: 10px auto;
+      border: 1px solid #ddd;
+      perspective: 800px;
+    }
+
+    .d-perspective-near:hover .cube {
+      transform: translate(-50%, -50%) rotateX(70deg) translateZ(140px);
+    }
+
+    .d-perspective-far:hover .cube {
+      transform: translate(-50%, -50%) rotateX(70deg) translateZ(140px);
+    }
+
+    .demo-note {
+      font-size: 12px;
+      text-align: center;
+      margin: 4px 0 10px;
+    }
+
+    /* matrix3d 데모: 양수/음수 방향 대비 */
+    .demo-matrix3d-pos:hover .cube {
+      transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0,
+          0, 1, 0, 0,
+          0.2, 0.1, 1, 0,
+          60, 30, 120, 1);
+    }
+
+    .demo-matrix3d-neg:hover .cube {
+      transform: translate(-50%, -50%) matrix3d(1, 0, 0, 0,
+          0, 1, 0, 0,
+          -0.2, -0.1, 1, 0,
+          -60, -30, -120, 1);
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <h1 id="css-3d-transform">3D Transform 함수</h1>
+    <p>
+      CSS 3D Transform은 요소를 평면(2D)에서 벗어나 입체 공간으로 이동, 회전, 확대/축소할 수 있게 해줍니다.<br>
+      <b>특징:</b> X·Y·Z 세 축을 모두 다룰 수 있으며, 원근(perspective)을 적용해 깊이감을 표현할 수 있습니다.<br>
+      <b>필수 조건:</b> 부모 컨테이너에 <code>perspective</code>를 지정하고, 자식 요소에 <code>transform-style: preserve-3d</code>를 적용해야
+      합니다.<br>
+      <b>활용:</b> 카드 뒤집기, 갤러리, 3D 애니메이션, 입체 UI 등 다양한 연출에 사용됩니다.
+    </p>
+
+    <h2>3D transform 함수</h2>
+    <table>
+      <tr>
+        <th>함수</th>
+        <th>설명</th>
+        <th>예제</th>
+        <th>양수</th>
+        <th>음수</th>
+      </tr>
+      <!-- rotateX -->
+      <tr>
+        <td>rotateX()</td>
+        <td><b>지원 단위:</b> deg, rad, turn<br><b>포인트:</b> 수평축 회전<br><b>원리:</b> X축 기준 앞/뒤 회전<br><b>왜:</b> 양수 → 위쪽 뒤로, 음수 →
+          아래쪽 뒤로<br><b>주의:</b> perspective 값에 따라 왜곡 정도 달라짐<br><b>응용:</b> 카드 뒤집기</td>
+        <td>
+          <pre>transform: rotateX(60deg);</pre>
+        </td>
+        <td class="scene demo-rotateX-pos">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+        </td>
+        <td class="scene demo-rotateX-neg">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <!-- rotateY -->
+      <tr>
+        <td>rotateY()</td>
+        <td><b>지원 단위:</b> deg, rad, turn<br><b>포인트:</b> 수직축 회전<br><b>원리:</b> Y축 기준 좌/우 회전<br><b>왜:</b> 양수 → 오른쪽 뒤로, 음수 →
+          왼쪽 뒤로<br><b>주의:</b> 시점에 따라 폭이 달라 보임<br><b>응용:</b> 패널 열림/닫힘</td>
+        <td>
+          <pre>transform: rotateY(60deg);</pre>
+        </td>
+        <td class="scene demo-rotateY-pos">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+        </td>
+        <td class="scene demo-rotateY-neg">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <!-- rotateZ -->
+      <tr>
+        <td>rotateZ()</td>
+        <td><b>지원 단위:</b> deg, rad, turn<br><b>포인트:</b> Z축 회전<br><b>원리:</b> 평면 회전과 동일<br><b>왜:</b> 양수 → 시계, 음수 →
+          반시계<br><b>주의:</b> 3D 컨텍스트 유무와 관계없이 효과 동일<br><b>응용:</b> 로딩 인디케이터</td>
+        <td>
+          <pre>transform: rotateZ(60deg);</pre>
+        </td>
+        <td class="scene demo-rotateZ-pos">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+        </td>
+        <td class="scene demo-rotateZ-neg">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <!-- translateZ -->
+      <tr>
+        <td>translateZ()</td>
+        <td><b>지원 단위:</b> px, %, em<br><b>포인트:</b> 깊이 이동<br><b>원리:</b> Z축 방향 이동<br><b>왜:</b> 양수 → 멀어짐, 음수 →
+          가까워짐<br><b>주의:</b> perspective 컨테이너 필요<br><b>응용:</b> 팝아웃/푸시백</td>
+        <td>
+          <pre>transform: translateZ(120px);</pre>
+        </td>
+        <td class="scene demo-translateZ-pos">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+        </td>
+        <td class="scene demo-translateZ-neg">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <!-- scaleZ -->
+      <tr>
+        <td>scaleZ()</td>
+        <td><b>지원 단위:</b> 숫자 배율<br><b>포인트:</b> 깊이 배율<br><b>원리:</b> Z축 배율 조정<br><b>왜:</b> 단독 효과 미미, 회전과 함께 사용 시 입체감
+          증가<br><b>주의:</b> preserve-3d와 perspective 필요<br><b>응용:</b> 두께감 강조</td>
+        <td>
+          <pre>transform: rotateX(30deg) scaleZ(2);</pre>
+        </td>
+        <td class="scene demo-scaleZ-x">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+        </td>
+        <td class="scene demo-scaleZ-y">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <!-- matrix3d -->
+      <tr>
+        <td>matrix3d()</td>
+        <td>
+          <b>지원 단위:</b> 16개 숫자 값<br>
+          <b>포인트:</b> 복합 3D 변형<br>
+          <b>원리:</b> 행렬 곱으로 회전/이동/스케일/기울임 조합<br>
+          <b>왜:</b> (0.2,0.1,1,0,60,30,120,1) → 기울임+이동<br>
+          <b>주의:</b> 직접 작성 난이도 높음<br>
+          <b>응용:</b> 고급 3D 애니메이션
+        </td>
+        <td>
+          <pre>transform: matrix3d(
+  1, 0, 0, 0,
+  0, 1, 0, 0,
+  0.2, 0.1, 1, 0,
+  60, 30, 120, 1
+);</pre>
+        </td>
+        <!-- 양수 -->
+        <td class="scene demo-matrix3d-pos">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+          <p class="demo-note">호버: 기울임(+X,+Y) + 이동(+XYZ)</p>
+        </td>
+        <!-- 음수 -->
+        <td class="scene demo-matrix3d-neg">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+          <p class="demo-note">호버: 기울임(-X,-Y) + 이동(-XYZ)</p>
+        </td>
+      </tr>
+
+    </table>
+
+    <h2>추가/확장 3D transform 함수</h2>
+    <p>
+      기본 3D 함수 외에 X·Y·Z를 동시에 다루거나 원근감을 직접 지정할 수 있는 확장형 함수들입니다.
+    </p>
+    <table>
+      <tr>
+        <th>함수</th>
+        <th>설명</th>
+        <th>예제</th>
+        <th>데모</th>
+      </tr>
+      <!-- translate3d -->
+      <tr>
+        <td>translate3d()</td>
+        <td>
+          <b>지원 단위:</b> px, %, em<br>
+          <b>포인트:</b> X, Y, Z를 동시에 이동<br>
+          <b>원리:</b> 3차원 좌표 이동<br>
+          <b>왜:</b> 한 번에 3축 이동 가능<br>
+          <b>주의:</b> perspective 컨테이너 필요<br>
+          <b>응용:</b> 복잡한 3D 애니메이션 시작 위치 지정
+        </td>
+        <td>
+          <pre>transform: translate3d(150px, 80px, 200px);</pre>
+        </td>
+        <td class="scene demo-translate3d-pos">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+          <p class="demo-note">호버: +X, -Y, +Z 이동</p>
+        </td>
+        <td class="scene demo-translate3d-neg">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+          <p class="demo-note">호버: -X, +Y, -Z 이동</p>
+        </td>
+      </tr>
+      <!-- scale3d -->
+      <tr>
+        <td>scale3d()</td>
+        <td>
+          <b>지원 단위:</b> 숫자 배율<br>
+          <b>포인트:</b> X, Y, Z를 동시에 확대/축소<br>
+          <b>원리:</b> 3축 배율 적용<br>
+          <b>왜:</b> 한 번에 전체 크기 조정<br>
+          <b>주의:</b> preserve-3d와 perspective 필요<br>
+          <b>응용:</b> 입체 객체 전체 확대/축소
+        </td>
+        <td>
+          <pre>transform: scale3d(2, 2, 2);</pre>
+        </td>
+        <td class="scene demo-scale3d-big">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+          <p class="demo-note">호버: 전체 확대</p>
+        </td>
+        <td class="scene demo-scale3d-small">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+          <p class="demo-note">호버: 전체 축소</p>
+        </td>
+      </tr>
+      <!-- rotate3d -->
+      <tr>
+        <td>rotate3d()</td>
+        <td>
+          <b>지원 단위:</b> deg, rad, turn<br>
+          <b>포인트:</b> 임의의 벡터 축 기준 회전<br>
+          <b>원리:</b> (x,y,z) 벡터 방향으로 회전<br>
+          <b>왜:</b> 특정 축을 자유롭게 지정 가능<br>
+          <b>주의:</b> 벡터 값은 정규화 필요<br>
+          <b>응용:</b> 3D 오브젝트 자유 회전
+        </td>
+        <td>
+          <pre>transform: rotate3d(1,1,0,120deg);</pre>
+        </td>
+        <td class="scene demo-rotate3d-pos">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+          <p class="demo-note">호버: +X, +Y 축 회전</p>
+        </td>
+        <td class="scene demo-rotate3d-neg">
+          <div class="space">
+            <div class="cube">
+              <div class="face front">Front</div>
+              <div class="face back">Back</div>
+              <div class="face right">Right</div>
+              <div class="face left">Left</div>
+              <div class="face top">Top</div>
+              <div class="face bottom">Bottom</div>
+            </div>
+          </div>
+          <p class="demo-note">호버: -X, -Y 축 회전</p>
+        </td>
+      </tr>
+      <!-- perspective -->
+      <tr>
+        <td>perspective()</td>
+        <td>
+          <b>지원 단위:</b> px<br>
+          <b>포인트:</b> 부모 컨테이너에 적용해 원근감을 지정<br>
+          <b>원리:</b> Z축 깊이에 따라 크기/왜곡 변화<br>
+          <b>왜:</b> 값이 작을수록 왜곡이 강하고, 값이 클수록 평면에 가까워짐.
+          <br>
+          <b>주의:</b> 부모 컨테이너에 적용해야 효과가 확실<br>
+          <b>응용:</b> 3D 카드/갤러리 원근감 표현
+        </td>
+        <td>
+          <pre>.scene-persp-near { perspective: 100px; }
+.scene-persp-far  { perspective: 800px; }</pre>
+        </td>
+        <td>
+          <div class="scene-persp-near d-perspective-near">
+            <div class="space">
+              <div class="cube">
+                <div class="face front">Front</div>
+                <div class="face back">Back</div>
+                <div class="face right">Right</div>
+                <div class="face left">Left</div>
+                <div class="face top">Top</div>
+                <div class="face bottom">Bottom</div>
+              </div>
+            </div>
+          </div>
+          <p class="demo-note">근거리(100px): 왜곡 강함</p>
+          <div class="scene-persp-far d-perspective-far">
+            <div class="space">
+              <div class="cube">
+                <div class="face front">Front</div>
+                <div class="face back">Back</div>
+                <div class="face right">Right</div>
+                <div class="face left">Left</div>
+                <div class="face top">Top</div>
+                <div class="face bottom">Bottom</div>
+              </div>
+            </div>
+          </div>
+          <p class="demo-note">원거리(800px): 왜곡 약함</p>
+        </td>
+      </tr>
+    </table>
+  </main>
+</body>
+
+</html>

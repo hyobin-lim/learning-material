@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>레이아웃 완전 정리</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+    h1, h2, h3 { color: #2c3e50; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background: #f4f4f4; }
+    code { background: #eee; padding: 2px 4px; border-radius: 4px; }
+
+    /* Flexbox 레이아웃 예제 */
+    .container {
+      display: flex;               /* 플렉스 컨테이너 선언 */
+      justify-content: space-around; /* 가로축 정렬 */
+      align-items: center;         /* 세로축 정렬 */
+      border: 2px solid #ccc;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+
+    .box {
+      background: #4da6ff;
+      color: white;
+      padding: 20px;
+      width: 100px;
+      text-align: center;
+      font-weight: bold;
+      border-radius: 6px;
+    }
+
+
+    /* 웹 디자인 레이아웃 예제 */
+    .grid-layout {
+      display: grid;
+      grid-template-areas:
+        "header header"
+        "nav nav"
+        "main sidebar"
+        "footer footer";
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 80px 50px auto 60px;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    header { grid-area: header; background: lightblue; text-align: center; padding: 20px; }
+    nav { grid-area: nav; background: lightgreen; text-align: center; padding: 10px; }
+    main { grid-area: main; background: lightcoral; padding: 20px; }
+    aside { grid-area: sidebar; background: lightyellow; padding: 20px; }
+    footer { grid-area: footer; background: lightgray; text-align: center; padding: 20px; }
+  </style>
+</head>
+<body>
+  <h1>레이아웃(Layout) 완전 정리</h1>
+
+  <h2>1. 레이아웃이란?</h2>
+  <p>
+    <strong>레이아웃(Layout)</strong>은 웹 페이지나 디자인에서 <strong>콘텐츠(텍스트, 이미지, 버튼 등)를 화면 안에 어떻게 배치할지에 대한 구조와 구성 방식</strong>을 의미합니다. <br>  
+    즉, 사용자가 정보를 쉽게 이해하고 탐색할 수 있도록 화면을 <strong>영역별로 나누고 질서를 만드는 것</strong>입니다.
+  </p>
+
+  <h2>2. 웹 디자인 관점에서의 레이아웃</h2>
+  <ul>
+    <li><strong>헤더(Header)</strong>: 상단 영역, 로고·메뉴·검색창 등이 위치</li>
+    <li><strong>내비게이션(Navigation)</strong>: 사이트 이동을 위한 메뉴</li>
+    <li><strong>메인(Main Content)</strong>: 핵심 콘텐츠가 들어가는 중심 영역</li>
+    <li><strong>사이드바(Sidebar)</strong>: 보조 정보, 광고, 링크 등이 들어가는 옆 영역</li>
+    <li><strong>푸터(Footer)</strong>: 하단 영역, 저작권·연락처·추가 링크 등이 위치</li>
+  </ul>
+
+  <h2>3. CSS 코드 관점에서의 레이아웃</h2>
+<p>
+    CSS 코드 관점에서의 <strong>레이아웃(Layout)</strong>은 웹 페이지의 요소들을 화면에 어떻게 배치하고, 크기를 계산하며, 서로의 관계를 정의하는지를 결정하는 규칙과 속성들의 집합입니다. <br>
+    즉, HTML로 구조를 만들고 CSS로 그 구조를 <strong>어떻게 보이게 할지</strong>를 설계하는 것입니다.
+  </p>
+
+  <h2>4. 웹 디자인 레이아웃 데모</h2>
+  <div class="grid-layout">
+    <header>헤더</header>
+    <nav>내비게이션</nav>
+    <main>메인 콘텐츠</main>
+    <aside>사이드바</aside>
+    <footer>푸터</footer>
+  </div>
+  <p>
+    위 예제는 <code>display: grid</code>와 <code>grid-template-areas</code>를 활용하여 <strong>웹디자인 관점</strong>에서의 헤더, 내비게이션, 메인, 사이드바, 푸터 영역을 정의한 2차원 레이아웃입니다.
+  </p>
+
+    <h2>5. CSS 레이아웃 데모 (Flexbox)</h2>
+
+    <div class="container">
+    <div class="box">박스 1</div>
+    <div class="box">박스 2</div>
+    <div class="box">박스 3</div>
+  </div>
+  <p>위 예제는 <code>display: flex</code>를 사용하여 가로 방향으로 박스를 배치한 1차원 레이아웃입니다.</p>
+
+  <h2>6. 핵심 요약</h2>
+  <ul>
+    <li><strong>레이아웃 = 콘텐츠를 화면에 배치하는 구조와 방식</strong></li>
+    <li>웹 디자인 관점에서는 <strong>헤더·내비게이션·메인·사이드바·푸터</strong>로 구성</li>
+    <li>CSS 코드 관점에서는 <strong>float, position, flexbox, grid, media query</strong> 등을 활용</li>
+    <li><strong>Flexbox</strong>는 1차원, <strong>Grid</strong>는 2차원 레이아웃에 적합</li>
+    <li><strong>반응형 웹</strong>에서는 Media Query와 Grid/Flexbox를 함께 사용</li>
+  </ul>
+</body>
+</html>

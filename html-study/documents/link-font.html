@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>섹션3 - HTML 폰트 연결</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background: #f9f9f9;
+      line-height: 1.6;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    table {
+      width: 95%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #34495e;
+      color: white;
+    }
+
+    caption {
+      font-weight: bold;
+      margin: 10px;
+      font-size: 1.2em;
+      color: #2c3e50;
+    }
+
+    pre {
+      background: #0b1020;
+      color: #e5e7eb;
+      padding: 12px;
+      border-radius: 6px;
+      overflow: auto;
+      margin: 0;
+      text-align: left;
+    }
+
+    .custom-font {
+      font-family: 'MyFont', sans-serif;
+    }
+
+    .import-font {
+      font-family: 'Indie Flower', cursive;
+    }
+
+    .system-font {
+      font-family: system-ui, sans-serif;
+    }
+
+    .variable-font {
+      font-family: 'Roboto Flex', sans-serif;
+      font-variation-settings: 'wght' 700;
+    }
+
+    .noto {
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    .system-stack {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+  </style>
+  <!-- 구글 폰트 연결 -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <h1>섹션3 - HTML 폰트 연결</h1>
+  <p style="text-align:center;">
+    HTML과 CSS는 다양한 방식으로 폰트를 연결할 수 있습니다.<br>
+  </p>
+
+  <table>
+    <caption>폰트 연결 방법</caption>
+    <tr>
+      <th>방식</th>
+      <th>설명</th>
+      <th>예제 코드</th>
+      <th>표시 모습</th>
+    </tr>
+    <tr>
+      <td>@font-face</td>
+      <td>직접 서버에 폰트 파일을 두고 불러오기</td>
+      <td>
+        <pre>@font-face {
+  font-family: 'MyFont';
+  src: url('myfont.woff2') format('woff2'),
+       url('myfont.woff') format('woff');
+  font-display: swap;
+}</pre>
+      </td>
+      <td class="custom-font">이 문장은 커스텀 폰트로 보입니다.</td>
+    </tr>
+    <tr>
+      <td>Google Fonts</td>
+      <td>외부 구글 폰트 서비스에서 불러오기</td>
+      <td>
+        <pre>&lt;link href="https://fonts.googleapis.com/css2?family=Roboto&amp;display=swap" rel="stylesheet"&gt;</pre>
+      </td>
+      <td style="font-family:'Roboto',sans-serif;">이 문장은 Roboto 폰트로 보입니다.</td>
+    </tr>
+    <tr>
+      <td>@import</td>
+      <td>CSS에서 @import로 외부 폰트 불러오기</td>
+      <td>
+        <pre>@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&amp;display=swap');</pre>
+      </td>
+      <td class="import-font">이 문장은 손글씨 느낌의 Indie Flower 폰트로 보입니다.</td>
+    </tr>
+    <tr>
+      <td>시스템 기본 폰트</td>
+      <td>운영체제 기본 폰트 사용</td>
+      <td>
+        <pre>body {
+  font-family: system-ui, sans-serif;
+}</pre>
+      </td>
+      <td class="system-font">이 문장은 운영체제 기본 폰트로 보입니다.</td>
+    </tr>
+    <tr>
+      <td>변수 폰트</td>
+      <td>가변 폰트의 축을 조절해 다양한 스타일 제공</td>
+      <td>
+        <pre>body {
+  font-family: 'Roboto Flex', sans-serif;
+  font-variation-settings: 'wght' 700;
+}</pre>
+      </td>
+      <td class="variable-font">이 문장은 Roboto Flex 폰트로 굵게 보입니다.</td>
+    </tr>
+    <tr>
+      <td>font-display 옵션</td>
+      <td>폰트 로딩 시 표시 방식 제어</td>
+      <td>
+        <pre>@font-face {
+  font-family: 'MyFont';
+  src: url('myfont.woff2') format('woff2');
+  font-display: fallback;
+}</pre>
+      </td>
+      <td style="font-family:'MyFont',sans-serif;">이 문장은 font-display 옵션 적용 폰트로 보입니다.</td>
+    </tr>
+    <tr>
+      <td>한글 웹폰트</td>
+      <td>한국어 환경에서 자주 쓰이는 웹폰트</td>
+      <td>
+        <pre>&lt;link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&amp;display=swap" rel="stylesheet"&gt;</pre>
+      </td>
+      <td class="noto">이 문장은 Noto Sans KR 폰트로 보입니다.</td>
+    </tr>
+    <tr>
+      <td>성능 최적화</td>
+      <td>preconnect로 폰트 서버 연결 최적화</td>
+      <td>
+        <pre>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</pre>
+      </td>
+      <td style="font-family:'Roboto',sans-serif;">이 문장은 preconnect로 빠르게 로드된 Roboto 폰트로 보입니다.</td>
+    </tr>
+    <tr>
+      <td>변수 폰트 확장</td>
+      <td>굵기(wght), 너비(wdth) 등 여러 축 조절</td>
+      <td>
+        <pre>body {
+  font-family: 'Roboto Flex', sans-serif;
+  font-variation-settings: 'wght' 700, 'wdth' 120;
+}</pre>
+      </td>
+      <td style="font-family:'Roboto Flex',sans-serif; font-variation-settings:'wght' 700, 'wdth' 120;">이 문장은 Roboto
+        Flex 폰트로 굵고 넓게 보입니다.</td>
+    </tr>
+    <tr>
+      <td>시스템 폰트 스택 확장</td>
+      <td>다양한 OS 환경에서 기본 폰트 지정</td>
+      <td>
+        <pre>body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI',
+               Roboto, 'Helvetica Neue', Arial, sans-serif;
+}</pre>
+      </td>
+      <td class="system-stack">이 문장은 각 운영체제 기본 폰트로 보입니다.</td>
+    </tr>
+  </table>
+</body>
+
+</html>

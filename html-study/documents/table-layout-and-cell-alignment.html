@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>CSS - 표 레이아웃 및 셀 정렬</title>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.6; margin: 2rem; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 2rem; }
+    th, td { border: 1px solid #ccc; padding: 0.75rem; vertical-align: top; }
+    code { background: #f3f3f3; padding: 0.2rem 0.4rem; border-radius: 4px; }
+    .demo { border: 1px solid #ddd; padding: 1rem; margin-top: 0.5rem; background: #fafafa; }
+
+    .tablelayout-fixed { table-layout: fixed; width: 300px; }
+    .tablelayout-auto { table-layout: auto; width: 300px; }
+
+    .collapse-demo { border-collapse: collapse; }
+    .separate-demo { border-collapse: separate; border-spacing: 10px; }
+
+    .empty-demo { empty-cells: hide; }
+
+    .caption-top caption { caption-side: top; }
+    .caption-bottom caption { caption-side: bottom; }
+
+    .align-center td { text-align: center; }
+    .align-right td { text-align: right; }
+
+    .valign-top td { vertical-align: top; height: 60px; }
+    .valign-middle td { vertical-align: middle; height: 60px; }
+    .valign-bottom td { vertical-align: bottom; height: 60px; }
+  </style>
+</head>
+<body>
+  <h1 id="table-layout-and-cell-alignment">표 레이아웃 및 셀 정렬 (table-layout-and-cell-alignment)</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>속성</th>
+        <th>코드 예제</th>
+        <th>데모</th>
+        <th>설명</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>table-layout</strong></td>
+        <td><code>.tablelayout-fixed { table-layout: fixed; }</code></td>
+        <td>
+          <table class="demo tablelayout-fixed">
+            <tr><td>긴 텍스트가 셀 너비에 맞게 잘립니다</td><td>셀2</td></tr>
+          </table>
+          <table class="demo tablelayout-auto">
+            <tr><td>긴 텍스트가 셀 크기를 늘려 표시됩니다</td><td>셀2</td></tr>
+          </table>
+        </td>
+        <td>
+          표의 열 너비 계산 방식을 지정합니다. <code>auto</code>는 내용에 따라 열 너비가 달라지고,  
+          <code>fixed</code>는 지정된 너비에 맞춰 고정되어 성능과 일관성이 좋아집니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>border-collapse</strong></td>
+        <td><code>.collapse-demo { border-collapse: collapse; }</code></td>
+        <td>
+          <table class="demo collapse-demo">
+            <tr><td>셀1</td><td>셀2</td></tr>
+          </table>
+          <table class="demo separate-demo">
+            <tr><td>셀1</td><td>셀2</td></tr>
+          </table>
+        </td>
+        <td>
+          테이블 셀 경계선을 합칠지(<code>collapse</code>) 따로 둘지(<code>separate</code>) 지정합니다.  
+          <code>separate</code>일 때는 <code>border-spacing</code>으로 간격을 조절할 수 있습니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>border-spacing</strong></td>
+        <td><code>.separate-demo { border-spacing: 10px; }</code></td>
+        <td>
+          <table class="demo separate-demo">
+            <tr><td>셀1</td><td>셀2</td></tr>
+          </table>
+        </td>
+        <td>
+          <code>border-collapse: separate</code>일 때 셀 사이 간격을 지정합니다.  
+          가로·세로 간격을 따로 줄 수도 있습니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>empty-cells</strong></td>
+        <td><code>.empty-demo { empty-cells: hide; }</code></td>
+        <td>
+          <table class="demo empty-demo" border="1">
+            <tr><td>내용 있음</td><td></td></tr>
+          </table>
+        </td>
+        <td>
+          내용이 없는 셀을 표시할지(<code>show</code>) 숨길지(<code>hide</code>) 지정합니다.  
+          기본값은 표시이며, 디자인적으로 빈 셀을 감추고 싶을 때 유용합니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>caption-side</strong></td>
+        <td><code>.caption-top caption { caption-side: top; }</code></td>
+        <td>
+          <table class="demo caption-top">
+            <caption>위쪽 캡션</caption>
+            <tr><td>셀1</td><td>셀2</td></tr>
+          </table>
+          <table class="demo caption-bottom">
+            <caption>아래쪽 캡션</caption>
+            <tr><td>셀1</td><td>셀2</td></tr>
+          </table>
+        </td>
+        <td>
+          표 제목(<code>&lt;caption&gt;</code>)의 위치를 위쪽 또는 아래쪽으로 지정합니다.  
+          접근성과 문서 구조 이해에 도움을 줍니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>text-align (셀)</strong></td>
+        <td><code>.align-center td { text-align: center; }</code></td>
+        <td>
+          <table class="demo align-center">
+            <tr><td>가운데</td><td>정렬</td></tr>
+          </table>
+          <table class="demo align-right">
+            <tr><td>오른쪽</td><td>정렬</td></tr>
+          </table>
+        </td>
+        <td>
+          셀 내부 인라인 콘텐츠의 가로 정렬을 제어합니다.  
+          텍스트와 인라인 요소 모두 영향을 받습니다. 셀 내부 텍스트와 인라인 자식에 영향을 줍니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>vertical-align (셀)</strong></td>
+        <td><code>.valign-top td { vertical-align: top; }</code></td>
+        <td>
+          <table class="demo valign-top"><tr><td>위쪽</td><td>정렬</td></tr></table>
+          <table class="demo valign-middle"><tr><td>가운데</td><td>정렬</td></tr></table>
+          <table class="demo valign-bottom"><tr><td>아래쪽</td><td>정렬</td></tr></table>
+        </td>
+        <td>
+          셀 내부 콘텐츠의 세로 위치를 제어합니다.  
+          인라인 요소와 블록 콘텐츠 모두 영향을 받습니다. 인라인 요소와 표 셀 맥락에서 자식 콘텐츠의 세로 위치에 영향을 줍니다.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

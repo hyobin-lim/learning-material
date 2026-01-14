@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 단축 속성 완전 정리</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+    h1, h2, h3 { color: #2c3e50; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background: #f4f4f4; }
+    code { background: #eee; padding: 2px 4px; border-radius: 4px; }
+    .demo-shorthand {
+      width: 150px; height: 150px;
+      margin: 20px auto; /* margin 단축 */
+      border: 5px dashed blue; /* border 단축 */
+      background: lightyellow url('https://via.placeholder.com/50') no-repeat center/contain; /* background 단축 */
+      font: italic bold 18px/1.4 "Courier New", monospace; /* font 단축 */
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.5s ease-in-out; /* transition 단축 */
+    }
+    .demo-shorthand:hover {
+      background: pink;
+      transform: scale(1.2) rotate(10deg);
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS 단축 속성(Shorthand Properties) 완전 정리</h1>
+
+  <h2>1. 단축 속성이란?</h2>
+  <p>
+    여러 개의 개별 속성을 한 줄로 묶어 간결하게 작성할 수 있는 방법입니다.  
+    예를 들어 <code>margin-top</code>, <code>margin-right</code>, <code>margin-bottom</code>, <code>margin-left</code>를 각각 쓰는 대신 <code>margin</code> 단축 속성으로 한 번에 지정할 수 있습니다.
+  </p>
+
+  <h2>2. 주요 단축 속성 정리</h2>
+  <table>
+    <tr><th>속성</th><th>적용 순서</th><th>한글 설명</th><th>세부 값 설명</th><th>예제</th></tr>
+    <tr>
+      <td><code>margin</code></td>
+      <td>상 → 우 → 하 → 좌</td>
+      <td>바깥 여백</td>
+      <td>px, %, em 등 단위 사용 가능</td>
+      <td><code>margin: 10px 20px 30px 40px;</code></td>
+    </tr>
+    <tr>
+      <td><code>padding</code></td>
+      <td>상 → 우 → 하 → 좌</td>
+      <td>안쪽 여백</td>
+      <td>px, %, em 등 단위 사용 가능</td>
+      <td><code>padding: 5px 10px 15px 20px;</code></td>
+    </tr>
+    <tr>
+      <td><code>border</code></td>
+      <td>두께 → 스타일 → 색상</td>
+      <td>테두리</td>
+      <td>
+        <strong>두께:</strong> thin, medium, thick, px 단위<br>
+        <strong>스타일:</strong> solid, dashed, dotted, double, groove, ridge, inset, outset, none<br>
+        <strong>색상:</strong> color 이름(red, blue 등), HEX(#ff0000), RGB(rgba(255,0,0,0.5)) 등
+      </td>
+      <td><code>border: 2px solid red;</code></td>
+    </tr>
+    <tr>
+      <td><code>background</code></td>
+      <td>색상 → 이미지 → 반복 → 위치 → 크기</td>
+      <td>배경 설정</td>
+      <td>
+        <strong>색상:</strong> color 값<br>
+        <strong>이미지:</strong> url("image.png")<br>
+        <strong>반복:</strong> repeat, no-repeat, repeat-x, repeat-y<br>
+        <strong>위치:</strong> left, right, center, top, bottom, px, %<br>
+        <strong>크기:</strong> cover, contain, px, %
+      </td>
+      <td><code>background: #eee url(bg.png) no-repeat center/cover;</code></td>
+    </tr>
+    <tr>
+      <td><code>font</code></td>
+      <td>스타일 → 두께 → 크기/줄높이 → 글꼴</td>
+      <td>글꼴 관련 속성</td>
+      <td>
+        <strong>스타일:</strong> normal, italic, oblique<br>
+        <strong>두께:</strong> normal, bold, bolder, lighter, 100~900<br>
+        <strong>크기:</strong> px, em, rem<br>
+        <strong>줄높이:</strong> normal, 숫자, 단위<br>
+        <strong>글꼴:</strong> "Arial", "Times New Roman", sans-serif 등
+      </td>
+      <td><code>font: italic bold 16px/1.5 "Arial", sans-serif;</code></td>
+    </tr>
+    <tr>
+      <td><code>list-style</code></td>
+      <td>형식 → 위치 → 이미지</td>
+      <td>목록 불릿 스타일</td>
+      <td>
+        <strong>형식:</strong> disc, circle, square, decimal, lower-alpha 등<br>
+        <strong>위치:</strong> inside, outside<br>
+        <strong>이미지:</strong> url("icon.png")
+      </td>
+      <td><code>list-style: square inside url(icon.png);</code></td>
+    </tr>
+    <tr>
+      <td><code>flex</code></td>
+      <td>성장비율 → 축소비율 → 기준크기</td>
+      <td>Flexbox 아이템 크기 제어</td>
+      <td>
+        <strong>성장비율:</strong> 남은 공간을 차지하는 비율<br>
+        <strong>축소비율:</strong> 공간 부족 시 줄어드는 비율<br>
+        <strong>기준크기:</strong> px, %, auto
+      </td>
+      <td><code>flex: 1 0 200px;</code></td>
+    </tr>
+    <tr>
+      <td><code>animation</code></td>
+      <td>이름 → 지속시간 → 타이밍 → 지연 → 반복횟수 → 방향 → 채우기모드 → 재생상태</td>
+      <td>애니메이션 설정</td>
+      <td>
+        <strong>타이밍:</strong> ease, linear, ease-in, ease-out, ease-in-out<br>
+        <strong>반복횟수:</strong> 1, infinite<br>
+        <strong>방향:</strong> normal, reverse, alternate<br>
+        <strong>채우기모드:</strong> none, forwards, backwards, both<br>
+        <strong>재생상태:</strong> running, paused
+      </td>
+      <td><code>animation: bounce 2s ease-in-out 0s infinite alternate;</code></td>
+    </tr>
+    <tr>
+      <td><code>transition</code></td>
+      <td>속성 → 지속시간 → 타이밍 → 지연</td>
+      <td>변화 효과</td>
+      <td>
+        <strong>속성:</strong> all, width, height, background 등<br>
+        <strong>지속시간:</strong> s, ms<br>
+        <strong>타이밍:</strong> ease, linear, ease-in, ease-out<br>
+        <strong>지연:</strong> s, ms
+      </td>
+      <td><code>transition: all 0.5s ease-in-out;</code></td>
+    </tr>
+        <tr>
+      <td><code>grid</code></td>
+      <td>템플릿 → 행/열 간격 → 영역</td>
+      <td>Grid 레이아웃</td>
+      <td>
+        <strong>템플릿:</strong> grid-template-rows / grid-template-columns<br>
+        <strong>간격:</strong> gap, row-gap, column-gap<br>
+        <strong>영역:</strong> grid-template-areas, grid-auto-flow
+      </td>
+      <td><code>grid: auto-flow / 200px 1fr;</code></td>
+    </tr>
+  </table>
+
+  <h2>3. 단축 속성 활용 예제와 데모</h2>
+  <div class="demo-shorthand">단축속성</div>
+  <p>
+    위 박스는 <code>margin</code>, <code>border</code>, <code>background</code>, <code>font</code>, <code>transition</code> 단축 속성을 활용한 예제입니다.  
+    마우스를 올리면 확대와 회전 효과가 적용됩니다.
+  </p>
+
+  <h2>4. 핵심 요약</h2>
+  <ul>
+    <li>단축 속성은 여러 개별 속성을 한 줄로 묶어 작성할 수 있어 <strong>코드가 간결</strong>해집니다.</li>
+    <li><strong>순서가 중요한 속성</strong>(예: <code>font</code>, <code>border</code>, <code>animation</code>)은 반드시 올바른 순서로 작성해야 합니다.</li>
+    <li>각 항목에 들어갈 수 있는 값들을 정확히 알고 있어야 <strong>에러 없이</strong> 사용할 수 있습니다.</li>
+    <li>실제 프로젝트에서는 단축 속성을 적극 활용하면 <strong>가독성</strong>과 <strong>유지보수성</strong>이 크게 향상됩니다.</li>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 시맨틱 태그 전체 그림</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 40px;
+      color: #111;
+    }
+
+    h1 {
+      color: #222;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      margin-top: 24px;
+      color: #333;
+    }
+
+    p.lead {
+      color: #555;
+      margin-top: 0;
+    }
+
+    ul {
+      margin: 10px 0 20px 20px;
+    }
+
+    .group {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 16px;
+      background: #fafafa;
+      margin-bottom: 20px;
+    }
+
+    .group h2 {
+      margin-top: 0;
+    }
+
+    .box {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 12px;
+      background: #fafafa;
+    }
+
+    code {
+      background: #f4f4f4;
+      padding: 0 4px;
+      border-radius: 4px;
+    }
+
+    pre {
+      background: #0b1020;
+      color: #e5e7eb;
+      padding: 12px;
+      border-radius: 6px;
+      overflow: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>HTML5 시맨틱 태그 전체 그림</h1>
+  <p class="lead">시맨틱 태그는 단순한 박스(div) 대신 콘텐츠의 의미와 역할을 드러내어 <strong>문서 구조를 명확하게 표현</strong>합니다.</p>
+
+  <h2>시맨틱 태그의 목적</h2>
+  <ul>
+    <li>사람과 기계 모두 읽기 쉬운 구조 제공</li>
+    <li>접근성 향상 및 검색엔진 최적화(SEO)</li>
+    <li>코드 가독성과 유지보수성 개선</li>
+    <li>협업 효율 및 재사용성 강화</li>
+  </ul>
+
+  <h2>레이아웃 설계 원칙</h2>
+  <ul>
+    <li><code>&lt;main&gt;</code>은 문서당 한 번만 사용</li>
+    <li><code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>에는 제목 포함</li>
+    <li>의미 중심으로 태그 선택</li>
+    <li>보조 정보는 <code>&lt;aside&gt;</code>로 분리</li>
+  </ul>
+
+  <h2>접근성과 SEO 장점</h2>
+  <ul>
+    <li>스크린리더가 영역 의미를 인식</li>
+    <li>검색엔진이 문서 구조를 이해</li>
+    <li>사용자가 본문으로 빠르게 이동 가능</li>
+    <li>메타 정보 제공으로 기계 가독성 향상</li>
+  </ul>
+
+  <h2>주요 시맨틱 태그 한눈에 보기</h2>
+  <p>시맨틱 태그는 크게 <strong>문서 뼈대(큰 틀)</strong>와 <strong>보조/세부 역할</strong>로 나눌 수 있습니다.</p>
+  <div class="group">
+    <h2>📌 뼈대 역할 (문서 구조의 큰 틀)</h2>
+    <ul>
+      <li><code>&lt;header&gt;</code> : 머리말, 로고·제목·검색</li>
+      <li><code>&lt;nav&gt;</code> : 주요 내비게이션 메뉴</li>
+      <li><code>&lt;main&gt;</code> : 문서의 핵심 본문 (문서당 1회)</li>
+      <li><code>&lt;section&gt;</code> : 주제를 가진 구획</li>
+      <li><code>&lt;article&gt;</code> : 독립적으로 배포 가능한 글</li>
+      <li><code>&lt;aside&gt;</code> : 본문과 직접적 관련은 없는 보조 정보</li>
+      <li><code>&lt;footer&gt;</code> : 바닥글, 저작권·연락처·정책</li>
+    </ul>
+  </div>
+
+  <div class="group">
+    <h2>📌 보조 역할 (설명·강조·메타 정보)</h2>
+    <ul>
+      <li><code>&lt;figure&gt;</code> + <code>&lt;figcaption&gt;</code> : 이미지·차트·코드 블록과 설명</li>
+      <li><code>&lt;mark&gt;</code> : 본문 내 강조/하이라이트</li>
+      <li><code>&lt;time&gt;</code> : 날짜·시간 (기계가 읽는 datetime 속성 포함)</li>
+    </ul>
+  </div>
+
+  <div class="group">
+    <h2>📌 상호작용 역할 (접이식 콘텐츠)</h2>
+    <ul>
+      <li><code>&lt;details&gt;</code> + <code>&lt;summary&gt;</code> : 접었다 펼치는 상세 정보 (FAQ, 추가 설명)</li>
+    </ul>
+  </div>
+
+  <h2>예시 구조도</h2>
+  <pre>
+&lt;header&gt;...&lt;/header&gt;
+&lt;nav aria-label="주요 메뉴"&gt;...&lt;/nav&gt;
+&lt;main&gt;
+  &lt;section&gt;
+    &lt;h2&gt;소개&lt;/h2&gt;
+    &lt;article&gt;...&lt;/article&gt;
+    &lt;aside&gt;관련 링크&lt;/aside&gt;
+    &lt;figure&gt;이미지&lt;figcaption&gt;설명&lt;/figcaption&gt;&lt;/figure&gt;
+    작성일: &lt;time datetime="2025-12-24"&gt;2025년 12월 24일&lt;/time&gt;
+    &lt;details&gt;&lt;summary&gt;더 보기&lt;/summary&gt;숨긴 내용&lt;/details&gt;
+  &lt;/section&gt;
+&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;
+  </pre>
+</body>
+
+</html>

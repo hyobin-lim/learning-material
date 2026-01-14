@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>flex-comparison(display:flex vs flex 비교)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+    }
+
+    h1 {
+      color: #2c3e50;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 15px;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f4f6f7;
+      text-align: center;
+    }
+
+    pre {
+      background: #ecf0f1;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .demo-box {
+      border: 2px dashed #3498db;
+      padding: 10px;
+      margin-top: 10px;
+      display: flex;
+    }
+
+    .item {
+      background: #f39c12;
+      color: white;
+      padding: 20px;
+      margin: 5px;
+    }
+
+    .flex-item-1 {
+      flex: 1;
+    }
+
+    .flex-item-2 {
+      flex: 2;
+    }
+
+    .flex-item-3 {
+      flex: 3;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>📊 display:flex 와 flex 비교</h1>
+
+  <table>
+    <tr>
+      <th>항목</th>
+      <th>display:flex (부모에 선언)</th>
+      <th>flex (자식에 선언)</th>
+    </tr>
+    <tr>
+      <td><strong>적용 대상</strong></td>
+      <td>부모 요소</td>
+      <td>자식 요소</td>
+    </tr>
+    <tr>
+      <td><strong>정의</strong></td>
+      <td>부모 요소를 플렉스 - 컨테이너 속성(정렬, 방향, 줄바꿈)으로 지정하여 자식들을 플렉스 아이템으로 만듦.</td>
+      <td>플렉스 - 아이템 속성(크기, 비율, 순서)
+        에 적용하는 속성으로, <code>flex-grow</code>, <code>flex-shrink</code>, <code>flex-basis</code>의 단축 속성.</td>
+    </tr>
+    <tr>
+      <td><strong>효과</strong></td>
+      <td>자식 요소들이 가로 또는 세로 방향으로 자동 배치되며, <code>justify-content</code>, <code>align-items</code> 등 정렬 속성을 사용할 수 있음.</td>
+      <td>아이템이 컨테이너 안에서 공간을 차지하는 비율, 줄어드는 정도, 기본 크기를 제어.</td>
+    </tr>
+    <tr>
+      <td><strong>특징</strong></td>
+      <td>외부적으로는 블록 요소처럼 동작하지만 내부 레이아웃은 Flexbox 규칙을 따름.</td>
+      <td>숫자 값으로 비율을 지정할 수 있어 반응형 레이아웃에 유용.</td>
+    </tr>
+    <tr>
+      <td><strong>기본값</strong></td>
+      <td>없음 (명시적으로 <code>display:flex</code>를 선언해야 함)</td>
+      <td><code>flex: 0 1 auto</code> (grow=0, shrink=1, basis=auto)</td>
+    </tr>
+    <tr>
+      <td><strong>예시 코드</strong></td>
+      <td>
+        <pre>
+.flex-container {
+  display: flex;
+}
+        </pre>
+      </td>
+      <td>
+        <pre>
+.item1 { flex: 1; }
+.item2 { flex: 2; }
+.item3 { flex: 3; }
+        </pre>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>데모</strong></td>
+      <td>
+        <div class="demo-box">
+          <div class="item">아이템 A</div>
+          <div class="item">아이템 B</div>
+          <div class="item">아이템 C</div>
+        </div>
+        <p>👉 기본 크기대로 가로로 나열됨</p>
+      </td>
+      <td>
+        <div class="demo-box">
+          <div class="item flex-item-1">flex:1</div>
+          <div class="item flex-item-2">flex:2</div>
+          <div class="item flex-item-3">flex:3</div>
+        </div>
+        <p>👉 남은 공간을 1:2:3 비율로 나눔</p>
+      </td>
+    </tr>
+  </table>
+
+</body>
+
+</html>

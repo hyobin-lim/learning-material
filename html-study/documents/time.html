@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>&lt;time&gt; 태그 정리</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 40px; color: #111; }
+    h1 { color: #222; margin-bottom: 8px; }
+    p.lead { color: #555; margin-top: 0; }
+    table { border-collapse: collapse; width: 100%; margin-top: 22px; font-size: 14px; }
+    th, td { border: 1px solid #888; padding: 12px; vertical-align: top; text-align: left; }
+    th { background: #eee; font-weight: 700; }
+    pre { background: #0b1020; color: #e5e7eb; padding: 12px; border-radius: 6px; overflow: auto; margin: 0; }
+    code { background: #f4f4f4; padding: 0 4px; border-radius: 4px; }
+    .demo-time { border: 1px solid #ccc; padding: 16px; border-radius: 8px; background: #fafafa; }
+    .demo-time p { font-size: 15px; }
+    .demo-time time { font-weight: bold; color: #2563eb; }
+    .tip { background: #eef2ff; border-left: 4px solid #6366f1; padding: 10px 12px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>&lt;time&gt; 태그 정리</h1>
+  <p class="lead">날짜나 시간을 사람이 읽을 수 있는 텍스트와 기계가 이해할 수 있는 형식으로 함께 표현할 때 사용합니다.</p>
+
+  <table>
+    <tr>
+      <th>쉬운 설명</th>
+      <th>코드 예제</th>
+      <th>데모 화면</th>
+      <th>베스트 프랙티스 / 주의사항</th>
+    </tr>
+    <tr>
+      <td>
+        <p><strong>의미:</strong> <code>&lt;time&gt;</code> 태그는 날짜와 시간을 표현할 때 사용합니다. 사람이 읽을 수 있는 텍스트와 함께 <code>datetime</code> 속성을 통해 기계가 이해할 수 있는 표준 형식을 제공합니다.</p>
+        <p><strong>사용 위치:</strong> 블로그 글 작성일, 이벤트 일정, 뉴스 기사 날짜 등 시간 정보를 표시할 때 사용합니다.</p>
+        <p><strong>접근성:</strong> 검색 엔진과 스크린리더가 날짜·시간을 정확히 인식할 수 있어, SEO와 접근성에 유리합니다.</p>
+      </td>
+      <td>
+        <pre>&lt;p&gt;
+  작성일: &lt;time datetime="2025-12-24"&gt;2025년 12월 24일&lt;/time&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  이벤트 시작: &lt;time datetime="2025-12-31T18:00"&gt;12월 31일 오후 6시&lt;/time&gt;
+&lt;/p&gt;</pre>
+      </td>
+      <td>
+        <div class="demo-time">
+          <p>작성일: <time datetime="2025-12-24">2025년 12월 24일</time></p>
+          <p>이벤트 시작: <time datetime="2025-12-31T18:00">12월 31일 오후 6시</time></p>
+        </div>
+      </td>
+      <td>
+        <div class="tip">
+          <ul>
+            <li><strong>datetime 속성 필수:</strong> 기계가 읽을 수 있도록 <code>datetime</code> 속성을 반드시 포함하십시오.</li>
+            <li><strong>사람 친화적 표현:</strong> 태그 안에는 사람이 읽기 쉬운 날짜·시간을 작성하십시오.</li>
+            <li><strong>표준 형식:</strong> <code>YYYY-MM-DD</code> 또는 <code>YYYY-MM-DDThh:mm</code> 형식을 사용하십시오.</li>
+            <li><strong>다양한 활용:</strong> 작성일, 수정일, 이벤트 일정, 예약 시간 등 다양한 곳에 활용 가능합니다.</li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

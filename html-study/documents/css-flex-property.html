@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS flex 속성 전체 정리</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f9fafb; color: #111827; }
+    h1 { color: #0f172a; }
+    h2 { margin-top: 40px; color:#1e293b; }
+    p { line-height: 1.6; }
+    pre { background: #0b1020; color: #e5e7eb; padding: 6px; border-radius: 6px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #d1d5db; padding: 10px; vertical-align: top; }
+    th { background: #f3f4f6; }
+    .demo { display: flex; border: 1px dashed #d1d5db; background: #f8fafc; padding: 6px; min-height: 80px; gap: 6px; margin-top:10px; }
+    .item { color: white; padding: 6px; border-radius: 4px; text-align: center; }
+    .red { background:#ef4444; }
+    .blue { background:#3b82f6; }
+    .green { background:#22c55e; }
+    .yellow { background:#eab308; }
+  </style>
+</head>
+<body>
+  <h1>CSS flex 속성 전체 정리</h1>
+
+  <h2>flex-grow (늘어남)</h2>
+  <p><strong>설명:</strong> 컨테이너에 남는 공간이 있을 때 아이템이 얼마나 늘어날지를 결정합니다.</p>
+  <pre>
+.item1 { flex-grow: 1; }
+.item2 { flex-grow: 2; }
+.item3 { flex-grow: 3; }
+  </pre>
+  <div class="demo">
+    <div class="item red" style="flex-grow:1;">grow=1</div>
+    <div class="item blue" style="flex-grow:2;">grow=2</div>
+    <div class="item green" style="flex-grow:3;">grow=3</div>
+  </div>
+  <p>→ 남는 공간을 1:2:3 비율로 나눠 차지. 초록 박스가 가장 넓음.</p>
+
+  <h2>flex-shrink (줄어듦)</h2>
+  <p><strong>설명:</strong> 컨테이너 공간이 부족할 때 아이템이 얼마나 줄어들지를 결정합니다.</p>
+  <pre>
+.item1 { flex-shrink: 1; }
+.item2 { flex-shrink: 2; }
+.item3 { flex-shrink: 0; }
+  </pre>
+  <div class="demo" style="width:300px;">
+    <div class="item red" style="flex:1 1 150px;">shrink=1</div>
+    <div class="item blue" style="flex:1 2 150px;">shrink=2</div>
+    <div class="item green" style="flex:1 0 150px;">shrink=0</div>
+  </div>
+  <p>→ 화면을 줄이면 파란 박스가 두 배로 더 많이 줄어들고, 초록 박스는 줄어들지 않음.</p>
+
+  <h2>flex-basis (기본 크기)</h2>
+  <p><strong>설명:</strong> 아이템의 기본 크기를 지정합니다.</p>
+  <pre>
+.item1 { flex-basis: 50px; }
+.item2 { flex-basis: 100px; }
+.item3 { flex-basis: 200px; }
+  </pre>
+  <div class="demo">
+    <div class="item red" style="flex:0 1 50px;">basis=50px</div>
+    <div class="item blue" style="flex:0 1 100px;">basis=100px</div>
+    <div class="item green" style="flex:0 1 200px;">basis=200px</div>
+  </div>
+  <p>→ 기본 크기를 각각 50px, 100px, 200px으로 시작. 이후 grow/shrink 값에 따라 늘어나거나 줄어듦.</p>
+
+  <h2>CSS flex 속성 전체 정리</h2>
+
+  <p><strong>전체 설명:</strong><br>
+    <code>flex</code>는 <code>flex-grow</code>, <code>flex-shrink</code>, <code>flex-basis</code>의 단축 속성입니다.<br>
+    - <code>flex-grow</code>: 남는 공간을 얼마나 차지할지<br>
+    - <code>flex-shrink</code>: 공간이 부족할 때 얼마나 줄어들지<br>
+    - <code>flex-basis</code>: 기본 크기를 얼마로 할지<br><br>
+    값에 따라 아이템의 크기와 공간 분배 방식이 달라집니다.
+  </p>
+
+  <table>
+    <tr>
+      <th>값</th>
+      <th>grow</th>
+      <th>shrink</th>
+      <th>basis</th>
+      <th>설명</th>
+      <th>코드</th>
+      <th>데모</th>
+      <th>상황 설명</th>
+    </tr>
+    <tr>
+      <td><code>flex: 0 1 auto</code></td>
+      <td>0</td><td>1</td><td>auto</td>
+      <td>기본값. 콘텐츠 크기만큼 차지, 남는 공간은 비어 있음.</td>
+      <td><pre>.item { flex: 0 1 auto; }</pre></td>
+      <td>
+        <div class="demo">
+          <div class="item red" style="flex:0 1 auto;">짧음</div>
+          <div class="item blue" style="flex:0 1 auto;">중간</div>
+          <div class="item green" style="flex:0 1 auto;">긴 텍스트</div>
+        </div>
+      </td>
+      <td>→ 텍스트 길이에 따라 크기 달라지고, 화면 줄이면 줄어듦.</td>
+    </tr>
+    <tr>
+      <td><code>flex: 1</code></td>
+      <td>1</td><td>1</td><td>0%</td>
+      <td>남는 공간을 균등 분배. 모든 아이템 동일 폭.</td>
+      <td><pre>.item { flex: 1; }</pre></td>
+      <td>
+        <div class="demo">
+          <div class="item red" style="flex:1;">A</div>
+          <div class="item blue" style="flex:1;">B</div>
+          <div class="item green" style="flex:1;">C</div>
+        </div>
+      </td>
+      <td>→ 텍스트 길이와 상관없이 같은 크기.</td>
+    </tr>
+    <tr>
+      <td><code>flex: 100px</code></td>
+      <td>1</td><td>1</td><td>100px</td>
+      <td>기본 크기 100px 유지, 남는 공간 있으면 늘어남.</td>
+      <td><pre>.item { flex: 100px; }</pre></td>
+      <td>
+        <div class="demo">
+          <div class="item red" style="flex:100px;">A</div>
+          <div class="item blue" style="flex:100px;">B</div>
+          <div class="item green" style="flex:100px;">C</div>
+          <div class="item yellow" style="flex:100px;">D</div>
+        </div>
+      </td>
+      <td>→ 모든 아이템이 최소 100px 크기를 확보하고, 컨테이너가 넓으면 함께 늘어남.</td>
+    </tr>
+    <tr>
+      <td><code>flex: 1 30px</code></td>
+      <td>1</td><td>1</td><td>30px</td>
+      <td>기본 크기 30px에서 시작, 남는 공간 분배.</td>
+      <td><pre>.item { flex: 1 30px; }</pre></td>
+      <td>
+        <div class="demo">
+          <div class="item red" style="flex:1 30px;">짧음</div>
+          <div class="item blue" style="flex:1 30px;">중간</div>
+          <div class="item green" style="flex:1 30px;">긴 텍스트</div>
+        </div>
+      </td>
+      <td>→ 최소 30px 확보 후 동일하게 커짐.</td>
+    </tr>
+    <tr>
+      <td><code>flex: 2 2 10%</code></td>
+      <td>2</td><td>2</td><td>10%</td>
+      <td>첫 번째 아이템이 두 배 넓게 차지.</td>
+      <td><pre>.item:first-child { flex: 2 2 10%; }</pre></td>
+      <td>
+        <div class="demo">
+          <div class="item red" style="flex:2 2 10%;">넓음</div>
+          <div class="item blue" style="flex:1;">보통</div>
+          <div class="item green" style="flex:1;">보통</div>
+        </div>
+      </td>
+      <td>→ 첫 번째 아이템이 다른 아이템보다 넓음.</td>
+    </tr>
+    <tr>
+      <td><code>flex: auto</code></td>
+      <td>1</td><td>1</td><td>auto</td>
+      <td>콘텐츠 크기를 기준으로 하되 남는 공간 분배.</td>
+      <td><pre>.item { flex: auto; }</pre></td>
+      <td>
+        <div class="demo">
+          <div class="item red" style="flex:auto;">짧음</div>
+          <div class="item blue" style="flex:auto;">중간 텍스트</div>
+          <div class="item green" style="flex:auto;">긴 텍스트</div>
+        </div>
+      </td>
+      <td>→ 긴 텍스트 아이템이 기본적으로 더 넓음.</td>
+    </tr>
+    <tr>
+      <td><code>flex: none</code></td>
+      <td>0</td><td>0</td><td>auto</td>
+      <td>콘텐츠 크기만큼만 차지, 늘어나거나 줄어들지 않음.</td>
+      <td><pre>.item { flex: none; }</pre></td>
+      <td>
+        <div class="demo">
+          <div class="item red" style="flex:none;">짧음</div>
+          <div class="item blue" style="flex:none;">중간</div>
+          <div class="item green" style="flex:none;">긴 텍스트</div>
+        </div>
+      </td>
+      <td>→ 화면 크기 변화에도 그대로 유지.</td>
+    </tr>
+        </tr>
+    <tr>
+      <td><code>flex: initial</code></td>
+      <td>0</td><td>1</td><td>auto</td>
+      <td>기본값과 동일 (0 1 auto). 콘텐츠 크기만큼 차지, 공간 부족 시 줄어듦.</td>
+      <td><pre>.item { flex: initial; }</pre></td>
+      <td>
+        <div class="demo">
+          <div class="item red" style="flex:initial;">짧음</div>
+          <div class="item blue" style="flex:initial;">중간</div>
+          <div class="item green" style="flex:initial;">긴 텍스트</div>
+        </div>
+      </td>
+      <td>→ <code>flex: none</code>과 비슷하지만, 공간이 부족하면 줄어듦.</td>
+    </tr>
+    <tr>
+      <td><code>flex: inherit</code></td>
+      <td>부모 값</td><td>부모 값</td><td>부모 값</td>
+      <td>부모 요소의 flex 값을 상속.</td>
+      <td><pre>.parent { display:flex; } 
+.child { flex: inherit; }</pre></td>
+      <td>
+        <div class="demo" style="flex:1;">
+          <div class="item red" style="flex:inherit;">상속 A</div>
+          <div class="item blue" style="flex:inherit;">상속 B</div>
+          <div class="item green" style="flex:inherit;">상속 C</div>
+        </div>
+      </td>
+      <td>→ 부모 컨테이너가 <code>flex:1</code>을 지정했다면, 자식들도 그대로 따라 동일한 크기를 가짐.</td>
+    </tr>
+    <tr>
+      <td><code>flex: unset</code></td>
+      <td>상속 또는 0</td><td>상속 또는 1</td><td>상속 또는 auto</td>
+      <td>상속 가능하면 상속, 아니면 기본값(0 1 auto).</td>
+      <td><pre>.item { flex: unset; }</pre></td>
+      <td>
+        <div class="demo">
+          <div class="item red" style="flex:unset;">짧음</div>
+          <div class="item blue" style="flex:unset;">중간 텍스트</div>
+          <div class="item green" style="flex:unset;">긴 텍스트</div>
+        </div>
+      </td>
+      <td>→ 부모에 flex 지정이 없으면 기본값처럼 동작(콘텐츠 크기 기준). 부모에 지정이 있으면 상속.</td>
+    </tr>
+    <tr>
+      <td><code>flex: revert</code></td>
+      <td>브라우저 규칙</td><td>브라우저 규칙</td><td>브라우저 규칙</td>
+      <td>브라우저 기본 스타일이나 이전 스타일 규칙으로 되돌림.</td>
+      <td><pre>.item { flex: revert; }</pre></td>
+      <td>
+        <div class="demo">
+          <div class="item red" style="flex:revert;">A</div>
+          <div class="item blue" style="flex:revert;">B</div>
+          <div class="item green" style="flex:revert;">C</div>
+        </div>
+      </td>
+      <td>→ 사용자 에이전트 기본 규칙이나 이전 스타일 규칙으로 되돌아가므로, 상황에 따라 다르게 보임.</td>
+    </tr>
+  </table>
+</body>
+</html>

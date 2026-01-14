@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 06 (업데이트 최종본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트의 시작 — Chapter 06</h1>
+  <p>이 문서는 자바스크립트의 배열(Array)을 설명합니다. 배열은 여러 데이터를 순서대로 저장하고 관리할 수 있는 자료구조입니다.</p>
+
+  <h2>1. 배열의 기본</h2>
+  <pre><code>&lt;script&gt;
+  // 배열 생성
+  var fruits = ['사과', '바나나', '포도'];
+
+  console.log(fruits[0]); // 첫 번째 요소
+  console.log(fruits[1]); // 두 번째 요소
+  console.log(fruits.length); // 배열 길이
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>실행 결과 예시:</strong> 콘솔에 "사과", "바나나", "3"이 출력됩니다.</div>
+
+  <h2>2. 배열 메서드</h2>
+  <pre><code>&lt;script&gt;
+  var numbers = [1, 2, 3];
+
+  // push → 배열 끝에 추가
+  numbers.push(4);   // [1,2,3,4]
+
+  // pop → 배열 끝 요소 제거
+  numbers.pop();     // [1,2,3]
+
+  // shift → 배열 앞 요소 제거
+  numbers.shift();   // [2,3]
+
+  // unshift → 배열 앞에 추가
+  numbers.unshift(0); // [0,2,3]
+
+  console.log(numbers);
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>실행 결과 예시:</strong> 콘솔에 <code>[0, 2, 3]</code>이 출력됩니다.</div>
+
+  <h2>3. 배열 반복</h2>
+  <pre><code>&lt;script&gt;
+  var fruits = ['사과', '바나나', '포도'];
+
+  // for문
+  for (var i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]);
+  }
+
+  // for...of문 (ES6)
+  for (var fruit of fruits) {
+    console.log(fruit);
+  }
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>실행 결과 예시:</strong> 콘솔에 "사과", "바나나", "포도"가 두 번 출력됩니다.</div>
+
+  <h2>4. 배열 고급 메서드</h2>
+  <pre><code>&lt;script&gt;
+  var numbers = [1, 2, 3, 4, 5];
+
+  // map → 각 요소를 변환
+  var doubled = numbers.map(function(n) {
+    return n * 2;
+  });
+
+  // filter → 조건에 맞는 요소만 추출
+  var evens = numbers.filter(function(n) {
+    return n % 2 === 0;
+  });
+
+  // reduce → 누적 계산
+  var sum = numbers.reduce(function(acc, n) {
+    return acc + n;
+  }, 0);
+
+  console.log(doubled);
+  console.log(evens);
+  console.log(sum);
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>실행 결과 예시:</strong> 콘솔에 <code>[2,4,6,8,10]</code>, <code>[2,4]</code>, <code>15</code>가 출력됩니다.</div>
+
+  <h2>5. 배열 정렬</h2>
+  <pre><code>&lt;script&gt;
+  var arr = [3, 1, 4, 2];
+
+  arr.sort();    // 오름차순 정렬
+  console.log(arr); // [1,2,3,4]
+
+  arr.reverse(); // 역순 정렬
+  console.log(arr); // [4,3,2,1]
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>실행 결과 예시:</strong> 콘솔에 "[1,2,3,4]"와 "[4,3,2,1]"이 출력됩니다.</div>
+
+  <h2>6. 배열과 객체 결합</h2>
+  <pre><code>&lt;script&gt;
+  var students = [
+    { name: '민수', age: 20 },
+    { name: '지민', age: 22 }
+  ];
+
+  for (var s of students) {
+    console.log(s.name);
+  }
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>실행 결과 예시:</strong> 콘솔에 "민수", "지민"이 출력됩니다.</div>
+
+  <h2>7. 다차원 배열</h2>
+  <pre><code>&lt;script&gt;
+  var matrix = [
+    [1, 2],
+    [3, 4],
+    [5, 6]
+  ];
+
+  console.log(matrix[0][1]); // 2
+  console.log(matrix[2][0]); // 5
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>실행 결과 예시:</strong> 콘솔에 "2"와 "5"가 출력됩니다.</div>
+
+  <h2>8. 실습 과제</h2>
+  <ul>
+    <li>배열을 생성하고 push/pop/shift/unshift 메서드를 각각 실행해보기</li>
+    <li>for문과 for...of문으로 배열 요소를 모두 출력하기</li>
+    <li>map을 사용해 배열의 모든 숫자를 제곱하기</li>
+    <li>filter를 사용해 배열에서 홀수만 추출하기</li>
+    <li>reduce를 사용해 배열의 합을 구하기</li>
+    <li>배열을 정렬하고 역순으로 출력하기</li>
+    <li>2차원 배열을 만들어 특정 위치의 값을 출력하기</li>
+    <li>학생 객체 배열을 만들어 모든 학생의 이름을 출력하기</li>
+    <li>학생 객체 배열에서 나이가 21 이상인 학생만 출력하기</li>
+  </ul>
+
+  <h2>9. 다음 학습 안내</h2>
+  <p>Chapter 07에서는 자바스크립트의 <strong>문자열(String)</strong>을 학습합니다. Chapter 06에서 배운 배열과 함께 문자열을 다루면 데이터 처리 능력이 더욱 향상됩니다.</p>
+
+</body>
+</html>

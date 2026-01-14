@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>좌표계 비교: 일반 3D vs CSS 3D Transform</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f9fbfd;
+  color: #2c3e50;
+  line-height: 1.6;
+  margin: 40px;
+}
+h1 { text-align:center; margin-bottom:20px; }
+h2 { margin-top:30px; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+th, td {
+  border: 1px solid #d0d7de;
+  padding: 10px;
+  text-align: left;
+}
+th { background: #ecf0f1; }
+
+.table-axis-x { color: #ff9800; font-weight: bold; }
+.table-axis-y { color: #2ecc71; font-weight: bold; }
+.table-axis-z { color: #34495e; font-weight: bold; }
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+.scene {
+  width: 280px; height: 280px;
+  perspective: 800px;
+  border:1px solid #ccc;
+  background:#fff;
+  border-radius:8px;
+  padding:10px;
+}
+h3 { text-align:center; margin:10px 0; }
+
+.general .general-axes,
+.css3d .css-axes {
+  width:100%; height:100%;
+  transform-style: preserve-3d;
+  transform: rotateX(20deg) rotateY(30deg);
+  position:relative;
+  top:40px;
+}
+
+.general .gen-axis-x { position:absolute; transform-origin:center; width:160px; height:4px; top:25%; left:60%; background:#ff9800; transform: translateX(-50%); }
+.general .gen-axis-z { position:absolute; transform-origin:center; width:160px; height:4px; top:50%; left:30%; background:#34495e; transform: rotateZ(90deg) translateX(-50%); }
+.general .gen-axis-y { position:absolute; transform-origin:center; width:160px; height:4px; top:25%; left:30%; background:#2ecc71; transform: rotateY(90deg); }
+
+.gen-label-x { position:absolute; font-size:14px; font-weight:bold; color:#ff9800; top:calc(50% - 80px); left:calc(25% + 180px); }
+.gen-label-y { position:absolute; font-size:14px; font-weight:bold; color:#2ecc71; top:35%; left:calc(40% - 10px); }
+.gen-label-z { position:absolute; font-size:14px; font-weight:bold; color:#34495e; top:calc(50% - 180px); left:calc(30% + 70px); }
+
+.css3d .css-axis-x { position:absolute; transform-origin:center; width:160px; height:4px; top:25%; left:60%; background:#ff9800; transform: translateX(-50%); }
+.css3d .css-axis-z { position:absolute; transform-origin:center; width:160px; height:4px; top:50%; left:30%; background:#2ecc71; transform: rotateZ(90deg) translateX(-50%); } 
+.css3d .css-axis-y { position:absolute; transform-origin:center; width:160px; height:4px; top:25%; left:30%; background:#34495e; transform: rotateY(90deg); } 
+
+.css-label-x { position:absolute; font-size:14px; font-weight:bold; color:#ff9800; top:calc(50% - 80px); left:calc(25% + 180px); }
+.css-label-y { position:absolute; font-size:14px; font-weight:bold; color:#2ecc71; top:calc(50% - 180px); left:calc(30% + 70px);}
+.css-label-z { position:absolute; font-size:14px; font-weight:bold; color:#34495e; top:35%; left:calc(40% - 10px); }
+</style>
+</head>
+<body>
+  <h1 id="coordinate-system-comparison">좌표계 기준 비교: 일반 3D vs CSS 3D Transform</h1>
+  <p style="text-align:center;">
+    일반 3D 좌표계와 CSS 3D Transform 좌표계의 축 방향을 표와 다이어그램으로 비교합니다.
+  </p>
+
+  <h2>축 방향 비교 표</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>축</th>
+        <th>일반 3D 좌표계</th>
+        <th>CSS 3D Transform 좌표계</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="table-axis-x">X축</td>
+        <td>오른쪽(+x) / 왼쪽(−x)</td>
+        <td>오른쪽(+x) / 왼쪽(−x)</td>
+      </tr>
+      <tr>
+        <td class="table-axis-y">Y축</td>
+        <td>앞/뒤 방향 (깊이)</td>
+        <td>아래쪽(+y) / 위쪽(−y)</td>
+      </tr>
+      <tr>
+        <td class="table-axis-z">Z축</td>
+        <td>위쪽(+z) / 아래쪽(−z)</td>
+        <td>사용자 쪽(+z, 화면 밖) / 화면 안쪽(−z)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>좌표축 다이어그램</h2>
+  <div class="container">
+    <div class="scene general">
+      <h3>일반 3D 좌표계</h3>
+      <div class="general-axes">
+        <div class="gen-axis-x"></div>
+        <div class="gen-axis-y"></div>
+        <div class="gen-axis-z"></div>
+        <div class="gen-label-x">+X</div>
+        <div class="gen-label-y">+Y</div>
+        <div class="gen-label-z">+Z</div>
+      </div>
+    </div>
+
+    <div class="scene css3d">
+      <h3>CSS 3D Transform</h3>
+      <div class="css-axes">
+        <div class="css-axis-x"></div>
+        <div class="css-axis-y"></div>
+        <div class="css-axis-z"></div>
+        <div class="css-label-x">+X</div>
+        <div class="css-label-y">+Y</div>
+        <div class="css-label-z">+Z</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 20 (심화 최종본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트의 시작 — Chapter 20 (JSON, 심화)</h1>
+  <p>이 문서는 <strong>JSON (JavaScript Object Notation, 심화)</strong>을 설명합니다. JSON은 데이터를 교환하고 저장하기 위한 경량 텍스트 형식으로, 자바스크립트 객체 문법을 기반으로 하지만 언어 독립적으로 사용됩니다.</p>
+
+  <h2>1. JSON 기본 구조</h2>
+  <pre><code>{
+  "name": "효빈",
+  "age": 25,
+  "isMember": true,
+  "hobbies": ["독서", "코딩", "여행"]
+}</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 키-값 쌍과 배열을 포함한 JSON 데이터</div>
+
+  <h2>2. JSON과 자바스크립트 객체</h2>
+  <pre><code>&lt;script&gt;
+  var obj = { name: "효빈", age: 25 };
+  var jsonStr = JSON.stringify(obj); // 객체 → JSON 문자열 (함수, undefined, 심볼은 무시됨)
+  console.log(jsonStr);
+
+  var parsedObj = JSON.parse(jsonStr); // JSON 문자열 → 객체 (잘못된 JSON은 에러 발생)
+  console.log(parsedObj);
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> '{"name":"효빈","age":25}', {name:"효빈", age:25}</div>
+
+  <h2>3. JSON.stringify 옵션</h2>
+  <pre><code>&lt;script&gt;
+  var obj = { name: "효빈", age: 25, city: "서울" };
+
+  console.log(JSON.stringify(obj, null, 2)); // 들여쓰기 적용
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 보기 좋은 들여쓰기된 JSON 문자열</div>
+
+  <h2>4. JSON.parse 활용</h2>
+  <pre><code>&lt;script&gt;
+  var jsonStr = '{"name":"지민","age":30}';
+  var user = JSON.parse(jsonStr);
+
+  console.log(user.name);
+  console.log(user.age);
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> "지민", 30</div>
+
+  <h2>5. 배열과 중첩 객체 변환</h2>
+  <pre><code>&lt;script&gt;
+  var data = {
+    users: [
+      { name: "효빈", age: 25 },
+      { name: "지민", age: 30 }
+    ]
+  };
+  var jsonStr = JSON.stringify(data);
+  console.log(jsonStr);
+
+  var parsed = JSON.parse(jsonStr);
+  console.log(parsed.users[0].name); // "효빈"
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> '{"users":[{"name":"효빈","age":25},{"name":"지민","age":30}]}', "효빈"</div>
+
+  <h2>6. JSON과 API 응답</h2>
+  <pre><code>&lt;script&gt;
+  // 예시: 서버에서 받은 JSON 응답
+  var response = '{"status":"success","data":{"id":1,"title":"게시글"}}';
+  var result = JSON.parse(response);
+
+  console.log(result.status);
+  console.log(result.data.title);
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> "success", "게시글"</div>
+
+  <h2>7. JSON.parse 에러 처리</h2>
+  <pre><code>&lt;script&gt;
+  var invalid = "{name:'효빈'}"; // 잘못된 JSON (큰따옴표 없음)
+  try {
+    JSON.parse(invalid);
+  } catch (e) {
+    console.log("JSON 파싱 에러:", e.message);
+  }
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> "JSON 파싱 에러: Unexpected token n in JSON..."</div>
+
+  <h2>8. JSON의 특징</h2>
+  <ul>
+    <li>키는 반드시 큰따옴표("")로 감싸야 함</li>
+    <li>데이터 타입: 문자열, 숫자, 불리언, 배열, 객체, null</li>
+    <li>주석을 지원하지 않음</li>
+    <li>언어 독립적 → 다양한 언어에서 사용 가능</li>
+  </ul>
+
+  <h2>9. 실습 과제</h2>
+  <ul>
+    <li>자바스크립트 객체를 JSON 문자열로 변환하기</li>
+    <li>JSON 문자열을 객체로 변환하기</li>
+    <li>JSON.stringify 옵션으로 들여쓰기 적용하기</li>
+    <li>배열과 중첩 객체를 JSON으로 변환하기</li>
+    <li>API 응답(JSON 문자열)을 파싱해 데이터 출력하기</li>
+    <li>잘못된 JSON 문자열을 try...catch로 처리하기</li>
+  </ul>
+
+  <h2>10. 다음 학습 안내</h2>
+  <p>Chapter 21에서는 자바스크립트의 <strong>에러 처리(Error Handling)</strong>를 학습합니다. Chapter 20에서 배운 JSON과 함께 에러 처리를 이해하면 안정적인 프로그램을 작성할 수 있습니다.</p>
+
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS caption-side 속성 정리</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    table {
+      width: 60%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background: #34495e;
+      color: white;
+    }
+    .top caption {
+      caption-side: top;
+      font-weight: bold;
+      color: #2c3e50;
+    }
+    .bottom caption {
+      caption-side: bottom;
+      font-weight: bold;
+      color: #e74c3c;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS caption-side 속성 정리</h1>
+  <p><code>caption-side</code>는 표 제목(<code>&lt;caption&gt;</code>)을 위 또는 아래에 배치합니다.</p>
+
+  <table class="top">
+    <caption>위쪽 캡션 (caption-side: top)</caption>
+    <tr><th>과일</th><th>가격</th></tr>
+    <tr><td>사과</td><td>3000원</td></tr>
+    <tr><td>바나나</td><td>2000원</td></tr>
+  </table>
+
+  <table class="bottom">
+    <caption>아래쪽 캡션 (caption-side: bottom)</caption>
+    <tr><th>과일</th><th>가격</th></tr>
+    <tr><td>포도</td><td>4000원</td></tr>
+    <tr><td>오렌지</td><td>3500원</td></tr>
+  </table>
+
+  <table>
+    <thead>
+      <tr>
+        <th>값</th>
+        <th>설명</th>
+        <th>예시 코드</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>top</code></td>
+        <td>캡션을 표 위쪽에 표시 (기본값)</td>
+        <td><code>caption-side: top;</code></td>
+      </tr>
+      <tr>
+        <td><code>bottom</code></td>
+        <td>캡션을 표 아래쪽에 표시</td>
+        <td><code>caption-side: bottom;</code></td>
+      </tr>
+      <tr>
+        <td><code>inherit</code></td>
+        <td>부모 요소의 값을 상속</td>
+        <td><code>caption-side: inherit;</code></td>
+      </tr>
+      <tr>
+        <td><code>initial</code></td>
+        <td>기본값(top)으로 초기화</td>
+        <td><code>caption-side: initial;</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><b>정리:</b> <code>caption-side</code>는 표 제목을 위(<code>top</code>) 또는 아래(<code>bottom</code>)에 배치하는 속성으로, 기본값은 <code>top</code>입니다.</p>
+</body>
+</html>

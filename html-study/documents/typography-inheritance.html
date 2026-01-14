@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>CSS 속성 - 타이포그래피 상속</title>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.6; margin: 2rem; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 2rem; }
+    th, td { border: 1px solid #ccc; padding: 0.75rem; vertical-align: top; }
+    code { background: #f3f3f3; padding: 0.2rem 0.4rem; border-radius: 4px; }
+    .demo { border: 1px solid #ddd; padding: 1rem; margin-top: 0.5rem; background: #fafafa; }
+
+    .color-demo { color: darkred; }
+    .family-demo { font-family: "Courier New", monospace; }
+    .size-demo { font-size: 20px; }
+    .weight-demo { font-weight: bold; }
+    .style-demo { font-style: italic; }
+    .variant-demo { font-variant: small-caps; }
+    .shadow-demo { text-shadow: 2px 2px 4px gray; }
+  </style>
+</head>
+<body>
+  <h1 id="typography-inheritance">타이포그래피 상속 (typography-inheritance)</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>속성</th>
+        <th>코드 예제</th>
+        <th>데모</th>
+        <th>설명</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>color</strong></td>
+        <td><code>.color-demo { color: darkred; }</code></td>
+        <td><div class="demo color-demo">이 텍스트는 darkred로 표시됩니다.</div></td>
+        <td>
+          텍스트 색상을 지정합니다. 상속되어 자식 요소에도 동일하게 적용되며,  
+          전체 문서의 톤을 일관되게 유지하는 데 중요합니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>font-family</strong></td>
+        <td><code>.family-demo { font-family: "Courier New", monospace; }</code></td>
+        <td><div class="demo family-demo">이 텍스트는 Courier New 글꼴로 표시됩니다.</div></td>
+        <td>
+          글꼴을 지정합니다. 상속되어 후손 텍스트에도 적용되어 일관된 폰트 체계를 유지하며,  
+          문서 전체의 가독성과 분위기를 결정하는 핵심 속성입니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>font-size</strong></td>
+        <td><code>.size-demo { font-size: 20px; }</code></td>
+        <td><div class="demo size-demo">이 텍스트는 20px 크기로 표시됩니다.</div></td>
+        <td>
+          글자 크기를 지정합니다. 상속되며, 상대 단위(em, %)를 사용하면 부모 크기에 따라 변합니다.  
+          계층적 구조에서 크기 조절이 자연스럽게 이어집니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>font-weight</strong></td>
+        <td><code>.weight-demo { font-weight: bold; }</code></td>
+        <td><div class="demo weight-demo">이 텍스트는 굵게 표시됩니다.</div></td>
+        <td>
+          글자의 굵기를 지정합니다. 상속되어 자식 텍스트에도 영향을 주며,  
+          강조나 구분을 위해 자주 사용됩니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>font-style</strong></td>
+        <td><code>.style-demo { font-style: italic; }</code></td>
+        <td><div class="demo style-demo">이 텍스트는 이탤릭체로 표시됩니다.</div></td>
+        <td>
+          글자 스타일을 지정합니다. 상속되어 후손에도 적용되며,  
+          인용문이나 강조 표현에 활용됩니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>font-variant</strong></td>
+        <td><code>.variant-demo { font-variant: small-caps; }</code></td>
+        <td><div class="demo variant-demo">이 텍스트는 스몰캡으로 표시됩니다.</div></td>
+        <td>
+          글자 변형을 지정합니다. 상속되어 후손에도 적용되며,  
+          제목이나 특정 강조 구간에서 시각적 변화를 줄 수 있습니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>text-shadow</strong></td>
+        <td><code>.shadow-demo { text-shadow: 2px 2px 4px gray; }</code></td>
+        <td><div class="demo shadow-demo">이 텍스트는 그림자가 적용됩니다.</div></td>
+        <td>
+          텍스트에 그림자를 추가합니다. 상속되어 자식 텍스트에도 동일하게 보이며,  
+          입체감이나 강조 효과를 줄 때 사용됩니다.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

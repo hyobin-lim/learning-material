@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Display: Flex 속성 정리</title>
+  <style>
+    :root {
+      --bg: #f9fafb;
+      --text: #111827;
+      --muted: #6b7280;
+      --border: #d1d5db;
+      --primary: #2563eb;
+      --demo-box: #ffffff;
+      --item: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      margin: 40px;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    h1 {
+      margin-bottom: 6px;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: #0f172a;
+    }
+
+    p.intro {
+      color: var(--muted);
+      margin-top: 0;
+    }
+
+    section {
+      margin: 40px 0;
+    }
+
+    .note {
+      background: #eef2ff;
+      border-left: 4px solid var(--primary);
+      padding: 14px 16px;
+      margin: 20px 0 28px;
+      color: #1e293b;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 18px 0 26px;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #f3f4f6;
+      font-weight: 600;
+    }
+
+    code {
+      background: #f3f4f6;
+      padding: 0 4px;
+      border-radius: 4px;
+    }
+
+    pre {
+      background: #0b1020;
+      color: #e5e7eb;
+      padding: 10px 12px;
+      border-radius: 6px;
+      overflow: auto;
+      margin: 0;
+    }
+
+    .demo-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .demo-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--demo-box);
+      padding: 12px;
+    }
+
+    .demo-title {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .demo-desc {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .flex-demo {
+      display: flex;
+      border: 1px dashed var(--border);
+      background: #f8fafc;
+      padding: 8px;
+      min-height: 120px;
+      gap: 8px;
+    }
+
+    .item {
+      background: var(--item);
+      color: white;
+      padding: 8px 10px;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: 600;
+      min-width: 56px;
+    }
+
+    .w80 {
+      width: 80px;
+    }
+
+    .w120 {
+      width: 120px;
+    }
+
+    .h60 {
+      height: 60px;
+    }
+
+    .h40 {
+      height: 40px;
+    }
+
+    .big-text {
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .wrap-container {
+      min-height: 160px;
+    }
+
+    .axis-tip {
+      font-size: 13px;
+      color: #334155;
+      background: #e2e8f0;
+      border-radius: 6px;
+      padding: 8px 10px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Display: Flex 속성 정리</h1>
+
+<p><code>display:flex</code>는 <strong>부모 요소를 플렉스 컨테이너</strong>로 만들어 자식들을 플렉스 아이템으로 배치하는 속성입니다. <br>이때 컨테이너와 아이템에 적용할 수 있는 다양한 속성이 함께 동작합니다. <br>핵심은 컨테이너 속성(정렬, 방향, 줄바꿈)과 아이템 속성(크기, 비율, 순서)으로 나뉘며, 각각 레이아웃과 크기 비율을 제어합니다.
+</p>
+
+  <p class="intro">flex-direction, flex-wrap, justify-content, align-items, align-content의 모든 값과 차이를 설명하고, 값별 데모를 제공합니다.
+  </p>
+
+  <div class="note">
+    <strong>축 개념 정리:</strong>
+    주축(main axis)은 아이템이 나열되는 방향이고, 교차축(cross axis)은 주축에 수직인 방향입니다.
+    flex-direction이 축을 결정합니다. <br>
+    - row/row-reverse: 주축=가로, 교차축=세로 <br>
+    - column/column-reverse: 주축=세로, 교차축=가로
+  </div>
+
+  <!-- flex-direction -->
+  <section id="flex-direction">
+    <h2>flex-direction</h2>
+    <p>플렉스 컨테이너의 주축 방향을 설정합니다. 이 값에 따라 justify-content가 정렬하는 축과 align-items/align-content가 정렬하는 축이 달라집니다.</p>
+
+    <table>
+      <tr>
+        <th>값</th>
+        <th>설명</th>
+        <th>예제 코드</th>
+      </tr>
+      <tr>
+        <td><code>row</code></td>
+        <td>기본값. 주축인 가로(왼쪽→오른쪽)로 아이템 배치. 교차축은 세로(위→아래).</td>
+        <td>
+          <pre>.container { display: flex; flex-direction: row; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>row-reverse</code></td>
+        <td>주축인 가로(오른쪽→왼쪽)로 아이템 배치. 교차축은 세로(위→아래).</td>
+        <td>
+          <pre>.container { display: flex; flex-direction: row-reverse; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>column</code></td>
+        <td>주축인 세로(위→아래)로 아이템 배치. 교차축은 가로(왼쪽→오른쪽).</td>
+        <td>
+          <pre>.container { display: flex; flex-direction: column; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>column-reverse</code></td>
+        <td>주축인 세로(아래→위)로 아이템 배치. 교차축은 가로(왼쪽→오른쪽).</td>
+        <td>
+          <pre>.container { display: flex; flex-direction: column-reverse; }</pre>
+        </td>
+      </tr>
+    </table>
+
+    <div class="demo-group">
+      <div class="demo-card">
+        <div class="demo-title">row</div>
+        <div class="demo-desc">가로 주축. 왼쪽에서 오른쪽으로 나열.</div>
+        <div class="flex-demo" style="flex-direction: row;">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+        <div class="axis-tip">주축: 가로, 교차축: 세로</div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">row-reverse</div>
+        <div class="demo-desc">가로 주축. 오른쪽에서 왼쪽으로 나열.</div>
+        <div class="flex-demo" style="flex-direction: row-reverse;">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+        <div class="axis-tip">주축: 가로, 교차축: 세로</div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">column</div>
+        <div class="demo-desc">세로 주축. 위에서 아래로 나열.</div>
+        <div class="flex-demo" style="flex-direction: column;">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+        <div class="axis-tip">주축: 세로, 교차축: 가로</div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">column-reverse</div>
+        <div class="demo-desc">세로 주축. 아래에서 위로 나열.</div>
+        <div class="flex-demo" style="flex-direction: column-reverse;">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+        <div class="axis-tip">주축: 세로, 교차축: 가로</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- flex-wrap -->
+  <section id="flex-wrap">
+    <h2>flex-wrap</h2>
+    <p>아이템이 한 줄에 모두 배치될지, 공간이 부족하면 다음 줄로 감쌀지를 결정합니다.</p>
+
+    <table>
+      <tr>
+        <th>값</th>
+        <th>설명</th>
+        <th>예제 코드</th>
+      </tr>
+      <tr>
+        <td><code>nowrap</code></td>
+        <td>기본값. 줄바꿈 없이 한 줄에 배치.</td>
+        <td>
+          <pre>.container { display: flex; flex-wrap: nowrap; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>wrap</code></td>
+        <td>공간이 부족하면 다음 줄로 감싸기.</td>
+        <td>
+          <pre>.container { display: flex; flex-wrap: wrap; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>wrap-reverse</code></td>
+        <td>줄 감싸기 방향을 반대로(줄 스택의 시작/끝이 뒤집힘).</td>
+        <td>
+          <pre>.container { display: flex; flex-wrap: wrap-reverse; }</pre>
+        </td>
+      </tr>
+    </table>
+
+    <div class="demo-group">
+      <div class="demo-card">
+        <div class="demo-title">nowrap</div>
+        <div class="demo-desc">한 줄 고정. 넘치면 축소(shrink)되거나 넘침.</div>
+        <div class="flex-demo" style="flex-wrap: nowrap; width: 420px;">
+          <div class="item w120">A</div>
+          <div class="item w120">B</div>
+          <div class="item w120">C</div>
+          <div class="item w120">D</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">wrap</div>
+        <div class="demo-desc">여러 줄로 감싸며 위→아래 방향으로 쌓임.</div>
+        <div class="flex-demo wrap-container" style="flex-wrap: wrap; width: 360px;">
+          <div class="item w120">A</div>
+          <div class="item w120">B</div>
+          <div class="item w120">C</div>
+          <div class="item w120">D</div>
+          <div class="item w120">E</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">wrap-reverse</div>
+        <div class="demo-desc">여러 줄로 감싸되 아래→위 방향으로 쌓임.</div>
+        <div class="flex-demo wrap-container" style="flex-wrap: wrap-reverse; width: 360px;">
+          <div class="item w120">A</div>
+          <div class="item w120">B</div>
+          <div class="item w120">C</div>
+          <div class="item w120">D</div>
+          <div class="item w120">E</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- justify-content -->
+  <section id="justify-content">
+    <h2>justify-content</h2>
+    <p>아이템을 <strong>주축</strong> 방향으로 어떻게 정렬할지 설정합니다. flex-direction에 따라 주축이 달라집니다.</p>
+
+    <table>
+      <tr>
+        <th>값</th>
+        <th>설명</th>
+        <th>예제 코드</th>
+      </tr>
+      <tr>
+        <td><code>flex-start</code></td>
+        <td>주축 시작점에 모음.</td>
+        <td>
+          <pre>.container { justify-content: flex-start; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>flex-end</code></td>
+        <td>주축 끝점에 모음.</td>
+        <td>
+          <pre>.container { justify-content: flex-end; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>center</code></td>
+        <td>주축 중앙에 모음.</td>
+        <td>
+          <pre>.container { justify-content: center; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>space-between</code></td>
+        <td>양 끝에 붙이고 사이 간격을 동일하게.</td>
+        <td>
+          <pre>.container { justify-content: space-between; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>space-around</code></td>
+        <td>각 아이템 양쪽 여백을 동일하게.</td>
+        <td>
+          <pre>.container { justify-content: space-around; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>space-evenly</code></td>
+        <td>아이템 사이와 양 끝 간격을 모두 동일하게.</td>
+        <td>
+          <pre>.container { justify-content: space-evenly; }</pre>
+        </td>
+      </tr>
+    </table>
+
+    <div class="demo-group">
+      <div class="demo-card">
+        <div class="demo-title">flex-start</div>
+        <div class="demo-desc">주축 시작에 정렬.</div>
+        <div class="flex-demo" style="justify-content: flex-start;">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">flex-end</div>
+        <div class="demo-desc">주축 끝에 정렬.</div>
+        <div class="flex-demo" style="justify-content: flex-end;">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">center</div>
+        <div class="demo-desc">주축 중앙에 정렬.</div>
+        <div class="flex-demo" style="justify-content: center;">
+          <div class="item">1</div>
+          <div class="item">2</div>
+          <div class="item">3</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">space-between</div>
+        <div class="demo-desc">양 끝 고정 + 사이 간격 동일. (헤더 메뉴)</div>
+        <div class="flex-demo" style="justify-content: space-between;">
+          <div class="item w80">Logo</div>
+          <div class="item w80">Search</div>
+          <div class="item w80">Profile</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">space-around</div>
+        <div class="demo-desc">각 아이템 주변 여백 동일(끝 여백은 절반). (버튼 그룹)</div>
+        <div class="flex-demo" style="justify-content: space-around;">
+          <div class="item">OK</div>
+          <div class="item">Cancel</div>
+          <div class="item">Help</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">space-evenly</div>
+        <div class="demo-desc">사이/양끝 모두 동일 간격. (카드 레이아웃)</div>
+        <div class="flex-demo" style="justify-content: space-evenly;">
+          <div class="item h40">Card 1</div>
+          <div class="item h40">Card 2</div>
+          <div class="item h40">Card 3</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- align-items -->
+  <section id="align-items">
+    <h2>align-items</h2>
+    <p>아이템을 <strong>교차축</strong> 방향으로 어떻게 정렬할지 설정합니다. 각 아이템의 높이나 텍스트 기준선에 따라 차이가 납니다.</p>
+
+    <table>
+      <tr>
+        <th>값</th>
+        <th>설명</th>
+        <th>예제 코드</th>
+      </tr>
+      <tr>
+        <td><code>stretch</code></td>
+        <td>기본값. 아이템을 교차축으로 가능한 범위까지 늘립니다(높이 자동일 때).</td>
+        <td>
+          <pre>.container { align-items: stretch; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>flex-start</code></td>
+        <td>교차축 시작점에 정렬.</td>
+        <td>
+          <pre>.container { align-items: flex-start; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>flex-end</code></td>
+        <td>교차축 끝점에 정렬.</td>
+        <td>
+          <pre>.container { align-items: flex-end; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>center</code></td>
+        <td>교차축 중앙에 정렬.</td>
+        <td>
+          <pre>.container { align-items: center; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>baseline</code></td>
+        <td>아이템들의 텍스트 기준선을 맞춤.</td>
+        <td>
+          <pre>.container { align-items: baseline; }</pre>
+        </td>
+      </tr>
+    </table>
+
+    <div class="demo-group">
+      <div class="demo-card">
+        <div class="demo-title">stretch</div>
+        <div class="demo-desc">높이가 자동이면 교차축으로 늘어남. (갤러리 썸네일)</div>
+        <div class="flex-demo" style="align-items: stretch;">
+          <div class="item">Img 1</div>
+          <div class="item">Img 2</div>
+          <div class="item">Img 3</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">flex-start</div>
+        <div class="demo-desc">교차축 시작에 정렬. (타임라인 항목)</div>
+        <div class="flex-demo" style="align-items: flex-start;">
+          <div class="item h40">Step 1</div>
+          <div class="item h60">Step 2</div>
+          <div class="item h40">Step 3</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">flex-end</div>
+        <div class="demo-desc">교차축 끝에 정렬. (푸터 버튼)</div>
+        <div class="flex-demo" style="align-items: flex-end;">
+          <div class="item h40">Save</div>
+          <div class="item h60">Delete</div>
+          <div class="item h40">Close</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">center</div>
+        <div class="demo-desc">교차축 중앙에 정렬. (버튼 그룹)</div>
+        <div class="flex-demo" style="align-items: center;">
+          <div class="item h40">Yes</div>
+          <div class="item h60">No</div>
+          <div class="item h40">Maybe</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">baseline</div>
+        <div class="demo-desc">텍스트 기준선 맞춤. (다양한 폰트 크기)</div>
+        <div class="flex-demo" style="align-items: baseline;">
+          <div class="item big-text">Hello</div>
+          <div class="item">World</div>
+          <div class="item">CSS</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- align-content -->
+  <section id="align-content">
+    <h2>align-content</h2>
+    <p>여러 줄로 감싼(=wrap된) <strong>줄들 전체</strong>를 교차축 방향으로 어떻게 배치할지 설정합니다. 한 줄 레이아웃에서는 효과가 없습니다. flex-wrap이 wrap 또는
+      wrap-reverse일 때 의미가 있습니다.</p>
+
+    <table>
+      <tr>
+        <th>값</th>
+        <th>설명</th>
+        <th>예제 코드</th>
+      </tr>
+      <tr>
+        <td><code>stretch</code></td>
+        <td>줄들을 교차축으로 가능한 범위까지 늘림.</td>
+        <td>
+          <pre>.container { align-content: stretch; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>flex-start</code></td>
+        <td>줄들을 교차축 시작점에 모음.</td>
+        <td>
+          <pre>.container { align-content: flex-start; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>flex-end</code></td>
+        <td>줄들을 교차축 끝점에 모음.</td>
+        <td>
+          <pre>.container { align-content: flex-end; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>center</code></td>
+        <td>줄들을 교차축 중앙에 모음.</td>
+        <td>
+          <pre>.container { align-content: center; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>space-between</code></td>
+        <td>첫 줄과 마지막 줄을 교차축 양 끝에 붙이고 줄 사이 간격 동일.</td>
+        <td>
+          <pre>.container { align-content: space-between; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>space-around</code></td>
+        <td>각 줄 주변 여백을 동일하게.</td>
+        <td>
+          <pre>.container { align-content: space-around; }</pre>
+        </td>
+      </tr>
+      <tr>
+        <td><code>space-evenly</code></td>
+        <td>줄 사이와 양 끝 간격을 모두 동일하게.</td>
+        <td>
+          <pre>.container { align-content: space-evenly; }</pre>
+        </td>
+      </tr>
+    </table>
+
+    <div class="demo-group">
+      <div class="demo-card">
+        <div class="demo-title">stretch</div>
+        <div class="demo-desc">줄 높이를 교차축으로 늘림. (갤러리)</div>
+        <div class="flex-demo wrap-container" style="flex-wrap: wrap; align-content: stretch; height: 180px;">
+          <div class="item w120">Img 1</div>
+          <div class="item w120">Img 2</div>
+          <div class="item w120">Img 3</div>
+          <div class="item w120">Img 4</div>
+          <div class="item w120">Img 5</div>
+          <div class="item w120">Img 6</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">flex-start</div>
+        <div class="demo-desc">줄들을 위쪽(교차축 시작)에 모음. (뉴스 카드)</div>
+        <div class="flex-demo wrap-container" style="flex-wrap: wrap; align-content: flex-start; height: 180px;">
+          <div class="item w120">Headline 1</div>
+          <div class="item w120">Headline 2</div>
+          <div class="item w120">Headline 3</div>
+          <div class="item w120">Headline 4</div>
+          <div class="item w120">Headline 5</div>
+          <div class="item w120">Headline 6</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">flex-end</div>
+        <div class="demo-desc">줄들을 아래쪽(교차축 끝)에 모음. (푸터 버튼)</div>
+        <div class="flex-demo wrap-container" style="flex-wrap: wrap; align-content: flex-end; height: 180px;">
+          <div class="item w120">Save</div>
+          <div class="item w120">Cancel</div>
+          <div class="item w120">Close</div>
+          <div class="item w120">Help</div>
+          <div class="item w120">Exit</div>
+          <div class="item w120">More</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">center</div>
+        <div class="demo-desc">줄들을 중앙에 모음. (카드 레이아웃)</div>
+        <div class="flex-demo wrap-container" style="flex-wrap: wrap; align-content: center; height: 180px;">
+          <div class="item w120">Card A</div>
+          <div class="item w120">Card B</div>
+          <div class="item w120">Card C</div>
+          <div class="item w120">Card D</div>
+          <div class="item w120">Card E</div>
+          <div class="item w120">Card F</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">space-between</div>
+        <div class="demo-desc">첫/마지막 줄을 양 끝에, 사이 간격 동일. (타임라인)</div>
+        <div class="flex-demo wrap-container" style="flex-wrap: wrap; align-content: space-between; height: 180px;">
+          <div class="item w120">Step 1</div>
+          <div class="item w120">Step 2</div>
+          <div class="item w120">Step 3</div>
+          <div class="item w120">Step 4</div>
+          <div class="item w120">Step 5</div>
+          <div class="item w120">Step 6</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">space-around</div>
+        <div class="demo-desc">각 줄 주변 여백 동일. (버튼 그룹)</div>
+        <div class="flex-demo wrap-container" style="flex-wrap: wrap; align-content: space-around; height: 180px;">
+          <div class="item w120">Yes</div>
+          <div class="item w120">No</div>
+          <div class="item w120">Maybe</div>
+          <div class="item w120">Later</div>
+          <div class="item w120">Soon</div>
+          <div class="item w120">Never</div>
+        </div>
+      </div>
+      <div class="demo-card">
+        <div class="demo-title">space-evenly</div>
+        <div class="demo-desc">줄 사이/양 끝 모두 동일 간격. (박스 그리드)</div>
+        <div class="flex-demo wrap-container" style="flex-wrap: wrap; align-content: space-evenly; height: 180px;">
+          <div class="item w120">Box 1</div>
+          <div class="item w120">Box 2</div>
+          <div class="item w120">Box 3</div>
+          <div class="item w120">Box 4</div>
+          <div class="item w120">Box 5</div>
+          <div class="item w120">Box 6</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 추가 팁 -->
+  <section id="extra-tips">
+    <h2>추가 팁</h2>
+    <ul>
+      <li><strong>한 줄 레이아웃에서 align-content는 효과 없음:</strong> 반드시 flex-wrap이 <code>wrap</code>일 때만 의미가 있습니다.</li>
+      <li><strong>justify-content vs align-items:</strong> 주축 정렬은 <code>justify-content</code>, 교차축 정렬은
+        <code>align-items</code>가 담당합니다.</li>
+      <li><strong>flex-direction에 따라 축 변경:</strong> row/column에 따라 주축/교차축이 뒤바뀌니 정렬 속성의 체감 방향도 달라집니다.</li>
+      <li><strong>복합 사용:</strong> <code>justify-content</code>, <code>align-items</code>, <code>flex-wrap</code>,
+        <code>align-content</code>를 함께 조합해 원하는 레이아웃을 만드세요.</li>
+      <li><strong>실무 조합 예시:</strong>
+        <ul>
+          <li>헤더 메뉴 → <code>flex-direction: row; justify-content: space-between;</code></li>
+          <li>갤러리 → <code>flex-wrap: wrap; align-content: center;</code></li>
+          <li>버튼 그룹 → <code>justify-content: center; align-items: baseline;</code></li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</body>
+
+</html>

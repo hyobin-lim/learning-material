@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>&lt;figure&gt; &amp; &lt;figcaption&gt; 태그 정리</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 40px;
+      color: #111;
+    }
+
+    h1 {
+      color: #222;
+      margin-bottom: 8px;
+    }
+
+    p.lead {
+      color: #555;
+      margin-top: 0;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 22px;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      border: 1px solid #888;
+      padding: 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #eee;
+      font-weight: 700;
+    }
+
+    pre {
+      background: #0b1020;
+      color: #e5e7eb;
+      padding: 12px;
+      border-radius: 6px;
+      overflow: auto;
+      margin: 0;
+    }
+
+    code {
+      background: #f4f4f4;
+      padding: 0 4px;
+      border-radius: 4px;
+    }
+
+    .demo-figure {
+      border: 1px solid #ccc;
+      padding: 16px;
+      border-radius: 8px;
+      background: #fafafa;
+      text-align: center;
+    }
+
+    .demo-figure img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    .demo-figure figcaption {
+      margin-top: 8px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    .tip {
+      background: #eef2ff;
+      border-left: 4px solid #6366f1;
+      padding: 10px 12px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>&lt;figure&gt; &amp; &lt;figcaption&gt; 태그 정리</h1>
+  <p class="lead">이미지, 차트, 코드 블록 등 독립적인 콘텐츠를 묶고, 그에 대한 설명을 함께 제공할 때 사용합니다.</p>
+
+  <table>
+    <tr>
+      <th>쉬운 설명</th>
+      <th>코드 예제</th>
+      <th>데모 화면</th>
+      <th>베스트 프랙티스 / 주의사항</th>
+    </tr>
+    <tr>
+      <td>
+        <p><strong>&lt;figure&gt;:</strong> 독립적인 콘텐츠를 묶는 컨테이너입니다. 본문과 분리되어도 의미가 유지되는 자료(이미지, 차트, 코드 등)에 적합합니다.</p>
+        <p><strong>&lt;figcaption&gt;:</strong> <code>&lt;figure&gt;</code> 내부 콘텐츠에 대한 설명을 제공합니다. 이미지 캡션, 차트 제목, 코드 설명
+          등으로 활용됩니다.</p>
+        <p><strong>접근성:</strong> <code>&lt;figcaption&gt;</code>을 제공하면 스크린리더 사용자가 콘텐츠의 의미를 쉽게 이해할 수 있습니다.</p>
+      </td>
+      <td>
+        <pre>&lt;figure&gt;
+  &lt;img src="../images/healing.jpg" alt="계곡 풍경"&gt;
+  &lt;figcaption&gt;산 속 계곡 풍경&lt;/figcaption&gt;
+&lt;/figure&gt;</pre>
+      </td>
+      <td>
+        <figure class="demo-figure">
+          <img src="../images/healing.jpg" alt="계곡 풍경">
+          <figcaption>산 속 계곡 풍경</figcaption>
+        </figure>
+      </td>
+      <td>
+        <div class="tip">
+          <ul>
+            <li><strong>항상 함께 사용:</strong> <code>&lt;figure&gt;</code>와 <code>&lt;figcaption&gt;</code>은 세트로 쓰는 것이 좋습니다.
+            </li>
+            <li><strong>설명 제공:</strong> 시각적 자료에는 반드시 설명을 붙여 의미를 명확히 하십시오.</li>
+            <li><strong>다양한 콘텐츠:</strong> 이미지뿐 아니라 차트, 코드 블록, 다이어그램에도 활용 가능합니다.</li>
+            <li><strong>위치 유연성:</strong> <code>&lt;figcaption&gt;</code>은 <code>&lt;figure&gt;</code> 내부의 앞이나 뒤에 둘 수
+              있습니다.</li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

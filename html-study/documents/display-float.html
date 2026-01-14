@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>display:inline-block vs float:left/right 비교</title>
+  <style>
+    .inline-block-demo div {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      margin: 5px;
+      background-color: lightblue;
+      text-align: center;
+      line-height: 100px;
+    }
+    .float-demo div {
+      width: 100px;
+      height: 100px;
+      margin: 5px;
+      background-color: lightcoral;
+      text-align: center;
+      line-height: 100px;
+    }
+    .float-left { float: left; }
+    .float-right { float: right; }
+    .clearfix::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 30px;
+    }
+    th, td {
+      border: 1px solid #333;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+
+    .center {
+      text-align: center;
+    }
+
+  </style>
+</head>
+<body>
+  <h1>display:inline-block vs float:left/right 비교</h1>
+
+  <h2>예제 및 데모</h2>
+  <h3>1. display:inline-block</h3>
+  <div class="inline-block-demo">
+    <div>Box1</div>
+    <div>Box2</div>
+    <div>Box3</div>
+  </div>
+
+  <h3>2. float:left / float:right</h3>
+  <div class="float-demo clearfix">
+    <div class="float-left">Left</div>
+    <div class="float-right">Right</div>
+    <div class="float-left">Left2</div>
+  </div>
+
+  <h2>공통점과 차이점 정리</h2>
+  <table>
+    <tr>
+      <th>구분</th>
+      <th>display:inline-block</th>
+      <th>float:left/right</th>
+    </tr>
+    <tr>
+      <td>공통점</td>
+      <td colspan="2" class="center">요소들을 가로로 배치할 수 있으며, 블록 요소를 옆으로 나란히 배치하는 데 사용된다.</td>
+    </tr>
+    <tr>
+      <td>차이점</td>
+      <td>
+        - 인라인 요소처럼 옆으로 배치되지만 블록 특성을 유지<br>
+        - 부모 컨테이너의 흐름을 깨지 않음<br>
+        - 세로 정렬(vertical-align) 속성 사용 가능
+      </td>
+      <td>
+        - 요소를 왼쪽 또는 오른쪽으로 강제로 붙임<br>
+        - 부모 컨테이너의 흐름을 깨뜨려 clearfix 필요<br>
+        - 주로 레이아웃 구성에 사용
+      </td>
+    </tr>
+    <tr>
+      <td>장점</td>
+      <td>간단히 옆으로 배치 가능, 레이아웃 안정적</td>
+      <td>복잡한 레이아웃 구현 가능, 이미지/텍스트 감싸기 용이</td>
+    </tr>
+    <tr>
+      <td>단점</td>
+      <td>인라인 특성 때문에 공백 문제 발생 가능</td>
+      <td>부모 높이 붕괴 문제 발생, clearfix 필요</td>
+    </tr>
+    <tr>
+      <td>사용 예시</td>
+      <td>버튼, 메뉴 아이템, 카드 레이아웃</td>
+      <td>신문 기사 레이아웃, 이미지와 텍스트 배치</td>
+    </tr>
+  </table>
+</body>
+</html>

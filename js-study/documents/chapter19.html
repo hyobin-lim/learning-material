@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 19 (심화 최종본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트의 시작 — Chapter 19 (문자열, 심화)</h1>
+  <p>이 문서는 자바스크립트의 <strong>문자열(String, 심화)</strong>을 설명합니다. 문자열은 텍스트 데이터를 다루는 기본 자료형이며, 다양한 메서드와 기능을 통해 효율적으로 처리할 수 있습니다.</p>
+
+  <h2>1. 문자열 생성</h2>
+  <pre><code>&lt;script&gt;
+  var str1 = "Hello";
+  var str2 = 'World';
+  var str3 = `안녕하세요, 효빈님!`; // 템플릿 리터럴
+
+  console.log(str1, str2, str3);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> "Hello", "World", "안녕하세요, 효빈님!"</div>
+
+  <h2>2. 문자열 길이</h2>
+  <pre><code>&lt;script&gt;
+  var text = "JavaScript";
+  console.log(text.length);
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 10</div>
+
+  <h2>3. 문자열 접근</h2>
+  <pre><code>&lt;script&gt;
+  var text = "Hello";
+  console.log(text[0]); // H
+  console.log(text.charAt(1)); // e
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> "H", "e"</div>
+
+  <h2>4. 문자열 결합</h2>
+  <pre><code>&lt;script&gt;
+  var first = "안녕";
+  var second = "하세요";
+  var combined = first + second;
+
+  console.log(combined);
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> "안녕하세요"</div>
+
+  <h2>5. 문자열 메서드 (기초)</h2>
+  <pre><code>&lt;script&gt;
+  var text = "JavaScript";
+
+  console.log(text.toUpperCase()); // 대문자 변환
+  console.log(text.toLowerCase()); // 소문자 변환
+  console.log(text.indexOf("S"));  // 위치 찾기 (없으면 -1 반환)
+  console.log(text.includes("Script")); // 포함 여부
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> "JAVASCRIPT", "javascript", 4, true</div>
+
+  <h2>6. 문자열 메서드 (심화)</h2>
+  <pre><code>&lt;script&gt;
+  var text = "   Hello World   ";
+
+  console.log(text.trim());       // 앞뒤 공백 제거
+  console.log(text.replace("World", "효빈")); // 첫 번째 일치 항목만 치환
+  console.log(text.slice(0, 5));  // 부분 문자열 추출
+  console.log(text.split(" "));   // 구분자로 나누기
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> "Hello World", "   Hello 효빈   ", "Hello", ["","Hello","World","",""]</div>
+
+  <h2>7. 문자열 반복과 패딩</h2>
+  <pre><code>&lt;script&gt;
+  var text = "Hi";
+  console.log(text.repeat(3));       // "HiHiHi"
+  console.log(text.padStart(5, "*")); // "***Hi"
+  console.log(text.padEnd(5, "!"));   // "Hi!!!"
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> "HiHiHi", "***Hi", "Hi!!!"</div>
+
+  <h2>8. 문자열 검색 심화</h2>
+  <pre><code>&lt;script&gt;
+  var text = "banana";
+  console.log(text.lastIndexOf("a")); // 5
+  console.log(text.startsWith("ba")); // true
+  console.log(text.endsWith("na"));   // true
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 5, true, true</div>
+
+  <h2>9. 템플릿 리터럴 (심화)</h2>
+  <pre><code>&lt;script&gt;
+  var name = "효빈";
+  var age = 25;
+
+  var message = `안녕하세요, ${name}님! 나이는 ${age}살입니다.`;
+  console.log(message);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> "안녕하세요, 효빈님! 나이는 25살입니다."</div>
+
+  <h2>10. 실습 과제</h2>
+  <ul>
+    <li>문자열을 생성하고 출력하기</li>
+    <li>문자열 길이와 특정 문자 접근하기</li>
+    <li>문자열 결합하기</li>
+    <li>toUpperCase, toLowerCase, indexOf, includes 활용하기</li>
+    <li>trim, replace, slice, split 메서드 활용하기</li>
+    <li>repeat과 padStart/padEnd 활용하기</li>
+    <li>startsWith와 endsWith로 문자열 검사하기</li>
+    <li>템플릿 리터럴로 동적 문자열 작성하기</li>
+  </ul>
+
+  <h2>11. 다음 학습 안내</h2>
+  <p>Chapter 20에서는 자바스크립트의 <strong>JSON (JavaScript Object Notation)</strong>을 학습합니다. Chapter 19에서 배운 문자열과 함께 JSON을 이해하면 데이터 교환과 저장을 더 쉽게 할 수 있습니다.</p>
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>가상 선택자(Pseudo-selector)란?</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 32px; line-height: 1.7; color: #2c3e50; }
+    h1, h2 { color: #1f2d3d; }
+    code { background: #f4f6f8; padding: 2px 6px; border-radius: 4px; }
+    pre { background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 6px; overflow-x: auto; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #d7dce2; padding: 10px; text-align: left; vertical-align: top; }
+    th { background: #f1f5f9; }
+    .demo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 16px; }
+    .card { border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px; background: #ffffff; }
+    .button { display: inline-block; padding: 8px 12px; border: 1px solid #64748b; border-radius: 6px; background: #e2e8f0; color: #0f172a; text-decoration: none; margin: 4px 0; }
+    /* Pseudo-class demos */
+    .button:hover { background: #cbd5e1; }
+    .button:active { background: #94a3b8; color: #ffffff; }
+    .button:focus { outline: 2px solid #0ea5e9; outline-offset: 2px; }
+    .list li:first-child { font-weight: bold; }
+    .list li:last-child { color: #0ea5e9; }
+    .list li:nth-child(2n) { background: #f8fafc; }
+    input:required { border-color: #ef4444; }
+    input:valid { border-color: #10b981; }
+    input:invalid { border-color: #ef4444; }
+    a:visited { color: #7c3aed; }
+    /* Pseudo-element demos */
+    .quote::before { content: "“"; color: #334155; font-size: 24px; margin-right: 4px; }
+    .quote::after { content: "”"; color: #334155; font-size: 24px; margin-left: 4px; }
+    .title::selection { background: #fde68a; color: #111827; }
+    .required-label::after { content: " *"; color: #ef4444; }
+    .card::first-line { font-variant: small-caps; }
+    .card::first-letter { font-size: 140%; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>가상 선택자(Pseudo-selector)란?</h1>
+  <p>가상 선택자는 문서의 실제 DOM 요소를 추가로 만들지 않고, **특정 상태**나 **요소의 일부**를 선택해 스타일을 적용하는 CSS 기능입니다. 크게 두 가지로 나뉩니다.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>종류</th>
+        <th>설명</th>
+        <th>대표 예시</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>가상 클래스 (Pseudo-class)</strong></td>
+        <td>요소가 특정 상태일 때 선택합니다.</td>
+        <td><code>:hover</code>, <code>:active</code>, <code>:focus</code>, <code>:visited</code>, <code>:first-child</code>, <code>:nth-child()</code>, <code>:required</code>, <code>:valid</code>, <code>:invalid</code></td>
+      </tr>
+      <tr>
+        <td><strong>가상 요소 (Pseudo-element)</strong></td>
+        <td>요소의 특정 부분을 선택합니다.</td>
+        <td><code>::before</code>, <code>::after</code>, <code>::first-line</code>, <code>::first-letter</code>, <code>::selection</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>코드 예시</h2>
+  <pre><code>/* 가상 클래스 */
+.button:hover { background: #cbd5e1; }
+.list li:nth-child(2n) { background: #f8fafc; }
+input:required { border-color: #ef4444; }
+
+/* 가상 요소 */
+.quote::before { content: "“"; }
+.quote::after { content: "”"; }
+.required-label::after { content: " *"; color: #ef4444; }</code></pre>
+
+  <h2>데모</h2>
+  <div class="demo-grid">
+    <div class="card">
+      <div class="title">버튼 상태 데모</div>
+      <a href="#" class="button">마우스를 올려보세요 (:hover)</a><br>
+      <a href="#" class="button">클릭해보세요 (:active)</a><br>
+      <a href="#" class="button">탭으로 포커스 주세요 (:focus)</a>
+    </div>
+    <div class="card">
+      <div class="title">목록 상태 데모</div>
+      <ul class="list">
+        <li>첫 번째 (:first-child)</li>
+        <li>두 번째 (:nth-child)</li>
+        <li>세 번째 (:last-child)</li>
+        <li>네 번째 (짝수 :nth-child(2n))</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="title">폼 검증 데모</div>
+      <label class="required-label">이메일<input type="email" required placeholder="you@example.com" style="display:block; width:100%; padding:8px; margin-top:6px;"></label>
+    </div>
+    <div class="card">
+      <div class="title">링크 방문 상태 데모</div>
+      <p><a href="https://example.com">방문 상태 확인 (:visited)</a></p>
+    </div>
+    <div class="card">
+      <div class="title">인용문 가상 요소</div>
+      <p class="quote">CSS pseudo-elements로 앞뒤에 따옴표를 추가합니다.</p>
+    </div>
+    <div class="card">
+      <div class="title">텍스트 부분 스타일</div>
+      <p>아래 카드의 첫 줄과 첫 글자는 다르게 보입니다.</p>
+      <p class="card">first-line과 first-letter를 이용해 텍스트 일부만 스타일링합니다.</p>
+    </div>
+  </div>
+
+  <h2>언제 사용하나요?</h2>
+  <ul>
+    <li><strong>상태 기반 스타일:</strong> 버튼의 hover/active/focus 상태, 입력의 valid/invalid 상태 표시</li>
+    <li><strong>장식/보강:</strong> ::before/::after로 아이콘, 구분점, 보조 텍스트 추가</li>
+    <li><strong>부분 선택:</strong> ::first-line, ::first-letter로 텍스트의 특정 부분만 강조</li>
+  </ul>
+
+  <h2>기억 포인트</h2>
+  <ul>
+    <li><strong>콜론 개수:</strong> 가상 클래스는 한 콜론(<code>:</code>), 가상 요소는 두 콜론(<code>::</code>)이 권장 표기</li>
+    <li><strong>DOM 추가 없음:</strong> 가상 요소는 실제 노드가 생기는 게 아니라 렌더링 단계에서만 표현</li>
+    <li><strong>접근성:</strong> :focus 스타일을 제공해 키보드 사용자도 편하게</li>
+  </ul>
+</body>
+</html>

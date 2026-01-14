@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Transform Concepts & Tips</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #fdfdfd; color: #333; }
+    h1, h2, h3 { color: #2c3e50; }
+    .card { border:1px solid #ccc; border-radius:8px; padding:16px; margin:20px 0; background:#fff; }
+    .demo-wrap { display:flex; gap:20px; flex-wrap:wrap; margin-top:10px; }
+    .demo-box {
+      width:100px; height:100px;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:bold; color:#fff;
+      background:#3498db;
+      transition:all 0.6s ease;
+      border-radius:8px;
+    }
+    /* 데모 효과 */
+    .rotate-demo:hover { transform: rotate(45deg); }
+    .origin-left-top { transform-origin:left top; }
+    .origin-right-bottom { transform-origin:right bottom; }
+    .translate-demo:hover { transform: translateX(50px); }
+    .scale-demo:hover { transform: scale(1.5); }
+    .skew-demo:hover { transform: skewX(20deg); }
+    .perspective-scene { perspective:600px; display:flex; gap:20px; }
+    .preserve-3d { transform-style: preserve-3d; }
+    .flip-card { width:100px; height:100px; position:relative; perspective:600px; }
+    .flip-inner {
+      position:absolute; width:100%; height:100%;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+    }
+    .flip-card:hover .flip-inner { transform: rotateY(180deg); }
+    .flip-front, .flip-back {
+      position:absolute; width:100%; height:100%;
+      backface-visibility:hidden;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:bold; color:#fff; border-radius:8px;
+    }
+    .flip-front { background:#e67e22; }
+    .flip-back { background:#2ecc71; transform: rotateY(180deg); }
+  </style>
+</head>
+<body>
+<h1>CSS Transform 핵심 개념과 실전 데모</h1>
+
+<div class="card">
+  <h3>변환 순서의 중요성</h3>
+  <p><b>순서:</b> CSS는 왼쪽에서 오른쪽으로 적용됩니다. <br>
+    <code>transform: translate(100px) rotate(45deg)</code>와 <code>rotate(45deg) translate(100px)</code>는 전혀 다른 결과를 만듭니다. <br>먼저 이동 후 회전하면 회전 중심이 이동한 위치가 되고, 먼저 회전 후 이동하면 회전된 좌표계를 기준으로 이동합니다.</p>
+  <pre>/* 서로 다른 결과 */ <br>.box-a { transform: translate(100px) rotate(45deg); }
+.box-b { transform: rotate(45deg) translate(100px); }</pre>
+  <div class="demo-wrap">
+    <div class="demo-box rotate-demo">회전</div>
+    <div class="demo-box translate-demo">이동</div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>transform-origin으로 기준점 바꾸기</h3>
+  <p><b>기준점:</b> 기본은 <code>center center</code>입니다. 이를 바꾸면 회전과 스케일, 기울임의 “축”이 달라집니다.</p>
+  <pre>.box { transform-origin: left top; transform: rotate(45deg); }</pre>
+  <div class="demo-wrap">
+    <div class="demo-box rotate-demo origin-left-top">LT</div>
+    <div class="demo-box rotate-demo origin-right-bottom">RB</div>
+  </div>
+  <div class="label">좌: left top 기준 회전 / 우: right bottom 기준 회전</div>
+</div>
+
+<div class="card">
+  <h3>perspective와 perspective()</h3>
+  <p><b>컨테이너 방식:</b> 부모에 <code>perspective:600px</code>을 주면, 자식들의 모든 3D가 원근을 공유합니다.</p>
+  <pre>.scene { perspective: 600px; }</pre>
+  <p><b>개별 요소 방식:</b> 요소에 <code>transform: perspective(600px) rotateY(45deg)</code>처럼 쓰면, 해당 요소 변환에만 원근이 적용됩니다.</p>
+    <pre>.card { transform: perspective(600px) rotateY(45deg); }</pre>
+    <p class="tip"><b>차이:</b> 컨테이너 방식은 여러 요소 간 깊이 일관성이 생기고, 개별 방식은 요소마다 다른 원근을 줄 수 있어 연출에 유리합니다.</p>
+  <div class="perspective-scene">
+    <div class="demo-box" style="transform: rotateY(30deg);">공유</div>
+    <div class="demo-box" style="transform: perspective(600px) rotateY(30deg);">개별</div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>perspective-origin과 preserve-3d</h3>
+    <p><b>관찰 위치:</b> <code>perspective-origin</code>은 “카메라”가 보는 중심점을 바꿉니다(기본 center center).</p>
+    <pre>.scene { perspective: 600px; perspective-origin: left top; }</pre>
+     <p><b>자식들의 3D 유지:</b> 부모에 <code>transform-style: preserve-3d</code>를 주면 자식의 3D 관계가 유지되어 레이어링 효과가 살아납니다.</p>
+    <pre>.parent { transform-style: preserve-3d; }</pre>
+</div>
+
+<div class="card">
+  <h3>backface-visibility로 뒷면 제어</h3>
+  <p><b>뒷면 숨김:</b> 3D 회전 시 뒤집힌 면을 숨길 수 있습니다.</p>
+    <pre>.card { backface-visibility: hidden; transform: rotateY(180deg); }</pre>
+    <p class="tip"><b>사용처:</b> 카드 플립 UI에서 앞/뒷면 레이어를 겹쳐 놓고 깔끔한 뒤집기 구현.</p>
+  <div class="flip-card">
+    <div class="flip-inner">
+      <div class="flip-front">앞</div>
+      <div class="flip-back">뒤</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>다양한 transform 함수</h3>
+  <div class="demo-wrap">
+    <div class="demo-box scale-demo">스케일</div>
+    <div class="demo-box skew-demo">스큐</div>
+  </div>
+</div>
+
+<div class="card">
+    <h3>단위와 범위</h3>
+    <ul>
+      <li><b>이동:</b> px(화면 픽셀), %(자신 크기 기준), em/rem(폰트 기준).</li>
+      <li><b>각도:</b> deg(도), rad(라디안), turn(1turn=360deg).</li>
+      <li><b>스케일:</b> 실수. 1은 원래 크기, 0~1 축소, &gt;1 확대, 음수는 축 방향 반전.</li>
+      <li><b>Z축 가시성:</b> 원근 없으면 translateZ/scaleZ 차이가 거의 안 보일 수 있습니다.</li>
+    </ul>
+  </div>
+
+<div class="card">
+    <h3>조합과 성능</h3>
+    <ul>
+      <li><b>GPU 가속:</b> transform은 대체로 합성 단계에서 처리되어 성능이 좋습니다.</li>
+      <li><b>복합 변환:</b> 여러 함수를 한 라인에서 조합할 때, 순서가 결과를 좌우합니다.</li>
+      <li><b>Z-fighting:</b> 3D 레이어가 거의 같은 깊이에 있을 때 깜빡임이 생길 수 있습니다. 약간의 translateZ로 깊이를 분리하세요.</li>
+      <li><b>디버깅:</b> 행렬(matrix, matrix3d) 사용 전 개별 함수로 먼저 연출을 잡은 뒤, 필요 시 행렬로 변환하세요.</li>
+    </ul>
+  </div>
+
+</body>
+</html>

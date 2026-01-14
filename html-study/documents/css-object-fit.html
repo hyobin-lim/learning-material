@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS object-fit 속성 설명</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            vertical-align: top;
+            text-align: left;
+        }
+        th {
+            background-color: #ecf0f1;
+        }
+        .demo-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .demo-box {
+            width: 200px;
+            height: 200px;
+            border: 2px solid #3498db;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        .demo-box img {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ccc;
+        }
+        .label {
+            margin-top: 8px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS <code>object-fit</code> 속성 이해하기</h1>
+    <p><code>object-fit</code> 속성은 &lt;img&gt;나 &lt;video&gt; 요소가 고정된 크기의 컨테이너 안에서 어떻게 맞춰질지를 정의합니다. 
+       이미지나 영상의 비율을 유지하거나, 잘라내거나, 늘려서 보여줄 때 유용합니다.</p>
+
+    <h2>설명과 예제 코드</h2>
+    <table>
+        <tr>
+            <th>값</th>
+            <th>설명</th>
+            <th>예제 코드</th>
+        </tr>
+        <tr>
+            <td><code>fill</code></td>
+            <td>컨테이너를 꽉 채우도록 이미지가 늘어나거나 줄어듭니다. 비율은 유지되지 않습니다.</td>
+            <td><pre>img { object-fit: fill; }</pre></td>
+        </tr>
+        <tr>
+            <td><code>contain</code></td>
+            <td>이미지의 비율을 유지하면서 컨테이너 안에 모두 들어오도록 조정합니다. 여백이 생길 수 있습니다.</td>
+            <td><pre>img { object-fit: contain; }</pre></td>
+        </tr>
+        <tr>
+            <td><code>cover</code></td>
+            <td>이미지의 비율을 유지하면서 컨테이너를 가득 채웁니다. 일부 영역은 잘릴 수 있습니다.</td>
+            <td><pre>img { object-fit: cover; }</pre></td>
+        </tr>
+        <tr>
+            <td><code>none</code></td>
+            <td>이미지를 원래 크기 그대로 표시합니다. 컨테이너보다 크면 넘칩니다.</td>
+            <td><pre>img { object-fit: none; }</pre></td>
+        </tr>
+        <tr>
+            <td><code>scale-down</code></td>
+            <td><code>none</code>과 <code>contain</code> 중 더 작은 크기로 표시합니다.</td>
+            <td><pre>img { object-fit: scale-down; }</pre></td>
+        </tr>
+    </table>
+
+    <h2>데모</h2>
+    <div class="demo-container">
+        <div class="demo-box">
+            <img src="../images/sample_Image.png" style="object-fit: fill;">
+            <div class="label">fill</div>
+        </div>
+        <div class="demo-box">
+            <img src="../images/sample_Image.png" style="object-fit: contain;">
+            <div class="label">contain</div>
+        </div>
+        <div class="demo-box">
+            <img src="../images/sample_Image.png" style="object-fit: cover;">
+            <div class="label">cover</div>
+        </div>
+        <div class="demo-box">
+            <img src="../images/sample_Image.png" style="object-fit: none;">
+            <div class="label">none</div>
+        </div>
+        <div class="demo-box">
+            <img src="../images/sample_Image.png" style="object-fit: scale-down;">
+            <div class="label">scale-down</div>
+        </div>
+    </div>
+</body>
+</html>

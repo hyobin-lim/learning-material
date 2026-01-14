@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <!-- 메타 -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HTML 문서 구조 트리 설명서</title>
+  <meta name="description" content="HTML 문서의 계층(트리) 구조를 도식화하여 설명하고, 접근성/SEO 모범 사례 및 흔한 오류를 교정한 상세 가이드입니다.">
+
+  <!-- 최소 스타일 -->
+  <style>
+    :root {
+      --text: #1f2937;
+      --muted: #6b7280;
+      --bg: #ffffff;
+      --border: #e5e7eb;
+      --code-bg: #f8fafc;
+      --accent: #0ea5e9;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+      line-height: 1.7;
+    }
+    header.page-header, footer.page-footer {
+      background: #f9fafb;
+      border-bottom: 1px solid var(--border);
+    }
+    footer.page-footer { border-top: 1px solid var(--border); border-bottom: none; }
+    .container { max-width: 980px; margin: 0 auto; padding: 24px; }
+    h1 { font-size: 1.8rem; margin: 0 0 8px; }
+    h2 { font-size: 1.35rem; margin: 28px 0 12px; }
+    h3 { font-size: 1.1rem; margin: 22px 0 8px; color: var(--muted); }
+    p { margin: 10px 0; }
+    ul, ol { margin: 8px 0 8px 22px; }
+    code { background: var(--code-bg); border: 1px solid var(--border); border-radius: 4px; padding: 0 4px; }
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px;
+      overflow: auto;
+    }
+    .tip, .warn, .good {
+      padding: 12px 14px; margin: 12px 0; border-radius: 6px;
+    }
+    .tip { border-left: 4px solid var(--accent); background: #f0f9ff; }
+    .warn { border-left: 4px solid #ef4444; background: #fef2f2; }
+    .good { border-left: 4px solid #10b981; background: #ecfdf5; }
+    hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+    /* 트리 스타일: UL/LI 기반 도식 */
+    .tree {
+      --line: #d1d5db;
+      padding-left: 0;
+      margin-left: 0;
+    }
+    .tree ul {
+      list-style: none;
+      padding-left: 1rem;
+      margin-left: 0.5rem;
+      border-left: 1px solid var(--line);
+    }
+    .tree li {
+      position: relative;
+      padding: 4px 0 4px 0.75rem;
+    }
+    .tree li::before {
+      content: "";
+      position: absolute;
+      left: -1px;
+      top: 0.9rem;
+      width: 0.75rem;
+      height: 0;
+      border-top: 1px solid var(--line);
+    }
+    .node {
+      display: inline-block;
+      padding: 2px 6px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+      font-size: 0.95rem;
+    }
+    .badge { color: #2563eb; }
+    details summary {
+      cursor: pointer;
+      user-select: none;
+    }
+    .small { color: var(--muted); font-size: .95rem; }
+    .grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
+    @media (min-width: 900px) {
+      .grid-2 { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="page-header">
+    <div class="container">
+      <h1>HTML 문서 구조 트리 설명서</h1>
+      <p class="small">HTML5 문서의 계층(트리) 구조를 도식화해 보여주고, 접근성과 SEO 모범 사례, 흔한 오류 교정까지 정리했습니다.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="container">
+      <h2>1. 기본 트리 구조 도식</h2>
+      <p>HTML 문서는 루트 <code>&lt;html&gt;</code> 요소 아래에 <code>&lt;head&gt;</code>와 <code>&lt;body&gt;</code>가 있는 계층 구조로 이루어집니다. 아래는 가장 기본적인 트리입니다.</p>
+      <pre><code>&lt;!DOCTYPE html&gt;
+html (lang="ko")
+│
+├── head
+│   ├── meta (charset="UTF-8")
+│   ├── meta (name="viewport" content="width=device-width, initial-scale=1")
+│   ├── title
+│   └── link (rel="stylesheet", href="css/structure.css")
+│
+└── body
+    ├── header (머리글: 로고, 제목, 탐색)
+    ├── nav (글로벌 내비게이션)
+    ├── main (주요 콘텐츠, 문서당 1개 권장)
+    │   ├── section (주제 블록)
+    │   └── section (주제 블록)
+    └── footer (바닥글: 회사/정책/사이트맵)</code></pre>
+
+      <div class="tip">
+        <strong>Tip:</strong> <code>&lt;main&gt;</code>은 페이지의 핵심 콘텐츠를 나타내며 문서당 하나만 사용하는 것이 좋습니다. 탐색이나 바닥글은 <code>&lt;main&gt;</code> 바깥에 위치합니다.
+      </div>
+    </section>
+
+    <hr>
+
+    <section class="container">
+      <h2>2. 예시 페이지 트리 (Dream Jeju)</h2>
+      <p>다음은 “Dream Jeju” 페이지 구조를 트리로 상세히 풀어쓴 것입니다. 의미와 모범 사례를 함께 주석처럼 병기했습니다.</p>
+
+      <!-- ASCII 트리 -->
+      <details open>
+        <summary><strong>ASCII 트리 도식</strong> (빠른 전체 구조 확인)</summary>
+        <pre><code>&lt;!DOCTYPE html&gt;
+html (lang="ko")
+│
+├── head
+│   ├── meta (charset="UTF-8")
+│   ├── meta (name="viewport" content="width=device-width, initial-scale=1")
+│   ├── title: Dream Jeju
+│   └── link (rel="stylesheet", href="css/structure.css")
+│
+└── body
+    ├── ul.skip-links
+    │   ├── li → a (위로 가기)
+    │   └── li → a (본문 바로가기)
+    │
+    └── div#container
+        ├── header
+        │   ├── div#logo
+        │   │   └── a[href="documents/index.html", aria-label="홈"]
+        │   │       └── h1: Dream Jeju
+        │   └── nav[aria-label="주요 메뉴"]
+        │       └── ul#topMenu
+        │           ├── li → a (#group-tours)
+        │           ├── li → a (#custom-tours)
+        │           ├── li → a (#gallery)
+        │           └── li → a (#contact)
+        │
+        ├── hr[aria-hidden="true"]
+        │
+        ├── main#main-content.contents
+        │   ├── section#healing-section
+        │   │   ├── h2: 몸과 마음이 치유되는 섬
+        │   │   ├── div.detail
+        │   │   │   ├── img[src="../images/healing.jpg", alt="제주의 바다와 오름", loading="lazy"]
+        │   │   │   ├── p → strong: 쉼(Healing)의 공간 안내
+        │   │   │   └── p: 본문 설명
+        │   │   └── div.schedule
+        │   │       ├── h3: 상세 일정
+        │   │       └── ul
+        │   │           ├── li: 여행 기간 (2박 3일)
+        │   │           └── li: 일정은 상담 후 조정
+        │   │
+        │   └── section#activity-section
+        │       ├── h2: 다양한 액티비티가 기다리는 섬
+        │       └── div.detail
+        │           ├── img[src="../images/activity.jpg", alt="제주 액티비티", loading="lazy"]
+        │           ├── p → strong: 레저 안내
+        │           └── p...: 설명 문단들
+        │
+        └── footer
+            └── section#bottomMenu[aria-label="바닥글 메뉴"]
+                └── ul
+                    ├── li → a: 회사 소개
+                    ├── li → a: 개인정보처리방침
+                    ├── li → a: 여행약관
+                    └── li → a: 사이트맵
+
+    └── ul.skip-links (하단 반복)
+        └── li → a (위로 가기)</code></pre>
+      </details>
+
+      <!-- UL/LI 트리로 렌더링 -->
+      <details>
+        <summary><strong>UL/LI 트리 도식</strong> (시맨틱 목록 기반 시각화)</summary>
+        <div class="tree">
+          <ul>
+            <li><span class="node">DOCTYPE <span class="badge">(HTML5)</span></span></li>
+            <li>
+              <span class="node">html <code>lang="ko"</code></span>
+              <ul>
+                <li>
+                  <span class="node">head</span>
+                  <ul>
+                    <li><span class="node">meta <code>charset="UTF-8"</code></span></li>
+                    <li><span class="node">meta <code>name="viewport"</code> <code>content="width=device-width, initial-scale=1"</code></span></li>
+                    <li><span class="node">title: Dream Jeju</span></li>
+                    <li><span class="node">link <code>rel="stylesheet"</code> <code>href="css/structure.css"</code></span></li>
+                  </ul>
+                </li>
+                <li>
+                  <span class="node">body</span>
+                  <ul>
+                    <li>
+                      <span class="node">ul.skip-links</span>
+                      <ul>
+                        <li><span class="node">li → a (위로 가기)</span></li>
+                        <li><span class="node">li → a (본문 바로가기)</span></li>
+                      </ul>
+                    </li>
+                    <li>
+                      <span class="node">div#container</span>
+                      <ul>
+                        <li>
+                          <span class="node">header</span>
+                          <ul>
+                            <li>
+                              <span class="node">div#logo</span>
+                              <ul>
+                                <li><span class="node">a <code>href="documents/index.html"</code> <code>aria-label="홈으로 이동"</code> → h1</span></li>
+                              </ul>
+                            </li>
+                            <li>
+                              <span class="node">nav <code>aria-label="주요 메뉴"</code></span>
+                              <ul>
+                                <li>
+                                  <span class="node">ul#topMenu</span>
+                                  <ul>
+                                    <li><span class="node">li → a (#group-tours)</span></li>
+                                    <li><span class="node">li → a (#custom-tours)</span></li>
+                                    <li><span class="node">li → a (#gallery)</span></li>
+                                    <li><span class="node">li → a (#contact)</span></li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>
+                        <li><span class="node">hr <code>aria-hidden="true"</code></span></li>
+                        <li>
+                          <span class="node">main#main-content.contents</span>
+                          <ul>
+                            <li>
+                              <span class="node">section#healing-section</span>
+                              <ul>
+                                <li><span class="node">h2: 힐링 제목</span></li>
+                                <li>
+                                  <span class="node">div.detail</span>
+                                  <ul>
+                                    <li><span class="node">img <code>src</code> <code>alt</code> <code>loading="lazy"</code></span></li>
+                                    <li><span class="node">p → strong: 안내 문구</span></li>
+                                    <li><span class="node">p: 본문 설명</span></li>
+                                  </ul>
+                                </li>
+                                <li>
+                                  <span class="node">div.schedule</span>
+                                  <ul>
+                                    <li><span class="node">h3: 상세 일정</span></li>
+                                    <li>
+                                      <span class="node">ul</span>
+                                      <ul>
+                                        <li><span class="node">li: 2박 3일</span></li>
+                                        <li><span class="node">li: 상담 후 조정</span></li>
+                                      </ul>
+                                    </li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                            <li>
+                              <span class="node">section#activity-section</span>
+                              <ul>
+                                <li><span class="node">h2: 액티비티 제목</span></li>
+                                <li>
+                                  <span class="node">div.detail</span>
+                                  <ul>
+                                    <li><span class="node">img <code>src</code> <code>alt</code> <code>loading="lazy"</code></span></li>
+                                    <li><span class="node">p → strong: 안내 문구</span></li>
+                                    <li><span class="node">p...: 설명 문단들</span></li>
+                                  </ul>
+                                </li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <span class="node">footer</span>
+                          <ul>
+                            <li>
+                              <span class="node">section#bottomMenu <code>aria-label="바닥글 메뉴"</code></span>
+                              <ul>
+                                <li><span class="node">ul → li → a: 회사 소개</span></li>
+                                <li><span class="node">ul → li → a: 개인정보처리방침</span></li>
+                                <li><span class="node">ul → li → a: 여행약관</span></li>
+                                <li><span class="node">ul → li → a: 사이트맵</span></li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                    <li>
+                      <span class="node">ul.skip-links (하단)</span>
+                      <ul>
+                        <li><span class="node">li → a: 위로 가기</span></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </details>
+
+      <div class="good">
+        <strong>모범 사례 보충:</strong>
+        <ul>
+          <li><strong>이미지:</strong> 의미 있는 이미지는 <code>alt</code>를 제공하고, 장식 이미지는 <code>alt=""</code>로 표시합니다.</li>
+          <li><strong>내비게이션:</strong> <code>&lt;nav aria-label="주요 메뉴"&gt;</code>처럼 목적을 설명하는 ARIA 라벨을 추가합니다.</li>
+          <li><strong>제목 구조:</strong> <code>&lt;h1&gt;</code>은 페이지 핵심 제목으로 1회 사용, 섹션에는 <code>h2~h6</code>로 계층을 유지합니다.</li>
+          <li><strong>간격/구분:</strong> <code>&lt;br&gt;</code>로 간격을 만들지 말고 CSS <code>margin/padding</code>을 사용합니다.</li>
+          <li><strong>성능:</strong> 이미지에 <code>loading="lazy"</code>, 필요 시 <code>width</code>/<code>height</code> 속성으로 레이아웃 안정화.</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr>
+
+    <section class="container grid grid-2">
+      <div>
+        <h2>3. 흔한 오류와 교정</h2>
+        <div class="warn">
+          <strong>잘못된 중첩:</strong> <code>&lt;b&gt;</code> 안에 <code>&lt;p&gt;</code>를 넣는 것은 비시맨틱하며 접근성에 불리합니다.  
+          교정: 문장 강조는 <code>&lt;strong&gt;</code> 또는 <code>&lt;em&gt;</code>로, 문단은 독립 <code>&lt;p&gt;</code>로 구성하세요.
+        </div>
+        <div class="warn">
+          <strong>중복/누락 태그:</strong> 말미의 중복 <code>&lt;/ul&gt;</code>은 제거하고, 모든 리스트는 <code>&lt;ul&gt;</code> 안에 <code>&lt;li&gt;</code>만 위치하도록 유지하세요.
+        </div>
+        <div class="warn">
+          <strong>의미 없는 링크:</strong> <code>href="#"</code>는 스크롤 점프와 접근성 문제를 야기할 수 있습니다.  
+          교정: 실제 목적지(예: <code>index.html</code> 또는 <code>"/"</code>)를 지정하거나 버튼 역할이면 <code>&lt;button&gt;</code>을 사용하세요.
+        </div>
+        <div class="warn">
+          <strong>오탈자 ID:</strong> <code>id="headling"</code> 대신 <code>id="healing-section"</code>처럼 의미가 명확한 이름을 사용하세요.
+        </div>
+      </div>
+      <div>
+        <h2>4. 접근성/SEO 체크리스트</h2>
+        <ul>
+          <li><strong>문서 선언/언어:</strong> <code>DOCTYPE</code> 존재, <code>html lang</code> 지정.</li>
+          <li><strong>인코딩/뷰포트:</strong> <code>meta charset</code>, <code>meta viewport</code> 설정.</li>
+          <li><strong>제목 계층:</strong> <code>h1</code> 1회, 섹션별 <code>h2~h6</code> 일관성 유지.</li>
+          <li><strong>이미지 대체 텍스트:</strong> 의미 이미지에 적절한 <code>alt</code> 제공.</li>
+          <li><strong>내비 라벨:</strong> <code>aria-label</code>로 탐색 목적 전달.</li>
+          <li><strong>링크 텍스트:</strong> “여기” 대신 목적이 드러나는 문구 사용.</li>
+          <li><strong>간격 제어:</strong> 과도한 <code>&lt;br&gt;</code> 금지, CSS로 레이아웃.</li>
+          <li><strong>성능:</strong> lazy loading, 이미지 최적화, 외부 리소스 최소화.</li>
+        </ul>
+      </div>
+    </section>
+
+    <hr>
+
+    <section class="container">
+      <h2>5. 트리 도식 + 코드 예제 (교정/보완 반영)</h2>
+      <p>아래 코드는 위 트리 도식을 실제 HTML로 반영한 간단 샘플입니다.</p>
+      <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="ko"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;Dream Jeju&lt;/title&gt;
+  &lt;link rel="stylesheet" href="css/structure.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;ul class="skip-links"&gt;
+    &lt;li&gt;&lt;a href="#top"&gt;위로 가기&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#main-content"&gt;본문 바로가기&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;div id="container"&gt;
+    &lt;header id="top"&gt;
+      &lt;div id="logo"&gt;
+        &lt;a href="documents/index.html" aria-label="Dream Jeju 홈으로 이동"&gt;
+          &lt;h1&gt;Dream Jeju&lt;/h1&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+      &lt;nav aria-label="주요 메뉴"&gt;
+        &lt;ul id="topMenu"&gt;
+          &lt;li&gt;&lt;a href="#group-tours"&gt;단체 여행&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#custom-tours"&gt;맞춤 여행&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#gallery"&gt;갤러리&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#contact"&gt;문의하기&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;hr aria-hidden="true"&gt;
+
+    &lt;main id="main-content" class="contents"&gt;
+      &lt;section id="healing-section"&gt;
+        &lt;h2&gt;몸과 마음이 치유되는 섬&lt;/h2&gt;
+        &lt;div class="detail"&gt;
+          &lt;img src="../images/healing.jpg" alt="제주의 푸른 바다와 오름 풍경" loading="lazy"&gt;
+          &lt;p&gt;&lt;strong&gt;쉼(Healing)&lt;/strong&gt;의 공간으로 안내합니다.&lt;/p&gt;
+          &lt;p&gt;탁 트인 바다와 시원한 바람을 느끼며 오름을 오르고, 올레길을 걷다 보면 온전히 나에게 집중할 수 있습니다.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="schedule"&gt;
+          &lt;h3&gt;상세 일정&lt;/h3&gt;
+          &lt;ul&gt;
+            &lt;li&gt;여행 기간: 2박 3일&lt;/li&gt;
+            &lt;li&gt;여행 일정: 상담을 통해 결정 및 조정 가능합니다.&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;section id="activity-section"&gt;
+        &lt;h2&gt;다양한 액티비티가 기다리는 섬&lt;/h2&gt;
+        &lt;div class="detail"&gt;
+          &lt;img src="../images/activity.jpg" alt="패러글라이딩, 스쿠버다이빙, 전동바이크 등 제주 액티비티" loading="lazy"&gt;
+          &lt;p&gt;&lt;strong&gt;모험과 스릴&lt;/strong&gt;이 넘치는 레저의 천국으로 안내합니다.&lt;/p&gt;
+          &lt;p&gt;둘러보기만 하는 여행을 하셨나요? 패러글라이딩, 스킨스쿠버, 전동바이크 등 다양한 활동을 즐겨보세요.&lt;/p&gt;
+          &lt;p&gt;요트 체험과 배낚시도 빼놓을 수 없죠.&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+      &lt;section id="bottomMenu" aria-label="바닥글 메뉴"&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a href="#about"&gt;회사 소개&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#privacy"&gt;개인정보처리방침&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#terms"&gt;여행약관&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href="#sitemap"&gt;사이트맵&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/section&gt;
+    &lt;/footer&gt;
+  &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </section>
+  </main>
+
+  <footer class="page-footer">
+    <div class="container">
+      <p class="small">이 문서는 학습과 실무 적용을 위해 작성되었습니다. 필요하면 트리 도식을 프로젝트 가이드로 복사해 사용하세요.</p>
+    </div>
+  </footer>
+</body>
+</html>

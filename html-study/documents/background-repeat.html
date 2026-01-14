@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>background-repeat</title>
+  <style>
+    .demo-box {
+      width: 200px;
+      height: 100px;
+      border: 2px solid #333;
+      margin: 10px;
+      background-image: url(../images/book-icon.png);
+    }
+    .repeat { background-repeat: repeat; }
+    .repeat-x { background-repeat: repeat-x; }
+    .repeat-y { background-repeat: repeat-y; }
+    .no-repeat { background-repeat: no-repeat; }
+    .round { background-repeat: round; }
+    .space { background-repeat: space; }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #aaa;
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS background-repeat 속성 이해하기</h1>
+  <p><code>background-repeat</code>은 요소의 배경 이미지가 어떻게 반복될지를 결정하는 CSS 속성입니다.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>값</th>
+        <th>설명</th>
+        <th>코드 예제</th>
+        <th>데모</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>repeat</td>
+        <td>가로와 세로 모두 반복 (기본값)</td>
+        <td><pre>background-repeat: repeat;</pre></td>
+        <td><div class="demo-box repeat"></div></td>
+      </tr>
+      <tr>
+        <td>repeat-x</td>
+        <td>가로 방향으로만 반복</td>
+        <td><pre>background-repeat: repeat-x;</pre></td>
+        <td><div class="demo-box repeat-x"></div></td>
+      </tr>
+      <tr>
+        <td>repeat-y</td>
+        <td>세로 방향으로만 반복</td>
+        <td><pre>background-repeat: repeat-y;</pre></td>
+        <td><div class="demo-box repeat-y"></div></td>
+      </tr>
+      <tr>
+        <td>no-repeat</td>
+        <td>반복하지 않고 한 번만 표시</td>
+        <td><pre>background-repeat: no-repeat;</pre></td>
+        <td><div class="demo-box no-repeat"></div></td>
+      </tr>
+      <tr>
+        <td>round</td>
+        <td>이미지를 요소 크기에 맞게 늘려 반복</td>
+        <td><pre>background-repeat: round;</pre></td>
+        <td><div class="demo-box round"></div></td>
+      </tr>
+      <tr>
+        <td>space</td>
+        <td>이미지를 반복하되 남는 공간을 균등하게 분배</td>
+        <td><pre>background-repeat: space;</pre></td>
+        <td><div class="demo-box space"></div></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

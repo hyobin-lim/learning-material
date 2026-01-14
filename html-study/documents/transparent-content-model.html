@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>블록/인라인 혼용 가능한 태그 비교</title>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; }
+    h1 { color: #2c3e50; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; vertical-align: top; }
+    th { background: #f4f4f4; }
+    .demo { background: #ecf0f1; padding: 10px; margin-top: 5px; }
+    a div { background:#3498db; color:white; padding:5px; }
+    button h3 { margin:0; }
+    label div { border:1px solid #aaa; padding:5px; }
+    ins p { color:green; }
+    del div { color:red; }
+    summary { cursor:pointer; font-weight:bold; }
+  </style>
+</head>
+<body>
+  <h1>블록 레벨과 인라인 레벨 혼용 가능한 태그 비교</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>태그</th>
+        <th>설명</th>
+        <th>예제 코드</th>
+        <th>데모</th>
+        <th>비고</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>&lt;a&gt;</td>
+        <td>인라인 요소지만 HTML5부터 블록 요소 포함 가능</td>
+        <td>
+          <pre><code class="language-html">&lt;a href="#"&gt;
+  &lt;div&gt;블록 요소를 포함한 링크&lt;/div&gt;
+&lt;/a&gt;</code></pre>
+        </td>
+        <td>
+          <div class="demo">
+            <a href="#"><div>블록 요소를 포함한 링크</div></a>
+          </div>
+        </td>
+        <td>링크 전체를 블록처럼 만들 수 있음</td>
+      </tr>
+      <tr>
+        <td>&lt;button&gt;</td>
+        <td>인라인처럼 보이지만 내부에 블록 요소 포함 가능</td>
+        <td>
+          <pre><code class="language-html">&lt;button&gt;
+  &lt;h3&gt;버튼 제목&lt;/h3&gt;
+  &lt;p&gt;버튼 설명 텍스트&lt;/p&gt;
+&lt;/button&gt;</code></pre>
+        </td>
+        <td>
+          <div class="demo">
+            <button>
+              <h3>버튼 제목</h3>
+              <p>버튼 설명 텍스트</p>
+            </button>
+          </div>
+        </td>
+        <td>폼 컨트롤로 자주 사용됨</td>
+      </tr>
+      <tr>
+        <td>&lt;label&gt;</td>
+        <td>인라인 요소지만 블록 요소도 감쌀 수 있음</td>
+        <td>
+          <pre><code class="language-html">&lt;label&gt;
+  &lt;div&gt;블록 요소 라벨&lt;/div&gt;
+  &lt;input type="text" placeholder="텍스트 입력"&gt;
+&lt;/label&gt;</code></pre>
+        </td>
+        <td>
+          <div class="demo">
+            <label>
+              <div>블록 요소 라벨</div>
+              <input type="text" placeholder="텍스트 입력">
+            </label>
+          </div>
+        </td>
+        <td>폼 입력과 연결 가능</td>
+      </tr>
+      <tr>
+        <td>&lt;ins&gt; / &lt;del&gt;</td>
+        <td>삽입/삭제 표시 태그로 인라인과 블록 모두 가능</td>
+        <td>
+          <pre><code class="language-html">&lt;ins&gt;
+  &lt;p&gt;새로 삽입된 문단&lt;/p&gt;
+&lt;/ins&gt;
+&lt;del&gt;
+  &lt;div&gt;삭제된 블록 내용&lt;/div&gt;
+&lt;/del&gt;</code></pre>
+        </td>
+        <td>
+          <div class="demo">
+            <ins><p>새로 삽입된 문단</p></ins>
+            <del><div>삭제된 블록 내용</div></del>
+          </div>
+        </td>
+        <td>문서 변경 내역 표시용</td>
+      </tr>
+      <tr>
+        <td>&lt;map&gt;</td>
+        <td>이미지 맵 정의 태그로 블록/인라인 모두 포함 가능</td>
+        <td>
+          <pre><code class="language-html">&lt;img src="demo.png" usemap="#demoMap"&gt;
+&lt;map name="demoMap"&gt;
+  &lt;area shape="rect" coords="0,0,100,100" href="#" alt="영역1"&gt;
+  &lt;area shape="rect" coords="100,0,200,100" href="#" alt="영역2"&gt;
+&lt;/map&gt;</code></pre>
+        </td>
+        <td>
+          <div class="demo">
+            <img src="https://via.placeholder.com/200x100" usemap="#demoMap" alt="데모 이미지">
+            <map name="demoMap">
+              <area shape="rect" coords="0,0,100,100" href="#" alt="영역1">
+              <area shape="rect" coords="100,0,200,100" href="#" alt="영역2">
+            </map>
+          </div>
+        </td>
+        <td>이미지 내 특정 영역에 링크 지정 가능</td>
+      </tr>
+      <tr>
+        <td>&lt;summary&gt;</td>
+        <td>&lt;details&gt;와 함께 사용, 블록/인라인 모두 가능</td>
+        <td>
+          <pre><code class="language-html">&lt;details&gt;
+  &lt;summary&gt;자세히 보기&lt;/summary&gt;
+  &lt;p&gt;이 부분은 summary 클릭 시 펼쳐집니다.&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+        </td>
+        <td>
+          <div class="demo">
+            <details>
+              <summary>자세히 보기</summary>
+              <p>이 부분은 summary 클릭 시 펼쳐집니다.</p>
+            </details>
+          </div>
+        </td>
+        <td>접기/펼치기 UI 제공</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

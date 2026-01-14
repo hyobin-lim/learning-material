@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS 캐스캐이딩 기본</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 24px; line-height: 1.6; }
+    table { border-collapse: collapse; width: 100%; max-width: 960px; margin-bottom: 32px; }
+    th, td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
+    th { background: #f5f7fb; font-weight: 600; }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    h1 { margin-bottom: 16px; }
+    h2 { margin-top: 32px; }
+    code { background: #f3f3f3; padding: 2px 6px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>CSS 캐스캐이딩(Cascading) 기본</h1>
+  <p><strong>캐스캐이딩</strong>은 여러 CSS 규칙이 동일한 요소에 적용될 때, 어떤 규칙이 최종적으로 적용될지를 결정하는 과정입니다.</p>
+
+  <h2>캐스캐이딩의 주요 원칙</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>원칙</th>
+        <th>설명</th>
+        <th>예시</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>출처(Source)</td>
+        <td>브라우저 기본 스타일, 사용자 스타일, 개발자가 작성한 스타일 중 우선순위 결정</td>
+        <td>사용자 정의 CSS가 브라우저 기본 스타일보다 우선</td>
+      </tr>
+      <tr>
+        <td>특이성(Specificity)</td>
+        <td>선택자의 구체성에 따라 우선순위가 달라짐</td>
+        <td>Inline &gt; <code>#id</code> &gt; <code>.class</code> &gt; <code>tag</code></td>
+      </tr>
+      <tr>
+        <td>중요도(Importance)</td>
+        <td><code>!important</code>가 붙은 규칙은 다른 규칙보다 우선</td>
+        <td><code>p { color:red !important; }</code></td>
+      </tr>
+      <tr>
+        <td>선언 순서(Order)</td>
+        <td>같은 우선순위일 경우, 나중에 선언된 규칙이 적용, 이전 것에 나중에 선언된 것이 덮여 쓰여짐</td>
+        <td>
+          <code>p { color:blue; }</code><br>
+          <code>p { color:green; }</code><br>
+          → 최종적으로 <span style="color:green;">green</span> 적용
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

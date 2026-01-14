@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>float 해제(클리어) 5가지 방법 — clear:both, clearfix, overflow, 고정 높이, Flex/Grid</title>
+  <style>
+    /* 공통 데모 스타일 */
+    :root {
+      --gap: 12px;
+      --bg: #f6f8fa;
+      --text: #0f172a;
+      --muted: #475569;
+      --border: #e2e8f0;
+      --accent: #2563eb;
+      --green: #10b981;
+      --red: #ef4444;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+      line-height: 1.6;
+    }
+    header {
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 {
+      margin: 0 0 8px 0;
+      font-size: 22px;
+    }
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+    section {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+    section h2 {
+      margin: 0 0 8px 0;
+      font-size: 20px;
+    }
+    section .summary {
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: #fff;
+      margin-right: 8px;
+      color: var(--muted);
+    }
+    .badge.good { color: var(--green); border-color: #c9f0df; background: #ebfff7; }
+    .badge.warn { color: var(--red); border-color: #ffd2d2; background: #fff1f1; }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--gap);
+    }
+    @media (min-width: 800px) {
+      .demo-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .demo {
+      border: 1px dashed var(--border);
+      border-radius: 6px;
+      padding: 12px;
+    }
+    .demo h3 {
+      margin: 0 0 8px 0;
+      font-size: 16px;
+    }
+    .code {
+      background: #0b1020;
+      color: #eaf2ff;
+      padding: 12px;
+      border-radius: 6px;
+      overflow: auto;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .legend {
+      display: inline-block;
+      font-size: 12px;
+      margin: 4px 6px 8px 0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--muted);
+    }
+
+    /* 플로트 박스 시각화 */
+    .container {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      padding: 10px;
+      margin: 8px 0;
+      position: relative;
+    }
+    .container::before {
+      content: "부모 시작";
+      position: absolute;
+      top: -10px; left: 8px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 11px;
+      padding: 0 6px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .container::after {
+      content: "부모 끝";
+      position: absolute;
+      bottom: -10px; right: 8px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 11px;
+      padding: 0 6px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+
+    .float-left {
+      float: left;
+      width: 48%;
+      min-width: 180px;
+      background: #e0f2fe;
+      border: 1px solid #bae6fd;
+      color: #0c4a6e;
+      padding: 10px;
+      margin: 4px;
+      height: 64px;
+    }
+    .float-right {
+      float: right;
+      width: 48%;
+      min-width: 180px;
+      background: #fee2e2;
+      border: 1px solid #fecaca;
+      color: #7f1d1d;
+      padding: 10px;
+      margin: 4px;
+      height: 64px;
+    }
+    .content {
+      background: #fef9c3;
+      border: 1px solid #fde68a;
+      color: #713f12;
+      padding: 10px;
+      margin-top: 8px;
+    }
+
+    /* 1) clear: both */
+    .clear { clear: both; }
+
+    /* 2) clearfix 실무 방식 */
+    .clearfix::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    /* 3) overflow 방식 */
+    .overflow-auto { overflow: auto; }
+    .overflow-hidden { overflow: hidden; }
+
+    /* 4) 부모 높이 고정(비권장) */
+    .fixed-height { height: 120px; overflow: hidden; }
+
+    /* 5) Flex/Grid 방식 */
+    .flex-container { display: flex; gap: 8px; flex-wrap: wrap; }
+    .flex-item {
+      flex: 1 1 240px;
+      background: #dcfce7;
+      border: 1px solid #bbf7d0;
+      color: #064e3b;
+      padding: 10px;
+      min-height: 64px;
+    }
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 8px;
+    }
+    .grid-item {
+      background: #ede9fe;
+      border: 1px solid #ddd6fe;
+      color: #4c1d95;
+      padding: 10px;
+      min-height: 64px;
+    }
+
+    /* 부작용을 보여주기 위한 라벨용 */
+    .parent-height-visual {
+      outline: 2px dotted #f59e0b;
+      position: relative;
+    }
+    .parent-height-visual::after {
+      content: "부모 높이 영역";
+      position: absolute;
+      top: 4px; right: 4px;
+      font-size: 11px;
+      color: #b45309;
+      background: #fff7ed;
+      border: 1px solid #fde68a;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>float 해제(클리어) 5가지 방법</h1>
+    <p>clear:both, clearfix, overflow, 부모 높이 고정(권장되지 않음), Flex/Grid — 각각의 동작 원리와 코드 데모</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>기본 개념 요약</h2>
+      <p class="summary">
+        float를 사용하면 요소가 일반 문서 흐름에서 빠져 부모의 높이가 0처럼 보이거나 다음 콘텐츠가 겹칠 수 있습니다.
+        이를 해결하는 대표적인 방법 다섯 가지를 실제 코드와 함께 비교합니다.
+      </p>
+      <div>
+        <span class="badge">문제: 부모 높이 붕괴</span>
+        <span class="badge good">목표: 부모가 자식 float을 포함</span>
+        <span class="badge warn">주의: 부작용(스크롤/잘림/유지보수성)</span>
+      </div>
+    </section>
+
+    <section>
+      <h2>공통 예시 레이아웃</h2>
+      <p class="summary">아래 박스 두 개를 좌우로 float시키고, 뒤에 일반 콘텐츠가 이어지는 상황을 가정합니다.</p>
+      <div class="demo">
+        <h3>HTML 구조</h3>
+        <pre class="code">&lt;div class="container"&gt;
+  &lt;div class="float-left"&gt;왼쪽 float&lt;/div&gt;
+  &lt;div class="float-right"&gt;오른쪽 float&lt;/div&gt;
+  &lt;div class="content"&gt;다음 일반 콘텐츠&lt;/div&gt;
+&lt;/div&gt;</pre>
+        <div class="legend">파랑: 왼쪽 float</div>
+        <div class="legend">핑크: 오른쪽 float</div>
+        <div class="legend">노랑: 일반 콘텐츠</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>1) clear: both</h2>
+      <p class="summary">
+        float 뒤에 <code>clear: both</code>를 가진 요소를 하나 추가해 물리적으로 흐름을 끊어 부모가 높이를 갖도록 합니다.
+        간단하고 직관적이지만, 마크업에 별도의 ‘클리어 요소’를 넣어야 합니다.
+      </p>
+
+      <div class="demo-grid">
+        <div class="demo">
+          <h3>데모</h3>
+          <div class="container">
+            <div class="float-left">왼쪽 float</div>
+            <div class="float-right">오른쪽 float</div>
+            <div class="clear"></div>
+            <div class="content">clear 요소 덕분에 부모가 float을 포함합니다.</div>
+          </div>
+        </div>
+        <div class="demo">
+          <h3>코드</h3>
+          <pre class="code">&lt;style&gt;
+  .clear { clear: both; }
+&lt;/style&gt;
+
+&lt;div class="container"&gt;
+  &lt;div class="float-left"&gt;왼쪽 float&lt;/div&gt;
+  &lt;div class="float-right"&gt;오른쪽 float&lt;/div&gt;
+  &lt;!-- 흐름을 끊는 전용 요소 --&gt;
+  &lt;div class="clear"&gt;&lt;/div&gt;
+
+  &lt;div class="content"&gt;부모가 정상 높이를 가집니다.&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>2) clearfix (실무에서 많이 쓰는 방식)</h2>
+      <p class="summary">
+        부모에 가상 요소(<code>::after</code>)를 만들어 <code>clear: both</code>를 적용하는 기법입니다.
+        마크업은 깔끔하게 유지하고, CSS만으로 float을 포함할 수 있어 재사용성이 높습니다.
+      </p>
+
+      <div class="demo-grid">
+        <div class="demo">
+          <h3>데모</h3>
+          <div class="container clearfix">
+            <div class="float-left">왼쪽 float</div>
+            <div class="float-right">오른쪽 float</div>
+            <div class="content">부모(.clearfix)가 float을 자동으로 포함합니다.</div>
+          </div>
+        </div>
+        <div class="demo">
+          <h3>코드</h3>
+          <pre class="code">&lt;style&gt;
+  .clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+&lt;/style&gt;
+
+&lt;div class="container clearfix"&gt;
+  &lt;div class="float-left"&gt;왼쪽 float&lt;/div&gt;
+  &lt;div class="float-right"&gt;오른쪽 float&lt;/div&gt;
+  &lt;div class="content"&gt;마크업에 추가 요소가 필요 없습니다.&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>3) overflow: auto 또는 hidden</h2>
+      <p class="summary">
+        부모에 <code>overflow</code>를 주면 새로운 블록 포맷팅 컨텍스트(BFC)가 생겨 float을 포함합니다.
+        <code>auto</code>는 넘치면 스크롤이 생길 수 있고, <code>hidden</code>은 넘치는 내용을 잘라낼 수 있어 부작용을 고려해야 합니다.
+      </p>
+
+      <div class="demo-grid">
+        <div class="demo">
+          <h3>데모 (overflow: auto)</h3>
+          <div class="container overflow-auto parent-height-visual">
+            <div class="float-left">왼쪽 float</div>
+            <div class="float-right">오른쪽 float</div>
+            <div class="content">부모가 float을 포함하지만, 내용이 넘치면 스크롤이 생길 수 있습니다.</div>
+          </div>
+        </div>
+        <div class="demo">
+          <h3>코드 (overflow: auto)</h3>
+          <pre class="code">&lt;style&gt;
+  .overflow-auto { overflow: auto; }
+&lt;/style&gt;
+
+&lt;div class="container overflow-auto"&gt;
+  &lt;div class="float-left"&gt;왼쪽 float&lt;/div&gt;
+  &lt;div class="float-right"&gt;오른쪽 float&lt;/div&gt;
+  &lt;div class="content"&gt;BFC로 인해 부모가 포함됩니다.&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+
+      <div class="demo-grid">
+        <div class="demo">
+          <h3>데모 (overflow: hidden)</h3>
+          <div class="container overflow-hidden parent-height-visual">
+            <div class="float-left">왼쪽 float</div>
+            <div class="float-right">오른쪽 float</div>
+            <div class="content">넘치는 영역은 잘릴 수 있으니 주의하세요.</div>
+          </div>
+        </div>
+        <div class="demo">
+          <h3>코드 (overflow: hidden)</h3>
+          <pre class="code">&lt;style&gt;
+  .overflow-hidden { overflow: hidden; }
+&lt;/style&gt;
+
+&lt;div class="container overflow-hidden"&gt;
+  &lt;div class="float-left"&gt;왼쪽 float&lt;/div&gt;
+  &lt;div class="float-right"&gt;오른쪽 float&lt;/div&gt;
+  &lt;div class="content"&gt;잘림 부작용을 고려해야 합니다.&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>4) 부모 높이 고정 (권장되지 않음)</h2>
+      <p class="summary">
+        부모에 고정 높이를 주면 겉보기엔 포함된 것처럼 보이지만, 콘텐츠가 늘거나 줄 때 쉽게 깨집니다.
+        반응형 레이아웃, 동적 데이터, 다국어 등 변화에 취약하므로 일반적으로 권장되지 않습니다.
+      </p>
+
+      <div class="demo-grid">
+        <div class="demo">
+          <h3>데모</h3>
+          <div class="container fixed-height parent-height-visual">
+            <div class="float-left">왼쪽 float</div>
+            <div class="float-right">오른쪽 float</div>
+            <div class="content">콘텐츠가 늘면 잘리거나 겹칠 위험이 있습니다.</div>
+          </div>
+        </div>
+        <div class="demo">
+          <h3>코드</h3>
+          <pre class="code">&lt;style&gt;
+  .fixed-height { height: 120px; overflow: hidden; }
+&lt;/style&gt;
+
+&lt;div class="container fixed-height"&gt;
+  &lt;div class="float-left"&gt;왼쪽 float&lt;/div&gt;
+  &lt;div class="float-right"&gt;오른쪽 float&lt;/div&gt;
+  &lt;div class="content"&gt;유지보수 측면에서 비추입니다.&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>5) Flex와 Grid (최신 레이아웃)</h2>
+      <p class="summary">
+        float을 사용하지 않고 부모를 Flex나 Grid로 바꾸면 본질적으로 ‘클리어’가 필요 없습니다.
+        정렬, 간격, 반응형 배치를 더 쉽게 제어할 수 있어 새로운 프로젝트에서는 이 방식을 권장합니다.
+      </p>
+
+      <div class="demo-grid">
+        <div class="demo">
+          <h3>Flex 데모</h3>
+          <div class="container flex-container">
+            <div class="flex-item">왼쪽 역할</div>
+            <div class="flex-item">오른쪽 역할</div>
+          </div>
+          <div class="content">float 없이도 자연스럽게 레이아웃이 성립합니다.</div>
+        </div>
+        <div class="demo">
+          <h3>Flex 코드</h3>
+          <pre class="code">&lt;style&gt;
+  .flex-container { display: flex; gap: 8px; flex-wrap: wrap; }
+  .flex-item { flex: 1 1 240px; }
+&lt;/style&gt;
+
+&lt;div class="container flex-container"&gt;
+  &lt;div class="flex-item"&gt;왼쪽 역할&lt;/div&gt;
+  &lt;div class="flex-item"&gt;오른쪽 역할&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+
+      <div class="demo-grid">
+        <div class="demo">
+          <h3>Grid 데모</h3>
+          <div class="container grid-container">
+            <div class="grid-item">왼쪽 역할</div>
+            <div class="grid-item">오른쪽 역할</div>
+          </div>
+          <div class="content">컬럼 제어와 반응형 배치가 유연합니다.</div>
+        </div>
+        <div class="demo">
+          <h3>Grid 코드</h3>
+          <pre class="code">&lt;style&gt;
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 8px;
+  }
+&lt;/style&gt;
+
+&lt;div class="container grid-container"&gt;
+  &lt;div class="grid-item"&gt;왼쪽 역할&lt;/div&gt;
+  &lt;div class="grid-item"&gt;오른쪽 역할&lt;/div&gt;
+&lt;/div&gt;</pre>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>언제 무엇을 쓰면 좋을까</h2>
+      <ul>
+        <li><strong>간단한 페이지에서 빠르게 해결:</strong> clear 요소 또는 overflow 사용이 즉각적입니다.</li>
+        <li><strong>실무 유지보수와 재사용:</strong> clearfix 클래스를 만들어 공통으로 적용하세요.</li>
+        <li><strong>콘텐츠가 동적/반응형:</strong> 고정 높이는 피하고 overflow의 부작용도 점검하세요.</li>
+        <li><strong>새로운 프로젝트/현대적 레이아웃:</strong> Flex/Grid로 float 자체를 대체하는 것이 장기적으로 최선입니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>빠른 비교 표</h2>
+      <div class="demo">
+        <table style="width:100%; border-collapse: collapse; font-size:14px;">
+          <thead>
+            <tr style="text-align:left; border-bottom:1px solid var(--border);">
+              <th style="padding:8px;">방법</th>
+              <th style="padding:8px;">장점</th>
+              <th style="padding:8px;">주의점</th>
+              <th style="padding:8px;">추천 상황</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:8px;">clear: both</td>
+              <td style="padding:8px;">단순, 직관적</td>
+              <td style="padding:8px;">마크업에 추가 요소 필요</td>
+              <td style="padding:8px;">소규모, 빠른 수습</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:8px;">clearfix</td>
+              <td style="padding:8px;">마크업 깔끔, 재사용 용이</td>
+              <td style="padding:8px;">CSS 규칙 관리 필요</td>
+              <td style="padding:8px;">실무 공통 유틸</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:8px;">overflow</td>
+              <td style="padding:8px;">CSS 한 줄로 해결</td>
+              <td style="padding:8px;">스크롤/잘림 부작용</td>
+              <td style="padding:8px;">간단한 섹션</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border);">
+              <td style="padding:8px;">부모 높이 고정</td>
+              <td style="padding:8px;">겉보기 즉시 정리</td>
+              <td style="padding:8px; color: var(--red);">콘텐츠 변화에 취약(비권장)</td>
+              <td style="padding:8px;">매우 제한적 특수 케이스</td>
+            </tr>
+            <tr>
+              <td style="padding:8px;">Flex/Grid</td>
+              <td style="padding:8px;">현대적, 반응형에 강함</td>
+              <td style="padding:8px;">기존 float 설계와의 호환 고려</td>
+              <td style="padding:8px;">새 프로젝트/리팩터링</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer style="padding: 24px; color: var(--muted); text-align: center;">
+      이 문서는 실습을 위한 단일 HTML 파일입니다. 그대로 저장 후 브라우저에서 열면 각 데모를 확인할 수 있습니다.
+    </footer>
+  </main>
+</body>
+</html>

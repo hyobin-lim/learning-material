@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML 기본 구조</title>
+</head>
+
+<body>
+  <h1>HTML 기본 구조: doctype, html, head, body</h1><br><br>
+  <h2>&lt;!DOCTYPE html&gt;</h2><br><br>
+  &lt;!-- doctype은 문서의 형식(버전)을 정의하는 선언문입니다. HTML5 문서에서는 &lt;!DOCTYPE html&gt;을 사용하여 문서가 HTML5 표준을 따름을 브라우저에 알립니다.
+  --&gt;<br><br>
+  &lt;!-- !+ENTER로 선언합니다. --&gt;<br><br>
+  <h2>&lt;html lang="ko"&gt;</h2><br><br>
+  &lt;!-- html은 문서의 루트 요소로 문서의 시작과 끝을 알립니다. 모든 HTML 콘텐츠는 이 요소 내에 포함됩니다. lang="ko" 속성은 문서의 기본 언어가 한국어임을 나타냅니다.
+  --&gt;<br><br>
+  <h2>&lt;!-- &lt;head&gt;와 &lt;body&gt; --&gt;</h2><br><br>
+  &lt;!-- 둘 다 &lt;html&gt; 태그 안에 형제처럼 나란히 있어야 합니다. 항상 &lt;head&gt;가 먼저, 그 다음 &lt;body&gt;가 옵니다. --&gt;<br><br>
+  &lt;!-- &lt;head&gt;와 &lt;body&gt;는 HTML 문서의 두 가지 주요 섹션입니다. --&gt;<br><br>
+  <h2>&lt;head&gt;</h2><br><br>
+  &lt;!-- 설명서 + 규칙 + 도구 연결 --&gt;<br><br>
+  &lt;!-- 웹페이지가 제대로 보이도록 필요한 설명서, 제목, 규칙, 스타일, 스크립트 등을 넣는 공간입니다. --&gt;<br><br>
+  &lt;!-- 직접 읽는 내용은 아니지만 책을 이해하는 데 꼭 필요한 책의 "표지와 목차" 같은 역할을 합니다. --&gt;<br><br>
+  &lt;!-- head는 문서의 컨텐츠에서 사용할 정보들을 가진 태그들로 구성된 메타데이터(문서 제목, 문자 인코딩, 스타일시트, 링크 등)를 포함하는 요소입니다. --&gt;<br><br>
+  &lt;!-- 메타데이터(meta)는 문서의 구조와 정보를 정의하는 데 사용됩니다. --&gt;<br><br>
+  &lt;!-- head는 웹페이지 화면에서 보이지 않는 준비 상자입니다. --&gt;<br><br>
+  <h2>&lt;meta charset="UTF-8"&gt;</h2><br><br>
+  &lt;!-- meta 태그는 사용하는 정보를 선언하거나 정보에서 사용하는 값을 지정합니다. --&gt;<br><br>
+  &lt;!-- 글자가 깨지지 않도록 문자셋을 알려줍니다. --&gt;<br><br>
+  &lt;!-- charset은 문자 인코딩 방식을 지정하는 메타 태그입니다. --&gt;<br><br>
+  &lt;!-- UTF-8은 동아시아 언어까지 포함해서 전 세계 대부분의 문자를 지원하는 인코딩 방식입니다. --&gt;<br><br><br>
+  <h2>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</h2><br><br>
+  &lt;!-- 반응형 웹을 위한 뷰포트 설정입니다. --&gt;<br><br>
+  &lt;!-- name은 메타 태그의 이름을 지정하는 속성입니다. 여기서는 "viewport"로 설정되어 있습니다. --&gt;<br><br>
+  &lt;!-- viewport는 웹페이지가 다양한 기기(데스크톱, 태블릿, 모바일 등)에서 올바르게 표시되도록 설정하는 메타 태그입니다. --&gt;<br><br>
+  &lt;!-- content는 해당 메타 태그의 내용을 지정하는 속성입니다. 여기서는 "width=device-width, initial-scale=1.0"로 설정되어 있습니다. --&gt;<br><br>
+  &lt;!-- width=device-width: 화면 너비에 맞게 레이아웃을 조정합니다. --&gt;<br><br>
+  &lt;!-- initial-scale=1.0: 초기 확대/축소 비율을 1로 설정합니다. --&gt;<br><br>
+  <h2>&lt;title&gt;head와 body&lt;/title&gt;</h2><br><br>
+  &lt;!-- 검색엔진의 상위노출을 충족시키기 위해 반드시 들어가야 하는 것으로 브라우저 탭에 보이는 제목입니다. --&gt;<br><br><br>
+  <h2>&lt;/head&gt;</h2><br><br>
+  <h2>&lt;body&gt;</h2><br><br>
+  &lt;!-- &lt;head&gt;가 설명서와 준비물이라면, &lt;body&gt;는 실제로 화면에 보여줄 글, 그림, 버튼, 영상 같은 것들을 담는 공간입니다. --&gt;<br><br>
+  &lt;!-- &lt;body&gt;는 실제로 웹페이지에 표시되는 콘텐츠(텍스트, 이미지, 링크 등)를 포함하는 요소입니다. --&gt;<br><br>
+  &lt;!-- 웹페이지의 본문 내용이 들어가는 공간입니다. --&gt;<br><br>
+  &lt;!-- 직접 읽는 내용이 들어가는 공간으로, 책의 "본문"과 같은 역할을 합니다. --&gt;<br><br>
+  &lt;!-- 웹페이지를 만들 때 &lt;body&gt;는 "보이는 내용 상자"입니다. --&gt;<br><br>
+  &lt;!-- body 아래에 있는 태그들은 위계가 명확합니다 --&gt;<br><br><br>
+  <h2>&lt;/body&gt;</h2><br><br>
+  <h2>&lt;/html&gt;</h2><br><br>
+  <h2>&lt;!-- head 안에 들어가는 대표 요소 --&gt;</h2><br><br>
+  &lt;!-- 제목 title: 브라우저 탭에 보이는 페이지 이름. --&gt;<br><br>
+  &lt;!-- 문자 인코딩 meta charset: 글자가 깨지지 않도록 문자셋을 알려줌. --&gt;<br><br>
+  &lt;!-- 모바일 화면 meta viewport: 휴대폰에서도 글씨와 레이아웃이 알맞게 보이도록. --&gt;<br><br>
+  &lt;!-- 페이지 설명 meta description: 검색 결과에 짧은 소개로 표시됨. --&gt;<br><br>
+  &lt;!-- 검색 로봇 설정 meta robots: 검색 엔진에게 이 페이지를 어떻게 다루라고 알려줌. --&gt;<br><br>
+  &lt;!-- 작성자 meta author: 누가 만들었는지. --&gt;<br><br>
+  &lt;!-- 키워드 meta keywords: 예전엔 썼지만, 지금은 검색엔진이 거의 안 씀. --&gt;<br><br>
+  &lt;!-- 디자인 연결 link stylesheet: CSS 파일을 연결해 디자인 적용. --&gt;<br><br>
+  &lt;!-- 파비콘 link icon: 브라우저 탭 옆에 작은 아이콘. --&gt;<br><br>
+  &lt;!-- 리소스 최적화 link preconnect/dns-prefetch: 외부 서버와 빨리 연결해 속도 개선. --&gt;<br><br>
+  &lt;!-- 스크립트 script: 자바스크립트 파일을 연결하고 실행 타이밍을 조절. --&gt;<br><br>
+  &lt;!-- &lt;body&gt; 안에 들어가는 것들 --&gt;<br><br>
+  &lt;!-- 글자: 제목(&lt;h1&gt;~&lt;h6&gt;), 문단(&lt;p&gt;), 목록(&lt;ul&gt;, &lt;ol&gt;) --&gt;<br><br>
+  &lt;!-- 이미지: &lt;img&gt; --&gt;<br><br>
+  &lt;!-- 링크: &lt;a&gt; --&gt;<br><br>
+  &lt;!-- 버튼과 입력창: &lt;button&gt;, &lt;input&gt; --&gt;<br><br>
+  &lt;!-- 멀티미디어: &lt;video&gt;, &lt;audio&gt; --&gt;<br><br>
+  &lt;!-- 레이아웃: &lt;div&gt;, &lt;section&gt;, &lt;article&gt; --&gt;<br><br>
+</body>
+
+</html>

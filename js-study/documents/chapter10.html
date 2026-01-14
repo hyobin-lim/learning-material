@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 10 (업데이트 최종본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트의 시작 — Chapter 10</h1>
+  <p>이 문서는 자바스크립트의 <strong>null</strong>과 <strong>undefined</strong>를 설명합니다. 두 값은 "없음"을 나타내지만 의미와 사용 방식이 다릅니다.</p>
+
+  <h2>1. null과 undefined의 차이</h2>
+  <pre><code>&lt;script&gt;
+  var a = null;        // 값이 없음 (명시적)
+  var b;               // 값이 할당되지 않음 → undefined
+
+  console.log(a); // null
+  console.log(b); // undefined
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "null", "undefined"가 출력됩니다.</div>
+
+  <h2>2. typeof 연산자</h2>
+  <pre><code>&lt;script&gt;
+  var a = null;
+  var b;
+
+  console.log(typeof a); // object (자바스크립트의 설계상 버그 → null 체크 시 === null 사용 권장)
+  console.log(typeof b); // undefined
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "object", "undefined"가 출력됩니다.</div>
+
+  <h2>3. null과 undefined 비교</h2>
+  <pre><code>&lt;script&gt;
+  console.log(null == undefined);  // true (값만 비교)
+  console.log(null === undefined); // false (값과 자료형 모두 비교)
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "true", "false"가 출력됩니다.</div>
+
+  <h2>4. 조건문에서의 활용</h2>
+  <pre><code>&lt;script&gt;
+  var value;
+
+  if (value === undefined) {
+    console.log("값이 아직 정의되지 않았습니다.");
+  }
+
+  var data = null;
+  if (data === null) {
+    console.log("값이 명시적으로 비어있습니다.");
+  }
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "값이 아직 정의되지 않았습니다.", "값이 명시적으로 비어있습니다."가 출력됩니다.</div>
+
+  <h2>5. 실무 활용 예시</h2>
+  <pre><code>&lt;script&gt;
+  // ES5 방식
+  function greet(name) {
+    if (name === undefined) {
+      name = "손님"; // 기본값 설정
+    }
+    console.log("안녕하세요, " + name + "님!");
+  }
+
+  greet();       // "안녕하세요, 손님님!"
+  greet("효빈"); // "안녕하세요, 효빈님!"
+
+  // ES6 방식 (매개변수 기본값)
+  function greetES6(name = "손님") {
+    console.log("안녕하세요, " + name + "님!");
+  }
+
+  greetES6();       // "안녕하세요, 손님님!"
+  greetES6("지민"); // "안녕하세요, 지민님!"
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "안녕하세요, 손님님!", "안녕하세요, 효빈님!", "안녕하세요, 지민님!"이 출력됩니다.</div>
+
+  <h2>6. null 병합 연산자 (??)</h2>
+  <pre><code>&lt;script&gt;
+  var username = null;
+  console.log(username ?? "손님"); // null이면 "손님" 출력
+
+  var nickname = undefined;
+  console.log(nickname ?? "Guest"); // undefined이면 "Guest" 출력
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "손님", "Guest"가 출력됩니다.</div>
+
+  <h2>7. 실습 과제</h2>
+  <ul>
+    <li>null과 undefined를 각각 출력해보기</li>
+    <li>typeof 연산자로 null과 undefined의 타입 확인하기</li>
+    <li>null과 undefined를 ==와 ===로 비교하기</li>
+    <li>조건문에서 undefined와 null을 구분해 출력하기</li>
+    <li>함수에서 매개변수가 undefined일 때 기본값을 설정하기</li>
+    <li>ES6 기본값 매개변수를 활용해 함수 작성하기</li>
+    <li>null 병합 연산자(??)를 사용해 기본값 설정하기</li>
+  </ul>
+
+  <h2>8. 다음 학습 안내</h2>
+  <p>Chapter 11에서는 자바스크립트의 <strong>형 변환(Type Conversion)</strong>을 학습합니다. Chapter 10에서 배운 null과 undefined와 함께 형 변환을 이해하면 데이터 처리 능력이 더욱 향상됩니다.</p>
+
+</body>
+</html>

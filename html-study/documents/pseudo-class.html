@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 상태 선택자 정리</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      line-height: 1.6;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background: #34495e;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS 상태 선택자 (Pseudo-class) 정리</h1>
+  <p>상태 선택자는 요소가 특정 상태일 때 스타일을 적용할 수 있게 해주는 CSS 선택자입니다.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>선택자</th>
+        <th>설명</th>
+        <th>예시</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>:link</code></td>
+        <td>아직 방문하지 않은 링크</td>
+        <td><code>a:link { color: blue; }</code></td>
+      </tr>
+      <tr>
+        <td><code>:visited</code></td>
+        <td>방문한 링크</td>
+        <td><code>a:visited { color: purple; }</code></td>
+      </tr>
+      <tr>
+        <td><code>:hover</code></td>
+        <td>마우스를 올렸을 때</td>
+        <td><code>a:hover { text-decoration: underline; }</code></td>
+      </tr>
+      <tr>
+        <td><code>:active</code></td>
+        <td>클릭 순간</td>
+        <td><code>a:active { color: red; }</code></td>
+      </tr>
+      <tr>
+        <td><code>:focus</code></td>
+        <td>포커스를 가진 입력 요소</td>
+        <td><code>input:focus { border: 2px solid blue; }</code></td>
+      </tr>
+      <tr>
+        <td><code>:checked</code></td>
+        <td>체크된 체크박스/라디오 버튼</td>
+        <td><code>input:checked { background: yellow; }</code></td>
+      </tr>
+      <tr>
+        <td><code>:disabled</code></td>
+        <td>비활성화된 입력 요소</td>
+        <td><code>input:disabled { color: gray; }</code></td>
+      </tr>
+      <tr>
+        <td><code>:first-child</code></td>
+        <td>부모의 첫 번째 자식</td>
+        <td><code>li:first-child { font-weight: bold; }</code></td>
+      </tr>
+      <tr>
+        <td><code>:last-child</code></td>
+        <td>부모의 마지막 자식</td>
+        <td><code>li:last-child { color: green; }</code></td>
+      </tr>
+      <tr>
+        <td><code>:nth-child(n)</code></td>
+        <td>부모의 n번째 자식</td>
+        <td><code>li:nth-child(2) { color: red; }</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><b>정리:</b> 상태 선택자는 링크, 폼 요소, 구조적 위치 등 다양한 상황에서 스타일을 지정할 수 있습니다.</p>
+</body>
+</html>

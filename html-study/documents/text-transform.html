@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS text-transform 속성 정리</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      line-height: 1.6;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background: #34495e;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+    .example {
+      font-size: 20px;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .none { text-transform: none; }
+    .uppercase { text-transform: uppercase; }
+    .lowercase { text-transform: lowercase; }
+    .capitalize { text-transform: capitalize; }
+  </style>
+</head>
+<body>
+  <h1>CSS text-transform 속성 정리</h1>
+  <p><code>text-transform</code>은 텍스트의 대소문자 변환을 제어합니다.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>값</th>
+        <th>설명</th>
+        <th>예시 코드</th>
+        <th>실제 표시</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>none</code></td>
+        <td>변환 없음 (원래 입력된 그대로 표시)</td>
+        <td><code>text-transform: none;</code></td>
+        <td><span class="example none">Hello World</span></td>
+      </tr>
+      <tr>
+        <td><code>uppercase</code></td>
+        <td>모든 글자를 대문자로 변환</td>
+        <td><code>text-transform: uppercase;</code></td>
+        <td><span class="example uppercase">Hello World</span></td>
+      </tr>
+      <tr>
+        <td><code>lowercase</code></td>
+        <td>모든 글자를 소문자로 변환</td>
+        <td><code>text-transform: lowercase;</code></td>
+        <td><span class="example lowercase">Hello World</span></td>
+      </tr>
+      <tr>
+        <td><code>capitalize</code></td>
+        <td>각 단어의 첫 글자를 대문자로 변환</td>
+        <td><code>text-transform: capitalize;</code></td>
+        <td><span class="example capitalize">hello world</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><b>정리:</b> <code>text-transform</code>은 텍스트의 대소문자 스타일을 손쉽게 바꿀 수 있으며, 제목이나 버튼 텍스트를 꾸밀 때 자주 사용됩니다.</p>
+</body>
+</html>

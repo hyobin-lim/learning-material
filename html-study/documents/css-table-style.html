@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 표 스타일 정리</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f9f9f9;
+      text-align: center;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    table {
+      width: 80%;
+      margin: 20px auto;
+      border-collapse: collapse; /* 테두리 겹침 제거 */
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc; /* 셀 테두리 */
+      padding: 12px;          /* 셀 안쪽 여백 */
+      text-align: center;     /* 텍스트 정렬 */
+    }
+    th {
+      background: #34495e;    /* 헤더 배경색 */
+      color: white;           /* 헤더 글자색 */
+    }
+    tr:nth-child(even) {
+      background: #f2f2f2;    /* 짝수 행 배경색 */
+    }
+    tr:hover {
+      background: #dfe6e9;    /* 마우스 오버 시 강조 */
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS 표 스타일 정리</h1>
+  <p>표는 <code>border</code>, <code>padding</code>, <code>background</code>, <code>text-align</code> 등을 활용해 꾸밀 수 있습니다.</p>
+
+  <!-- 속성 설명 표 -->
+  <table>
+    <thead>
+      <tr>
+        <th>스타일 속성</th>
+        <th>설명</th>
+        <th>예시 코드</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>border</code></td>
+        <td>셀 테두리 지정</td>
+        <td><code>border: 1px solid #ccc;</code></td>
+      </tr>
+      <tr>
+        <td><code>border-collapse</code></td>
+        <td>테두리 겹침 여부</td>
+        <td><code>border-collapse: collapse;</code></td>
+      </tr>
+      <tr>
+        <td><code>padding</code></td>
+        <td>셀 안쪽 여백</td>
+        <td><code>padding: 12px;</code></td>
+      </tr>
+      <tr>
+        <td><code>text-align</code></td>
+        <td>텍스트 정렬 (left, center, right)</td>
+        <td><code>text-align: center;</code></td>
+      </tr>
+      <tr>
+        <td><code>background</code></td>
+        <td>셀 배경색 지정</td>
+        <td><code>background: #f2f2f2;</code></td>
+      </tr>
+      <tr>
+        <td><code>nth-child</code></td>
+        <td>짝수/홀수 행 스타일 지정</td>
+        <td><code>tr:nth-child(even) { background: #f2f2f2; }</code></td>
+      </tr>
+      <tr>
+        <td><code>hover</code></td>
+        <td>마우스 오버 시 강조</td>
+        <td><code>tr:hover { background: #dfe6e9; }</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 데모 표 -->
+  <h2 style="text-align:center; color:#2c3e50;">데모 표</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>이름</th>
+        <th>과목</th>
+        <th>점수</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>홍길동</td>
+        <td>수학</td>
+        <td>95</td>
+      </tr>
+      <tr>
+        <td>김영희</td>
+        <td>영어</td>
+        <td>88</td>
+      </tr>
+      <tr>
+        <td>이철수</td>
+        <td>과학</td>
+        <td>92</td>
+      </tr>
+      <tr>
+        <td>박민수</td>
+        <td>국어</td>
+        <td>85</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><b>정리:</b> 표 스타일은 <code>border</code>, <code>padding</code>, <code>background</code>, <code>text-align</code> 등을 활용해 가독성과 디자인을 개선할 수 있습니다.</p>
+</body>
+</html>

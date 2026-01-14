@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>background-clip</title>
+  <style>
+    .demo-box {
+      width: 200px;
+      height: 100px;
+      border: 10px dashed red;
+      padding: 20px;
+      margin: 20px;
+      background-image: linear-gradient(45deg, skyblue, pink);
+      background-repeat: repeat;
+      /* 전체 채우기 */
+      background-position: center;
+    }
+
+    .border-box {
+      background-clip: border-box;
+    }
+
+    .padding-box {
+      background-clip: padding-box;
+    }
+
+    .content-box {
+      background-clip: content-box;
+    }
+
+    .text-clip {
+      background-clip: text;
+      -webkit-background-clip: text;
+      /* 크롬/사파리 호환 */
+      color: transparent;
+      font-size: 2em;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: 1px solid #aaa;
+      padding: 30px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>CSS background-clip 속성 이해하기</h1>
+  <p><code>background-clip</code>은 요소의 배경(색상/이미지)이 어디까지 채워질지를 결정하는 CSS 속성입니다.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>값</th>
+        <th>설명</th>
+        <th>코드 예제</th>
+        <th>데모</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>border-box</td>
+        <td>배경이 테두리(border)까지 채워짐 (기본값)</td>
+        <td>
+          <pre>background-clip: border-box;</pre>
+        </td>
+        <td>
+          <div class="demo-box border-box">내용</div>
+        </td>
+      </tr>
+      <tr>
+        <td>padding-box</td>
+        <td>배경이 패딩(padding) 영역까지만 채워짐</td>
+        <td>
+          <pre>background-clip: padding-box;</pre>
+        </td>
+        <td>
+          <div class="demo-box padding-box">내용</div>
+        </td>
+      </tr>
+      <tr>
+        <td>content-box</td>
+        <td>배경이 콘텐츠(content) 영역까지만 표시됨</td>
+        <td>
+          <pre>background-clip: content-box;</pre>
+        </td>
+        <td>
+          <div class="demo-box content-box">내용</div>
+        </td>
+      </tr>
+      <tr>
+        <td>text</td>
+        <td>배경이 텍스트 글자 모양에 맞게 잘려서 표시됨</td>
+        <td>
+          <pre>background-clip: text;
+color: transparent;</pre>
+        </td>
+        <td>
+          <div class="demo-box text-clip">텍스트</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>

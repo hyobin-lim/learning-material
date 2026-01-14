@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Box-sizing</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+
+    .container {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .box {
+      width: 200px;
+      height: 100px;
+      padding: 20px;
+      border: 5px solid #333;
+      background-color: #cce5ff;
+      text-align: center;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .content-box {
+      box-sizing: content-box;
+      /* 기본값 */
+      background-color: #cce5ff;
+    }
+
+    .border-box {
+      box-sizing: border-box;
+      /* 패딩과 보더 포함 */
+      background-color: #d4edda;
+    }
+
+    .label {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    /* 고정된 큰 박스 컨테이너 */
+    .fixed-container {
+      width: 250px;
+      height: 150px;
+      border: none;
+      display: flex;
+      align-items: end;
+      justify-content: left;
+      margin-top: 20px;
+    }
+
+
+    .comparison {
+      display: flex;
+      gap: 40px;
+    }
+
+    .comparison .box {
+      background-color: #f8d7da;
+    }
+
+    .comparison .content-box {
+      box-sizing: content-box;
+    }
+
+    .comparison .border-box {
+      box-sizing: border-box;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    table,
+    th,
+    td {
+      border: 1px solid #333;
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f1f1f1;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Box-sizing 속성 정리</h1>
+  <h2>쉬운 설명</h2>
+  <p>
+    🟦 Content-box: "내가 가진 장난감 상자 크기는 <strong>안에 들어가는 장난감만</strong> 생각해!"<br>
+    🟩 Border-box: "내 상자 크기는 <strong>상자 테두리랑 안쪽 공간까지</strong> 다 합쳐서 생각해!"
+  </p>
+
+  <h2>비교 표</h2>
+  <table>
+    <tr>
+      <th>속성</th>
+      <th>Content-box</th>
+      <th>Border-box</th>
+    </tr>
+    <tr>
+      <td>크기 계산</td>
+      <td>콘텐츠 영역만 포함</td>
+      <td>콘텐츠 + 패딩 + 보더 포함</td>
+    </tr>
+    <tr>
+      <td>전체 상자 크기</td>
+      <td>지정한 크기보다 커짐</td>
+      <td>지정한 크기와 동일</td>
+    </tr>
+    <tr>
+      <td>쉬운 비유</td>
+      <td>장난감만 크기로 생각</td>
+      <td>상자 + 테두리까지 크기로 생각</td>
+    </tr>
+  </table>
+
+
+  <h2>예제 코드</h2>
+  <pre>
+&lt;div class="box content-box"&gt;Content-box&lt;/div&gt;
+&lt;div class="box border-box"&gt;Border-box&lt;/div&gt;
+  </pre>
+
+  <h2>데모</h2>
+  <div class="container">
+    <div>
+      <div class="label">box-sizing: content-box (기본)</div>
+      <div class="box content-box">Content-box</div>
+      <p>상자 크기(width/height 지정)를 정할 때 <strong>안쪽 콘텐츠 영역</strong>만 크기로 계산해요.<br>
+        그래서 테두리(border)와 안쪽 여백(padding)이 더해져서 상자가 커져요.</p>
+    </div>
+    <div>
+      <div class="label">box-sizing: border-box</div>
+      <div class="box border-box">Border-box</div>
+      <p>상자 크기(width/height 지정)를 정할 때 <strong>테두리(border)와 안쪽 여백(padding)</strong>까지 같이 계산해요.<br>
+        그래서 전체 상자 크기가 지정한 값과 동일하게 유지돼요.</p>
+    </div>
+  </div>
+  <h2>Box-sizing 동적 전환 예제</h2>
+  <p>아래 두 박스는 같은 <code>width: 200px; height: 100px;</code>을 지정했지만, <code>box-sizing</code> 값에 따라 실제 크기가 달라집니다.</p>
+
+  <div class="label">현재 box-sizing 상태:</div>
+  <div class="fixed-container">
+    <div id="box" class="box">Content-box: 200x100 + padding + border</div>
+  </div>
+
+  <button onclick="toggleBoxSizing()">Toggle box-sizing</button>
+
+  <p>
+    버튼을 누르면 <code>box-sizing</code> 속성이 <strong>content-box</strong>와 <strong>border-box</strong> 사이에서 전환됩니다.<br>
+    같은 width/height를 지정했을 때 실제 크기가 어떻게 달라지는지 확인해보세요.
+  </p>
+
+  <script>
+    let isContentBox = true;
+    const box = document.getElementById('box');
+
+    function toggleBoxSizing() {
+      if (isContentBox) {
+        box.style.boxSizing = 'border-box';
+        box.style.backgroundColor = '#d4edda';
+        box.textContent = 'Border-box: 200x100 (패딩+보더 포함)';
+      } else {
+        box.style.boxSizing = 'content-box';
+        box.style.backgroundColor = '#cce5ff';
+        box.textContent = 'Content-box: 200x100 + padding + border';
+      }
+      isContentBox = !isContentBox;
+    }
+
+    // 초기 상태 설정
+    box.style.boxSizing = 'content-box';
+  </script>
+
+</body>
+
+</html>

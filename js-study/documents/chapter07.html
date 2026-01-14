@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 07 (업데이트 최종본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트의 시작 — Chapter 07</h1>
+  <p>이 문서는 자바스크립트의 문자열(String)을 설명합니다. 문자열은 텍스트 데이터를 표현하는 자료형으로, 다양한 메서드를 통해 다룰 수 있습니다.</p>
+
+  <h2>1. 문자열 생성</h2>
+  <pre><code>&lt;script&gt;
+  var str1 = "Hello";
+  var str2 = 'World';
+  var str3 = `안녕하세요 ${str1} ${str2}`; // 템플릿 리터럴 (ES6)
+
+  console.log(str1);
+  console.log(str2);
+  console.log(str3);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "Hello", "World", "안녕하세요 Hello World"가 출력됩니다.</div>
+
+  <h2>2. 문자열 길이와 인덱스</h2>
+  <pre><code>&lt;script&gt;
+  var text = "JavaScript";
+
+  console.log(text.length);   // 문자열 길이
+  console.log(text[0]);       // 첫 번째 문자
+  console.log(text.charAt(4)); // 특정 위치 문자
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "10", "J", "S"가 출력됩니다.</div>
+
+  <h2>3. 문자열 메서드</h2>
+  <pre><code>&lt;script&gt;
+  var str = "Hello World";
+
+  console.log(str.toUpperCase()); // 대문자로 변환
+  console.log(str.toLowerCase()); // 소문자로 변환
+  console.log(str.indexOf("World")); // "World"의 시작 위치 찾기
+  console.log(str.includes("Hello")); // "Hello" 포함 여부 확인
+  console.log(str.replace("World", "JavaScript")); // "World"를 "JavaScript"로 치환
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "HELLO WORLD", "hello world", "6", "true", "Hello JavaScript"가 출력됩니다.</div>
+
+  <h2>4. 문자열 자르기</h2>
+  <pre><code>&lt;script&gt;
+  var str = "Apple, Banana, Cherry";
+
+  console.log(str.slice(0, 5));      // 부분 문자열 (0~4)
+  console.log(str.substring(7, 13)); // 부분 문자열 (7~12)
+  console.log(str.split(", "));      // 구분자로 나누어 배열 생성
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "Apple", "Banana", ["Apple","Banana","Cherry"]가 출력됩니다.</div>
+
+  <h2>5. 문자열 결합</h2>
+  <pre><code>&lt;script&gt;
+  var a = "Hello";
+  var b = "World";
+
+  console.log(a + " " + b);       // + 연산자
+  console.log(a.concat(" ", b));  // concat 메서드
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "Hello World"가 두 번 출력됩니다.</div>
+
+  <h2>6. 문자열 탐색</h2>
+  <pre><code>&lt;script&gt;
+  var str = "JavaScript";
+
+  console.log(str.startsWith("Java"));   // "Java"로 시작하는지 확인
+  console.log(str.endsWith("Script"));   // "Script"로 끝나는지 확인
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "true", "true"가 출력됩니다.</div>
+
+  <h2>7. 문자열과 반복문</h2>
+  <pre><code>&lt;script&gt;
+  var text = "JS";
+
+  for (var char of text) {
+    console.log(char);
+  }
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "J", "S"가 출력됩니다.</div>
+
+  <h2>8. 실습 과제</h2>
+  <ul>
+    <li>문자열을 생성하고 길이를 출력하기</li>
+    <li>문자열을 대문자/소문자로 변환하기</li>
+    <li>문자열에서 특정 단어의 위치를 찾기</li>
+    <li>문자열을 다른 단어로 치환하기</li>
+    <li>문자열을 split으로 나누어 배열로 변환하기</li>
+    <li>for...of문으로 문자열의 각 문자를 출력하기</li>
+    <li>템플릿 리터럴을 사용해 변수 값을 포함한 문자열 만들기</li>
+    <li>두 문자열을 결합해 새로운 문자열 만들기</li>
+    <li>문자열이 'Hello'로 시작하는지 확인하기</li>
+  </ul>
+
+  <h2>9. 다음 학습 안내</h2>
+  <p>Chapter 08에서는 자바스크립트의 <strong>숫자(Number)</strong>를 학습합니다. Chapter 07에서 배운 문자열과 함께 숫자를 다루면 데이터 처리 능력이 더욱 향상됩니다.</p>
+
+</body>
+</html>

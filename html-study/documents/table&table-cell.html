@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 레이아웃 - display: table / table-cell 완전 정리</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+    h1, h2 { color: #2c3e50; }
+    table { border-collapse: collapse; width: 100%; margin: 1.5rem 0; }
+    th, td { border: 1px solid #ccc; padding: 0.75rem; vertical-align: top; }
+    th { background: #f4f4f4; }
+    code { background: #f3f3f3; padding: 0.2rem 0.4rem; border-radius: 4px; }
+    .demo { border: 1px solid #333; padding: 1rem; margin-top: 1rem; background: #fafafa; }
+
+    /* table-cell 데모 */
+    .table-demo {
+      display: table;
+      border: 1px solid #333;
+      width: 100%;
+    }
+    .row {
+      display: table-row;
+    }
+    .cell {
+      display: table-cell;
+      border: 1px solid #999;
+      padding: 10px;
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    /* flexbox 비교 데모 */
+    .flex-demo {
+      display: flex;
+      border: 1px solid #333;
+      margin-top: 1rem;
+    }
+    .flex-demo div {
+      flex: 1;
+      border: 1px solid #999;
+      padding: 10px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS 레이아웃 완전 정리: display: table / table-cell</h1>
+
+  <h2>1. 개념</h2>
+  <p>
+    <code>display: table</code>과 <code>display: table-cell</code>은 HTML의 <code>&lt;table&gt;</code> 태그처럼
+    요소를 행과 열 구조로 배치할 수 있게 해주는 CSS 속성입니다.
+    부모 요소를 <code>table</code>로 지정하면 내부 자식 요소들을 <code>table-row</code>, <code>table-cell</code>로 배치할 수 있습니다.
+  </p>
+
+  <h2>2. 대표 속성 및 값</h2>
+  <table>
+    <tr><th>속성</th><th>대표값</th><th>설명</th></tr>
+    <tr><td><code>display</code></td><td><code>table</code>, <code>table-row</code>, <code>table-cell</code>, <code>table-caption</code></td><td>요소를 테이블 구조처럼 동작시킴</td></tr>
+    <tr><td><code>vertical-align</code></td><td><code>top</code>, <code>middle</code>, <code>bottom</code></td><td>셀 내부 콘텐츠의 세로 정렬</td></tr>
+    <tr><td><code>border-collapse</code></td><td><code>collapse</code>, <code>separate</code></td><td>테두리 병합 여부 제어 (원래 table 태그에서 사용)</td></tr>
+  </table>
+
+  <h2>3. 예제 코드 + 설명 + 데모</h2>
+  <pre><code>.table-demo {
+  display: table;        /* 부모 요소를 테이블처럼 동작시킴 */
+  border: 1px solid #333;
+  width: 100%;
+}
+.row {
+  display: table-row;    /* 자식 요소를 행(row)처럼 동작시킴 */
+}
+.cell {
+  display: table-cell;   /* 자식 요소를 셀(cell)처럼 동작시킴 */
+  border: 1px solid #999;
+  padding: 10px;
+  vertical-align: middle; /* 셀 내부 콘텐츠를 세로 중앙 정렬 */
+  text-align: center;     /* 셀 내부 콘텐츠를 가로 중앙 정렬 */
+}</code></pre>
+
+  <p>
+    위 코드는 부모 요소를 <code>display: table</code>로 지정해 테이블처럼 동작하게 하고,  
+    자식 요소를 <code>table-row</code>, <code>table-cell</code>로 지정해 행과 셀 구조를 만듭니다.  
+    이렇게 하면 HTML의 <code>&lt;table&gt;</code> 태그 없이도 테이블 레이아웃을 구현할 수 있습니다.
+  </p>
+
+  <div class="demo table-demo">
+    <div class="row">
+      <div class="cell">셀 A</div>
+      <div class="cell">셀 B</div>
+      <div class="cell">셀 C</div>
+    </div>
+    <div class="row">
+      <div class="cell">셀 D</div>
+      <div class="cell">셀 E</div>
+      <div class="cell">셀 F</div>
+    </div>
+  </div>
+
+  <h2>4. Flexbox와 비교</h2>
+  <p>
+    Flexbox는 1차원 레이아웃(가로 또는 세로 한 방향)에 강력하며, 반응형 레이아웃에 적합합니다.  
+    반면 table-cell은 2차원 행·열 구조를 흉내내지만 유연성이 떨어집니다.
+  </p>
+  <div class="demo flex-demo">
+    <div>Flex A</div>
+    <div>Flex B</div>
+    <div>Flex C</div>
+  </div>
+
+  <h2>5. 장점과 단점</h2>
+  <ul>
+    <li><strong>장점</strong>: HTML <code>&lt;table&gt;</code> 없이도 테이블 레이아웃 구현 가능, 셀 높이가 자동으로 맞춰짐, <code>vertical-align</code> 사용 가능</li>
+    <li><strong>단점</strong>: Flexbox/Grid에 비해 유연성이 떨어지고 반응형 레이아웃에는 적합하지 않음</li>
+    <li><strong>현재 활용</strong>: 과거에는 많이 쓰였지만 지금은 Flex/Grid가 대체, 보조적으로만 사용</li>
+  </ul>
+
+  <!-- 추가된 상세 설명 -->
+  <h2>5-1. 장점 상세 설명</h2>
+  <h3>① HTML &lt;table&gt; 없이도 테이블 레이아웃 구현 가능</h3>
+  <p>
+    원래 행·열 구조는 <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;td&gt;</code> 태그로만 만들 수 있었지만,  
+    CSS의 <code>display: table</code>, <code>display: table-row</code>, <code>display: table-cell</code>을 사용하면  
+    일반적인 <code>&lt;div&gt;</code> 같은 블록 요소도 테이블처럼 동작합니다.  
+    덕분에 HTML 구조를 더 의미 있게 유지하면서도 테이블 레이아웃을 흉내낼 수 있습니다.
+  </p>
+
+  <h3>② 셀 높이가 자동으로 맞춰짐</h3>
+  <p>
+    테이블 레이아웃의 특징은 같은 행에 있는 셀들의 높이가 자동으로 동일하게 맞춰진다는 점입니다.  
+    한 셀에 긴 텍스트가 들어가면 그 행의 다른 셀들도 같은 높이를 가지게 되어 균형 잡힌 레이아웃을 쉽게 만들 수 있습니다.
+  </p>
+
+  <h3>③ vertical-align 사용 가능</h3>
+  <p>
+    일반 블록 요소에서는 <code>vertical-align</code>(세로 정렬) 속성이 잘 적용되지 않지만,  
+    <code>table-cell</code>에서는 세로 정렬이 가능합니다.  
+    대표값은 <code>top</code>, <code>middle</code>, <code>bottom</code>이며, 특히 세로 중앙 정렬을 직관적으로 구현할 수 있습니다.
+  </p>
+
+  <h2>6. 실무 팁</h2>
+  <ul>
+    <li>간단한 행·열 구조를 빠르게 만들 때 유용</li>
+    <li>세로 중앙 정렬이 필요할 때 <code>vertical-align: middle</code>을 활용</li>
+    <li>반응형 웹에서는 Flex/Grid를 기본으로 사용하고, table-cell은 제한적인 상황에서만 사용</li>
+    <li>이메일 템플릿이나 레거시 브라우저 호환성 작업에서 여전히 쓰임</li>
+  </ul>
+
+  <h2>7. 핵심 요약</h2><p><code>display: table / table-cell</code>은 CSS로 테이블 구조를 흉내내는 레이아웃 방식입니다.셀 높이 자동 맞춤과 세로 정렬이 장점이지만, 현대 웹에서는 Flexbox와 Grid가 더 강력하고 유연하기 때문에 보조적으로만 사용됩니다.</p></body></html>

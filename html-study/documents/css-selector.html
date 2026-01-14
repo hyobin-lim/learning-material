@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS 선택자 정리</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      margin: 24px;
+      line-height: 1.6;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 960px;
+      margin-bottom: 32px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    th {
+      background: #f5f7fb;
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fafafa;
+    }
+
+    h1 {
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin-top: 32px;
+    }
+
+    code {
+      background: #f3f3f3;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>CSS 선택자 명령어 정리</h1>
+  <p>CSS 선택자는 특정 HTML 요소를 선택하여 스타일을 적용할 때 사용합니다.
+    아래 표는 대표적인 선택자와 예시를 정리한 것입니다.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>선택자</th>
+        <th>설명</th>
+        <th>예시</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>*</code></td>
+        <td>전체 선택자 (모든 요소 선택)</td>
+        <td><code>* { margin:0; padding:0; }</code></td>
+        
+      </tr>
+      <tr>
+        <td><code>태그명</code></td>
+        <td>특정 태그 선택</td>
+        <td><code>p { color:blue; }</code></td>
+      </tr>
+      <tr>
+        <td><code>.classname</code></td>
+        <td>클래스 선택자</td>
+        <td><code>.highlight { background:yellow; }</code></td>
+      </tr>
+      <tr>
+        <td><code>#idname</code></td>
+        <td>ID 선택자</td>
+        <td><code>#main { width:960px; }</code></td>
+      </tr>
+      <tr>
+        <td><code>parent child <br>부모 자식</code></td>
+        <td>하위(자손) 선택자</td>
+        <td><code>div p { font-size:14px; }</code></td>
+      </tr>
+      <tr>
+        <td><code>parent > child <br>부모 > 자식</code></td>
+        <td>직계 자식 선택자</td>
+        <td><code>ul > li { list-style:none; }</code></td>
+      </tr>
+      <tr>
+        <td><code>element1 + element2</code></td>
+        <td>바로 뒤에 오는 형제 선택자</td>
+        <td><code>h1 + p { color:red; }</code></td>
+      </tr>
+      <tr>
+        <td><code>element1 ~ element2</code></td>
+        <td>뒤에 오는 모든 형제 선택자</td>
+        <td><code>h1 ~ p { color:green; }</code></td>
+      </tr>
+      <tr>
+        <td><code>[attribute]</code></td>
+        <td>속성 선택자</td>
+        <td><code>input[type="text"] { border:1px solid #ccc; }</code></td>
+      </tr>
+      <tr>
+        <td><code>태그:hover</code></td>
+        <td>가상 클래스 선택자 (마우스 오버)</td>
+        <td><code>a:hover { color:orange; }</code></td>
+      </tr>
+      <tr>
+        <td><code>태그:nth-child(n)</code></td>
+        <td>특정 순서의 자식 선택</td>
+        <td><code>li:nth-child(2) { color:blue; }</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>정리</h2>
+  <ul>
+    <li><strong>전체 선택자</strong>: 모든 요소에 적용</li>
+    <li><strong>태그/클래스/ID 선택자</strong>: 특정 요소에 적용</li>
+    <li><strong>계층 선택자</strong>: 부모-자식, 형제 관계를 기반으로 선택</li>
+    <li><strong>속성 선택자</strong>: 특정 속성을 가진 요소 선택</li>
+    <li><strong>가상 클래스 선택자</strong>: 상태(hover, nth-child 등)에 따라 선택</li>
+  </ul>
+</body>
+
+</html>

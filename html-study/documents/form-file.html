@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Form 섹션 7 - 파일 업로드</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.65; }
+    h1 { margin-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    th, td { border: 1px solid #ccc; padding: 12px; vertical-align: top; text-align: left; }
+    th { background: #f2f2f2; }
+    pre { background: #f9f9f9; display: block; padding: 8px; border: 1px solid #ddd; white-space: pre-wrap; }
+    .tip { background:#eef9ff; border:1px solid #a6d8ff; padding:10px; margin-top:16px; }
+  </style>
+</head>
+<body>
+  <h1>Form 섹션 7 - 파일 업로드</h1>
+
+  <h2>전체 설명</h2>
+  <p>
+    파일 업로드(File Upload)는 사용자가 자신의 컴퓨터나 모바일 기기에서 파일을 선택해 서버로 전송할 수 있도록 하는 기능입니다.<br>
+    <code>&lt;input type="file"&gt;</code> 태그를 사용하며, 폼에서는 반드시 <code>enctype="multipart/form-data"</code>를 설정해야 합니다.<br>
+    파일 업로드 시 <code>accept</code>(허용 파일 유형), <code>multiple</code>(다중 선택), <code>capture</code>(캡처 장치 지정) 같은 속성을 활용해 입력 방식을 제어할 수 있습니다.
+  </p>
+
+  <h2>상세 설명</h2>
+  <p>
+    • <code>accept</code> (허용 파일 유형): 업로드 가능한 파일 형식을 제한 (예: <code>image/*</code>, <code>.pdf</code>, <code>audio/*</code>, <code>video/*</code>)<br>
+    • <code>multiple</code> (다중 선택): 여러 파일을 한 번에 선택 가능 (PC에서는 Ctrl/Shift 키로 다중 선택)<br>
+    • <code>capture</code> (캡처 장치 지정): 모바일 환경에서 카메라·마이크를 직접 호출해 파일 입력<br>
+    • <code>enctype="multipart/form-data"</code> (폼 인코딩): <strong>파일 업로드 시 반드시 필요한 인코딩 방식</strong><br>
+    • <strong>파일 크기 제한</strong>: HTML 속성으로 직접 제한할 수 없으며, 서버 측에서 검증해야 함<br>
+    • <strong>UI 커스터마이징</strong>: 기본 파일 입력 UI는 브라우저마다 다르며, CSS로 완전한 커스터마이징은 어려움
+  </p>
+
+  <div class="tip">
+    <strong>왜 반드시 enctype="multipart/form-data"를 설정해야 할까?</strong><br>
+    기본 폼 인코딩 방식(<code>application/x-www-form-urlencoded</code>)은 글자 데이터만 처리할 수 있습니다.<br>
+    하지만 파일은 이미지·문서·음악처럼 <em>덩어리 데이터(바이너리)</em>라서 글자 방식으로 보내면 깨지거나 전송되지 않습니다.<br>
+    <code>multipart/form-data</code>는 폼 데이터를 여러 조각으로 나누어 텍스트는 텍스트대로, 파일은 파일 그대로 포장해 서버로 보냅니다.<br>
+    즉, 파일 업로드가 포함된 폼은 반드시 <code>enctype="multipart/form-data"</code>를 지정해야 서버가 파일을 원래 모습 그대로 받을 수 있습니다.
+  </div>
+
+  <h2>속성별 정리</h2>
+  <table>
+    <tr><th>항목</th><th>설명</th><th>예제 코드</th><th>데모</th></tr>
+    <tr>
+      <td>file 입력</td>
+      <td>파일 선택 UI 제공</td>
+      <td><pre>&lt;input type="file" accept="image/*" multiple&gt;</pre></td>
+      <td><input type="file" accept="image/*" multiple></td>
+    </tr>
+    <tr>
+      <td>폼 인코딩</td>
+      <td>파일 전송을 위한 설정 (반드시 multipart/form-data)</td>
+      <td><pre>&lt;form enctype="multipart/form-data"&gt;...&lt;/form&gt;</pre></td>
+      <td><form enctype="multipart/form-data"><input type="file"><button>업로드</button></form></td>
+    </tr>
+    <tr>
+      <td>accept (허용 파일 유형)</td>
+      <td>특정 파일 형식만 선택 가능</td>
+      <td><pre>&lt;input type="file" accept=".pdf,.docx"&gt;
+&lt;input type="file" accept="audio/*"&gt;</pre></td>
+      <td>
+        <input type="file" accept=".pdf,.docx">
+        <input type="file" accept="audio/*">
+      </td>
+    </tr>
+    <tr>
+      <td>capture (캡처 장치 지정)</td>
+      <td>모바일에서 카메라·마이크 직접 호출</td>
+      <td><pre>&lt;input type="file" accept="image/*" capture="camera"&gt;</pre></td>
+      <td><input type="file" accept="image/*" capture="camera"></td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>태그의 분류(블록 레벨과 인라인 레벨)</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+      text-align: justify;
+    }
+
+    th,
+    td {
+      border: 1px solid #333;
+      padding: 15px;
+      text-align: left;
+    }
+
+    th {
+      color: rgb(0, 0, 0);
+      text-align: center;
+    }
+
+    .block-header {
+      background-color: #da1b9d;
+    }
+
+    .inline-header {
+      background-color: #badc10;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+
+<body>
+
+    <h1>태그의 분류</h1>
+  <p>태그가 웹페이지에서 차지하는 영역에 따라서 두 가지로 나눌 수 있다.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>특징</th>
+        <th class="block-header">블록레벨 (Block Level)</th>
+        <th class="inline-header">인라인레벨 (Inline Level)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>시작 시점</strong></td>
+        <td>항상 새로운 줄에서 시작</td>
+        <td>새로운 줄에서 시작하지 않고, 줄 안에서 이어짐</td>
+      </tr>
+      <tr>
+        <td><strong>차지하는 공간</strong></td>
+        <td>웹페이지의 화면 전체 너비를 차지</td>
+        <td>필요한 콘텐츠의 너비만큼만 차지</td>
+      </tr>
+      <tr>
+        <td><strong>사용 시점</strong></td>
+        <td>
+          <ul>
+            <li>문서의 구조를 나눌 때, 큰 레이아웃이나 구획을 정의할 때</li>
+            <li>제목, 문단, 목록, 표 등 독립적인 콘텐츠 단위를 표현할 때</li>
+          </ul>
+        </td>
+        <td>
+          <ul>
+            <li>텍스트 일부를 꾸미거나 강조할 때</li>
+            <li>문장 중간에 링크, 이미지, 입력 필드 등을 삽입할 때</li>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>상속 여부</strong></td>
+        <td>다른 블록 요소 (중첩 가능)와 인라인 요소를 포함할 수 있음</td>
+        <td>블록 요소 안에서 사용되며 다른 인라인 요소와 나란히 배치 가능</td>
+      </tr>
+      <tr>
+        <td><strong>줄 바꿈</strong></td>
+        <td>태그 앞뒤로 자동 줄바꿈 발생</td>
+        <td>줄바꿈이 없음 (한 줄에 여러 개 배치 가능)</td>
+      </tr>
+      <tr>
+        <td><strong>너비/높이 설정</strong></td>
+        <td>width, height 속성 적용 가능</td>
+        <td>width, height 속성 적용 불가 (대신 display:inline-block 사용)</td>
+      </tr>
+      <tr>
+        <td><strong>위아래 여백</strong></td>
+        <td>margin-top, margin-bottom 적용 가능</td>
+        <td>margin-top, margin-bottom 적용 불가</td>
+      </tr>
+      <tr>
+        <td><strong>예시 태그</strong></td>
+        <td>
+          <ul>
+            <li><code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;h1&gt;~&lt;h6&gt;</code>,
+              <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>
+            </li>
+            <li> <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code>, <code>&lt;table&gt;</code>,
+              <code>&lt;form&gt;</code>
+            </li>
+        </td>
+        <td>
+          <ul>
+            <li><code>&lt;span&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;a&gt;</code>
+            </li>
+            <li><code>&lt;img&gt;</code>, <code>&lt;br&gt;</code>, <code>&lt;input&gt;</code>,
+              <code>&lt;label&gt;</code>
+            </li>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>특별한 태그 설명</h2>
+
+  <h3>&lt;div&gt; 태그 (블록 레벨)</h3>
+  <ul>
+    <li><strong>의미:</strong> Division의 약자로 '구획'을 의미함</li>
+    <li><strong>용도:</strong> 웹 페이지를 여러 섹션으로 나누기 위한 컨테이너</li>
+    <li><strong>특징:</strong> 특정한 의미가 없고, 단순히 그룹화할 때 사용</li>
+    <li><strong>CSS 적용:</strong> 폭, 높이, 배경색, 패딩, 마진 등 모두 적용 가능</li>
+  </ul>
+
+  <h3>&lt;span&gt; 태그 (인라인 레벨)</h3>
+  <ul>
+    <li><strong>의미:</strong> 텍스트의 일부를 묶어서 스타일링할 때 사용</li>
+    <li><strong>용도:</strong> 특정 단어나 구절에 색상, 폰트 변화 등을 주기 위해 사용</li>
+    <li><strong>특징:</strong> 특정한 의미가 없고, 단순히 인라인 스타일링 목적</li>
+    <li><strong>CSS 적용:</strong> 폭, 높이는 적용 불가, 색상, 글씨 크기 등만 적용 가능</li>
+  </ul>
+  
+</body>
+
+</html>

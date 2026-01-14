@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>자식 요소까지 영향을 주는 CSS 속성</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Noto Sans, Apple SD Gothic Neo, "맑은 고딕", sans-serif;
+      line-height: 1.6;
+      margin: 2rem;
+      max-width: 80ch;
+    }
+    h1, h2, h3 {
+      line-height: 1.3;
+    }
+    code, kbd {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+    }
+    .note {
+      padding: 0.75rem 1rem;
+      border-left: 4px solid #6b7280;
+      background: color-mix(in oklab, Canvas, CanvasText 6%);
+      margin: 1rem 0;
+    }
+    ul { margin: 0.5rem 0 1rem; }
+    li { margin: 0.25rem 0; }
+    strong { font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>하위 자식들까지 영향을 미치는 CSS 속성 정리</h1>
+    <p class="note">
+      이 문서는 <strong>상속(inheritance)</strong>되거나 <strong>형식 맥락(formatting context)</strong>을 만들어
+      자식과 그 하위 요소의 <em>텍스트 흐름, 정렬, 타이포그래피</em>에 영향을 주는 속성을 요약합니다.
+    </p>
+  </header>
+
+  <main>
+    <section>
+      <h2>텍스트 정렬과 흐름에 영향을 주는 속성</h2>
+      <ul>
+        <li>
+          <strong>text-align</strong>:
+          블록 컨테이너 내부의 <em>인라인 콘텐츠 가로 정렬</em>을 지정합니다. 컨테이너 안의 텍스트와 인라인 요소(예: <code>span</code>, <code>img</code>)에 영향을 주며, 중첩된 인라인에도 파급됩니다.
+        </li>
+        <li>
+          <strong>direction</strong>:
+          텍스트의 <em>좌→우, 우→좌</em> 방향을 설정합니다. <code>rtl</code>은 줄 시작/끝의 의미를 바꾸며, 인라인 배치와 줄바꿈 규칙이 자식에게 상속되어 전체 텍스트 흐름에 영향을 줍니다.
+        </li>
+        <li>
+          <strong>writing-mode</strong>:
+          <em>가로/세로</em> 글쓰기 방향(예: <code>horizontal-tb</code>, <code>vertical-rl</code>)을 바꾸어 줄의 진행 방향과 인라인 축을 변경합니다. 자식 텍스트 레이아웃에도 연쇄적으로 적용됩니다.
+        </li>
+        <li>
+          <strong>text-indent</strong>:
+          첫 줄 들여쓰기. 블록 내 텍스트 첫 줄에 적용되며 상속되어 후손의 블록 텍스트에도 동일한 효과를 냅니다.
+        </li>
+        <li>
+          <strong>white-space</strong>:
+          공백/줄바꿈 처리 규칙(<code>nowrap</code>, <code>pre</code> 등)을 정의합니다. 텍스트 래핑과 줄바꿈 방식이 자식 텍스트에도 일관되게 퍼집니다.
+        </li>
+        <li>
+          <strong>text-transform</strong>:
+          대/소문자 변환(<code>uppercase</code> 등). 후손 텍스트에 적용되어 일괄 변환됩니다.
+        </li>
+        <li>
+          <strong>letter-spacing</strong> / <strong>word-spacing</strong>:
+          글자/단어 간격. 상속되어 자식 텍스트에 동일 간격을 강제합니다.
+        </li>
+        <li>
+          <strong>line-height</strong>:
+          줄높이. 상속되어 텍스트 블록 전체의 리듬을 규정합니다.
+        </li>
+      </ul>
+
+      <div class="note">
+        <p>
+          참고: <code>text-align</code>은 <em>인라인 콘텐츠</em>의 가로 정렬을 제어하는 속성으로,
+          블록 요소 자체를 가운데로 이동시키지 않습니다. 블록을 가운데 정렬하려면 너비를 지정하고
+          <code>margin: 0 auto;</code> 같은 기법을 사용해야 합니다.
+        </p>
+        <p>
+          또한 <code>text-align</code>은 블록 또는 표 셀 상자에서 작동하며 가로 방향에만 영향을 줍니다.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>타이포그래피 전반에 상속되는 속성</h2>
+      <ul>
+        <li><strong>color</strong>: 텍스트 색상. 상속되어 후손 텍스트 색을 결정합니다.</li>
+        <li><strong>font-family</strong>: 글꼴. 상속되어 일관된 폰트 체계를 유지합니다.</li>
+        <li><strong>font-size</strong>: 글자 크기. 상속되며, 상대 단위 사용 시 조상 크기에 따라 계층적으로 변합니다.</li>
+        <li><strong>font-weight</strong>: 굵기. 일부 값은 상속/전달 방식이 다를 수 있으나 일반적으로 후손에 영향이 있습니다.</li>
+        <li><strong>font-style</strong>: 이탤릭 등 글자 스타일. 상속됩니다.</li>
+        <li><strong>font-variant</strong>: 스몰캡 등. 상속됩니다.</li>
+        <li><strong>text-shadow</strong>: 텍스트 그림자. 상속되어 후손 텍스트에도 적용됩니다.</li>
+      </ul>
+      <p class="note">
+        상속되는 속성은 <em>구체적인 재정의</em>가 없는 한 트리 아래로 이어져서 전체 텍스트 톤과 리듬을 만들고,
+        개별 요소에서만 값을 바꿀 때 시각적 일관성이 깨질 수 있습니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>형식 맥락을 만들어 자식 정렬/배치를 바꾸는 속성</h2>
+      <ul>
+        <li>
+          <strong>display: flex</strong> / <strong>display: grid</strong>:
+          각각 <em>플렉스</em> / <em>그리드</em> 형식 맥락을 생성합니다. 자식(직계) 배치를 바꾸며
+          <code>justify-content</code>, <code>align-items</code>, <code>place-content</code> 등으로
+          정렬 축을 제어합니다. 직접 자식에게만 레이아웃 영향을 주지만, 그 자식의 내용(텍스트 포함)도
+          결과적으로 시각적 위치가 바뀝니다.
+        </li>
+        <li>
+          <strong>text-align</strong> (블록 컨테이너):
+          인라인 흐름 정렬을 바꾸어 <em>중첩된 인라인 콘텐츠</em>까지 정렬 영향을 주는 점에서 맥락적 효과가 강합니다.
+        </li>
+      </ul>
+      <p class="note">
+        플렉스/그리드는 <em>상속</em>이 아니라 <em>형식 맥락</em>으로 자식 배치를 제어합니다.
+        즉, 값이 후손까지 자동으로 내려가진 않지만, 컨테이너가 만든 레이아웃 규칙으로 자식의 시각적 위치가 변합니다.
+      </p>
+    </section>
+
+    <section>
+      <h2>표 레이아웃 및 셀 정렬 관련</h2>
+      <ul>
+        <li><strong>text-align</strong> (표 셀): 셀 내 인라인 콘텐츠 정렬을 제어하며, 셀 내부의 텍스트와 인라인 자식에 영향을 줍니다.</li>
+        <li><strong>vertical-align</strong> (표 셀/인라인): 세로 정렬. 인라인 및 표 셀 맥락에서 자식 콘텐츠의 세로 위치에 간접 영향이 있습니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>표시/가시성으로 인한 간접적 파급</h2>
+      <ul>
+        <li>
+          <strong>visibility</strong>:
+          조상에서 <code>hidden</code>이면 후손도 렌더링되지 않아 <em>보이지 않는 효과</em>가 내려갑니다
+          (일부 브라우저 구현 세부는 다를 수 있음).
+        </li>
+        <li>
+          <strong>opacity</strong>:
+          투명도는 상속되진 않지만, 조상 요소의 합성 결과가 후손에도 적용되어 <em>전체 묶음</em>이 같이 흐려집니다.
+        </li>
+        <li>
+          <strong>transform</strong>:
+          변환(회전/스케일)은 상속이 아니라 <em>좌표계</em>를 바꿔 후손의 시각적 배치를 함께 변경합니다.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>실무 팁</h2>
+      <ul>
+        <li>
+          <strong>컨테이너 수준에서 설정</strong>:
+          <code>color</code>, <code>font-family</code>, <code>line-height</code>, <code>text-align</code>은
+          상단 래퍼에서 지정하면 하위 전체에 일관성 있게 퍼집니다.
+        </li>
+        <li>
+          <strong>블록 가운데 정렬 오해 방지</strong>:
+          블록 요소를 가로 가운데에 두려면 <code>width</code>를 지정하고 <code>margin: 0 auto;</code>를 사용하세요.
+          <code>text-align: center</code>는 인라인 콘텐츠에만 효과적입니다.
+        </li>
+        <li>
+          <strong>국소 재정의</strong>:
+          특정 섹션만 다른 타이포그래피/정렬이 필요하면 해당 섹션에만 속성을 재정의하세요. 필요 이상으로 하위에 강제하면 유지보수가 어려워집니다.
+        </li>
+      </ul>
+    </section>
+
+    <footer>
+      <h3>참고</h3>
+      <p>
+        <code>text-align</code>은 블록/표 셀에서 인라인 콘텐츠의 가로 정렬을 제어하며 브라우저 전반에 폭넓게 지원됩니다.
+        또한 블록 요소 자체를 가운데로 이동시키지 않으며, 블록 가운데 정렬에는 <code>margin: 0 auto;</code> 등 별도 기법이 필요합니다.
+      </p>
+      <p>
+        본 문서의 나머지 속성 설명은 일반적인 CSS 상속/레이아웃 원리에 기반한 요약이며, 브라우저별 세부 구현이나 최신 스펙 변화에 따라
+        일부 동작이 달라질 수 있습니다. 구체적인 케이스는 최신 스펙/문서로 확인하세요.
+      </p>
+      <hr />
+      <p>
+        인용: MDN Web Docs의 <code>text-align</code> 문서와 실무 해설 자료를 참조했습니다.
+      </p>
+    </footer>
+  </main>
+</body>
+</html>

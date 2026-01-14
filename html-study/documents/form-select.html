@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Form 섹션 3 - 선택 요소</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.65; }
+    h1 { margin-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    th, td { border: 1px solid #ccc; padding: 12px; vertical-align: top; text-align: left; }
+    th { background: #f2f2f2; }
+    pre { background: #f9f9f9; display: block; padding: 8px; border: 1px solid #ddd; white-space: pre-wrap; }
+    label { display: inline-block; margin-right: 10px; }
+    .explain-box { background:#eef9ff; border:1px solid #a6d8ff; padding:12px; margin-top:16px; }
+  </style>
+</head>
+<body>
+  <h1>Form 섹션 3 - 선택 요소</h1>
+
+  <h2>전체 설명</h2>
+  <p>
+    선택 요소(Selection Elements)는 사용자가 **미리 준비된 여러 옵션 중에서 하나 또는 여러 개를 고를 수 있도록 제공하는 입력 방식**입니다.<br>
+    직접 값을 입력하는 것이 아니라, **라디오 버튼, 체크박스, 드롭다운 목록** 같은 UI를 통해 선택합니다.<br>
+    따라서 선택 요소는 사용자가 빠르고 정확하게 데이터를 고를 수 있도록 도와줍니다.
+  </p>
+
+  <h2>상세 설명</h2>
+  <p>
+    <code>&lt;input type="radio"&gt;</code> (라디오 버튼)은 같은 <strong>name (이름)</strong>으로 묶으면 그룹 내에서 하나만 선택됩니다.<br>
+    <code>&lt;input type="checkbox"&gt;</code> (체크박스)는 여러 개를 동시에 선택할 수 있습니다.<br>
+    <code>&lt;select&gt;</code> (드롭다운 목록)은 옵션을 펼쳐서 선택할 수 있으며, <strong>multiple (다중 선택)</strong>과 <strong>size (보이는 항목 수)</strong> 속성으로 확장된 UI를 제공합니다.<br>
+    <code>&lt;optgroup&gt;</code> (옵션 그룹)은 옵션들을 카테고리별로 묶어줍니다.
+  </p>
+
+  <!-- 별도 설명 박스 -->
+  <div class="explain-box">
+    <strong>자주 쓰는 속성들:</strong><br>
+    • checked (체크됨): 라디오/체크박스 기본 선택 상태<br>
+    • selected (선택됨): select 옵션 기본 선택 상태<br>
+    • disabled (비활성화): 선택 불가 상태<br>
+    • value (값): 서버로 전송되는 실제 데이터 값
+  </div>
+
+  <table>
+    <tr><th>항목</th><th>설명</th><th>예제 코드</th><th>데모</th></tr>
+    <tr>
+      <td>radio (라디오 버튼)</td>
+      <td>단일 선택, 같은 name 그룹 내에서 하나만 선택 가능</td>
+      <td><pre>&lt;input type="radio" name="color" value="red" checked&gt; 빨강</pre></td>
+      <td><label><input type="radio" name="color" value="red" checked> 빨강</label>
+          <label><input type="radio" name="color" value="blue"> 파랑</label></td>
+    </tr>
+    <tr>
+      <td>checkbox (체크박스)</td>
+      <td>다중 선택 가능, 여러 값이 배열처럼 전송됨</td>
+      <td><pre>&lt;input type="checkbox" name="hobby" value="music" checked&gt; 음악</pre></td>
+      <td><label><input type="checkbox" name="hobby" value="music" checked> 음악</label>
+          <label><input type="checkbox" name="hobby" value="sports"> 스포츠</label></td>
+    </tr>
+    <tr>
+      <td>select (드롭다운)</td>
+      <td>옵션 중 하나 선택, selected로 기본값 지정 가능</td>
+      <td><pre>&lt;select name="city"&gt;
+  &lt;option value=""&gt;선택&lt;/option&gt;
+  &lt;option value="seoul" selected&gt;서울&lt;/option&gt;
+  &lt;option value="busan"&gt;부산&lt;/option&gt;
+&lt;/select&gt;</pre></td>
+      <td>
+        <select name="city">
+          <option value="">선택</option>
+          <option value="seoul" selected>서울</option>
+          <option value="busan">부산</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>select multiple (다중 선택)</td>
+      <td>여러 항목을 동시에 선택, size로 보이는 항목 수 지정</td>
+      <td><pre>&lt;select name="skills" multiple size="4"&gt;
+  &lt;option&gt;HTML&lt;/option&gt;
+  &lt;option&gt;CSS&lt;/option&gt;
+  &lt;option&gt;JavaScript&lt;/option&gt;
+  &lt;option&gt;Python&lt;/option&gt;
+&lt;/select&gt;</pre></td>
+      <td>
+        <select name="skills" multiple size="4">
+          <option>HTML</option>
+          <option>CSS</option>
+          <option>JavaScript</option>
+          <option>Python</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>optgroup (옵션 그룹)</td>
+      <td>옵션들을 그룹화하여 카테고리별로 구분</td>
+      <td><pre>&lt;select&gt;
+  &lt;optgroup label="과일"&gt;
+    &lt;option&gt;사과&lt;/option&gt;
+    &lt;option&gt;바나나&lt;/option&gt;
+  &lt;/optgroup&gt;
+  &lt;optgroup label="야채"&gt;
+    &lt;option&gt;당근&lt;/option&gt;
+    &lt;option&gt;양상추&lt;/option&gt;
+  &lt;/optgroup&gt;
+&lt;/select&gt;</pre></td>
+      <td>
+        <select>
+          <optgroup label="과일">
+            <option>사과</option><option>바나나</option>
+          </optgroup>
+          <optgroup label="야채">
+            <option>당근</option><option>양상추</option>
+          </optgroup>
+        </select>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>&lt;footer&gt; 태그 정리</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 40px;
+      color: #111;
+    }
+
+    h1 {
+      color: #222;
+      margin-bottom: 8px;
+    }
+
+    p.lead {
+      color: #555;
+      margin-top: 0;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 22px;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      border: 1px solid #888;
+      padding: 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #eee;
+      font-weight: 700;
+    }
+
+    pre {
+      background: #0b1020;
+      color: #e5e7eb;
+      padding: 12px;
+      border-radius: 6px;
+      overflow: auto;
+      margin: 0;
+    }
+
+    code {
+      background: #f4f4f4;
+      padding: 0 4px;
+      border-radius: 4px;
+    }
+
+    .demo-footer {
+      background: #1f2937;
+      color: #fff;
+      padding: 16px;
+      border-radius: 8px;
+      text-align: center;
+    }
+
+    .demo-footer a {
+      color: #93c5fd;
+      text-decoration: none;
+      margin: 0 8px;
+    }
+
+    .demo-footer a:hover {
+      text-decoration: underline;
+    }
+
+    .tip {
+      background: #eef2ff;
+      border-left: 4px solid #6366f1;
+      padding: 10px 12px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>&lt;footer&gt; 태그 정리</h1>
+  <p class="lead">문서나 섹션의 바닥글을 의미하며, 저작권 정보·연락처·관련 링크 등을 담습니다.</p>
+
+  <table>
+    <tr>
+      <th>쉬운 설명</th>
+      <th>코드 예제</th>
+      <th>데모 화면</th>
+      <th>베스트 프랙티스 / 주의사항</th>
+    </tr>
+    <tr>
+      <td>
+        <p><strong>의미:</strong> <code>&lt;footer&gt;</code> 태그는 문서 전체 또는 특정 섹션의 끝부분을 나타냅니다. 보통 저작권, 연락처, 사이트맵, 관련 문서 링크,
+          소셜 미디어 링크 등을 포함합니다.</p>
+        <p><strong>사용 위치:</strong> 페이지의 맨 아래에 두거나, <code>&lt;article&gt;</code>·<code>&lt;section&gt;</code> 내부에 해당 콘텐츠의
+          바닥글로 둘 수 있습니다.</p>
+        <p><strong>접근성:</strong> 스크린리더는 <code>&lt;footer&gt;</code>를 인식하여 문서의 끝부분임을 알려주므로, 의미 있는 정보를 담는 것이 좋습니다.</p>
+      </td>
+      <td>
+        <pre>&lt;footer&gt;
+  &lt;p&gt;&copy; 2025 My Website&lt;/p&gt;
+  &lt;nav aria-label="푸터 링크"&gt;
+    &lt;a href="/privacy"&gt;개인정보처리방침&lt;/a&gt; |
+    &lt;a href="/terms"&gt;이용약관&lt;/a&gt; |
+    &lt;a href="/contact"&gt;문의하기&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/footer&gt;</pre>
+      </td>
+      <td>
+        <footer class="demo-footer">
+          <p>&copy; 2025 My Website</p>
+          <nav aria-label="푸터 링크">
+            <a href="#">개인정보처리방침</a> |
+            <a href="#">이용약관</a> |
+            <a href="#">문의하기</a>
+          </nav>
+        </footer>
+      </td>
+      <td>
+        <div class="tip">
+          <ul>
+            <li><strong>문서 전체와 섹션 모두 사용 가능:</strong> 페이지 전체의 바닥글뿐 아니라, 각 <code>&lt;article&gt;</code>이나
+              <code>&lt;section&gt;</code>에도 개별 <code>&lt;footer&gt;</code>를 둘 수 있습니다.</li>
+            <li><strong>중요 정보 포함:</strong> 저작권, 연락처, 사이트 정책, 관련 링크 등 의미 있는 정보를 담으십시오.</li>
+            <li><strong>내비게이션 활용:</strong> 푸터 내에 <code>&lt;nav&gt;</code>를 포함하여 보조 메뉴를 제공할 수 있습니다.</li>
+            <li><strong>간결성:</strong> 너무 많은 정보를 담기보다는 핵심적인 정보만 제공하는 것이 좋습니다.</li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS text-decoration 속성 정리</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background: #f9f9f9;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    table {
+      width: 90%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    th {
+      background: #34495e;
+      color: white;
+    }
+    caption {
+      font-weight: bold;
+      margin: 10px;
+      font-size: 1.2em;
+      color: #2c3e50;
+    }
+    code {
+      background: #eee;
+      padding: 2px 4px;
+      display: block;
+      text-align: center;
+    }
+    tr:nth-child(even) { background: #f2f2f2; }
+    tr:hover { background: #dfe6e9; }
+
+    /* 데모용 스타일 */
+    .underline { text-decoration: underline; }
+    .overline { text-decoration: overline; }
+    .line-through { text-decoration: line-through; }
+    .none { text-decoration: none; }
+    .wavy { text-decoration: underline wavy red; }
+    .double { text-decoration: underline double blue; }
+    .dotted { text-decoration: underline dotted green; }
+  </style>
+</head>
+<body>
+  <h1>CSS <code>text-decoration</code> 속성 정리</h1>
+  <p style="text-align:center;">
+    <code>text-decoration</code> 속성은 텍스트에 밑줄, 윗줄, 취소선 등 다양한 꾸밈을 적용할 수 있습니다.<br>
+    또한 선의 <strong>스타일</strong>(solid, dotted, dashed, double, wavy)과 <strong>색상</strong>도 지정할 수 있습니다.
+  </p>
+
+  <table>
+    <caption>text-decoration 속성 예제</caption>
+    <tr>
+      <th>속성 값</th>
+      <th>설명</th>
+      <th>예제 코드</th>
+      <th>데모</th>
+    </tr>
+    <tr>
+      <td><code>underline</code></td>
+      <td>밑줄 표시</td>
+      <td><code>text-decoration: underline;</code></td>
+      <td class="underline">밑줄 텍스트</td>
+    </tr>
+    <tr>
+      <td><code>overline</code></td>
+      <td>윗줄 표시</td>
+      <td><code>text-decoration: overline;</code></td>
+      <td class="overline">윗줄 텍스트</td>
+    </tr>
+    <tr>
+      <td><code>line-through</code></td>
+      <td>취소선 표시</td>
+      <td><code>text-decoration: line-through;</code></td>
+      <td class="line-through">취소선 텍스트</td>
+    </tr>
+    <tr>
+      <td><code>none</code></td>
+      <td>꾸밈 제거</td>
+      <td><code>text-decoration: none;</code></td>
+      <td class="none">꾸밈 없는 텍스트</td>
+    </tr>
+    <tr>
+      <td><code>underline wavy red</code></td>
+      <td>물결 모양 밑줄 + 색상</td>
+      <td><code>text-decoration: underline wavy red;</code></td>
+      <td class="wavy">물결 밑줄 텍스트</td>
+    </tr>
+    <tr>
+      <td><code>underline double blue</code></td>
+      <td>이중 밑줄 + 색상</td>
+      <td><code>text-decoration: underline double blue;</code></td>
+      <td class="double">이중 밑줄 텍스트</td>
+    </tr>
+    <tr>
+      <td><code>underline dotted green</code></td>
+      <td>점선 밑줄 + 색상</td>
+      <td><code>text-decoration: underline dotted green;</code></td>
+      <td class="dotted">점선 밑줄 텍스트</td>
+    </tr>
+  </table>
+
+</body>
+</html>

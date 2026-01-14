@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CSS @ 규칙 정리</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background: #f9f9f9;
+      line-height: 1.6;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background: #34495e;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+
+    code {
+      background: #eef;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+ 
+  <h1>CSS @ 규칙 (At-rules) 정리</h1>
+  <p>CSS에서 <code>@</code>는 특별한 지시문을 나타내며, 스타일 시트의 동작을 제어하거나 조건부 규칙을 정의할 때 사용됩니다.</p>
+  <p><code>@</code>는 링크를 연결하는 것이므로 링크 주소를 실행시켜 제대로 연결이 되어 있는지 오류가 나지 않았는지 확인하는 습관이 필요합니다.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>@ 규칙</th>
+        <th>설명</th>
+        <th>예시 코드</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>@import</code></td>
+        <td>다른 CSS 파일을 불러올 때 사용. 반드시 스타일 규칙보다 위에 있어야 함. <br> 문서에 css 문서를 삽입하는 역할을 합니다.</td>
+        <td><code>@import url("style.css");</code></td>
+      </tr>
+      <tr>
+        <td><code>@font-face</code></td>
+        <td>사용자 정의 글꼴을 등록합니다.<br>웹폰트를 정의하여 문서에서 사용할 수 있게 함. <br>파일과 css문서를 연결시켜주는 역할을 합니다.</td>
+        <td>
+          <code>
+            @font-face {<br>
+            &nbsp;&nbsp;font-family: "MyFont";<br>
+            &nbsp;&nbsp;src: url("MyFont.woff2") format("woff2");<br>
+            }
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td><code>@media</code></td>
+        <td>조건부 스타일 적용. 반응형 디자인에 사용<br>미디어 쿼리: 화면 크기나 장치 조건에 따라 다른 스타일을 적용합니다.</td>
+        <td>
+          <code>
+            @media (max-width: 600px) {<br>
+            &nbsp;&nbsp;p { font-size: 14px; color: red; }<br>
+            }
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td><code>@keyframes</code></td>
+        <td>CSS 애니메이션의 단계별 동작을 정의합니다. <code>animation</code> 속성과 함께 사용.</td>
+        <td>
+          <code>
+            @keyframes blink {<br>
+            &nbsp;&nbsp;0% { opacity: 1; }<br>
+            &nbsp;&nbsp;50% { opacity: 0; }<br>
+            &nbsp;&nbsp;100% { opacity: 1; }<br>
+            }
+          </code>
+        </td>
+      </tr>
+      <tr>
+        <td><code>@supports</code></td>
+        <td>브라우저가 특정 CSS 기능을 지원하는지 검사합니다.</td>
+        <td>
+          <code>@supports (display: grid) { div { display: grid; } }</code>
+        </td>
+      </tr>
+      <tr>
+        <td><code>@page</code></td>
+        <td>인쇄 시 페이지 레이아웃을 정의합니다.</td>
+        <td><code>@page { margin: 2cm; }</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><b>정리:</b> <code>@import</code>는 외부 CSS 불러오기, <code>@font-face</code>는 폰트 정의, <code>@media</code>는 조건부 스타일,
+    <code>@keyframes</code>는 애니메이션을 정의하는 데 사용됩니다.</p>
+</body>
+
+</html>

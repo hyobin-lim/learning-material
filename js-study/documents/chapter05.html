@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 05 (업데이트 최종본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트의 시작 — Chapter 05</h1>
+  <p>이 문서는 자바스크립트의 객체(Object)를 설명합니다. 객체는 여러 데이터를 하나로 묶어 관리할 수 있는 구조로, 실생활의 사물처럼 속성과 동작을 가질 수 있습니다.</p>
+
+  <h2>1. 객체의 기본</h2>
+  <pre><code>&lt;script&gt;
+  // 객체 생성 (리터럴 방식)
+  var person = {
+    name: '효빈',
+    age: 25,
+    greet: function() {
+      // 메서드(method): 객체 속성으로 저장된 함수
+      alert('안녕하세요, 저는 ' + this.name + '입니다.');
+    }
+  };
+
+  // 객체 사용
+  console.log(person.name);
+  console.log(person.age);
+  person.greet();
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>실행 결과 예시:</strong> 콘솔에 "효빈", "25"가 출력되고, 알림창에 "안녕하세요, 저는 효빈입니다."가 표시됩니다.</div>
+
+  <h2>2. 객체 속성 추가/수정/삭제</h2>
+  <pre><code>&lt;script&gt;
+  var car = { brand: 'Hyundai', color: 'black' };
+
+  // 속성 추가
+  car.year = 2024;
+
+  // 속성 수정
+  car.color = 'white';
+
+  // 속성 삭제
+  delete car.brand;
+
+  console.log(car);
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>실행 결과 예시:</strong> 콘솔에 <code>{ color: "white", year: 2024 }</code>가 출력됩니다.</div>
+
+  <h2>3. 객체와 메서드</h2>
+  <pre><code>&lt;script&gt;
+  var calculator = {
+    add: function(a, b) {
+      return a + b;
+    },
+    subtract: function(a, b) {
+      return a - b;
+    }
+  };
+
+  console.log(calculator.add(10, 5));
+  console.log(calculator.subtract(10, 5));
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>실행 결과 예시:</strong> 콘솔에 "15"와 "5"가 출력됩니다.</div>
+
+  <h2>4. 객체와 반복문</h2>
+  <pre><code>&lt;script&gt;
+  var student = { name: '민수', age: 20, major: '컴퓨터공학' };
+
+  // for...in 반복문 → 객체의 모든 속성을 순회
+  for (var key in student) {
+    console.log(key + ': ' + student[key]);
+  }
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>실행 결과 예시:</strong> 콘솔에 "name: 민수", "age: 20", "major: 컴퓨터공학"이 출력됩니다.</div>
+
+  <h2>5. 객체 생성 방법 다양화</h2>
+  <pre><code>&lt;script&gt;
+  // new Object() 방식
+  var person2 = new Object();
+  person2.name = '지민';
+  person2.age = 22;
+
+  console.log(person2);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>실행 결과 예시:</strong> 콘솔에 <code>{ name: "지민", age: 22 }</code>가 출력됩니다.</div>
+
+  <h2>6. 객체와 this</h2>
+  <pre><code>&lt;script&gt;
+  var dog = {
+    name: '초코',
+    bark: function() {
+      // this → 현재 객체 자신을 가리킴
+      console.log(this.name + '가 짖습니다!');
+    }
+  };
+
+  dog.bark();
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>실행 결과 예시:</strong> 콘솔에 "초코가 짖습니다!"가 출력됩니다.</div>
+
+  <h2>7. 내장 객체</h2>
+  <pre><code>&lt;script&gt;
+  // Date 객체
+  var now = new Date();
+  console.log('현재 시각:', now.toLocaleString());
+
+  // Math 객체
+  console.log('최댓값:', Math.max(10, 20, 30));
+  console.log('난수:', Math.random());
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>실행 결과 예시:</strong> 현재 시각이 출력되고, 최댓값 "30"과 0~1 사이의 난수가 출력됩니다.</div>
+
+  <h2>8. 실습 과제</h2>
+  <ul>
+    <li>사람 객체를 만들고 이름, 나이, 인사 메서드를 추가하기</li>
+    <li>자동차 객체를 만들고 색상과 연식을 수정/삭제해보기</li>
+    <li>계산기 객체를 만들어 덧셈, 뺄셈, 곱셈, 나눗셈 메서드 추가하기</li>
+    <li>for...in 반복문으로 객체 속성을 모두 출력하기</li>
+    <li>Date와 Math 객체를 활용해 오늘 날짜와 랜덤 숫자를 출력하기</li>
+    <li>객체에 메서드를 추가해 동작을 구현하기 (예: bark 메서드)</li>
+    <li>학생 객체 여러 개를 배열에 저장하고, for문으로 모든 학생의 이름을 출력하기</li>
+  </ul>
+
+  <h2>9. 다음 학습 안내</h2>
+  <p>Chapter 06에서는 자바스크립트의 <strong>배열(Array)</strong>을 학습합니다. Chapter 05에서 배운 객체와 함께 배열을 활용하면 더 복잡한 데이터 구조를 다룰 수 있게 됩니다.</p>
+
+</body>
+</html>

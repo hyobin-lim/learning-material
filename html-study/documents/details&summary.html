@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>&lt;details&gt; &amp; &lt;summary&gt; 태그 정리</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 40px; color: #111; }
+    h1 { color: #222; margin-bottom: 8px; }
+    p.lead { color: #555; margin-top: 0; }
+    table { border-collapse: collapse; width: 100%; margin-top: 22px; font-size: 14px; }
+    th, td { border: 1px solid #888; padding: 12px; vertical-align: top; text-align: left; }
+    th { background: #eee; font-weight: 700; }
+    pre { background: #0b1020; color: #e5e7eb; padding: 12px; border-radius: 6px; overflow: auto; margin: 0; }
+    code { background: #f4f4f4; padding: 0 4px; border-radius: 4px; }
+    .demo-details { border: 1px solid #ccc; padding: 16px; border-radius: 8px; background: #fafafa; }
+    .demo-details summary { font-weight: bold; cursor: pointer; }
+    .demo-details p { margin: 8px 0; }
+    .tip { background: #eef2ff; border-left: 4px solid #6366f1; padding: 10px 12px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>&lt;details&gt; &amp; &lt;summary&gt; 태그 정리</h1>
+  <p class="lead">접었다 펼 수 있는 정보 블록을 만들 때 사용하며, FAQ나 추가 설명에 적합합니다.</p>
+
+  <table>
+    <tr>
+      <th>쉬운 설명</th>
+      <th>코드 예제</th>
+      <th>데모 화면</th>
+      <th>베스트 프랙티스 / 주의사항</th>
+    </tr>
+    <tr>
+      <td>
+        <p><strong>&lt;details&gt;:</strong> 접었다 펼 수 있는 콘텐츠 블록을 만듭니다. 기본적으로 닫힌 상태이며, 클릭하면 내용을 볼 수 있습니다.</p>
+        <p><strong>&lt;summary&gt;:</strong> <code>&lt;details&gt;</code>의 제목 역할을 하며, 사용자가 클릭할 수 있는 요약 부분을 제공합니다.</p>
+        <p><strong>접근성:</strong> 브라우저 기본 기능으로 키보드와 스크린리더에서도 인식되므로 접근성이 좋습니다.</p>
+      </td>
+      <td>
+        <pre>&lt;details&gt;
+  &lt;summary&gt;자주 묻는 질문&lt;/summary&gt;
+  &lt;p&gt;이곳은 자주 묻는 질문의 답변입니다.&lt;/p&gt;
+&lt;/details&gt;</pre>
+      </td>
+      <td>
+        <div class="demo-details">
+          <details>
+            <summary>자주 묻는 질문</summary>
+            <p>이곳은 자주 묻는 질문의 답변입니다.</p>
+          </details>
+        </div>
+      </td>
+      <td>
+        <div class="tip">
+          <ul>
+            <li><strong>FAQ 활용:</strong> 자주 묻는 질문과 답변을 접었다 펼 수 있도록 구성할 때 유용합니다.</li>
+            <li><strong>간단한 제목 제공:</strong> <code>&lt;summary&gt;</code>에는 짧고 명확한 제목을 작성하십시오.</li>
+            <li><strong>기본 닫힘 상태:</strong> <code>&lt;details&gt;</code>는 기본적으로 닫혀 있으며, 필요 시 <code>open</code> 속성으로 기본 열림 상태를 지정할 수 있습니다.</li>
+            <li><strong>접근성 향상:</strong> 브라우저 기본 기능으로 키보드와 스크린리더 지원이 잘 되어 있습니다.</li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

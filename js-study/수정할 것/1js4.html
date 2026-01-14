@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>자바스크립트 기초 학습 페이지</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+    h1, h2 { color: #2c3e50; }
+    .example { display: flex; gap: 20px; margin-bottom: 30px; }
+    .demo-box { border: 1px solid #ccc; padding: 10px; background: #fafafa; flex: 1; }
+    .code-box { flex: 1; }
+    pre { background: #272822; color: #f8f8f2; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    button { padding: 5px 10px; margin-top: 5px; }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트 기초 학습 페이지</h1>
+  <p>이 페이지는 조건문, 반복문, 배열, 객체 같은 기초 문법을 예제와 함께 설명합니다.</p>
+
+  <!-- 조건문 -->
+  <h2>조건문 (if/else)</h2>
+  <div class="example">
+    <div class="demo-box">
+      <button onclick="demo_condition()">조건문 실행</button>
+      <p id="condOut"></p>
+    </div>
+    <div class="code-box">
+      <pre><code>// demo_condition 함수: 점수에 따라 학점 출력
+function demo_condition() {
+  const score = 85; // 점수 변수
+  let grade;
+
+  // if/else 조건문: 점수에 따라 학점 결정
+  if (score >= 90) grade = "A";
+  else if (score >= 80) grade = "B";
+  else grade = "C";
+
+  document.getElementById("condOut").textContent =
+    `점수=${score}, 학점=${grade}`;
+}
+      </code></pre>
+    </div>
+  </div>
+
+  <!-- 반복문 -->
+  <h2>반복문 (for/while)</h2>
+  <div class="example">
+    <div class="demo-box">
+      <button onclick="demo_loop()">반복문 실행</button>
+      <p id="loopOut"></p>
+    </div>
+    <div class="code-box">
+      <pre><code>// demo_loop 함수: for와 while 반복문 예제
+function demo_loop() {
+  // for 반복문: 1부터 5까지 숫자 출력
+  let nums = [];
+  for (let i = 1; i <= 5; i++) {
+    nums.push(i);
+  }
+
+  // while 반복문: 카운트 다운
+  let count = 3;
+  let msg = "";
+  while (count > 0) {
+    msg += "카운트 " + count + " ";
+    count--;
+  }
+
+  document.getElementById("loopOut").textContent =
+    `for 결과=${nums.join(", ")} | while 결과=${msg}`;
+}
+      </code></pre>
+    </div>
+  </div>
+
+  <!-- 배열 -->
+  <h2>배열과 메서드 (map, filter, reduce)</h2>
+  <div class="example">
+    <div class="demo-box">
+      <button onclick="demo_array()">배열 실행</button>
+      <p id="arrOut"></p>
+    </div>
+    <div class="code-box">
+      <pre><code>// demo_array 함수: 배열 메서드 활용
+function demo_array() {
+  const scores = [72, 88, 91, 60, 45]; // 점수 배열
+
+  // map: 각 점수에 +5
+  const plus5 = scores.map(s => s + 5);
+
+  // filter: 70 이상만 통과
+  const passed = plus5.filter(s => s >= 70);
+
+  // reduce: 합계 계산
+  const sum = passed.reduce((acc, cur) => acc + cur, 0);
+
+  document.getElementById("arrOut").textContent =
+    `원본=${scores.join(", ")} | +5=${plus5.join(", ")} | 통과=${passed.join(", ")} | 합계=${sum}`;
+}
+      </code></pre>
+    </div>
+  </div>
+
+  <!-- 객체 -->
+  <h2>객체와 메서드</h2>
+  <div class="example">
+    <div class="demo-box">
+      <button onclick="demo_object()">객체 실행</button>
+      <p id="objOut"></p>
+    </div>
+    <div class="code-box">
+      <pre><code>// demo_object 함수: 객체와 메서드 활용
+function demo_object() {
+  // 객체(Object): 관련 데이터와 기능을 묶은 구조
+  const user = {
+    name: "효빈",   // 속성 name
+    age: 25,        // 속성 age
+    greet() {       // 메서드 greet
+      return `안녕, 나는 ${this.name}이고 나이는 ${this.age}야.`;
+    }
+  };
+
+  // 구조 분해 할당: 객체에서 필요한 값만 꺼내오기
+  const { name, age } = user;
+
+  document.getElementById("objOut").textContent =
+    `${user.greet()} (구조분해: name=${name}, age=${age})`;
+}
+      </code></pre>
+    </div>
+  </div>
+
+  <script>
+    // 실제 동작하는 함수들
+    function demo_condition() {
+      const score = 85;
+      let grade;
+      if (score >= 90) grade = "A";
+      else if (score >= 80) grade = "B";
+      else grade = "C";
+      document.getElementById("condOut").textContent =
+        `점수=${score}, 학점=${grade}`;
+    }
+
+    function demo_loop() {
+      let nums = [];
+      for (let i = 1; i <= 5; i++) nums.push(i);
+      let count = 3;
+      let msg = "";
+      while (count > 0) { msg += "카운트 " + count + " "; count--; }
+      document.getElementById("loopOut").textContent =
+        `for 결과=${nums.join(", ")} | while 결과=${msg}`;
+    }
+
+    function demo_array() {
+      const scores = [72, 88, 91, 60, 45];
+      const plus5 = scores.map(s => s + 5);
+      const passed = plus5.filter(s => s >= 70);
+      const sum = passed.reduce((acc, cur) => acc + cur, 0);
+      document.getElementById("arrOut").textContent =
+        `원본=${scores.join(", ")} | +5=${plus5.join(", ")} | 통과=${passed.join(", ")} | 합계=${sum}`;
+    }
+
+    function demo_object() {
+      const user = {
+        name: "효빈",
+        age: 25,
+        greet() { return `안녕, 나는 ${this.name}이고 나이는 ${this.age}야.`; }
+      };
+      const { name, age } = user;
+      document.getElementById("objOut").textContent =
+        `${user.greet()} (구조분해: name=${name}, age=${age})`;
+    }
+  </script>
+</body>
+</html>

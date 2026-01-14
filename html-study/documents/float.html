@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>css float 속성 정리</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; }
+    h1 { color: #333; text-align:center; }
+    pre { background: #f4f4f4; padding: 10px; border: 1px solid #ccc; text-align:left; }
+    .demo { border: 1px solid #222; padding: 10px; margin: 10px 0; }
+    .box {
+      width: 100px;
+      height: 100px;
+      margin: 5px;
+      text-align: center;
+      line-height: 100px;
+      color: #fff;
+      font-weight: bold;
+    }
+    .left { background: tomato; float: left; }
+    .right { background: skyblue; float: right; }
+    .none { background: gray; float: none; }
+    .inline-start { background: green; float: inline-start; }
+    .inline-end { background: purple; float: inline-end; }
+    .text { background: #eee; padding: 10px; }
+    table { border-collapse: collapse; margin-top: 20px; width: 100%; }
+    th, td { border: 1px solid #666; padding: 8px; text-align: center; vertical-align: middle; }
+    th { background: #ddd; }
+    .clearfix::after { content:""; display:block; clear:both; }
+  </style>
+</head>
+<body>
+  <h1 id="float-title">
+    css float 속성 정리
+    <span style="display:block; font-size:1rem; color:#555;">css float property guide</span>
+  </h1>
+
+  <h2>예제 코드</h2>
+  <pre>
+.box.left { float: left; }
+.box.right { float: right; }
+.box.none { float: none; }
+.box.inline-start { float: inline-start; }
+.box.inline-end { float: inline-end; }
+.clearfix::after { content:""; display:block; clear:both; }
+  </pre>
+
+  <h2>데모 화면</h2>
+  <div class="demo clearfix">
+    <div class="box left">왼쪽</div>
+    <div class="box right">오른쪽</div>
+    <div class="box none">none</div>
+    <div class="text">
+      왼쪽 박스는 왼쪽에, 오른쪽 박스는 오른쪽에 붙습니다.<br>
+      none은 띄우지 않고 기본 흐름에 따라 아래쪽으로 배치됩니다.
+    </div>
+  </div>
+
+  <h2>쉬운 설명</h2>
+  <p>
+    <strong>float</strong>은 상자를 물 위에 띄워서 <em>왼쪽이나 오른쪽으로 밀어놓는 것</em>과 같아요.<br>
+    책상 위에 종이를 왼쪽으로 밀어놓으면 다른 종이가 오른쪽 공간에 놓이는 것과 비슷합니다.<br>
+    <code>float:none</code>을 쓰면 종이를 그냥 책상 위에 두는 것처럼, 기본 흐름(위→아래)에 따라 배치돼요.<br>
+    <code>inline-start</code>와 <code>inline-end</code>는 글쓰기 방향에 따라 자동으로 왼쪽/오른쪽을 결정해줘서<br>
+    아랍어처럼 오른쪽에서 왼쪽으로 쓰는 언어에서도 올바르게 배치할 수 있습니다.<br>
+    마지막으로 <code>clear</code> 속성은 "다음 줄은 float된 요소 옆에 붙지 말고, 그 아래로 내려가라"는 의미예요.
+  </p>
+
+  <h2>정리 표</h2>
+  <table>
+    <tr>
+      <th>설명</th>
+      <th>예제</th>
+      <th>데모</th>
+      <th>비고</th>
+    </tr>
+    <tr>
+      <td>요소를 왼쪽으로 띄워 배치</td>
+      <td><pre>.box { float:left; }</pre></td>
+      <td>
+        <div class="demo clearfix">
+          <div class="box left">왼쪽</div>
+          <div class="text">텍스트가 오른쪽으로 흘러 들어감</div>
+        </div>
+      </td>
+      <td>이미지와 텍스트 배치에 자주 사용</td>
+    </tr>
+    <tr>
+      <td>요소를 오른쪽으로 띄워 배치</td>
+      <td><pre>.box { float:right; }</pre></td>
+      <td>
+        <div class="demo clearfix">
+          <div class="box right">오른쪽</div>
+          <div class="text">텍스트가 왼쪽으로 흘러 들어감</div>
+        </div>
+      </td>
+      <td>광고 박스, 사이드바 등에 활용</td>
+    </tr>
+    <tr>
+      <td>float 해제</td>
+      <td><pre>.box { float:none; }</pre></td>
+      <td>
+        <div class="demo clearfix">
+          <div class="box none">none</div>
+          <div class="text">일반 문서 흐름에 따라 배치</div>
+        </div>
+      </td>
+      <td>기본 배치로 되돌림</td>
+    </tr>
+    <tr>
+      <td>글쓰기 방향 시작 쪽으로 띄움</td>
+      <td><pre>.box { float:inline-start; }</pre></td>
+      <td>
+        <div class="demo clearfix">
+          <div class="box inline-start">start</div>
+          <div class="text">LTR에서는 왼쪽, RTL에서는 오른쪽</div>
+        </div>
+      </td>
+      <td>국제화 대응에 유용</td>
+    </tr>
+    <tr>
+      <td>글쓰기 방향 끝 쪽으로 띄움</td>
+      <td><pre>.box { float:inline-end; }</pre></td>
+      <td>
+        <div class="demo clearfix">
+          <div class="box inline-end">end</div>
+          <div class="text">LTR에서는 오른쪽, RTL에서는 왼쪽</div>
+        </div>
+      </td>
+      <td>국제화 대응에 유용</td>
+    </tr>
+    <tr>
+      <td>float된 요소 옆에 붙지 않고 아래로 배치</td>
+      <td><pre>.text { clear:both; }</pre></td>
+      <td>
+        <div class="demo clearfix">
+          <div class="box left">왼쪽</div>
+          <div class="box right">오른쪽</div>
+          <div class="text" style="clear:both;">이 텍스트는 두 박스 아래로 내려감</div>
+        </div>
+      </td>
+      <td>레이아웃 깨짐 방지</td>
+    </tr>
+  </table>
+</body>
+</html>

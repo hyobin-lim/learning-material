@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Display: Block, Inline, Inline-block 정리</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; }
+    h1, h2, h3 { color: #2c3e50; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
+    th { background: #f4f4f4; }
+    code { background: #eee; padding: 2px 4px; border-radius: 4px; }
+
+    /* 데모 스타일 */
+    .demo-block {
+      display: block;
+      background: lightblue;
+      margin: 5px 0;
+      padding: 10px;
+    }
+    .demo-inline {
+      display: inline;
+      background: lightgreen;
+      margin: 5px;
+      padding: 10px; /* inline은 상하 padding/margin이 잘 반영되지 않음 */
+    }
+    .demo-inline-block {
+      display: inline-block;
+      background: lightcoral;
+      margin: 5px;
+      padding: 10px;
+      width: 100px;
+      height: 50px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS Display: Block, Inline, Inline-block 정리</h1>
+
+  <h2>1. 개념</h2>
+  <ul>
+    <li><strong>Block 요소</strong>: 한 줄 전체를 차지하며, 항상 새로운 줄에서 시작. <code>div</code>, <code>p</code>, <code>h1~h6</code> 등이 기본 block.</li>
+    <li><strong>Inline 요소</strong>: 콘텐츠 크기만큼만 차지하며, 줄 안에서 다른 요소와 나란히 배치. <code>span</code>, <code>a</code>, <code>strong</code> 등이 기본 inline.</li>
+    <li><strong>Inline-block 요소</strong>: 줄 안에서 나란히 배치되지만, block처럼 <code>width</code>, <code>height</code>, <code>margin</code>, <code>padding</code>을 자유롭게 적용 가능.</li>
+  </ul>
+
+  <h2>2. 특징 비교</h2>
+  <table>
+    <tr>
+      <th>구분</th>
+      <th>Block</th>
+      <th>Inline</th>
+      <th>Inline-block</th>
+    </tr>
+    <tr>
+      <td>줄 차지</td>
+      <td>한 줄 전체 차지</td>
+      <td>콘텐츠 크기만큼만 차지</td>
+      <td>콘텐츠 크기만큼 차지 (옆에 배치 가능)</td>
+    </tr>
+    <tr>
+      <td>줄바꿈</td>
+      <td>항상 줄바꿈 발생</td>
+      <td>줄바꿈 없음</td>
+      <td>줄바꿈 없음</td>
+    </tr>
+    <tr>
+      <td>width/height 적용</td>
+      <td>적용 가능</td>
+      <td>적용 불가 (콘텐츠 크기에 맞음)</td>
+      <td>적용 가능</td>
+    </tr>
+    <tr>
+      <td>margin/padding</td>
+      <td>상하좌우 모두 적용</td>
+      <td>좌우만 적용, 상하는 제한적</td>
+      <td>상하좌우 모두 적용</td>
+    </tr>
+    <tr>
+      <td>대표 태그</td>
+      <td><code>div</code>, <code>p</code>, <code>h1~h6</code></td>
+      <td><code>span</code>, <code>a</code>, <code>strong</code></td>
+      <td>기본은 없음, <code>display: inline-block</code>으로 지정</td>
+    </tr>
+  </table>
+
+  <h2>3. 코드 예제와 데모</h2>
+  <h3>Block 예제</h3>
+  <div class="demo-block">Block 1</div>
+  <div class="demo-block">Block 2</div>
+  <p>→ Block 요소는 줄 전체를 차지하며 줄바꿈이 자동으로 발생합니다.</p>
+
+  <h3>Inline 예제</h3>
+  <span class="demo-inline">Inline 1</span>
+  <span class="demo-inline">Inline 2</span>
+  <span class="demo-inline">Inline 3</span>
+  <p>→ Inline 요소는 줄 안에서 나란히 배치되며, width/height를 직접 지정할 수 없습니다.</p>
+
+  <h3>Inline-block 예제</h3>
+  <div class="demo-inline-block">IB 1</div>
+  <div class="demo-inline-block">IB 2</div>
+  <div class="demo-inline-block">IB 3</div>
+  <p>→ Inline-block 요소는 줄 안에서 나란히 배치되면서도 block처럼 크기와 여백을 자유롭게 설정할 수 있습니다.</p>
+
+  <h2>4. 핵심 요약</h2>
+  <ul>
+    <li><strong>Block</strong>: 줄 전체 차지, 줄바꿈 발생, 크기 지정 가능</li>
+    <li><strong>Inline</strong>: 콘텐츠 크기만큼, 줄 안에서 배치, 크기 지정 불가</li>
+    <li><strong>Inline-block</strong>: 줄 안에서 배치 + 크기 지정 가능 → 두 속성의 장점 결합</li>
+  </ul>
+</body>
+</html>

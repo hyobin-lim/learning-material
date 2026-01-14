@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>자주 쓰이는 CSS 벤더 프리픽스</title>
+<style>
+.demo-box {
+  width: 400px;
+  height: 60px;
+  border: 2px solid #333;
+  margin: 10px;
+  padding: 10px;
+  overflow: hidden;
+}
+
+/* 예제 1: -webkit-line-clamp */
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;       /* 최대 3줄까지만 표시 */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+/* 예제 2: -webkit-background-clip: text */
+.clip-text {
+  background: linear-gradient(45deg, #ff7f50, #ff1493);
+  -webkit-background-clip: text; /* WebKit 기반 브라우저에서 텍스트 모양에 배경 적용 */
+  color: transparent;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+}
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #aaa; padding: 10px; text-align: center; vertical-align: middle; }
+</style>
+</head>
+<body>
+<h1>자주 쓰이는 CSS 벤더 프리픽스</h1>
+<p>최신 브라우저에서는 대부분 표준 속성으로 동작하지만, 일부 속성은 여전히 벤더 프리픽스가 필요합니다.</p>
+
+<h2>-webkit-line-clamp</h2>
+<table>
+  <tr><th>설명</th><th>코드 예제</th><th>데모</th></tr>
+  <tr>
+    <td>텍스트를 지정한 줄 수까지만 표시하고 나머지는 잘라냄</td>
+    <td><pre>
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+    </pre></td>
+    <td><div class="demo-box line-clamp">
+      이 텍스트는 여러 줄로 작성되어 있습니다.<br>
+      하지만 -webkit-line-clamp 속성을 사용하면<br>
+      최대 3줄까지만 표시되고<br>
+      그 이후 내용은 잘려서 보이지 않습니다.<br>
+      추가 텍스트가 있어도 표시되지 않습니다.
+    </div></td>
+  </tr>
+</table>
+
+<h2>-webkit-background-clip: text</h2>
+<table>
+  <tr><th>설명</th><th>코드 예제</th><th>데모</th></tr>
+  <tr>
+    <td>텍스트 모양에 맞게 배경을 잘라내어 표시</td>
+    <td><pre>
+.clip-text {
+  background: linear-gradient(45deg, #ff7f50, #ff1493);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+    </pre></td>
+    <td><div class="clip-text">Gradient Text</div></td>
+  </tr>
+</table>
+
+<p><strong>Tip:</strong> <code>-webkit-</code> 접두사는 크롬, 사파리, iOS 브라우저 등 WebKit 기반 브라우저에서 주로 필요합니다.</p>
+</body>
+</html>

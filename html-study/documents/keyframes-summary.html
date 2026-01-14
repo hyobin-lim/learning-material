@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS @keyframes 활용 정리</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+      color: #222;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    code {
+      background: #f6f8fa;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    pre {
+      background: #f6f8fa;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+    ul {
+      margin: 8px 0 16px 20px;
+    }
+    .demo {
+      width: 60px;
+      height: 60px;
+      background: coral;
+      border-radius: 6px;
+      margin: 12px 0;
+      animation: moveBox 3s ease-in-out infinite alternate;
+    }
+
+    /* @keyframes 정의 */
+    @keyframes moveBox {
+      0%   { transform: translateX(0); background: coral; }
+      50%  { transform: translateX(80px); background: lightseagreen; }
+      100% { transform: translateX(160px); background: gold; }
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS @keyframes 활용 정리</h1>
+
+  <h2>1. @keyframes란?</h2>
+  <p>
+    <code>@keyframes</code>는 애니메이션의 중간 단계(키프레임)를 정의해 요소가 시간에 따라 어떻게 변할지를 지정하는 규칙입니다. <br>
+    시작(<code>from</code> 또는 <code>0%</code>)과 끝(<code>to</code> 또는 <code>100%</code>)뿐 아니라 중간 단계도 퍼센트로 세밀하게 제어할 수 있습니다.
+  </p>
+
+  <h2>2. 기본 구문</h2>
+  <pre>
+@keyframes 애니메이션이름 {
+  from { /* 시작 상태 */ }
+  to   { /* 종료 상태 */ }
+}
+  </pre>
+
+  <h2>3. 주요 속성</h2>
+  <ul>
+    <li><code>animation-name</code>: 사용할 @keyframes 이름</li>
+    <li><code>animation-duration</code>: 실행 시간 (예: 2s)</li>
+    <li><code>animation-delay</code>: 시작 전 대기 시간</li>
+    <li><code>animation-iteration-count</code>: 반복 횟수 (예: infinite)</li>
+    <li><code>animation-direction</code>: 실행 방향 (normal, reverse, alternate)</li>
+    <li><code>animation-timing-function</code>: 속도 곡선 (ease, linear, ease-in-out)</li>
+    <li><code>animation-fill-mode</code>: 시작/종료 후 상태 유지 (none, forwards, backwards, both)</li>
+  </ul>
+
+  <h2>4. 예제</h2>
+  <pre>
+@keyframes moveBox {
+  0%   { transform: translateX(0); background: coral; }
+  50%  { transform: translateX(80px); background: lightseagreen; }
+  100% { transform: translateX(160px); background: gold; }
+}
+
+.demo {
+  animation: moveBox 3s ease-in-out infinite alternate;
+}
+  </pre>
+
+  <h2>5. 데모</h2>
+  <div class="demo"></div>
+
+  <h2>📌 장점과 주의사항</h2>
+  <ul>
+    <li><strong>장점:</strong></li>
+    <ul>
+      <li>JavaScript 없이도 애니메이션 구현 가능 → 성능과 유지보수에 유리</li>
+      <li>중간 단계 제어 가능 → transition보다 복잡한 효과 구현 가능</li>
+    </ul>
+    <li><strong>주의:</strong></li>
+    <ul>
+      <li>브라우저 호환성 확인 필요 (특히 실험적 속성)</li>
+      <li>과도한 애니메이션은 성능 저하와 사용자 경험에 부정적 영향을 줄 수 있음</li>
+    </ul>
+  </ul>
+
+  <h2>정리</h2>
+  <p>
+    CSS <code>@keyframes</code>는 애니메이션의 핵심 규칙으로, 시작·중간·종료 상태를 정의해 다양한 시각적 효과를 구현합니다. <br>
+    <code>animation</code> 속성과 함께 사용하면 반복, 방향, 속도, 대기 시간 등을 자유롭게 제어할 수 있어 웹 인터페이스를 풍부하게 만들 수 있습니다.
+  </p>
+</body>
+</html>

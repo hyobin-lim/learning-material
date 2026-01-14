@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Form 태그 정리</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    code {
+      background: #f9f9f9;
+      display: block;
+      padding: 8px;
+      border: 1px solid #ddd;
+      margin-top: 5px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <h1>Form 관련 태그 정리</h1>
+  <table>
+    <tr>
+      <th>태그</th>
+      <th>설명</th>
+      <th>예제 코드</th>
+      <th>데모</th>
+    </tr>
+
+    <!-- 기존 태그들 -->
+    <tr>
+      <td>&lt;form&gt;</td>
+      <td>사용자 입력을 서버로 전송하기 위한 영역을 정의합니다.</td>
+      <td><code>
+&lt;form action="/submit" method="post"&gt;<br>
+  이름: &lt;input type="text" name="username"&gt;<br>
+  &lt;input type="submit" value="전송"&gt;<br>
+&lt;/form&gt;
+        </code></td>
+      <td>
+        <form action="#" method="post">
+          이름: <input type="text" name="username">
+          <input type="submit" value="전송">
+        </form>
+      </td>
+    </tr>
+
+    <tr>
+      <td>&lt;input&gt;</td>
+      <td>다양한 형태의 사용자 입력을 받을 수 있습니다. type 속성으로 종류를 지정합니다.</td>
+      <td><code>&lt;input type="text"&gt;<br>&lt;input type="password"&gt;<br>&lt;input type="checkbox"&gt;<br>&lt;input type="radio"&gt;</code></td>
+      <td>
+        텍스트: <input type="text"><br>
+        비밀번호: <input type="password"><br>
+        체크박스: <input type="checkbox"><br>
+        라디오: <input type="radio" name="gender">
+      </td>
+    </tr>
+
+    <tr>
+      <td>&lt;textarea&gt;</td>
+      <td>여러 줄의 텍스트를 입력할 수 있는 영역을 만듭니다.</td>
+      <td><code>&lt;textarea rows="4" cols="30"&gt;&lt;/textarea&gt;</code></td>
+      <td><textarea rows="4" cols="30"></textarea></td>
+    </tr>
+
+    <tr>
+      <td>&lt;select&gt; &amp; &lt;option&gt;</td>
+      <td>드롭다운 목록을 만들어 선택할 수 있게 합니다.</td>
+      <td><code>&lt;select&gt;&lt;option&gt;사과&lt;/option&gt;&lt;/select&gt;</code></td>
+      <td>
+        <select>
+          <option>사과</option>
+          <option>바나나</option>
+        </select>
+      </td>
+    </tr>
+
+    <tr>
+      <td>&lt;label&gt;</td>
+      <td>입력 요소에 설명을 붙여줍니다.</td>
+      <td><code>&lt;label for="email"&gt;이메일&lt;/label&gt;<br>&lt;input type="email" id="email"&gt;</code></td>
+      <td>
+        <label for="email">이메일:</label>
+        <input type="email" id="email">
+      </td>
+    </tr>
+
+    <tr>
+      <td>&lt;button&gt;</td>
+      <td>클릭 가능한 버튼을 만듭니다.</td>
+      <td><code>&lt;button type="submit"&gt;제출&lt;/button&gt;</code></td>
+      <td>
+        <button type="submit">제출</button>
+        <button type="reset">초기화</button>
+      </td>
+    </tr>
+
+    <!-- 추가된 태그들 -->
+    <tr>
+      <td>&lt;fieldset&gt; &amp; &lt;legend&gt;</td>
+      <td>관련 입력들을 그룹화하고 제목을 붙입니다.</td>
+      <td><code>&lt;fieldset&gt;&lt;legend&gt;회원 정보&lt;/legend&gt;...&lt;/fieldset&gt;</code></td>
+      <td>
+        <fieldset>
+          <legend>회원 정보</legend>
+          이름: <input type="text"><br>
+          이메일: <input type="email">
+        </fieldset>
+      </td>
+    </tr>
+
+    <tr>
+      <td>&lt;input type="file"&gt;</td>
+      <td>파일 업로드 입력창을 만듭니다.</td>
+      <td><code>&lt;input type="file"&gt;</code></td>
+      <td><input type="file"></td>
+    </tr>
+
+    <tr>
+      <td>&lt;input type="hidden"&gt;</td>
+      <td>사용자에게 보이지 않지만 서버로 데이터를 전송합니다.</td>
+      <td><code>&lt;input type="hidden" name="token" value="12345"&gt;</code></td>
+      <td>(보이지 않음)</td>
+    </tr>
+
+    <tr>
+      <td>&lt;datalist&gt;</td>
+      <td>자동완성 옵션을 제공합니다.</td>
+      <td><code>&lt;input list="browsers"&gt;<br>&lt;datalist id="browsers"&gt;&lt;option value="Chrome"&gt;&lt;/datalist&gt;</code></td>
+      <td>
+        <input list="browsers" placeholder="브라우저 선택">
+        <datalist id="browsers">
+          <option value="Chrome">
+          <option value="Firefox">
+          <option value="Edge">
+        </datalist>
+      </td>
+    </tr>
+
+    <tr>
+      <td>HTML5 입력 타입</td>
+      <td>날짜, 숫자, 범위 등 다양한 입력 UI 제공</td>
+      <td><code>&lt;input type="date"&gt;<br>&lt;input type="number"&gt;<br>&lt;input type="range"&gt;</code></td>
+      <td>
+        날짜: <input type="date"><br>
+        숫자: <input type="number"><br>
+        범위: <input type="range">
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

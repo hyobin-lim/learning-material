@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS color 속성 정리</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      line-height: 1.6;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background: #34495e;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+    .example {
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+    .name { color: red; }
+    .hex { color: #00ff00; }
+    .rgb { color: rgb(0,0,255); }
+    .rgba { color: rgba(255,0,0,0.5); }
+    .hsl { color: hsl(200, 100%, 40%); }
+    .hsla { color: hsla(120, 100%, 25%, 0.7); }
+    .oklab { color: oklab(60% 0.1 0.1); }
+    .oklch { color: oklch(70% 0.2 40); }
+  </style>
+</head>
+<body>
+  <h1>CSS color 속성 정리 (OKLab 포함)</h1>
+  <p>CSS의 <code>color</code> 속성은 텍스트 색상을 지정합니다. 다양한 표기법을 사용할 수 있으며, 최신 사양에서는 <b>OKLab/OKLCH</b>도 지원합니다.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>표현 방식</th>
+        <th>설명</th>
+        <th>예시 코드</th>
+        <th>실제 표시</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>색상 이름</td>
+        <td>미리 정의된 색상 이름 사용</td>
+        <td><code>color: red;</code></td>
+        <td><span class="example name">Red Text</span></td>
+      </tr>
+      <tr>
+        <td>HEX 코드</td>
+        <td>16진수로 색상 지정 (#RRGGBB)</td>
+        <td><code>color: #00ff00;</code></td>
+        <td><span class="example hex">Green Text</span></td>
+      </tr>
+      <tr>
+        <td>RGB</td>
+        <td>빨강, 초록, 파랑 값(0~255)</td>
+        <td><code>color: rgb(0,0,255);</code></td>
+        <td><span class="example rgb">Blue Text</span></td>
+      </tr>
+      <tr>
+        <td>RGBA</td>
+        <td>RGB + 투명도(Alpha, 0~1)</td>
+        <td><code>color: rgba(255,0,0,0.5);</code></td>
+        <td><span class="example rgba">Semi Red</span></td>
+      </tr>
+      <tr>
+        <td>HSL</td>
+        <td>색상(Hue), 채도(Saturation), 명도(Lightness)</td>
+        <td><code>color: hsl(200,100%,40%);</code></td>
+        <td><span class="example hsl">HSL Text</span></td>
+      </tr>
+      <tr>
+        <td>HSLA</td>
+        <td>HSL + 투명도(Alpha)</td>
+        <td><code>color: hsla(120,100%,25%,0.7);</code></td>
+        <td><span class="example hsla">HSLA Text</span></td>
+      </tr>
+      <tr>
+        <td>OKLab</td>
+        <td>사람의 시각에 맞춘 균일 색 공간 (Lightness, a, b)</td>
+        <td><code>color: oklab(60% 0.1 0.1);</code></td>
+        <td><span class="example oklab">OKLab Text</span></td>
+      </tr>
+      <tr>
+        <td>OKLCH</td>
+        <td>OKLab 기반의 색상 표현 (Lightness, Chroma, Hue)</td>
+        <td><code>color: oklch(70% 0.2 40);</code></td>
+        <td><span class="example oklch">OKLCH Text</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><b>정리:</b> <code>color</code> 속성은 텍스트 색상을 지정하며, 다양한 표기법을 지원합니다. 상황에 따라 HEX, RGB, HSL 등을 선택해 사용하면 됩니다.</p>
+</body>
+</html>

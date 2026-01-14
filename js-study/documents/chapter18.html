@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 18 (심화 최종본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트의 시작 — Chapter 18 (배열, 심화)</h1>
+  <p>이 문서는 자바스크립트의 <strong>배열(Array, 심화)</strong>을 설명합니다. 배열은 여러 데이터를 순서대로 저장할 수 있는 자료 구조이며, 다양한 메서드를 통해 데이터를 효율적으로 처리할 수 있습니다.</p>
+
+  <h2>1. 배열 생성</h2>
+  <pre><code>&lt;script&gt;
+  var fruits = ["사과", "바나나", "포도"];
+  var numbers = new Array(1, 2, 3); // 요소 지정
+  var empty = new Array(3);         // 길이가 3인 빈 배열 생성
+
+  console.log(fruits);
+  console.log(numbers);
+  console.log(empty);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> ["사과","바나나","포도"], [1,2,3], [empty × 3]</div>
+
+  <h2>2. 배열 요소 접근</h2>
+  <pre><code>&lt;script&gt;
+  var fruits = ["사과", "바나나", "포도"];
+  console.log(fruits[0]); // 첫 번째 요소
+  console.log(fruits[2]); // 세 번째 요소
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> "사과", "포도"</div>
+
+  <h2>3. 배열 길이</h2>
+  <pre><code>&lt;script&gt;
+  var fruits = ["사과", "바나나", "포도"];
+  console.log(fruits.length);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 3</div>
+
+  <h2>4. 배열 메서드 (기초)</h2>
+  <pre><code>&lt;script&gt;
+  var fruits = ["사과", "바나나"];
+  fruits.push("포도");    // 끝에 추가
+  fruits.pop();           // 끝에서 제거
+  fruits.unshift("딸기"); // 앞에 추가
+  fruits.shift();         // 앞에서 제거
+
+  console.log(fruits);
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> ["사과","바나나"]</div>
+
+  <h2>5. 배열 순회</h2>
+  <pre><code>&lt;script&gt;
+  var fruits = ["사과", "바나나", "포도"];
+
+  for (var i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]);
+  }
+
+  fruits.forEach(function(item) {
+    console.log(item);
+  });
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> "사과", "바나나", "포도"</div>
+
+  <h2>6. 배열 메서드 (심화)</h2>
+  <pre><code>&lt;script&gt;
+  var numbers = [1, 2, 3, 4, 5];
+
+  var doubled = numbers.map(function(n) { return n * 2; });
+  var even = numbers.filter(function(n) { return n % 2 === 0; });
+  var sum = numbers.reduce(function(acc, cur) { 
+    return acc + cur; // acc: 누적값, cur: 현재값
+  }, 0);
+
+  console.log(doubled); // [2,4,6,8,10]
+  console.log(even);    // [2,4]
+  console.log(sum);     // 15
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> [2,4,6,8,10], [2,4], 15</div>
+
+  <h2>7. 배열 정렬과 역순</h2>
+  <pre><code>&lt;script&gt;
+  var nums = [3, 1, 4, 2];
+  nums.sort();     // [1,2,3,4] (문자열 기준 정렬)
+  nums.reverse();  // [4,3,2,1]
+  console.log(nums);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> [4,3,2,1]</div>
+
+  <h2>8. 배열 합치기</h2>
+  <pre><code>&lt;script&gt;
+  var arr1 = [1,2];
+  var arr2 = [3,4];
+  var combined = arr1.concat(arr2);
+  var spreadCombined = [...arr1, ...arr2];
+
+  console.log(combined);       // [1,2,3,4]
+  console.log(spreadCombined); // [1,2,3,4]
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> [1,2,3,4], [1,2,3,4]</div>
+
+  <h2>9. 배열 구조 분해 할당</h2>
+  <pre><code>&lt;script&gt;
+  var arr = ["효빈", 25];
+  var [name, age] = arr;
+
+  console.log(name, age);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> "효빈", 25</div>
+
+  <h2>10. 실습 과제</h2>
+  <ul>
+    <li>배열을 생성하고 요소를 출력하기</li>
+    <li>push/pop/unshift/shift 메서드로 배열 수정하기</li>
+    <li>for문과 forEach로 배열 순회하기</li>
+    <li>map, filter, reduce 메서드 활용하기</li>
+    <li>sort와 reverse로 배열 정렬하기</li>
+    <li>concat과 spread로 배열 합치기</li>
+    <li>배열 구조 분해 할당으로 값 꺼내기</li>
+  </ul>
+
+  <h2>11. 다음 학습 안내</h2>
+  <p>Chapter 19에서는 자바스크립트의 <strong>문자열(String)</strong>을 학습합니다. Chapter 18에서 배운 배열과 함께 문자열을 이해하면 데이터 처리 능력이 더욱 향상됩니다.</p>
+
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 15 (Browser API, 확장본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1 id="browser-api">자바스크립트의 시작 — Chapter 23 (Browser API)</h1>
+  <p>이 문서는 자바스크립트의 <strong>Browser API</strong>를 설명합니다. 브라우저는 다양한 API를 제공하여 웹 애플리케이션을 더 풍부하게 만들 수 있습니다.</p>
+
+  <h2>1. 대화 상자 API</h2>
+  <pre><code>&lt;script&gt;
+  alert("알림창입니다!");
+  const ok = confirm("계속하시겠습니까?");
+  const name = prompt("이름을 입력하세요:");
+  console.log(ok, name);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 알림창, 확인창, 입력창 표시</div>
+
+  <h2>2. localStorage / sessionStorage</h2>
+  <pre><code>&lt;script&gt;
+  localStorage.setItem("user", "효빈");
+  console.log(localStorage.getItem("user")); // "효빈"
+
+  sessionStorage.setItem("temp", "임시데이터");
+  console.log(sessionStorage.getItem("temp")); // "임시데이터"
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 콘솔에 "효빈", "임시데이터" 출력</div>
+
+  <h2>3. navigator API</h2>
+  <pre><code>&lt;script&gt;
+  console.log("브라우저 정보:", navigator.userAgent);
+  console.log("언어:", navigator.language);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 브라우저와 언어 정보 출력</div>
+
+  <h2>4. location API</h2>
+  <pre><code>&lt;script&gt;
+  console.log("현재 URL:", location.href);
+  // location.href = "https://www.example.com"; // 페이지 이동
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 현재 페이지 URL 출력</div>
+
+  <h2>5. history API</h2>
+  <pre><code>&lt;script&gt;
+  console.log("뒤로가기 가능 여부:", history.length);
+  // history.back(); // 뒤로가기
+  // history.forward(); // 앞으로가기
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 history 길이 출력</div>
+
+  <h2>6. Geolocation API</h2>
+  <pre><code>&lt;script&gt;
+  navigator.geolocation.getCurrentPosition((pos) => {
+    console.log("위도:", pos.coords.latitude, "경도:", pos.coords.longitude);
+  });
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 현재 위치 정보 출력</div>
+
+  <h2>7. Clipboard API</h2>
+  <pre><code>&lt;button id="copyBtn"&gt;복사&lt;/button&gt;
+&lt;script&gt;
+  const copyBtn = document.getElementById("copyBtn");
+  copyBtn.addEventListener("click", async () => {
+    await navigator.clipboard.writeText("복사할 텍스트");
+    alert("클립보드에 복사됨!");
+  });
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 버튼 클릭 시 텍스트가 클립보드에 복사</div>
+
+  <h2>8. Fullscreen API</h2>
+  <pre><code>&lt;div id="box" style="width:200px;height:100px;background:lightgreen"&gt;박스&lt;/div&gt;
+&lt;button id="fsBtn"&gt;전체 화면&lt;/button&gt;
+&lt;script&gt;
+  const box = document.getElementById("box");
+  const fsBtn = document.getElementById("fsBtn");
+  fsBtn.addEventListener("click", () => {
+    box.requestFullscreen();
+  });
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 버튼 클릭 시 박스가 전체 화면으로 표시</div>
+
+  <h2>9. Fetch API</h2>
+  <pre><code>&lt;script&gt;
+  fetch("https://jsonplaceholder.typicode.com/posts/1")
+    .then(response =&gt; response.json())
+    .then(data =&gt; console.log(data));
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 외부 JSON 데이터 불러와 콘솔에 출력</div>
+
+  <h2>10. 실습 과제</h2>
+  <ul>
+    <li>alert, confirm, prompt 사용해보기</li>
+    <li>localStorage에 데이터 저장하고 불러오기</li>
+    <li>navigator API로 브라우저 정보 확인하기</li>
+    <li>location.href로 페이지 이동하기</li>
+    <li>history API로 뒤로가기/앞으로가기 실습하기</li>
+    <li>Geolocation API로 현재 위치 출력하기</li>
+    <li>Clipboard API로 텍스트 복사하기</li>
+    <li>Fullscreen API로 특정 요소 전체 화면 전환하기</li>
+    <li>Fetch API로 외부 JSON 데이터 불러오기</li>
+  </ul>
+
+  <h2>11. 다음 학습 안내</h2>
+  <p>이제 자바스크립트의 기초와 브라우저 API까지 학습했습니다. 다음 단계에서는 <strong>심화 주제(에러 처리, 비동기 처리, 모듈과 최신 문법 등)</strong>을 학습하여 완전한 자바스크립트 개발자로 성장할 수 있습니다.</p>
+</body>
+</html>

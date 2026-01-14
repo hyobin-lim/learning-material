@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>&lt;main&gt; 태그 정리</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 40px; color: #111; }
+    h1 { color: #222; margin-bottom: 8px; }
+    p.lead { color: #555; margin-top: 0; }
+    table { border-collapse: collapse; width: 100%; margin-top: 22px; font-size: 14px; }
+    th, td { border: 1px solid #888; padding: 12px; vertical-align: top; text-align: left; }
+    th { background: #eee; font-weight: 700; }
+    pre { background: #0b1020; color: #e5e7eb; padding: 12px; border-radius: 6px; overflow: auto; margin: 0; }
+    code { background: #f4f4f4; padding: 0 4px; border-radius: 4px; }
+    .demo-main { border: 1px solid #ccc; padding: 16px; border-radius: 8px; background: #fafafa; }
+    .demo-main h2 { margin-top: 0; }
+    .tip { background: #eef2ff; border-left: 4px solid #6366f1; padding: 10px 12px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>&lt;main&gt; 태그 정리</h1>
+  <p class="lead">문서의 주요 콘텐츠 영역을 의미하며, 헤더·내비게이션·푸터를 제외한 본문 핵심 부분을 담습니다.</p>
+
+  <table>
+    <tr>
+      <th>쉬운 설명</th>
+      <th>코드 예제</th>
+      <th>데모 화면</th>
+      <th>베스트 프랙티스 / 주의사항</th>
+    </tr>
+    <tr>
+      <td>
+        <p><strong>의미:</strong> <code>&lt;main&gt;</code> 태그는 문서에서 가장 중요한 콘텐츠를 담는 영역입니다. 페이지마다 한 번만 사용하며, 헤더·내비게이션·푸터 같은 반복 요소는 포함하지 않습니다.</p>
+        <p><strong>사용 위치:</strong> 페이지 본문에서 핵심 콘텐츠를 감싸는 데 사용합니다. 예를 들어 블로그 글 본문, 서비스 소개, 상품 목록 등이 이에 해당합니다.</p>
+        <p><strong>접근성:</strong> 스크린리더는 <code>&lt;main&gt;</code>을 인식하여 “주요 콘텐츠”라고 알려주므로, 사용자에게 빠르게 본문으로 이동할 수 있는 기능을 제공합니다.</p>
+      </td>
+      <td>
+        <pre>&lt;main&gt;
+  &lt;h2&gt;블로그 글 제목&lt;/h2&gt;
+  &lt;p&gt;이곳은 블로그 글 본문입니다.&lt;/p&gt;
+  &lt;article&gt;
+    &lt;h3&gt;관련 글&lt;/h3&gt;
+    &lt;p&gt;다른 글도 함께 읽어보세요.&lt;/p&gt;
+  &lt;/article&gt;
+&lt;/main&gt;</pre>
+      </td>
+      <td>
+        <main class="demo-main">
+          <h2>블로그 글 제목</h2>
+          <p>이곳은 블로그 글 본문입니다.</p>
+          <article>
+            <h3>관련 글</h3>
+            <p>다른 글도 함께 읽어보세요.</p>
+          </article>
+        </main>
+      </td>
+      <td>
+        <div class="tip">
+          <ul>
+            <li><strong>한 문서에 한 번만:</strong> <code>&lt;main&gt;</code>은 문서마다 한 번만 사용하십시오.</li>
+            <li><strong>반복 요소 제외:</strong> 헤더, 내비게이션, 푸터 같은 반복되는 요소는 포함하지 마십시오.</li>
+            <li><strong>핵심 콘텐츠만:</strong> 페이지의 주제와 직접적으로 관련된 본문만 담으십시오.</li>
+            <li><strong>접근성 향상:</strong> 스크린리더 사용자가 빠르게 본문으로 이동할 수 있도록 돕습니다.</li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

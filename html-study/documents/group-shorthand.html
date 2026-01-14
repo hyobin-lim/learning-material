@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS 애니메이션 단축 속성 그룹</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 24px; color: #222; }
+    h1, h2 { color: #333; }
+    code { background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 20px 0; table-layout: fixed; }
+    th, td { border: 1px solid #ddd; padding: 6px; text-align: left; vertical-align: top; font-size: 14px; }
+    th { background: #f5f7fa; }
+    pre { font-size: 12px; white-space: pre-wrap; }
+
+    .demo { width: 50px; height: 50px; background: coral; border-radius: 6px; margin: 4px; }
+
+    @keyframes moveBox { from { transform: translateX(0); } to { transform: translateX(60px); } }
+
+    /* hover 시 실행 */
+    .demo.shorthand:hover {
+      animation: moveBox 2s ease-in-out 0.5s 2 alternate forwards;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="group-shorthand">애니메이션 단축 속성 그룹</h1>
+  <p>
+    <code>animation</code> 단축 속성은 여러 애니메이션 관련 속성을 한 줄로 묶어 작성할 수 있습니다.  <br>
+    순서는 <strong>name: 키프레임 이름 → duration: 실행 시간 → timing-function: 속도 곡선 → delay: 지연 시간 → iteration-count: 반복 횟수 → direction: 방향 → fill-mode: 시작·종료 상태 유지 (+ 필요 시 play-state(실행/일시정지 상태))</strong> 입니다.
+  </p>
+
+  <h2>예제</h2>
+  <table>
+    <tr><th>속성</th><th>설명</th><th>단축 코드</th><th>데모</th></tr>
+    <tr>
+      <td>name</td>
+      <td>애니메이션 이름</td>
+      <td rowspan="7"><pre>animation: moveBox 2s ease-in-out 0.5s 2 alternate forwards;</pre></td>
+      <td rowspan="7"><div class="demo shorthand"></div></td>
+    </tr>
+    <tr><td>duration</td><td>지속 시간 (2s)</td></tr>
+    <tr><td>timing-function</td><td>속도 곡선 (ease-in-out)</td></tr>
+    <tr><td>delay</td><td>시작 지연 (0.5s)</td></tr>
+    <tr><td>iteration-count</td><td>반복 횟수 (2회)</td></tr>
+    <tr><td>direction</td><td>재생 방향 (alternate)</td></tr>
+    <tr><td>fill-mode</td><td>종료 후 상태 유지 (forwards)</td></tr>
+  </table>
+
+  <p><strong>정리:</strong> 단축 속성을 사용하면 여러 애니메이션 속성을 한 줄로 간결하게 작성할 수 있습니다. 다만 순서를 지켜야 하며, 일부 속성을 생략하면 기본값이 적용됩니다.</p>
+</body>
+</html>

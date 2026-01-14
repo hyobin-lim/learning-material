@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 상태 선택자 데모</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    a {
+      text-decoration: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      margin-right: 10px;
+      display: inline-block;
+    }
+
+    /* 링크 관련 상태 */
+    a:link { color: blue; }       /* 방문하지 않은 링크 */
+    a:visited { color: purple; }  /* 방문한 링크 */
+    a:hover { background: #f0f0f0; } /* 마우스 올렸을 때 */
+    a:active { color: red; }      /* 클릭 순간 */
+
+    /* 폼 요소 상태 */
+    input:focus {
+      border: 2px solid #3b82f6;
+      outline: none;
+    }
+    input:disabled {
+      background: #eee;
+      color: #999;
+    }
+    input:checked + label {
+      color: green;
+      font-weight: bold;
+    }
+
+    /* 구조적 상태 */
+    ul li:first-child { color: orange; }
+    ul li:last-child { color: teal; }
+    ul li:nth-child(odd) { background: #f9f9f9; }
+    ul li:nth-child(even) { background: #e0f7fa; }
+  </style>
+</head>
+<body>
+  <h1>CSS 상태 선택자 예시</h1>
+
+  <h2>링크 상태</h2>
+  <p>
+    <a href="https://www.naver.com" target="-blank">네이버</a>
+    <a href="https://www.google.com" target="-blank">구글</a>
+  </p>
+
+  <h2>폼 요소 상태</h2>
+  <p>
+    <input type="text" placeholder="포커스하면 테두리 색 변경" />
+  </p>
+  <p>
+    <input type="text" value="비활성화" disabled />
+  </p>
+  <p>
+    <input type="checkbox" id="chk1" />
+    <label for="chk1">체크하면 글씨가 초록색</label>
+  </p>
+
+  <h2>구조적 상태</h2>
+  <ul>
+    <li>첫 번째</li>
+    <li>두 번째</li>
+    <li>세 번째</li>
+    <li>네 번째</li>
+    <li>다섯 번째</li>
+  </ul>
+
+  <h2>정리</h2>
+  <ul>
+    <li><b>링크 상태:</b> :link, :visited, :hover, :active</li>
+    <li><b>폼 상태:</b> :focus, :disabled, :checked</li>
+    <li><b>구조 상태:</b> :first-child, :last-child, :nth-child()</li>
+  </ul>
+</body>
+</html>

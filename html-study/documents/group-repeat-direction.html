@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS 애니메이션 반복·방향 그룹</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 24px; color: #222; }
+    h1, h2 { color: #333; }
+    code { background: #f6f8fa; padding: 2px 4px; border-radius: 4px; }
+    table { border-collapse: collapse; width: 100%; margin: 20px 0; }
+    th, td { border: 1px solid #ddd; padding: 10px; text-align: left; vertical-align: top; }
+    th { background: #f5f7fa; }
+    .demo { width: 60px; height: 60px; background: coral; border-radius: 6px; margin: 8px; }
+    /* hover 적용 */
+    .demo.iter1:hover { animation: moveBox 2s 1; }
+    .demo.iter3:hover { animation: moveBox 2s 3; }
+
+    /* keyframes */
+    @keyframes moveBox { from { transform: translateX(0); } to { transform: translateX(120px); } }
+  </style>
+</head>
+<body>
+  <h1 id="group-repeat-direction">반복·방향 그룹</h1>
+  <p>
+    반복·방향 그룹은 애니메이션의 반복 횟수와 재생 방향을 제어합니다.
+    같은 애니메이션이라도 반복 횟수와 방향 설정에 따라 전혀 다른 느낌을 줄 수 있습니다.
+  </p>
+
+  <h2>1. animation-iteration-count</h2>
+  <p>애니메이션을 몇 번 반복할지 지정합니다. 정수(예: 1, 2, 3…) 또는 <code>infinite</code>. 기본값은 <code>1</code>.</p>
+  <table>
+    <tr><th>값</th><th>설명</th><th>예제 코드</th><th>데모</th></tr>
+    <tr>
+      <td>1</td>
+      <td>한 번만 실행 (hover 시)</td>
+      <td><pre>.demo.iter1:hover { animation: moveBox 2s 1; }</pre></td>
+      <td><div class="demo iter1"></div></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>세 번 반복 (hover 시)</td>
+      <td><pre>.demo.iter3:hover { animation: moveBox 2s 3; }</pre></td>
+      <td><div class="demo iter3"></div></td>
+    </tr>
+    <tr>
+      <td>infinite</td>
+      <td>무한 반복</td>
+      <td><pre>.box { animation: moveBox 2s infinite; }</pre></td>
+      <td><div class="demo" style="animation: moveBox 2s infinite;"></div></td>
+    </tr>
+  </table>
+
+  <h2>2. animation-direction</h2>
+  <p>애니메이션이 반복될 때 어떤 방향으로 재생될지 지정합니다. <br>@keyframes의 재생 방향. <code>normal</code>, <code>reverse</code>, <code>alternate</code>, <code>alternate-reverse</code>. 기본값은 <code>normal</code>.</p>
+  <table>
+    <tr><th>값</th><th>설명</th><th>예제 코드</th><th>데모</th></tr>
+    <tr>
+      <td>normal</td>
+      <td>항상 정방향으로 실행</td>
+      <td><pre>.box { animation: moveBox 2s infinite normal; }</pre></td>
+      <td><div class="demo" style="animation: moveBox 2s infinite normal;"></div></td>
+    </tr>
+    <tr>
+      <td>reverse</td>
+      <td>항상 역방향으로 실행</td>
+      <td><pre>.box { animation: moveBox 2s infinite reverse; }</pre></td>
+      <td><div class="demo" style="animation: moveBox 2s infinite reverse;"></div></td>
+    </tr>
+    <tr>
+      <td>alternate</td>
+      <td>정방향 → 역방향 번갈아 실행</td>
+      <td><pre>.box { animation: moveBox 2s infinite alternate; }</pre></td>
+      <td><div class="demo" style="animation: moveBox 2s infinite alternate;"></div></td>
+    </tr>
+    <tr>
+      <td>alternate-reverse</td>
+      <td>역방향 → 정방향 번갈아 실행</td>
+      <td><pre>.box { animation: moveBox 2s infinite alternate-reverse; }</pre></td>
+      <td><div class="demo" style="animation: moveBox 2s infinite alternate-reverse;"></div></td>
+    </tr>
+  </table>
+
+  <p><strong>정리:</strong> 반복·방향 그룹은 애니메이션의 반복 횟수와 방향을 제어하여 다양한 변화를 줄 수 있습니다.</p>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS letter-spacing 속성 정리</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      line-height: 1.6;
+      background: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background: #34495e;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+    .example {
+      font-size: 20px;
+      font-weight: bold;
+      padding: 4px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .normal { letter-spacing: normal; }
+    .wide { letter-spacing: 5px; }
+    .narrow { letter-spacing: -2px; }
+    .emspace { letter-spacing: 0.3em; }
+  </style>
+</head>
+<body>
+  <h1>CSS letter-spacing 속성 정리</h1>
+  <p><code>letter-spacing</code>은 텍스트의 글자 간격을 조절하는 속성입니다.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>값</th>
+        <th>설명</th>
+        <th>예시 코드</th>
+        <th>실제 표시</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>normal</code></td>
+        <td>기본 글자 간격</td>
+        <td><code>letter-spacing: normal;</code></td>
+        <td><span class="example normal">Hello World</span></td>
+      </tr>
+      <tr>
+        <td><code>5px</code></td>
+        <td>글자 간격을 5px 넓힘</td>
+        <td><code>letter-spacing: 5px;</code></td>
+        <td><span class="example wide">Hello World</span></td>
+      </tr>
+      <tr>
+        <td><code>-2px</code></td>
+        <td>글자 간격을 좁힘</td>
+        <td><code>letter-spacing: -2px;</code></td>
+        <td><span class="example narrow">Hello World</span></td>
+      </tr>
+      <tr>
+        <td><code>0.3em</code></td>
+        <td>em 단위로 글자 간격 지정</td>
+        <td><code>letter-spacing: 0.3em;</code></td>
+        <td><span class="example emspace">Hello World</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><b>정리:</b> <code>letter-spacing</code>은 글자 간격을 넓히거나 좁혀서 가독성이나 디자인 효과를 줄 수 있으며, px, em, rem 단위를 활용해 유연하게 조절할 수 있습니다.</p><br>
+  <p>✨ 핵심 포인트</p>
+<p>normal: 기본값</p>
+<p>양수 값 → 글자 간격 넓어짐</p>
+<p>음수 값 → 글자 간격 좁아짐</p>
+<p>em, rem 단위 → 폰트 크기에 비례한 간격</p>
+
+</body>
+</html>

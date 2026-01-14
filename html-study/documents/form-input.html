@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Form 섹션 2 - 입력 요소</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.65; }
+    h1 { margin-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    th, td { border: 1px solid #ccc; padding: 12px; vertical-align: top; text-align: left; }
+    th { background: #f2f2f2; }
+    pre { background: #f9f9f9; display: block; padding: 8px; border: 1px solid #ddd; white-space: pre-wrap; }
+    .explain-box { background:#eef9ff; border:1px solid #a6d8ff; padding:12px; margin-top:16px; }
+  </style>
+</head>
+<body>
+  <h1>Form 섹션 2 - 입력 요소</h1>
+
+  <h2>전체 설명</h2>
+  <p>
+    입력 요소(Input Elements)는 사용자가 **직접 값을 입력할 수 있는 필드**를 말합니다.<br>
+    대표적으로 <code>&lt;input&gt;</code> (인풋 태그)과 <code>&lt;textarea&gt;</code> (텍스트영역 태그)가 있으며,<br>
+    텍스트, 비밀번호, 이메일, 전화번호, URL, 숫자, 날짜 등 다양한 타입을 통해 데이터를 입력받습니다.<br>
+    즉, 입력 요소는 **사용자가 키보드로 직접 데이터를 입력하는 모든 필드**를 의미합니다.
+  </p>
+
+  <h2>상세 설명</h2>
+  <p>
+    <code>&lt;input&gt;</code> (인풋 태그)은 단일 줄 입력 필드이고, <code>type</code> 속성으로 입력 종류를 지정합니다.<br>
+    <code>&lt;textarea&gt;</code> (텍스트영역 태그)는 여러 줄 입력이 가능합니다.<br>
+    <strong>placeholder (플레이스홀더)</strong>는 입력 힌트를 보여주고,<br>
+    <strong>maxlength/minlength (최대/최소 길이)</strong>는 입력 글자 수를 제한합니다.<br>
+    <strong>readonly (읽기전용)</strong>은 값만 표시하고 수정은 불가,<br>
+    <strong>disabled (비활성화)</strong>는 입력 불가이며 서버 전송에서도 제외됩니다.
+  </p>
+
+  <!-- 별도 설명 박스 -->
+  <div class="explain-box">
+    <strong>자주 쓰는 속성들:</strong><br>
+    • placeholder (플레이스홀더): 입력칸에 힌트 텍스트 표시<br>
+    • minlength / maxlength (최소/최대 글자 수): 입력 길이 제한<br>
+    • readonly (읽기전용): 값은 보이지만 수정 불가<br>
+    • disabled (비활성화): 입력 불가, 서버 전송도 제외<br>
+    • autocomplete (자동완성): 브라우저 자동완성 켜기/끄기<br>
+    • pattern (패턴): 정규식으로 입력 형식 제한
+  </div>
+
+  <table>
+    <tr><th>항목</th><th>설명</th><th>예제 코드</th><th>데모</th></tr>
+    <tr>
+      <td>text (텍스트)</td>
+      <td>일반 텍스트 입력</td>
+      <td><pre>&lt;input type="text" placeholder="이름" minlength="2" maxlength="30" required&gt;</pre></td>
+      <td><input type="text" placeholder="이름" minlength="2" maxlength="30" required></td>
+    </tr>
+    <tr>
+      <td>password (비밀번호)</td>
+      <td>비밀번호 입력, 입력값은 ●●●로 표시</td>
+      <td><pre>&lt;input type="password" minlength="8" required&gt;</pre></td>
+      <td><input type="password" minlength="8" required></td>
+    </tr>
+    <tr>
+      <td>email (이메일)</td>
+      <td>이메일 형식 검증 지원</td>
+      <td><pre>&lt;input type="email" autocomplete="email" placeholder="you@example.com" required&gt;</pre></td>
+      <td><input type="email" autocomplete="email" placeholder="you@example.com" required></td>
+    </tr>
+    <tr>
+      <td>tel (전화번호) + pattern (패턴)</td>
+      <td>전화번호 형식 검증</td>
+      <td><pre>&lt;input type="tel" pattern="^0[0-9]{1,2}-[0-9]{3,4}-[0-9]{4}$" placeholder="02-1234-5678"&gt;</pre></td>
+      <td><input type="tel" pattern="^0[0-9]{1,2}-[0-9]{3,4}-[0-9]{4}$" placeholder="02-1234-5678"></td>
+    </tr>
+    <tr>
+      <td>url (주소)</td>
+      <td>웹 주소(URL) 입력</td>
+      <td><pre>&lt;input type="url" placeholder="https://example.com"&gt;</pre></td>
+      <td><input type="url" placeholder="https://example.com"></td>
+    </tr>
+    <tr>
+      <td>textarea (텍스트영역)</td>
+      <td>여러 줄 텍스트 입력</td>
+      <td><pre>&lt;textarea rows="4" cols="40" maxlength="300" placeholder="자기소개"&gt;&lt;/textarea&gt;</pre></td>
+      <td><textarea rows="4" cols="40" maxlength="300" placeholder="자기소개"></textarea></td>
+    </tr>
+    <tr>
+      <td>readonly / disabled</td>
+      <td>읽기전용 vs 비활성화</td>
+      <td><pre>&lt;input value="편집 불가" readonly&gt;
+&lt;input value="비활성" disabled&gt;</pre></td>
+      <td><input value="편집 불가" readonly> <input value="비활성" disabled></td>
+    </tr>
+    <tr>
+      <td>datalist (데이터목록)</td>
+      <td>자동완성 후보 목록 제공</td>
+      <td><pre>&lt;input list="cities"&gt;
+&lt;datalist id="cities"&gt;
+  &lt;option value="Seoul"&gt;
+  &lt;option value="Busan"&gt;
+&lt;/datalist&gt;</pre></td>
+      <td>
+        <input list="cities" placeholder="도시 입력">
+        <datalist id="cities">
+          <option value="Seoul">
+          <option value="Busan">
+          <option value="Daegu">
+        </datalist>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

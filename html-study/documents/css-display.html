@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS display 속성 정리</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; }
+    h1 { color: #333; }
+    table { border-collapse: collapse; margin-top: 20px; width: 100%; }
+    th, td { border: 1px solid #666; padding: 8px; text-align: center; vertical-align: middle; }
+    th { background: #ddd; }
+    pre { background: #f4f4f4; padding: 6px; border: 1px solid #ccc; text-align:left; }
+    .demo { border:1px solid #222; padding:10px; margin:10px 0; }
+    .box { width:80px; height:40px; margin:5px; background:lightblue; text-align:center; line-height:40px; }
+    .flex { display:flex; }
+    .grid { display:grid; grid-template-columns:repeat(2,80px); }
+  </style>
+</head>
+<body>
+  <h1>CSS display 속성 정리</h1>
+  <table>
+    <tr>
+      <th>설명</th>
+      <th>예제</th>
+      <th>데모</th>
+      <th>비고</th>
+    </tr>
+    <tr>
+      <td>block: 한 줄 전체를 차지하는 블록 요소</td>
+      <td><pre>div { display:block; }</pre></td>
+      <td>
+        <div class="demo">
+          <div class="box" style="display:block;">A</div>
+          <div class="box" style="display:block;">B</div>
+        </div>
+      </td>
+      <td>width/height 지정 가능, 줄바꿈 발생</td>
+    </tr>
+    <tr>
+      <td>inline: 글자처럼 줄 안에 배치</td>
+      <td><pre>span { display:inline; }</pre></td>
+      <td>
+        <div class="demo">
+          <span style="background:lightgreen;">A</span>
+          <span style="background:lightgreen;">B</span>
+        </div>
+      </td>
+      <td>width/height 지정 불가, 줄바꿈 없음, 다른 요소와 같은 줄에 배치</td>
+    </tr>
+    <tr>
+      <td>inline-block: 줄 안에 배치되면서 크기(width/height) 지정 가능</td>
+      <td><pre>img { display:inline-block; }</pre></td>
+      <td>
+        <div class="demo">
+          <div class="box" style="display:inline-block;">A</div>
+          <div class="box" style="display:inline-block;">B</div>
+        </div>
+      </td>
+      <td>대표 요소: img, button, input 등</td>
+    </tr>
+    <tr>
+      <td>flex: 플렉스 박스 레이아웃, 자식 요소들을 유연하게 배치</td>
+      <td><pre>.container { display:flex; }</pre></td>
+      <td>
+        <div class="demo flex">
+          <div class="box">A</div>
+          <div class="box">B</div>
+          <div class="box">C</div>
+        </div>
+      </td>
+      <td>주축/교차축 정렬, 반응형 레이아웃에 유용</td>
+    </tr>
+    <tr>
+      <td>grid: 그리드 레이아웃, 자식 요소들을 행과 열로 배치</td>
+      <td><pre>.container { display:grid; }</pre></td>
+      <td>
+        <div class="demo grid">
+          <div class="box">A</div>
+          <div class="box">B</div>
+          <div class="box">C</div>
+          <div class="box">D</div>
+        </div>
+      </td>
+      <td>행과 열 기반 레이아웃, 복잡한 배치에 적합</td>
+    </tr>
+    <tr>
+      <td>none: 요소를 화면에서 숨김</td>
+      <td><pre>p { display:none; }</pre></td>
+      <td>
+        <div class="demo">
+          <div class="box">보임</div>
+          <div class="box" style="display:none;">숨김</div>
+        </div>
+      </td>
+      <td>요소가 렌더링되지 않음</td>
+    </tr>
+    <tr>
+      <td>contents: 부모는 사라지고 자식만 표시</td>
+      <td><pre>div { display:contents; }</pre></td>
+      <td>
+        <div class="demo">
+          <div style="display:contents;">
+            <span style="background:lightcoral;">A</span>
+            <span style="background:lightcoral;">B</span>
+          </div>
+        </div>
+      </td>
+      <td>부모 박스 제거, 자식만 흐름에 남음</td>
+    </tr>
+  </table>
+</body>
+</html>

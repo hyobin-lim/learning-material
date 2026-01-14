@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>CSS 상속 속성 - 표시/가시성</title>
+  <style>
+    body { font-family: system-ui, sans-serif; line-height: 1.6; margin: 2rem; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 2rem; }
+    th, td { border: 1px solid #ccc; padding: 0.75rem; vertical-align: top; }
+    code { background: #f3f3f3; padding: 0.2rem 0.4rem; border-radius: 4px; }
+    .demo { border: 1px solid #ddd; padding: 1rem; margin-top: 0.5rem; background: #fafafa; }
+
+    .visibility-demo { visibility: hidden; }
+    .opacity-demo { opacity: 0.5; }
+    .transform-demo { transform: rotate(10deg) scale(1.2); display: inline-block; background: #eef; padding: 0.5rem; }
+    .display-none { display: none; }
+    .clip-demo { clip-path: circle(40%); background: #cce; width: 120px; height: 120px; }
+    .filter-demo { filter: blur(2px); }
+    .pointer-demo { pointer-events: none; background: #fcc; padding: 0.5rem; }
+  </style>
+</head>
+<body>
+  <h1 id="visibility-and-display-effects">표시/가시성으로 인한 간접적 파급 (visibility-and-display-effects)</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>속성</th>
+        <th>코드 예제</th>
+        <th>데모</th>
+        <th>설명</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>visibility</strong></td>
+        <td><code>.visibility-demo { visibility: hidden; }</code></td>
+        <td>
+          <div class="demo">
+            <span class="visibility-demo">숨겨진 텍스트</span>
+            <span>보이는 텍스트</span>
+          </div>
+        </td>
+        <td>
+          요소를 숨기지만 공간은 유지합니다. 부모가 숨겨지면 자식도 함께 보이지 않아  
+          후손까지 영향을 줍니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>opacity</strong></td>
+        <td><code>.opacity-demo { opacity: 0.5; }</code></td>
+        <td><div class="demo opacity-demo">반투명하게 표시된 텍스트</div></td>
+        <td>
+          요소와 자식 전체가 투명해집니다. 투명도는 상속되진 않지만, 부모의 합성 결과가  
+          후손에도 적용되어 전체 묶음이 흐려집니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>transform</strong></td>
+        <td><code>.transform-demo { transform: rotate(10deg) scale(1.2); }</code></td>
+        <td><div class="demo"><span class="transform-demo">회전/확대된 박스</span></div></td>
+        <td>
+          요소를 회전·이동·확대/축소합니다. 좌표계가 바뀌어 자식 요소의 배치에도  
+          간접적으로 영향을 줍니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>display</strong></td>
+        <td><code>.display-none { display: none; }</code></td>
+        <td>
+          <div class="demo">
+            <span class="display-none">숨겨진 요소</span>
+            <span>보이는 요소</span>
+          </div>
+        </td>
+        <td>
+          요소를 완전히 제거해 공간도 사라집니다. 부모가 <code>none</code>이면  
+          자식도 함께 렌더링되지 않습니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>clip-path</strong></td>
+        <td><code>.clip-demo { clip-path: circle(40%); }</code></td>
+        <td><div class="demo clip-demo"></div></td>
+        <td>
+          요소의 표시 영역을 잘라내어 특정 모양만 보이게 합니다.  
+          자식 콘텐츠도 잘린 영역 안에서만 표시됩니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>filter</strong></td>
+        <td><code>.filter-demo { filter: blur(2px); }</code></td>
+        <td><div class="demo filter-demo">흐려진 텍스트</div></td>
+        <td>
+          요소와 자식 전체에 그래픽 효과(흐림, 색상 변경 등)를 적용합니다.  
+          부모에 적용하면 후손도 함께 영향을 받습니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>pointer-events</strong></td>
+        <td><code>.pointer-demo { pointer-events: none; }</code></td>
+        <td><div class="demo pointer-demo">클릭 불가능한 박스</div></td>
+        <td>
+          요소와 자식의 마우스 이벤트 반응을 제어합니다.  
+          <code>none</code>이면 클릭이나 hover가 무시되어 자식까지 영향을 줍니다.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

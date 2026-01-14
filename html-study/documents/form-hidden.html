@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Form 섹션 8 - 숨겨진 입력</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.65; }
+    h1 { margin-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    th, td { border: 1px solid #ccc; padding: 12px; vertical-align: top; text-align: left; }
+    th { background: #f2f2f2; }
+    pre { background: #f9f9f9; display: block; padding: 8px; border: 1px solid #ddd; white-space: pre-wrap; }
+    .warn { background:#fff2f0; border:1px solid #ffccc7; padding:10px; margin-top:12px;}
+    .tip { background:#eef9ff; border:1px solid #a6d8ff; padding:10px; margin-top:12px;}
+  </style>
+</head>
+<body>
+  <h1>Form 섹션 8 - 숨겨진 입력</h1>
+
+  <h2>전체 설명</h2>
+  <p>
+    숨겨진 입력(Hidden Input)은 화면에는 표시되지 않지만, 폼이 제출될 때 서버로 함께 전송되는 데이터를 담는 요소입니다.<br>
+    사용자는 직접 수정할 수 없지만, 브라우저 개발자 도구에서는 확인할 수 있으므로 <strong>민감한 값은 반드시 서버에서 검증</strong>해야 합니다.
+  </p>
+
+  <h2>상세 설명</h2>
+  <p>
+    • <code>&lt;input type="hidden"&gt;</code>은 UI에 나타나지 않지만 서버로 전송됩니다.<br>
+    • 주로 CSRF 토큰, 추적 파라미터, 고정된 컨텍스트 정보(예: 사용자 ID, 세션 값)를 전달할 때 사용합니다.<br>
+    • 숨겨진 입력은 클라이언트에서 쉽게 노출·변경될 수 있으므로 <strong>보안 검증은 서버에서 처리</strong>해야 합니다.
+  </p>
+
+  <div class="tip">
+    <strong>CSRF란?</strong><br>
+    CSRF(Cross-Site Request Forgery, 사이트 간 요청 위조)는 사용자가 의도하지 않은 요청을 공격자가 대신 보내도록 속이는 웹 공격 기법입니다.<br>
+    예를 들어 로그인된 사용자가 악성 사이트를 방문했을 때, 그 사이트가 사용자의 권한으로 은행 송금 요청을 보내버릴 수 있습니다.<br>
+    이를 막기 위해 서버는 <em>CSRF 토큰</em>을 발급하고, 폼에 숨겨진 입력으로 함께 전송해 요청이 정상적인 사용자의 것인지 확인합니다.
+  </div>
+
+  <div class="warn">
+    ⚠️ 주의: 숨겨진 입력은 보안 수단이 아니라 단순 데이터 전달용입니다.<br>
+    중요한 값은 서버에서 다시 확인하고 검증해야 합니다.
+  </div>
+
+  <h2>속성별 정리</h2>
+  <table>
+    <tr><th>속성</th><th>설명</th><th>예제 코드</th><th>데모</th></tr>
+    <tr>
+      <td>type="hidden"</td>
+      <td>숨겨진 입력 지정</td>
+      <td><pre>&lt;input type="hidden" name="csrf" value="token123"&gt;</pre></td>
+      <td><input type="hidden" name="csrf" value="token123"> (화면에 표시되지 않음)</td>
+    </tr>
+    <tr>
+      <td>name</td>
+      <td>서버로 전송될 데이터의 키</td>
+      <td><pre>&lt;input type="hidden" name="userId" value="42"&gt;</pre></td>
+      <td><input type="hidden" name="userId" value="42"> (화면에 표시되지 않음)</td>
+    </tr>
+    <tr>
+      <td>value</td>
+      <td>서버로 전송될 실제 값</td>
+      <td><pre>&lt;input type="hidden" name="role" value="admin"&gt;</pre></td>
+      <td><input type="hidden" name="role" value="admin"> (화면에 표시되지 않음)</td>
+    </tr>
+  </table>
+</body>
+</html>

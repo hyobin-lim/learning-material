@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>하위 블록 포함 가능 태그 정리</title>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #333; padding: 10px; text-align: center; }
+    th { background-color: #f1f1f1; }
+    .demo { border: 2px dashed #666; padding: 10px; margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <h1>하위 블록 포함 가능 태그</h1>
+
+  <h2>예제 코드</h2>
+  <pre>
+&lt;div class="demo"&gt;
+  &lt;p&gt;이건 단락입니다.&lt;/p&gt;
+  &lt;section&gt;
+    &lt;article&gt;
+      &lt;h2&gt;기사 제목&lt;/h2&gt;
+      &lt;p&gt;기사 내용&lt;/p&gt;
+    &lt;/article&gt;
+  &lt;/section&gt;
+&lt;/div&gt;
+  </pre>
+
+  <h2>데모</h2>
+  <div class="demo">
+    <p>이건 단락입니다.</p>
+    <section>
+      <article>
+        <h2>기사 제목</h2>
+        <p>기사 내용</p>
+      </article>
+    </section>
+  </div>
+
+  <h2>쉬운 설명</h2>
+  <p>
+    🏠 <strong>div</strong>는 큰 상자예요. 그 안에 여러 블록(작은 상자들)을 넣을 수 있어요.<br>
+    📚 <strong>section</strong>은 책의 한 챕터처럼 내용을 묶는 상자예요.<br>
+    📰 <strong>article</strong>은 신문 기사처럼 독립된 내용을 담는 상자예요.<br>
+    🎨 <strong>figure</strong>는 그림이나 사진을 담는 상자예요.<br>
+    💬 <strong>blockquote</strong>는 다른 사람 말을 담는 상자예요.
+  </p>
+
+  <h2>비교 표</h2>
+  <table>
+    <tr>
+      <th>태그</th>
+      <th>설명</th>
+      <th>하위 블록 포함 가능 여부</th>
+    </tr>
+    <tr>
+      <td>&lt;div&gt;</td>
+      <td>일반적인 구역을 나누는 상자</td>
+      <td>가능</td>
+    </tr>
+    <tr>
+      <td>&lt;section&gt;</td>
+      <td>문서의 한 구역(챕터)</td>
+      <td>가능</td>
+    </tr>
+    <tr>
+      <td>&lt;article&gt;</td>
+      <td>독립된 콘텐츠(기사, 글)</td>
+      <td>가능</td>
+    </tr>
+    <tr>
+      <td>&lt;aside&gt;</td>
+      <td>보조 정보(사이드바)</td>
+      <td>가능</td>
+    </tr>
+    <tr>
+      <td>&lt;header&gt;/&lt;footer&gt;</td>
+      <td>머리말과 꼬리말 영역</td>
+      <td>가능</td>
+    </tr>
+    <tr>
+      <td>&lt;nav&gt;</td>
+      <td>내비게이션 메뉴</td>
+      <td>가능</td>
+    </tr>
+    <tr>
+      <td>&lt;blockquote&gt;</td>
+      <td>인용문 블록</td>
+      <td>가능</td>
+    </tr>
+    <tr>
+      <td>&lt;figure&gt;</td>
+      <td>이미지/도표 묶음</td>
+      <td>가능</td>
+    </tr>
+  </table>
+</body>
+</html>

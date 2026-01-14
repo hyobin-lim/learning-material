@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 04 (업데이트 최종본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트의 시작 — Chapter 04</h1>
+  <p>이 문서는 자바스크립트의 함수(Function)를 설명합니다. 함수는 코드의 재사용성을 높이고 프로그램을 구조적으로 작성할 수 있게 합니다.</p>
+
+  <h2>1. 함수의 기본</h2>
+  <pre><code>&lt;script&gt;
+  // 함수 선언
+  function greet() {
+    alert('안녕하세요!');
+  }
+
+  // 함수 호출
+  greet();
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>실행 결과 예시:</strong> "안녕하세요!"라는 알림창이 표시됩니다.</div>
+
+  <h2>2. 매개변수와 인자</h2>
+  <pre><code>&lt;script&gt;
+  // 매개변수(parameter)를 가진 함수
+  function greet(name) {
+    alert(name + '님, 환영합니다!');
+  }
+
+  // 인자(argument)를 전달하여 호출
+  greet('효빈');
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>실행 결과 예시:</strong> "효빈님, 환영합니다!"라는 알림창이 표시됩니다.</div>
+
+  <h2>3. 반환값</h2>
+  <pre><code>&lt;script&gt;
+  // 두 수를 더하는 함수
+  function add(a, b) {
+    return a + b;
+  }
+
+  var result = add(3, 5);
+  console.log('결과:', result);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>실행 결과 예시:</strong> 콘솔에 "결과: 8"이 출력됩니다.</div>
+
+  <h2>4. 함수 표현식</h2>
+  <pre><code>&lt;script&gt;
+  // 함수 표현식 (익명 함수)
+  var multiply = function(x, y) {
+    return x * y;
+  };
+
+  console.log(multiply(4, 5));
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>실행 결과 예시:</strong> 콘솔에 "20"이 출력됩니다.</div>
+
+  <h2>5. 화살표 함수</h2>
+  <pre><code>&lt;script&gt;
+  // 화살표 함수 → 간결한 문법, this 바인딩이 없음
+  var divide = (x, y) => x / y;
+
+  console.log(divide(10, 2));
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>실행 결과 예시:</strong> 콘솔에 "5"가 출력됩니다.</div>
+
+  <h2>6. 기본값 매개변수</h2>
+  <pre><code>&lt;script&gt;
+  // 기본값 매개변수 (ES6)
+  function greet(name = '손님') {
+    alert(name + '님, 환영합니다!');
+  }
+
+  greet(); // 인자를 전달하지 않으면 '손님님, 환영합니다!' 출력
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>실행 결과 예시:</strong> 알림창에 "손님님, 환영합니다!"가 표시됩니다.</div>
+
+  <h2>7. 함수의 스코프</h2>
+  <pre><code>&lt;script&gt;
+  function testScope() {
+    var localVar = '지역 변수';
+    console.log(localVar);
+  }
+
+  testScope();
+  console.log(localVar); // 오류 발생: localVar is not defined
+&lt;/script&gt;</code></pre>
+  <div class="demo">⚠️ <strong>실행 결과 예시:</strong> 첫 번째 콘솔에는 "지역 변수"가 출력되고, 두 번째 콘솔에서는 ReferenceError가 발생합니다.</div>
+
+  <h2>8. 함수의 활용</h2>
+  <pre><code>&lt;script&gt;
+  // 조건문과 반복문을 함수와 결합
+  function printEvenNumbers(limit) {
+    for (var i = 1; i <= limit; i++) {
+      if (i % 2 === 0) {
+        console.log(i);
+      }
+    }
+  }
+
+  printEvenNumbers(10);
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>실행 결과 예시:</strong> 콘솔에 2, 4, 6, 8, 10이 출력됩니다.</div>
+
+  <h2>9. 실습 과제</h2>
+  <ul>
+    <li>두 수를 입력받아 합을 반환하는 함수 작성하기</li>
+    <li>이름을 입력받아 "OOO님, 환영합니다!"를 출력하는 함수 작성하기</li>
+    <li>배열을 받아 모든 요소를 출력하는 함수 작성하기</li>
+    <li>for문과 함수를 결합해 1부터 100까지의 합을 구하는 함수 작성하기</li>
+    <li>기본값 매개변수를 활용한 함수 작성하기</li>
+    <li>스코프를 확인하는 함수 작성하기</li>
+  </ul>
+
+  <h2>10. 다음 학습 안내</h2>
+  <p>Chapter 05에서는 자바스크립트의 <strong>객체(Object)</strong>를 학습합니다. Chapter 04에서 배운 함수와 결합해 더 복잡한 데이터 구조를 다룰 수 있게 됩니다.</p>
+
+</body>
+</html>

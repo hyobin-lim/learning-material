@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Grid 레이아웃과 Grid Line 상세 설명</title>
+  <style>
+    :root {
+      --bg: #ffffff;
+      --text: #2c3e50;
+      --muted: #6b7280;
+      --border: #d1d5db;
+      --shade: #f8fafc;
+      --code-bg: #1f2937;
+      --code-text: #e5e7eb;
+      --accent: #2563eb;
+      --accent-2: #10b981;
+      --accent-3: #f59e0b;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", "Noto Sans KR", system-ui, -apple-system, sans-serif;
+      margin: 0;
+    }
+    header {
+      padding: 28px 24px 16px;
+      border-bottom: 1px solid var(--border);
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    header h1 {
+      margin: 0 0 6px;
+      font-size: 24px;
+    }
+    header p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    main {
+      padding: 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    section {
+      margin-bottom: 28px;
+    }
+    h2 {
+      font-size: 20px;
+      margin: 0 0 10px;
+    }
+    .note {
+      background: var(--shade);
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    .ascii {
+      background: var(--shade);
+      border: 1px solid var(--border);
+      padding: 20px 20px;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre;
+      overflow-x: auto;
+      color: #111827;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+      border: 1px solid var(--border);
+    }
+    th, td {
+      border: 1px solid var(--border);
+      vertical-align: top;
+      padding: 14px;
+    }
+    th {
+      background: #f3f4f6;
+      text-align: left;
+      font-weight: 600;
+      color: #111827;
+    }
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+    li {
+      margin: 6px 0;
+    }
+    code {
+      background: #eef2ff;
+      color: #1e3a8a;
+      padding: 0 6px;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 90%;
+    }
+    pre {
+      background: var(--code-bg);
+      color: var(--code-text);
+      padding: 12px 14px;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    /* 데모 1: 3x3 그리드 */
+    .grid-demo-3x3 {
+      display: grid;
+      grid-template-columns: repeat(3, 88px);
+      grid-template-rows: repeat(3, 88px);
+      gap: 6px;
+      background: #f9fafb;
+      border: 1px dashed var(--border);
+      padding: 8px;
+      justify-content: start;
+    }
+    .grid-demo-3x3 .cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+      border-radius: 8px;
+    }
+    .item1 { background: var(--accent); grid-row: 1 / 2; grid-column: 1 / 2; }
+    .item2 { background: var(--accent-2); grid-row: 1 / 3; grid-column: 2 / 3; }
+    .item3 { background: var(--accent-3); grid-row: 2 / 4; grid-column: 3 / 4; }
+
+    /* 데모 2: 4x4 그리드 라인 번호와 스팬 */
+    .grid-demo-4x4 {
+      display: grid;
+      grid-template-columns: repeat(4, 70px);
+      grid-template-rows: repeat(4, 70px);
+      gap: 6px;
+      background: #f9fafb;
+      border: 1px dashed var(--border);
+      padding: 8px;
+      justify-content: start;
+    }
+    .grid-demo-4x4 .cell {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: #fff;
+      border-radius: 8px;
+    }
+    .a { background: #6366f1; grid-column: 1 / 3; grid-row: 1 / 2; } /* 1~2열, 1행 */
+    .b { background: #ef4444; grid-column: 3 / 5; grid-row: 1 / 3; } /* 3~4열, 1~2행 */
+    .c { background: #22c55e; grid-column: 1 / 2; grid-row: 2 / 5; } /* 1열, 2~4행 */
+    .d { background: #f59e0b; grid-column: 2 / 4; grid-row: 3 / 5; } /* 2~3열, 3~4행 */
+
+    footer {
+      margin: 28px 24px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CSS Grid: 행과 열을 나누는 Grid Line 개념과 데모</h1>
+    <p>그리드를 라인(경계선)으로 이해하고, grid-row / grid-column으로 정확히 배치하는 법을 코드와 함께 보여줍니다.</p>
+  </header>
+
+  <main>
+    <section>
+      <h2>그리드를 라인으로 이해하기</h2>
+      <div class="note">
+        <ul>
+          <li><strong>개념:</strong> CSS Grid는 칸 그 자체를 지정하는 게 아니라, <em>칸을 나누는 경계선</em>인 <strong>grid line(라인)</strong> 번호를 기준으로 요소의 시작과 끝을 정의합니다.</li>
+          <li><strong>라인 수:</strong> N행이면 가로 라인은 N+1개, M열이면 세로 라인은 M+1개가 생깁니다.</li>
+          <li><strong>배치 원리:</strong> <code>grid-row: a / b</code>는 가로 라인의 <strong>a에서 시작해 b에서 끝</strong>나므로, 차지하는 행의 수는 <code>b - a</code>입니다. <code>grid-column</code>도 동일한 원리입니다.</li>
+        </ul>
+      </div>
+
+      <div class="ascii">
+세로 라인 (column) 번호 
+1     2     3     4   
+┌─────┬─────┬─────┐ →  가로 라인 (row) 1
+│     │     │     │   
+├─────┼─────┼─────┤ →  가로 라인 (row) 2 
+│     │     │     │   
+├─────┼─────┼─────┤ →  가로 라인 (row) 3
+│     │     │     │   
+├─────┼─────┼─────┤ →  가로 라인 (row) 4
+│     │     │     │
+└─────┴─────┴─────┘ →  가로 라인 (row) 5
+↓     ↓     ↓     ↓
+세로 라인은 열+1개, 가로 라인은 행+1개
+      </div>
+
+      <div class="note" style="margin-top:12px">
+        <ul>
+          <li><strong>예시 해석:</strong> 4행×3열 그리드라면 가로 라인은 5개, 세로 라인은 4개입니다.</li>
+          <li><strong>라인 지정 예:</strong> <code>grid-row: 2 / 5</code> → 가로 라인 2~4 사이(행 2~4)를 차지합니다.</li>
+          <li><strong>스팬 지정:</strong> <code>grid-row: 1 / span 2</code>처럼 <code>span</code>을 쓰면 “시작 라인부터 2칸 차지”라는 의미입니다.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>예제와 코드, 데모를 한 표에 보기</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>설명</th>
+            <th>코드</th>
+            <th>데모</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <ul>
+                <li><strong>그리드 구성:</strong> 3행×3열 그리드입니다.</li>
+                <li><strong>item1:</strong> <code>grid-row: 1 / 2</code>, <code>grid-column: 1 / 2</code> → 1행 1열의 단일 셀을 차지합니다.</li>
+                <li><strong>item2:</strong> <code>grid-row: 1 / 3</code>, <code>grid-column: 2 / 3</code> → 1~2행, 2열을 세로로 2칸 차지합니다.</li>
+                <li><strong>item3:</strong> <code>grid-row: 2 / 4</code>, <code>grid-column: 3 / 4</code> → 2~3행, 3열을 세로로 2칸 차지합니다.</li>
+                <li><strong>핵심:</strong> <code>b - a</code>가 차지하는 칸 수입니다. 예: <code>1 / 3</code> → 2칸.</li>
+              </ul>
+            </td>
+            <td>
+<pre><code>.grid-demo-3x3 {
+  display: grid;
+  grid-template-columns: repeat(3, 88px);
+  grid-template-rows: repeat(3, 88px);
+  gap: 6px;
+}
+
+.item1 { grid-row: 1 / 2; grid-column: 1 / 2; }
+.item2 { grid-row: 1 / 3; grid-column: 2 / 3; }
+.item3 { grid-row: 2 / 4; grid-column: 3 / 4; }
+</code></pre>
+            </td>
+            <td>
+              <div class="grid-demo-3x3">
+                <div class="cell item1">1</div>
+                <div class="cell item2">2</div>
+                <div class="cell item3">3</div>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <ul>
+                <li><strong>그리드 구성:</strong> 4행×4열 그리드입니다.</li>
+                <li><strong>a:</strong> <code>grid-column: 1 / 3</code>, <code>grid-row: 1 / 2</code> → 1행에서 1~2열(가로로 2칸) 차지.</li>
+                <li><strong>b:</strong> <code>grid-column: 3 / 5</code>, <code>grid-row: 1 / 3</code> → 1~2행, 3~4열(2×2 영역) 차지.</li>
+                <li><strong>c:</strong> <code>grid-column: 1 / 2</code>, <code>grid-row: 2 / 5</code> → 2~4행, 1열(세로로 3칸) 차지.</li>
+                <li><strong>d:</strong> <code>grid-column: 2 / 4</code>, <code>grid-row: 3 / 5</code> → 3~4행, 2~3열(2×2 영역) 차지.</li>
+                <li><strong>라인 번호:</strong> 4열이므로 세로 라인은 1~5, 4행이므로 가로 라인은 1~5입니다.</li>
+              </ul>
+            </td>
+            <td>
+<pre><code>.grid-demo-4x4 {
+  display: grid;
+  grid-template-columns: repeat(4, 70px);
+  grid-template-rows: repeat(4, 70px);
+  gap: 6px;
+}
+
+.a { grid-column: 1 / 3; grid-row: 1 / 2; }
+.b { grid-column: 3 / 5; grid-row: 1 / 3; }
+.c { grid-column: 1 / 2; grid-row: 2 / 5; }
+.d { grid-column: 2 / 4; grid-row: 3 / 5; }
+</code></pre>
+            </td>
+            <td>
+              <div class="grid-demo-4x4">
+                <div class="cell a">a</div>
+                <div class="cell b">b</div>
+                <div class="cell c">c</div>
+                <div class="cell d">d</div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>라인 기반 배치 팁</h2>
+      <div class="note">
+        <ul>
+          <li><strong>span 문법:</strong> <code>grid-column: 2 / span 3</code>은 “세로 라인 2에서 시작해 3칸(열) 차지”를 의미합니다.</li>
+          <li><strong>음수 라인:</strong> <code>-1</code>은 마지막 라인을 의미합니다. 예: <code>grid-column: 1 / -1</code> → 첫 라인부터 마지막 라인 전까지 전 열을 가로지름.</li>
+          <li><strong>축약형:</strong> <code>grid-row: 2 / span 2</code> → 라인 2에서 시작하여 행 2칸 차지. <code>grid-column</code>도 동일.</li>
+          <li><strong>겹침 규칙:</strong> 같은 영역을 두 아이템이 요청하면 <em>소스 순서</em>에 따라 나중 요소가 위에 겹칩니다(명시적 z-index가 없을 때).</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    이 문서는 CSS Grid의 라인 개념을 중심으로 grid-row / grid-column 배치를 설명합니다. 
+  </footer>
+</body>
+</html>

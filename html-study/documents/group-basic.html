@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS 애니메이션 기본 제어 그룹</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+      color: #222;
+    }
+
+    h1,
+    h2 {
+      color: #333;
+    }
+
+    code {
+      background: #f6f8fa;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f5f7fa;
+    }
+
+    .demo {
+      width: 60px;
+      height: 60px;
+      background: coral;
+      border-radius: 6px;
+      margin: 8px;
+    }
+
+    /* keyframes */
+    @keyframes moveBox {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(80px);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes scaleUp {
+      from {
+        transform: scale(0.5);
+      }
+
+      to {
+        transform: scale(1.2);
+      }
+    }
+
+    @keyframes colorChange {
+      from {
+        background: coral;
+      }
+
+      to {
+        background: teal;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1 id="group-basic">기본 제어 그룹</h1>
+  <p>
+    기본 제어 그룹은 애니메이션의 가장 핵심적인 흐름을 제어하는 속성들로 구성됩니다.
+    어떤 애니메이션을 사용할지, 얼마나 오래 실행할지, 어떤 속도로 진행할지, 언제 시작할지를 결정합니다.
+  </p>
+
+  <h2>포함 속성</h2>
+
+  <h2>1. animation-name</h2>
+  <p>어떤 <code>@keyframes</code>를 사용할지 지정합니다. 값은 키프레임의 식별자이며, <code>none</code>은 애니메이션을 비활성화합니다.</p>
+  <table>
+    <tr>
+      <th>값</th>
+      <th>설명</th>
+      <th>예제 코드</th>
+      <th>데모</th>
+    </tr>
+    <tr>
+      <td>moveBox</td>
+      <td>좌→우로 이동</td>
+      <td>
+        <pre>.box { animation-name: moveBox; animation-duration: 2s; }</pre>
+      </td>
+      <td>
+        <div class="demo" style="animation: moveBox 2s infinite alternate;"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>fadeIn</td>
+      <td>투명 → 불투명</td>
+      <td>
+        <pre>.box { animation-name: fadeIn; animation-duration: 2s; }</pre>
+      </td>
+      <td>
+        <div class="demo" style="animation: fadeIn 2s infinite alternate;"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>none</td>
+      <td>애니메이션 없음</td>
+      <td>
+        <pre>.box { animation-name: none; }</pre>
+      </td>
+      <td>—</td>
+    </tr>
+  </table>
+
+
+  <h3>2. animation-duration</h3>
+  <p>애니메이션이 한 사이클을 실행하는 시간을 지정합니다. 단위는 <code>s</code>(초) 또는 <code>ms</code>(밀리초). 기본값은 <code>0s</code>(즉시 적용, 실제 애니메이션
+    없음)입니다.</p>
+  <table>
+    <tr>
+      <th>값</th>
+      <th>설명</th>
+      <th>예제 코드</th>
+      <th>데모</th>
+    </tr>
+    <tr>
+      <td>3s</td>
+      <td>3초 동안 실행</td>
+      <td>
+        <pre>.box { animation: moveBox 3s infinite alternate; }</pre>
+      </td>
+      <td>
+        <div class="demo" style="animation: moveBox 3s infinite alternate;"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>800ms</td>
+      <td>0.8초 동안 실행</td>
+      <td>
+        <pre>.box { animation: moveBox 800ms infinite alternate; }</pre>
+      </td>
+      <td>
+        <div class="demo" style="animation: moveBox 800ms infinite alternate;"></div>
+      </td>
+    </tr>
+  </table>
+
+  <h3>3. animation-timing-function</h3>
+  <p>시간에 따른 진행 속도 곡선을 지정합니다. 기본값은 <code>ease</code>. 대표 값: <code>linear</code>, <code>ease</code>, <code>ease-in</code>,
+    <code>ease-out</code>, <code>ease-in-out</code>, <code>cubic-bezier(x1,y1,x2,y2)</code>,
+    <code>steps(n, start|end)</code>.
+  </p>
+  <table>
+    <tr>
+      <th>값</th>
+      <th>설명</th>
+      <th>예제 코드</th>
+      <th>데모</th>
+    </tr>
+    <tr>
+      <td>linear</td>
+      <td>일정한 속도로 진행</td>
+      <td>
+        <pre>.box { animation: moveBox 2s linear infinite alternate; }</pre>
+      </td>
+      <td>
+        <div class="demo" style="animation: moveBox 2s linear infinite alternate;"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>ease-in</td>
+      <td>천천히 시작</td>
+      <td>
+        <pre>.box { animation: moveBox 2s ease-in infinite alternate; }</pre>
+      </td>
+      <td>
+        <div class="demo" style="animation: moveBox 2s ease-in infinite alternate;"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>ease-out</td>
+      <td>천천히 끝남</td>
+      <td>
+        <pre>.box { animation: moveBox 2s ease-out infinite alternate; }</pre>
+      </td>
+      <td>
+        <div class="demo" style="animation: moveBox 2s ease-out infinite alternate;"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>ease-in-out</td>
+      <td>시작·끝 부드럽게</td>
+      <td>
+        <pre>.box { animation: scaleUp 2s ease-in-out infinite alternate; }</pre>
+      </td>
+      <td>
+        <div class="demo" style="animation: scaleUp 2s ease-in-out infinite alternate;"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>steps(4, end)</td>
+      <td>4단계로 끊어 진행</td>
+      <td>
+        <pre>.box { animation: moveBox 2s steps(4, end) infinite alternate; }</pre>
+      </td>
+      <td>
+        <div class="demo" style="animation: moveBox 2s steps(4, end) infinite alternate;"></div>
+      </td>
+    </tr>
+  </table>
+
+  <h2>animation-timing-function: cubic-bezier()</h2>
+  <p>
+    <code>cubic-bezier(x1, y1, x2, y2)</code>는 네 개의 좌표값을 받아 속도 곡선을 직접 정의합니다.
+    값에 따라 애니메이션의 가속·감속·탄성 효과 등이 달라집니다.
+  </p>
+
+  <table>
+    <tr>
+      <th>값</th>
+      <th>설명</th>
+      <th>예제 코드</th>
+      <th>데모</th>
+    </tr>
+    <tr>
+      <td>cubic-bezier(0.25, 0.1, 0.25, 1)</td>
+      <td>기본 ease와 유사 (천천히 시작·끝)</td>
+      <td>
+        <pre>.box { animation: moveBox 2s cubic-bezier(0.25,0.1,0.25,1) infinite alternate; }</pre>
+      </td>
+      <td>
+        <div class="demo" style="animation: moveBox 2s cubic-bezier(0.25,0.1,0.25,1) infinite alternate;"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>cubic-bezier(1,0,1,1)</td>
+      <td>ease-in (빠르게 가속)</td>
+      <td>
+        <pre>.box { animation: moveBox 2s ccubic-bezier(1,0,1,1) infinite alternate; }</pre>
+      </td>
+      <td>
+        <div class="demo" style="animation: moveBox 2s cubic-bezier(1,0,1,1) infinite alternate;"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>cubic-bezier(0,0,0.58,1)</td>
+      <td>ease-out (빠르게 감속)</td>
+      <td>
+        <pre>.box { animation: moveBox 2s cubic-bezier(0,0,0.58,1) infinite alternate; }</pre>
+      </td>
+      <td>
+        <div class="demo" style="animation: moveBox 2s cubic-bezier(0,0,0.58,1) infinite alternate;"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>cubic-bezier(0.68, -0.55, 0.27, 1.55)</td>
+      <td>탄성 효과 (overshoot)</td>
+      <td>
+        <pre>.box { animation: moveBox 2s cubic-bezier(0.68,-0.55,0.27,1.55) infinite alternate; }</pre>
+      </td>
+      <td>
+        <div class="demo" style="animation: moveBox 2s cubic-bezier(0.68,-0.55,0.27,1.55) infinite alternate;"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>cubic-bezier(0.4, 0, 0.2, 1)</td>
+      <td>Material Design 표준 곡선</td>
+      <td>
+        <pre>.box { animation: moveBox 2s cubic-bezier(0.4,0,0.2,1) infinite alternate; }</pre>
+      </td>
+      <td>
+        <div class="demo" style="animation: moveBox 2s cubic-bezier(0.4,0,0.2,1) infinite alternate;"></div>
+      </td>
+    </tr>
+  </table>
+
+
+  <h3>4. animation-delay</h3>
+  <p>애니메이션 시작 지연 시간을 지정합니다. 음수 지연은 해당 경과 시점에서 즉시 시작합니다. 단위는 <code>s</code> 또는 <code>ms</code>.</p>
+  <table>
+    <tr>
+      <th>값</th>
+      <th>설명</th>
+      <th>예제 코드</th>
+      <th>데모</th>
+    </tr>
+    <tr>
+      <td>1s</td>
+      <td>1초 뒤 시작</td>
+      <td>
+        <pre>.box { animation: colorChange 2s ease infinite alternate; animation-delay: 1s; }</pre>
+      </td>
+      <td>
+        <div class="demo" style="animation: colorChange 2s ease infinite alternate; animation-delay: 1s;"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>-0.5s</td>
+      <td>0.5초 진행된 상태로 시작</td>
+      <td>
+        <pre>.box { animation: colorChange 2s ease infinite alternate; animation-delay: -0.5s; }</pre>
+      </td>
+      <td>
+        <div class="demo" style="animation: colorChange 2s ease infinite alternate; animation-delay: -0.5s;"></div>
+      </td>
+    </tr>
+  </table>
+
+  <p><strong>정리:</strong> 기본 제어 그룹은 애니메이션의 실행 흐름을 제어하는 가장 중요한 속성들입니다.</p>
+</body>
+
+</html>

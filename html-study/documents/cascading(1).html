@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>특이성과 중요도</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 24px; line-height: 1.6; }
+    table { border-collapse: collapse; width: 100%; max-width: 960px; margin-bottom: 32px; }
+    th, td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
+    th { background: #f5f7fb; font-weight: 600; }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    h1 { margin-bottom: 16px; }
+    h2 { margin-top: 32px; }
+    code { background: #f3f3f3; padding: 2px 6px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>특이성과 중요도</h1>
+  <p>CSS는 여러 규칙이 동일한 요소에 적용될 때 <strong>캐스캐이딩(Cascading)</strong> 규칙에 따라 최종 스타일을 결정합니다.</p>
+
+  <h2>📌 캐스캐이딩 적용 순서의 핵심 규칙</h2>
+  <ol>
+    <li><strong>출처(Source)</strong>: 브라우저 기본 스타일 &lt; 사용자 스타일시트 &lt; 개발자 작성 스타일시트 &lt; 인라인 스타일 &lt; <code>!important</code></li>
+    <li><strong>특이성(Specificity)</strong>: 인라인 스타일 &gt; ID 선택자 &gt; 클래스/속성 선택자 &gt; 태그 선택자 &gt; 전체 선택자</li>
+    <li><strong>중요도(Importance)</strong>: <code>!important</code>가 붙은 규칙은 최우선 적용</li>
+    <li><strong>선언 순서(Order)</strong>: 동일한 우선순위일 경우, 나중에 선언된 규칙이 적용</li>
+  </ol>
+
+  <h2>📖 코드 분석 </h2>
+  <h3>1. <code>&lt;a href="#" id="link" class="link"&gt;링크&lt;/a&gt;</code></h3>
+  <ul>
+    <li>적용 규칙: <code>body { color: chartreuse; }</code>, <code>.link { color: burlywood; }</code>, <code>a { color: darkslategray; }</code></li>
+    <li>우선순위: 클래스 선택자(.link) &gt; 태그 선택자(a)</li>
+    <li><strong>최종 적용 색상: burlywood</strong></li>
+  </ul>
+
+  <h3>2. <code>&lt;h1&gt;레드향&lt;/h1&gt;</code></h3>
+  <ul>
+    <li>적용 규칙: <code>body { color: chartreuse; font-size: 32px; }</code></li>
+    <li>별도의 h1 규칙 없음 → <strong>chartreuse 색상, 32px 글자 크기</strong></li>
+  </ul>
+
+  <h3>3. <code>&lt;p style="color: black; font-size: 10px;"&gt;...&lt;/p&gt;</code></h3>
+  <ul>
+    <li>적용 규칙: <code>p { color: blue !important; margin-block-start: 5em; }</code>, 인라인 스타일 <code>color: black; font-size: 10px;</code></li>
+    <li>우선순위: <code>!important</code> &gt; 인라인 스타일</li>
+    <li><strong>최종 적용 색상: blue</strong></li>
+    <li>글자 크기: 인라인 스타일의 <strong>10px</strong></li>
+    <li>여백: <strong>margin-block-start: 5em</strong></li>
+  </ul>
+
+  <h3>4. <code>&lt;p&gt;레드향은 한라봉과 귤을 교배한 것으로&lt;/p&gt;</code><br>
+      5. <code>&lt;p&gt;일반 귤보다 2~3배 크고, 과육이 붉고 통통하다.&lt;/p&gt;</code></h3>
+  <ul>
+    <li>적용 규칙: <code>p { color: blue !important; margin-block-start: 5em; }</code>, <code>body { color: chartreuse; font-size: 32px; }</code></li>
+    <li>우선순위: <code>!important</code> 규칙이 최우선</li>
+    <li><strong>최종 적용 색상: blue</strong></li>
+    <li>글자 크기: body에서 상속된 <strong>32px</strong></li>
+    <li>여백: <strong>margin-block-start: 5em</strong></li>
+  </ul>
+   <h2>&lt;p&gt; 요소에 적용된 규칙</h2>
+  <ul>
+    <li><code>p { color: blue !important; }</code> → <strong>!important</strong> 때문에 인라인 스타일보다 우선 적용</li>
+    <li>따라서 모든 <code>&lt;p&gt;</code> 요소는 <strong>blue</strong> 색상으로 표시됩니다.</li>
+    <li>인라인 스타일의 <code>color: black;</code>은 무시되고, <code>font-size: 10px;</code>은 적용됩니다.</li><br><br>
+   <h2>&lt;a id="link" class="link"&gt; 요소에 적용된 규칙</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>선택자</th>
+        <th>설명</th>
+        <th>특이성 점수</th>
+        <th>적용 여부</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>a</code></td>
+        <td>태그 선택자</td>
+        <td>0-0-1</td>
+        <td>후순위로 밀림</td>
+      </tr>
+      <tr>
+        <td><code>.link</code></td>
+        <td>클래스 선택자</td>
+        <td>0-1-0</td>
+        <td>후순위로 밀림</td>
+      </tr>
+      <tr>
+        <td><code>#link</code></td>
+        <td>ID 선택자</td>
+        <td>1-0-0</td>
+        <td>후순위로 밀림</td>
+      </tr>
+      <tr>
+        <td><code>#link.link</code></td>
+        <td>ID + 클래스</td>
+        <td>1-1-0</td>
+        <td>후순위로 밀림</td>
+      </tr>
+      <tr>
+        <td><code>#link.link.link</code></td>
+        <td>ID + 클래스 2개</td>
+        <td>1-2-0</td>
+        <td><strong>최종 적용</strong></td>
+      </tr>
+    </tbody>
+  </table>
+ <h2>최종 결과</h2>
+  <ul>
+    <li><code>&lt;a id="link" class="link"&gt;</code> 요소는 <strong>skyblue</strong> 색상으로 표시됩니다.</li>
+    <li>이유: <code>#link.link.link</code> 선택자가 가장 높은 특이성 점수(1-2-0)를 가지며, 동일 요소에 적용된 다른 규칙보다 우선합니다.</li>
+  </ul><br><br>
+  <h2>✅ 정리</h2>
+  <ul>
+    <li><code>!important</code>가 붙은 규칙은 인라인 스타일보다도 우선한다.</li>
+    <li>클래스 선택자는 태그 선택자보다 우선한다.</li>
+    <li>인라인 스타일은 일반 규칙보다 우선하지만, <code>!important</code>에는 밀린다.</li>
+    <li>body의 기본 스타일은 상속되지만, 더 구체적인 선택자나 인라인 스타일이 있으면 덮어쓴다.</li>
+  </ul>
+</body>
+</html>

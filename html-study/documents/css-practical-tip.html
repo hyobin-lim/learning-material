@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>CSS 상속 속성 - 실무 팁</title>
+  <style>
+:root{
+  --bg:#f9fbfd; --text:#2c3e50; --muted:#6c7a89;
+  --table:#ecf0f1; --border:#d0d7de;
+}
+html,body{
+  background:var(--bg); color:var(--text);
+  font-family:Segoe UI, Arial, sans-serif; line-height:1.6; margin:0;
+}
+main{max-width:1100px; margin:40px auto; padding:0 20px;}
+h1,h2,h3{margin:0 0 12px}
+h1{font-size:28px}
+h2{font-size:22px; margin-top:36px}
+p{margin:8px 0 14px}
+code{
+  background:#fff; border:1px solid var(--border);
+  border-radius:4px; padding:0 4px;
+}
+table{width:100%; border-collapse:collapse; margin:18px 0 26px}
+th,td{border:1px solid var(--border); padding:12px; text-align:center; vertical-align:top}
+th{background:var(--table)}
+pre{
+  background:#fff; border:1px solid var(--border);
+  border-radius:6px; padding:8px; margin:0;
+  text-align:left; overflow:auto;
+}
+
+/* 공통 데모 박스 */
+.demo{
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:10px;
+  margin:6px auto;
+  background:#fff;
+  box-shadow:0 4px 10px rgba(0,0,0,.05);
+  max-width:300px;
+  font-size:14px;
+}
+
+/* 컨테이너 수준 스타일 */
+.container-demo{
+  color:darkblue;
+  font-family:"Courier New", monospace;
+  line-height:2;
+  text-align:center;
+}
+
+/* 블록 가운데 정렬 */
+.block-demo{
+  width:200px;
+  margin:0 auto;
+  border:1px dashed var(--border);
+  padding:6px;
+}
+
+/* 국소 재정의 */
+.override-demo{
+  color:darkred;
+  font-style:italic;
+}
+
+/* margin auto */
+.margin-auto{
+  width:200px;
+  margin:0 auto;
+  border:1px solid var(--border);
+  padding:6px;
+}
+
+/* padding */
+.padding-demo{
+  padding:20px;
+  background:#f0f8ff;
+}
+
+/* box-sizing */
+.boxsizing-demo{
+  box-sizing:border-box;
+  width:200px;
+  padding:20px;
+  border:4px solid #3498db;
+}
+
+/* overflow */
+.overflow-demo{
+  width:200px;
+  height:60px;
+  overflow:auto;
+  border:1px solid var(--border);
+}
+
+/* text-align */
+.textalign-demo{
+  text-align:center;
+  font-weight:bold;
+}
+
+/* line-height */
+.lineheight-demo{
+  line-height:2;
+}
+
+/* color */
+.color-demo{
+  color:darkblue;
+}
+
+/* font-family */
+.fontfamily-demo{
+  font-family:"Courier New", monospace;
+}
+
+  </style>
+</head>
+<body>
+  <h1 id="practical-tips">CSS 상속 속성 - 실무 팁 (practical-tips)</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>속성</th>
+        <th>코드 예제</th>
+        <th>데모</th>
+        <th>설명</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>컨테이너 수준에서 설정</strong></td>
+        <td>
+          <code>
+            .container-demo {<br />
+            &nbsp;&nbsp;color: darkblue;<br />
+            &nbsp;&nbsp;font-family: "Courier New", monospace;<br />
+            &nbsp;&nbsp;line-height: 2;<br />
+            &nbsp;&nbsp;text-align: center;<br />
+            }
+          </code>
+        </td>
+        <td>
+          <div class="demo container-demo">
+            이 컨테이너 안의 모든 텍스트는<br />
+            동일한 스타일을 상속받습니다.
+          </div>
+        </td>
+        <td>
+          상단 래퍼에서 지정하면 하위 전체에 일관성 있게 퍼집니다.
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>블록 가운데 정렬 오해 방지</strong></td>
+        <td>
+          <code>
+            .block-demo { width: 200px; margin: 0 auto; }
+          </code>
+        </td>
+        <td>
+          <div class="demo">
+            <div class="block-demo">이 블록은 가운데 정렬됩니다.</div>
+          </div>
+        </td>
+        <td>
+          블록 요소를 가로 가운데에 두려면 <code>margin: 0 auto;</code>를 사용해야 합니다.  
+          <code>text-align: center</code>는 인라인 콘텐츠에만 효과적입니다.
+        </td>
+      </tr>
+
+      <tr>
+        <td><strong>국소 재정의</strong></td>
+        <td>
+          <code>
+            .override-demo { color: darkred; font-style: italic; }
+          </code>
+        </td>
+        <td>
+          <div class="demo">
+            기본 텍스트 <span class="override-demo">여기는 국소적으로 재정의된 텍스트</span>
+          </div>
+        </td>
+        <td>
+          특정 섹션만 다른 타이포그래피/정렬이 필요하면 해당 섹션에만 속성을 재정의하세요.  
+          필요 이상으로 하위에 강제하면 유지보수가 어려워집니다.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>margin: auto</strong></td>
+        <td><code>.margin-auto { width: 200px; margin: 0 auto; }</code></td>
+        <td><div class="demo margin-auto">가로 가운데 정렬된 블록</div></td>
+        <td>블록 요소를 부모 안에서 가로 가운데 배치할 때 가장 많이 쓰이는 방법입니다.</td>
+      </tr>
+      <tr>
+        <td><strong>padding</strong></td>
+        <td><code>.padding-demo { padding: 20px; }</code></td>
+        <td><div class="demo padding-demo">내부 여백이 적용된 박스</div></td>
+        <td>내용과 테두리 사이의 내부 여백을 지정합니다. 가독성과 디자인 균형을 맞출 때 중요합니다.</td>
+      </tr>
+      <tr>
+        <td><strong>box-sizing</strong></td>
+        <td><code>.boxsizing-demo { box-sizing: border-box; }</code></td>
+        <td><div class="demo boxsizing-demo">패딩과 테두리를 포함한 크기 계산</div></td>
+        <td>요소의 총 너비·높이에 패딩과 테두리를 포함시켜 레이아웃 계산을 단순화합니다. 실무에서 거의 필수적으로 사용됩니다.</td>
+      </tr>
+      <tr>
+        <td><strong>overflow</strong></td>
+        <td><code>.overflow-demo { overflow: auto; }</code></td>
+        <td><div class="demo overflow-demo">긴 텍스트가 넘치면 스크롤바가 생깁니다. 긴 텍스트가 넘치면 스크롤바가 생깁니다.</div></td>
+        <td>부모 컨테이너를 벗어나는 콘텐츠 처리 방식을 지정합니다. 스크롤 생성이나 잘림 여부를 제어합니다.</td>
+      </tr>
+      <tr>
+        <td><strong>text-align</strong></td>
+        <td><code>.textalign-demo { text-align: center; }</code></td>
+        <td><div class="demo textalign-demo">가운데 정렬된 텍스트</div></td>
+        <td>인라인 콘텐츠의 가로 정렬을 제어합니다. 버튼이나 제목 가운데 정렬에 자주 사용됩니다.</td>
+      </tr>
+      <tr>
+        <td><strong>line-height</strong></td>
+        <td><code>.lineheight-demo { line-height: 2; }</code></td>
+        <td><div class="demo lineheight-demo">줄 간격이 넓어진 텍스트</div></td>
+        <td>줄 높이를 지정해 텍스트 블록의 가독성을 높입니다. 문단 전체의 리듬을 조절할 수 있습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>color</strong></td>
+        <td><code>.color-demo { color: darkblue; }</code></td>
+        <td><div class="demo color-demo">파란색 텍스트</div></td>
+        <td>텍스트 색상을 지정합니다. 상속되어 자식 요소에도 동일하게 적용되어 문서 전체 톤을 맞출 수 있습니다.</td>
+      </tr>
+      <tr>
+        <td><strong>font-family</strong></td>
+        <td><code>.fontfamily-demo { font-family: "Courier New", monospace; }</code></td>
+        <td><div class="demo fontfamily-demo">Courier New 글꼴 적용</div></td>
+        <td>글꼴을 지정합니다. 상속되어 후손 텍스트에도 적용되며, 문서의 분위기와 가독성을 결정합니다.</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

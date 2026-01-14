@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Form 섹션 1 - 기본 구조</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.65; }
+    h1 { margin-bottom: 8px; }
+    p, ul { margin: 10px 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    th, td { border: 1px solid #ccc; padding: 12px; text-align: left; vertical-align: top; }
+    th { background-color: #f2f2f2; }
+    pre { background: #f9f9f9; display: block; padding: 8px; border: 1px solid #ddd; white-space: pre-wrap; }
+    .note { background: #fffbe6; border: 1px solid #ffe58f; padding: 10px; margin-top: 16px; }
+    .explain-box { background:#eef9ff; border:1px solid #a6d8ff; padding:12px; margin-top:16px; }
+  </style>
+</head>
+<body>
+  <h1>Form 섹션 1 - 기본 구조</h1>
+
+  <h2>개요</h2>
+  <p>
+    폼(Form, 폼 태그)은 사용자 입력을 서버로 전송하기 위한 컨테이너입니다.<br>
+    <code>&lt;form&gt;</code> (폼 태그), <code>&lt;fieldset&gt;</code> (입력 그룹 태그), <code>&lt;legend&gt;</code> (그룹 제목 태그)를 사용하면 구조를 명확히 하고 접근성을 높일 수 있습니다.
+  </p>
+
+  <!-- 별도 설명 박스 -->
+  <div class="explain-box">
+    <strong>&lt;form&gt; (폼 태그):</strong> 입력 전체를 감싸는 컨테이너<br>
+    <strong>&lt;fieldset&gt; (입력 그룹 태그):</strong> 관련 입력들을 묶어줌<br>
+    <strong>&lt;legend&gt; (그룹 제목 태그):</strong> 그룹에 제목을 붙여줌
+  </div>
+
+  <h2>중요 속성</h2>
+  <ul>
+    <li><strong>action (액션):</strong> 데이터를 제출할 서버 주소(URL)</li>
+    <li><strong>method (메서드):</strong> 전송 방식, <code>GET</code>(주소에 붙여서 전송) / <code>POST</code>(본문에 담아 전송)</li>
+    <li><strong>enctype (인코딩 타입):</strong> 데이터 전송 형식 지정. 파일 업로드 시 <code>multipart/form-data</code> (멀티파트/폼 데이터) 사용</li>
+    <li><strong>novalidate (검증 비활성화):</strong> 브라우저 기본 입력 검증을 끔</li>
+    <li><strong>autocomplete (자동완성):</strong> 브라우저 자동완성 기능 켜기/끄기</li>
+    <li><strong>target (응답 표시 위치):</strong> 제출 후 응답을 표시할 창이나 프레임 지정</li>
+  </ul>
+
+  <!-- 별도 설명 박스 -->
+  <div class="explain-box">
+    <strong>multipart/form-data (멀티파트/폼 데이터):</strong><br>
+    파일 업로드 시 반드시 지정해야 하는 전송 방식입니다. 텍스트와 파일을 함께 서버로 보낼 수 있도록 데이터를 여러 부분으로 나누어 전송합니다.
+  </div>
+
+  <div class="note">보안상 CSRF 방지를 위해 서버 검증과 토큰 사용을 권장합니다.</div>
+
+  <table>
+    <tr>
+      <th>항목</th><th>설명</th><th>예제 코드</th><th>데모</th>
+    </tr>
+    <tr>
+      <td>&lt;form&gt; 기본</td>
+      <td>action, method, autocomplete 설정</td>
+      <td>
+        <pre>&lt;form action=&quot;/submit&quot; method=&quot;post&quot; autocomplete=&quot;on&quot;&gt;
+  이름: &lt;input type=&quot;text&quot; name=&quot;username&quot; required&gt;
+  &lt;button type=&quot;submit&quot;&gt;전송&lt;/button&gt;
+&lt;/form&gt;</pre>
+      </td>
+      <td>
+        <form action="#" method="post" autocomplete="on">
+          이름: <input type="text" name="username" required>
+          <button type="submit">전송</button>
+        </form>
+      </td>
+    </tr>
+    <tr>
+      <td>&lt;fieldset&gt; &amp; &lt;legend&gt;</td>
+      <td>관련 입력 그룹화 및 제목 제공</td>
+      <td>
+        <pre>&lt;fieldset&gt;
+  &lt;legend&gt;로그인&lt;/legend&gt;
+  아이디: &lt;input type=&quot;text&quot; name=&quot;id&quot;&gt;
+  비밀번호: &lt;input type=&quot;password&quot; name=&quot;pwd&quot;&gt;
+&lt;/fieldset&gt;</pre>
+      </td>
+      <td>
+        <fieldset>
+          <legend>로그인</legend>
+          아이디: <input type="text" name="id">
+          비밀번호: <input type="password" name="pwd">
+        </fieldset>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

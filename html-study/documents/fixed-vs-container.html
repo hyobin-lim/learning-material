@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Fixed vs 컨테이너 비교</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      line-height: 1.6;
+    }
+
+    h1,
+    h2 {
+      color: #2c3e50;
+    }
+
+    pre {
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 6px;
+    }
+
+    .row {
+      display: flex;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .demo {
+      border: 1px dashed #aaa;
+      padding: 20px;
+      width: 300px;
+      height: 200px;
+      position: relative;
+      overflow: auto;
+    }
+
+    .box {
+      width: 80px;
+      height: 80px;
+      color: #fff;
+      text-align: center;
+      line-height: 80px;
+    }
+
+    .viewport-fixed {
+      position: fixed;
+      /* 전체 화면(뷰포트) 기준 */
+      bottom: 20px;
+      right: 20px;
+      background: #9c27b0;
+    }
+
+    .container-absolute {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: #ff5722;
+    }
+
+    .container-fixed {
+      position: absolute;
+      background: #2196f3;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>position: fixed 와 컨테이너 비교</h1>
+
+  <h2>왜 컨테이너 기준 fixed는 불가능한가?</h2>
+  <p><code>position: fixed</code>는 CSS 사양상 <strong>브라우저 전체 화면(뷰포트)</strong>을 기준으로만 동작합니다 <br>
+    부모 컨테이너가 기준이 될 수 없기 때문에 CSS만으로는 “컨테이너 기준 fixed”를 만들 수 없습니다. <br>
+    컨테이너 안에서 고정된 것처럼 보이게 하려면 자바스크립트로 스크롤 이벤트를 감지해 위치를 갱신해야 합니다.</p>
+
+  <h2>뷰포트 기준 fixed</h2>
+  <div class="row">
+    <div>
+      <h3>예제 코드</h3>
+      <pre><code>.viewport-fixed {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}</code></pre>
+    </div>
+    <div>
+      <h3>데모</h3>
+      <div class="demo">
+        <p>뷰포트 기준 fixed는 항상 화면 오른쪽 아래에 고정됩니다.</p>
+        <p>스크롤 여부와 관계없이 움직이지 않습니다.</p>
+      </div>
+      <div class="box viewport-fixed">fixed</div>
+    </div>
+  </div>
+
+  <h2>컨테이너 기준 비교</h2>
+  <div class="row">
+    <div>
+      <h3>JS 없이 (absolute)</h3>
+      <pre><code>.container-absolute {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}</code></pre>
+      <div class="demo">
+        <div class="box container-absolute">absolute</div>
+        <p>스크롤을 내려보면 박스도 같이 올라갑니다.</p>
+        <p>추가 텍스트로 스크롤을 만들어줍니다.</p>
+        <p>추가 텍스트로 스크롤을 만들어줍니다.</p>
+        <p>추가 텍스트로 스크롤을 만들어줍니다.</p>
+        <p>추가 텍스트로 스크롤을 만들어줍니다.</p>
+      </div>
+    </div>
+
+    <div>
+      <h3>JS 적용 (흉내)</h3>
+      <pre><code>.container-fixed {
+  position: absolute;
+  background: #2196f3;
+}
+
+/* JS로 위치 갱신 */
+box.style.top = scrollTop + visibleHeight - boxHeight - 20 + 'px';
+box.style.left = demo.clientWidth - box.offsetWidth - 20 + 'px';</code></pre>
+      <div class="demo" id="demo">
+        <div class="box container-fixed" id="fixedBox">fixed</div>
+        <p>스크롤을 내려도 박스는 오른쪽 아래에 고정된 것처럼 보입니다.</p>
+        <p>추가 텍스트로 스크롤을 만들어줍니다.</p>
+        <p>추가 텍스트로 스크롤을 만들어줍니다.</p>
+        <p>추가 텍스트로 스크롤을 만들어줍니다.</p>
+        <p>추가 텍스트로 스크롤을 만들어줍니다.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const demo = document.getElementById('demo');
+    const box = document.getElementById('fixedBox');
+
+    function updateBoxPosition() {
+      const scrollTop = demo.scrollTop;
+      const visibleHeight = demo.clientHeight;
+      const boxHeight = box.offsetHeight;
+
+      // 보이는 영역의 아래쪽에 맞춰 위치 갱신
+      box.style.top = scrollTop + visibleHeight - boxHeight - 20 + 'px';
+      box.style.left = demo.clientWidth - box.offsetWidth - 20 + 'px';
+    }
+
+    updateBoxPosition();
+    demo.addEventListener('scroll', updateBoxPosition);
+    window.addEventListener('resize', updateBoxPosition);
+  </script>
+</body>
+
+</html>

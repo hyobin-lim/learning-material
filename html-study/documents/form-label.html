@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Form 섹션 4 - 레이블과 접근성</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.65; }
+    h1 { margin-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    th, td { border: 1px solid #ccc; padding: 12px; vertical-align: top; text-align: left; }
+    th { background: #f2f2f2; }
+    pre { background: #f9f9f9; display: block; padding: 8px; border: 1px solid #ddd; white-space: pre-wrap; }
+    .tip { background: #eef9ff; border: 1px solid #a6d8ff; padding: 10px; margin-top: 16px; }
+  </style>
+</head>
+<body>
+  <h1>Form 섹션 4 - 레이블과 접근성</h1>
+
+  <h2>전체 설명</h2>
+  <p>
+    레이블과 접근성(Label & Accessibility)은 **사용자가 입력 필드를 쉽게 이해하고 사용할 수 있도록 돕는 요소와 속성**입니다.<br>
+    <code>&lt;label&gt;</code> (레이블 태그)는 입력 필드와 연결되어 어떤 값을 입력해야 하는지 알려주고,<br>
+    <code>&lt;fieldset&gt;</code> (입력 그룹 태그)과 <code>&lt;legend&gt;</code> (그룹 제목 태그)는 관련 입력들을 묶어 의미를 명확히 합니다.<br>
+    또한 <code>aria-describedby</code> (접근성 설명 연결)와 <code>role="alert"</code> (경고 역할) 같은 접근성 속성은 스크린리더 사용자에게 추가 정보를 제공합니다.
+  </p>
+
+  <h2>상세 설명</h2>
+  <p>
+    각 입력은 <code>&lt;label&gt;</code>로 명확히 연결해야 합니다.<br>
+    추가 설명이나 오류 메시지는 <strong>aria-describedby</strong>로 연결하면 스크린리더에 전달됩니다.<br>
+    관련 입력은 <code>&lt;fieldset&gt;</code> + <code>&lt;legend&gt;</code>로 그룹화하여 의미를 부여합니다.
+  </p>
+
+  <h2>속성 중심</h2>
+  <p>
+    속성 중심은 태그에 붙는 속성 자체를 설명하는 관점입니다.<br>
+    예를 들어 <code>for</code>, <code>id</code>, <code>aria-label</code>, <code>aria-describedby</code>, <code>role="alert"</code> 같은 속성이 어떤 역할을 하는지 보여줍니다.
+  </p>
+
+  <table>
+    <tr><th>속성</th><th>한글 이름</th><th>설명</th><th>예제 코드</th><th>데모</th></tr>
+    <tr>
+      <td>for</td>
+      <td>연결 대상</td>
+      <td>label이 어떤 입력과 연결되는지 지정</td>
+      <td><pre>&lt;label for="username"&gt;아이디&lt;/label&gt;
+&lt;input id="username" type="text"&gt;</pre></td>
+      <td><label for="username">아이디</label> <input id="username" type="text"></td>
+    </tr>
+    <tr>
+      <td>id</td>
+      <td>식별자</td>
+      <td>입력 필드의 고유 식별자, label과 연결할 때 사용</td>
+      <td><pre>&lt;input id="email" type="email"&gt;</pre></td>
+      <td><input id="email" type="email" placeholder="이메일 입력"></td>
+    </tr>
+    <tr>
+      <td>aria-label</td>
+      <td>접근성 레이블</td>
+      <td>화면에 표시되지 않는 레이블을 제공</td>
+      <td><pre>&lt;input type="text" aria-label="검색어 입력"&gt;</pre></td>
+      <td><input type="text" aria-label="검색어 입력" placeholder="검색어 입력"></td>
+    </tr>
+    <tr>
+      <td>aria-describedby</td>
+      <td>접근성 설명 연결</td>
+      <td>입력 필드와 설명/오류 메시지를 연결</td>
+      <td><pre>&lt;input id="pw" aria-describedby="pwHelp"&gt;
+&lt;small id="pwHelp"&gt;비밀번호는 8자 이상&lt;/small&gt;</pre></td>
+      <td>
+        <input id="pw" aria-describedby="pwHelp" type="password">
+        <small id="pwHelp">비밀번호는 8자 이상</small>
+      </td>
+    </tr>
+    <tr>
+      <td>role="alert"</td>
+      <td>경고 역할</td>
+      <td>오류 메시지를 스크린리더에 즉시 알림</td>
+      <td><pre>&lt;div role="alert"&gt;입력 오류 발생&lt;/div&gt;</pre></td>
+      <td><div role="alert" style="color:red;">입력 오류 발생</div></td>
+    </tr>
+  </table>
+
+  <h2>태그 중심</h2>
+  <p>
+    태그 중심은 실제 태그 단위로 설명하는 관점입니다.<br>
+    <code>&lt;label&gt;</code>, <code>&lt;fieldset&gt;</code>, <code>&lt;legend&gt;</code> 같은 태그를 사용할 때 속성을 어떻게 활용하는지와 브라우저에서 어떻게 보이는지를 보여줍니다.
+  </p>
+
+  <div class="tip">label의 for 값은 연결할 입력의 id와 반드시 동일해야 합니다.</div>
+
+  <table>
+    <tr><th>태그</th><th>설명</th><th>예제 코드</th><th>데모</th></tr>
+    <tr>
+      <td>label (레이블)</td>
+      <td>for-id 매칭으로 입력 필드와 연결</td>
+      <td><pre>&lt;label for="email"&gt;이메일&lt;/label&gt;
+&lt;input id="email" type="email"&gt;</pre></td>
+      <td><label for="email">이메일</label> <input id="email" type="email"></td>
+    </tr>
+    <tr>
+      <td>aria-describedby (접근성 설명 연결)</td>
+      <td>설명/오류 텍스트를 입력과 연결</td>
+      <td><pre>&lt;input id="u" aria-describedby="uHelp uErr"&gt;
+&lt;small id="uHelp"&gt;아이디는 4~20자&lt;/small&gt;
+&lt;div id="uErr" role="alert" hidden&gt;형식 오류&lt;/div&gt;</pre></td>
+      <td>
+        <input id="u" aria-describedby="uHelp uErr">
+        <small id="uHelp">아이디는 4~20자</small>
+        <div id="uErr" role="alert" hidden>형식 오류</div>
+      </td>
+    </tr>
+    <tr>
+      <td>fieldset/legend (입력 그룹/제목)</td>
+      <td>관련 입력을 그룹화하고 제목을 제공</td>
+      <td><pre>&lt;fieldset&gt;&lt;legend&gt;프로필&lt;/legend&gt;
+이름: &lt;input&gt; 도시: &lt;input&gt;
+&lt;/fieldset&gt;</pre></td>
+      <td>
+        <fieldset><legend>프로필</legend>이름: <input> 도시: <input></fieldset>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

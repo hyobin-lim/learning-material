@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>HTML 테이블 속성과 CSS 표 스타일 비교</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background: #f9f9f9;
+      line-height: 1.6;
+    }
+
+    h1,
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 30px;
+    }
+    .demo {
+      width: 45%;
+    }
+    table {
+      width: 100%;
+      margin: 10px auto;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    /* CSS 스타일 데모용 */
+    .styled th {
+      background: #34495e;
+      color: white;
+    }
+    .styled tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+    .styled tr:hover {
+      background: #dfe6e9;
+    }
+    caption {
+      font-weight: bold;
+      margin: 10px;
+      font-size: 1.1em;
+      color: #2c3e50;
+    }
+    pre {
+      background: #eee;
+      padding: 15px;
+      margin: 10px auto;
+      overflow-x: auto;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>HTML 테이블 속성과 CSS 표 스타일 비교</h1>
+  <p style="text-align:center;">
+    🟦 <strong>테이블 속성</strong><br>HTML 태그 자체에서 표의 기본 구조와 틀을 지정하여 표 전체를 꾸미는 역할을 합니다.<br><br>
+    🟨 <strong>셀 속성</strong><br>각 칸의 병합, 정렬, 배경색 등 개별 셀을 제어하여, 표 안의 칸 하나하나를 꾸미는 역할을 합니다.<br><br>
+    🎨 <strong>CSS 표 스타일 속성</strong><br>색상, 여백, 배경, 글꼴, 마우스 오버 효과 등 디자인을 개선하여 가독성을 높이는 역할을 합니다.<br><br><br>
+    👉 즉, <b>HTML 속성</b>은 표의 기본 뼈대를 만들고, <b>CSS 속성</b>은 표를 예쁘게 꾸미는 옷이라고 이해하면 쉽습니다.
+  </p><br><hr>
+
+  <p style="text-align:center;">
+    왼쪽은 <strong>HTML 속성만 적용한 표</strong>, 오른쪽은 <strong>CSS 스타일을 적용한 표</strong>입니다.<br>
+    각 표 아래에는 적용된 <strong>코드 예제</strong>도 함께 보여줍니다.
+  </p>
+
+  <div class="container">
+    <!-- HTML 속성만 적용 -->
+    <div class="demo">
+      <h2 style="text-align:center;">HTML 속성만 적용</h2>
+      <table border="1" cellpadding="5" cellspacing="2" width="100%">
+        <caption>학생 성적표</caption>
+        <tr>
+          <th>이름</th>
+          <th>과목</th>
+          <th>점수</th>
+        </tr>
+        <tr>
+          <td>홍길동</td>
+          <td>수학</td>
+          <td>95</td>
+        </tr>
+        <tr>
+          <td>김영희</td>
+          <td>영어</td>
+          <td>88</td>
+        </tr>
+        <tr>
+          <td>이철수</td>
+          <td>과학</td>
+          <td>92</td>
+        </tr>
+        <tr>
+          <td>박민수</td>
+          <td>국어</td>
+          <td>85</td>
+        </tr>
+      </table>
+      <pre><code>&lt;table border="1" cellpadding="5" cellspacing="2" width="100%"&gt;
+  &lt;caption&gt;학생 성적표&lt;/caption&gt;
+  &lt;tr&gt;&lt;th&gt;이름&lt;/th&gt;&lt;th&gt;과목&lt;/th&gt;&lt;th&gt;점수&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;홍길동&lt;/td&gt;&lt;td&gt;수학&lt;/td&gt;&lt;td&gt;95&lt;/td&gt;&lt;/tr&gt;
+  ...
+&lt;/table&gt;</code></pre>
+    </div>
+
+    <!-- CSS 스타일 적용 -->
+    <div class="demo">
+      <h2 style="text-align:center;">CSS 스타일 적용</h2>
+      <table class="styled">
+        <caption>학생 성적표</caption>
+        <thead>
+          <tr>
+            <th>이름</th>
+            <th>과목</th>
+            <th>점수</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>홍길동</td>
+            <td>수학</td>
+            <td>95</td>
+          </tr>
+          <tr>
+            <td>김영희</td>
+            <td>영어</td>
+            <td>88</td>
+          </tr>
+          <tr>
+            <td>이철수</td>
+            <td>과학</td>
+            <td>92</td>
+          </tr>
+          <tr>
+            <td>박민수</td>
+            <td>국어</td>
+            <td>85</td>
+          </tr>
+        </tbody>
+      </table>
+      <pre><code>table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+th {
+  background: #34495e;
+  color: white;
+}
+tr:nth-child(even) { background: #f2f2f2; }
+tr:hover { background: #dfe6e9; }</code></pre>
+    </div>
+  </div>
+
+  <p style="text-align:center; margin-top:20px;">
+    👉 이렇게 표와 코드가 함께 보이면, HTML 속성만 쓴 경우와 CSS 스타일을 적용한 경우의 차이를<br>
+    구조와 디자인 관점에서 동시에 확인할 수 있습니다.
+    </p>
+</body>
+
+</html>

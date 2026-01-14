@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>폰트 속성 정리</title>
+  <style>
+    body {font-family: Arial, sans-serif; margin: 40px; line-height: 1.6;}
+    h1 {text-align: center; color: #2c3e50;}
+    table {border-collapse: collapse; width: 100%; margin-top: 20px;}
+    th, td {border: 1px solid #ccc; padding: 12px; text-align: left; vertical-align: top;}
+    th {background-color: #f5f5f5;}
+    code {background-color: #f0f0f0; padding: 2px 4px; border-radius: 4px;}
+    pre {background-color: #f9f9f9; padding: 10px; border: 1px solid #ddd; border-radius: 4px; overflow-x: auto;}
+    .demo {border: 1px dashed #aaa; padding: 10px; margin-top: 6px;}
+    .demo p {margin:0; padding:6px; background:#e0f7fa;}
+    .fontsize {font-size: 24px;}
+    .fontfamily {font-family: "Courier New", monospace;}
+    .fontweight {font-weight: bold;}
+    .fontstyle {font-style: italic;}
+    .transform-uppercase {text-transform: uppercase;}
+    .transform-lowercase {text-transform: lowercase;}
+    .transform-capitalize {text-transform: capitalize;}
+    .fontcolor {color: crimson;}
+  </style>
+</head>
+<body>
+  <h1>폰트 속성 정리</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>속성</th>
+        <th>설명</th>
+        <th>예제 코드</th>
+        <th>데모</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>font-size</code></td>
+        <td>텍스트 크기를 조절합니다.</td>
+        <td><pre>p { font-size: 24px; }</pre></td>
+        <td><div class="demo"><p class="fontsize">큰 글씨 크기</p></div></td>
+      </tr>
+      <tr>
+        <td><code>font-family</code></td>
+        <td>글꼴을 지정합니다.</td>
+        <td><pre>p { font-family: "Courier New", monospace; }</pre></td>
+        <td><div class="demo"><p class="fontfamily">Courier New 글꼴</p></div></td>
+      </tr>
+      <tr>
+        <td><code>font-weight</code></td>
+        <td>글자의 굵기를 지정합니다.</td>
+        <td><pre>p { font-weight: bold; }</pre></td>
+        <td><div class="demo"><p class="fontweight">굵은 글씨</p></div></td>
+      </tr>
+      <tr>
+        <td><code>font-style</code></td>
+        <td>글자의 스타일을 지정합니다 (기울임 등).</td>
+        <td><pre>p { font-style: italic; }</pre></td>
+        <td><div class="demo"><p class="fontstyle">기울임 글씨</p></div></td>
+      </tr>
+      <tr>
+        <td><code>text-transform: uppercase</code></td>
+        <td>텍스트를 모두 대문자로 변환합니다.</td>
+        <td><pre>p { text-transform: uppercase; }</pre></td>
+        <td><div class="demo"><p class="transform-uppercase">uppercase example</p></div></td>
+      </tr>
+      <tr>
+        <td><code>text-transform: lowercase</code></td>
+        <td>텍스트를 모두 소문자로 변환합니다.</td>
+        <td><pre>p { text-transform: lowercase; }</pre></td>
+        <td><div class="demo"><p class="transform-lowercase">LOWERCASE EXAMPLE</p></div></td>
+      </tr>
+      <tr>
+        <td><code>text-transform: capitalize</code></td>
+        <td>각 단어의 첫 글자를 대문자로 변환합니다.</td>
+        <td><pre>p { text-transform: capitalize; }</pre></td>
+        <td><div class="demo"><p class="transform-capitalize">capitalize example text</p></div></td>
+      </tr>
+      <tr>
+        <td><code>color</code></td>
+        <td>텍스트 색상을 지정합니다.</td>
+        <td><pre>p { color: crimson; }</pre></td>
+        <td><div class="demo"><p class="fontcolor">빨간색 텍스트</p></div></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

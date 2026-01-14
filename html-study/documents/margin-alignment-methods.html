@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>margin을 활용한 정렬 방법</title>
+  <!DOCTYPE html>
+  <html lang="ko">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>margin을 활용한 정렬 방법</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      pre {
+        background: #f4f4f4;
+        padding: 10px;
+        border: 1px solid #ccc;
+      }
+
+      .demo-box {
+        border: 1px solid #222;
+        padding: 10px;
+        margin: 20px 0;
+        height: 150px;
+        position: relative;
+      }
+
+      .center-box {
+        width: 100px;
+        height: 100px;
+        background: tomato;
+        color: #fff;
+        text-align: center;
+        line-height: 100px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        /* 높이의 절반 */
+        margin-left: -50px;
+        /* 너비의 절반 */
+      }
+
+      .horizontal-box {
+        width: 120px;
+        height: 60px;
+        background: steelblue;
+        color: #fff;
+        text-align: center;
+        line-height: 60px;
+        margin: 0 auto;
+        /* 좌우 자동 마진으로 가로 중앙 정렬 */
+      }
+
+      .vertical-container {
+        border: 1px solid #000;
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        /* 세로 중앙 정렬 */
+      }
+
+      .vertical-box {
+        width: 120px;
+        height: 60px;
+        background: seagreen;
+        color: #fff;
+        text-align: center;
+        line-height: 60px;
+        margin: 0 auto;
+        /* 가로 중앙도 함께 */
+      }
+
+      table {
+        border-collapse: collapse;
+        margin-top: 20px;
+        width: 100%;
+      }
+
+      th,
+      td {
+        border: 1px solid #666;
+        padding: 8px;
+        text-align: center;
+        vertical-align: middle;
+      }
+
+      th {
+        background: #ddd;
+      }
+    </style>
+  </head>
+
+<body>
+  <h1>margin을 활용한 정렬 방법</h1>
+
+  <h2>쉬운 설명</h2>
+  <p>
+    상자를 화면 정 가운데 놓고 싶을 때는 상자의 위치를 <code>top:50%; left:50%</code>으로 잡아요.
+    <br>
+    그러면 상자의 <strong>왼쪽 위 모서리</strong>가 화면 중앙에 오게 돼요.<br>
+    하지만 우리가 원하는 건 <strong>상자의 중심</strong>이 화면 중앙에 오는 것이죠.<br>
+    그래서 상자의 <strong>절반 크기만큼 위와 왼쪽으로 다시 빼줘야 합니다. 따라서 음수 마진을 주어</strong> 모서리 기준점을 상자의 중심 기준점으로 바꿔줍니다.<br>
+    이렇게 하면 상자의 중심이 정확히 화면 중앙에 위치하게 돼요.<br>
+    마치 책상 가운데에 블록을 놓고, 블록 크기만큼 살짝 밀어 맞추는 것과 같아요.
+  </p>
+  <p>가로 중앙은 margin: 0 auto;를 쓰면 되고, 세로 중앙은 flex 컨테이너와 margin을 함께 쓰면 돼요.</p>
+
+  <h2>예제 코드 (중앙 정렬)</h2>
+  <pre>
+.center-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;  /* 요소 높이의 절반 */
+  margin-left: -50px; /* 요소 너비의 절반 */
+}
+  </pre>
+
+  <h2>데모 화면 (중앙 정렬)</h2>
+  <div class="demo-box">
+    <div class="center-box">중앙</div>
+  </div>
+
+  <h2>추가 예제 (가로/세로 정렬)</h2>
+  <h3>가로 중앙 정렬 (margin: auto)</h3>
+  <div class="horizontal-box">가로 중앙</div>
+
+  <h3>세로 중앙 정렬 (flex + margin)</h3>
+  <div class="vertical-container">
+    <div class="vertical-box">세로 중앙</div>
+  </div>
+
+  <h2>정리 표</h2>
+  <table>
+    <tr>
+      <th>설명</th>
+      <th>예제</th>
+      <th>데모</th>
+      <th>비고</th>
+    </tr>
+    <tr>
+      <td>margin을 이용해 요소를 화면 중앙에 배치</td>
+      <td>
+        <pre>top:50%; left:50%; margin-top:-요소높이/2; margin-left:-요소너비/2;</pre>
+      </td>
+      <td>
+        <div style="position:relative; height:100px; border:1px solid #000;">
+          <div
+            style="position:absolute; top:50%; left:50%; margin-top:-25px; margin-left:-50px; width:100px; height:50px; background:lightblue; text-align:center; line-height:50px;">
+            중앙
+          </div>
+        </div>
+      </td>
+      <td>요소 크기를 알아야 정확히 중앙 배치 가능</td>
+    </tr>
+    <tr>
+      <td>가로 중앙 정렬 (margin auto)</td>
+      <td>
+        <pre>margin: 0 auto;</pre>
+      </td>
+      <td>
+        <div style="border:1px solid #000; height:80px;">
+          <div
+            style="width:100px; height:50px; background:lightgreen; margin:0 auto; text-align:center; line-height:50px;">
+            가로 중앙
+          </div>
+        </div>
+      </td>
+      <td>블록 요소에만 적용 가능</td>
+    </tr>
+    <tr>
+      <td>세로 중앙 정렬 (flex 활용)</td>
+      <td>
+        <pre>display:flex; justify-content:center; margin:0 auto;</pre>
+      </td>
+      <td>
+        <div style="display:flex; flex-direction:column; justify-content:center; border:1px solid #000; height:120px;">
+          <div style="width:100px; height:50px; background:orange; margin:0 auto; text-align:center; line-height:50px;">
+            세로 중앙
+          </div>
+        </div>
+      </td>
+      <td>부모 요소를 flex 컨테이너로 설정</td>
+    </tr>
+  </table>
+</body>
+
+</html>

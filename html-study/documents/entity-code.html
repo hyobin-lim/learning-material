@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>HTML Entity 코드표 (통합판)</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      margin: 24px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 960px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    th {
+      background: #f5f7fb;
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fafafa;
+    }
+
+    code {
+      background: #f3f3f3;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .category {
+      background: #e9ecef;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>HTML Entity 코드표 (통합판)</h1>
+  <p>자주 쓰이는 엔티티를 모았습니다. “문자”, “엔티티 이름”, “숫자 코드”를 함께 확인하세요.</p>
+
+  <table>
+
+    <tbody>
+      <!-- 기본 -->
+      <tr>
+        <td colspan="4" class="category">기본</td>
+      </tr>
+      <thead>
+        <tr>
+          <th>문자</th>
+          <th>엔티티 이름</th>
+          <th>숫자 코드</th>
+          <th>설명</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>&amp;</td>
+        <td><code>&amp;amp;</code></td>
+        <td><code>&amp;#38;</code></td>
+        <td>앰퍼샌드</td>
+      </tr>
+      <tr>
+        <td>&lt;</td>
+        <td><code>&amp;lt;</code></td>
+        <td><code>&amp;#60;</code></td>
+        <td>보다 작음 기호</td>
+      </tr>
+      <tr>
+        <td>&gt;</td>
+        <td><code>&amp;gt;</code></td>
+        <td><code>&amp;#62;</code></td>
+        <td>보다 큼 기호</td>
+      </tr>
+      <tr>
+        <td>&quot;</td>
+        <td><code>&amp;quot;</code></td>
+        <td><code>&amp;#34;</code></td>
+        <td>큰따옴표</td>
+      </tr>
+      <tr>
+        <td>&apos;</td>
+        <td><code>&amp;apos;</code></td>
+        <td><code>&amp;#39;</code></td>
+        <td>작은따옴표</td>
+      </tr>
+
+      <!-- 공백 -->
+      <tr>
+        <td colspan="4" class="category">공백</td>
+      </tr>
+      <thead>
+        <tr>
+          <th>문자</th>
+          <th>엔티티 이름</th>
+          <th>숫자 코드</th>
+          <th>설명</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>[공백]</td>
+        <td><code>&amp;nbsp;</code></td>
+        <td><code>&amp;#160;</code></td>
+        <td>줄바꿈 없는 공백</td>
+      </tr>
+      <tr>
+        <td>[얇은 공백]</td>
+        <td><code>&amp;thinsp;</code></td>
+        <td><code>&amp;#8201;</code></td>
+        <td>얇은 공백</td>
+      </tr>
+      <tr>
+        <td>[넓은 공백]</td>
+        <td><code>&amp;emsp;</code></td>
+        <td><code>&amp;#8195;</code></td>
+        <td>em 단위 공백</td>
+      </tr>
+      <tr>
+        <td>[중간 공백]</td>
+        <td><code>&amp;ensp;</code></td>
+        <td><code>&amp;#8194;</code></td>
+        <td>en 단위 공백</td>
+      </tr>
+
+      <!-- 통화 -->
+      <tr>
+        <td colspan="4" class="category">통화</td>
+      </tr>
+      <thead>
+        <tr>
+          <th>문자</th>
+          <th>엔티티 이름</th>
+          <th>숫자 코드</th>
+          <th>설명</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>&yen;</td>
+        <td><code>&amp;yen;</code></td>
+        <td><code>&amp;#165;</code></td>
+        <td>엔화/원화 기호</td>
+      </tr>
+      <tr>
+        <td>₩</td>
+        <td><code>&amp;#8361;</code></td>
+        <td><code>&amp;#8361;</code></td>
+        <td>원화 기호</td>
+      </tr>
+      <tr>
+        <td>&euro;</td>
+        <td><code>&amp;euro;</code></td>
+        <td><code>&amp;#8364;</code></td>
+        <td>유로화</td>
+      </tr>
+      <tr>
+        <td>&pound;</td>
+        <td><code>&amp;pound;</code></td>
+        <td><code>&amp;#163;</code></td>
+        <td>영국 파운드</td>
+      </tr>
+      <tr>
+        <td>&cent;</td>
+        <td><code>&amp;cent;</code></td>
+        <td><code>&amp;#162;</code></td>
+        <td>센트</td>
+      </tr>
+      <tr>
+        <td>$</td>
+        <td><code>&amp;#36;</code></td>
+        <td><code>&amp;#36;</code></td>
+        <td>달러 기호</td>
+      </tr>
+
+      <!-- 저작권/등록 -->
+      <tr>
+        <td colspan="4" class="category">저작권/등록</td>
+      </tr>
+      <thead>
+        <tr>
+          <th>문자</th>
+          <th>엔티티 이름</th>
+          <th>숫자 코드</th>
+          <th>설명</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>&copy;</td>
+        <td><code>&amp;copy;</code></td>
+        <td><code>&amp;#169;</code></td>
+        <td>저작권</td>
+      </tr>
+      <tr>
+        <td>&reg;</td>
+        <td><code>&amp;reg;</code></td>
+        <td><code>&amp;#174;</code></td>
+        <td>등록상표</td>
+      </tr>
+      <tr>
+        <td>&trade;</td>
+        <td><code>&amp;trade;</code></td>
+        <td><code>&amp;#8482;</code></td>
+        <td>상표</td>
+      </tr>
+
+      <!-- 구두점/기호 -->
+      <tr>
+        <td colspan="4" class="category">구두점/기호</td>
+      </tr>
+      <thead>
+        <tr>
+          <th>문자</th>
+          <th>엔티티 이름</th>
+          <th>숫자 코드</th>
+          <th>설명</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>&mdash;</td>
+        <td><code>&amp;mdash;</code></td>
+        <td><code>&amp;#8212;</code></td>
+        <td>긴 대시(엠 대시)</td>
+      </tr>
+      <tr>
+        <td>&ndash;</td>
+        <td><code>&amp;ndash;</code></td>
+        <td><code>&amp;#8211;</code></td>
+        <td>짧은 대시(엔 대시)</td>
+      </tr>
+      <tr>
+        <td>&hellip;</td>
+        <td><code>&amp;hellip;</code></td>
+        <td><code>&amp;#8230;</code></td>
+        <td>말줄임표</td>
+      </tr>
+      <tr>
+        <td>&middot;</td>
+        <td><code>&amp;middot;</code></td>
+        <td><code>&amp;#183;</code></td>
+        <td>가운데 점</td>
+      </tr>
+      <tr>
+        <td>&bullet;</td>
+        <td><code>&amp;bullet;</code></td>
+        <td><code>&amp;#8226;</code></td>
+        <td>불릿 점</td>
+      </tr>
+
+      <!-- 괄호/화살괄호 -->
+      <tr>
+        <td colspan="4" class="category">괄호/화살괄호</td>
+      </tr>
+      <thead>
+        <tr>
+          <th>문자</th>
+          <th>엔티티 이름</th>
+          <th>숫자 코드</th>
+          <th>설명</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>&laquo;</td>
+        <td><code>&amp;laquo;</code></td>
+        <td><code>&amp;#171;</code></td>
+        <td>왼쪽 겹화살괄호</td>
+      </tr>
+      <tr>
+        <td>&raquo;</td>
+        <td><code>&amp;raquo;</code></td>
+        <td><code>&amp;#187;</code></td>
+        <td>오른쪽 겹화살괄호</td>
+      </tr>
+      <tr>
+        <td>&lsaquo;</td>
+        <td><code>&amp;lsaquo;</code></td>
+        <td><code>&amp;#8249;</code></td>
+        <td>왼쪽 화살괄호</td>
+      </tr>
+      <tr>
+        <td>&rsaquo;</td>
+        <td><code>&amp;rsaquo;</code></td>
+        <td><code>&amp;#8250;</code></td>
+        <td>오른쪽 화살괄호</td>
+      </tr>
+
+      <!-- 수학 -->
+      <tr>
+        <td colspan="4" class="category">수학</td>
+      </tr>
+      <thead>
+        <tr>
+          <th>문자</th>
+          <th>엔티티 이름</th>
+          <th>숫자 코드</th>
+          <th>설명</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>&deg;</td>
+        <td><code>&amp;deg;</code></td>
+        <td><code>&amp;#176;</code></td>
+        <td>도 기호</td>
+      </tr>
+      <tr>
+        <td>&plusmn;</td>
+        <td><code>&amp;plusmn;</code></td>
+        <td><code>&amp;#177;</code></td>
+        <td>플러스마이너스</td>
+      </tr>
+      <tr>
+        <td>&times;</td>
+        <td><code>&amp;times;</code></td>
+        <td><code>&amp;#215;</code></td>
+        <td>곱하기</td>
+      </tr>
+      <tr>
+        <td>&divide;</td>
+        <td><code>&amp;divide;</code></td>
+        <td><code>&amp;#247;</code></td>
+        <td>나누기</td>
+      </tr>
+      <tr>
+        <td>&sup2;</td>
+        <td><code>&amp;sup2;</code></td>
+        <td><code>&amp;#178;</code></td>
+        <td>제곱(²)</td>
+      </tr>
+      <tr>
+        <td>&sup3;</td>
+        <td><code>&amp;sup3;</code></td>
+        <td><code>&amp;#179;</code></td>
+        <td>세제곱(³)</td>
+      </tr>
+      <tr>
+        <td>&frac12;</td>
+        <td><code>&amp;frac12;</code></td>
+        <td><code>&amp;#189;</code></td>
+        <td>1/2</td>
+      </tr>
+      <tr>
+        <td>&frac14;</td>
+        <td><code>&amp;frac14;</code></td>
+        <td><code>&amp;#188;</code></td>
+        <td>1/4</td>
+      </tr>
+      <tr>
+        <td>&frac34;</td>
+        <td><code>&amp;frac34;</code></td>
+        <td><code>&amp;#190;</code></td>
+        <td>3/4</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>더 많은 엔티티는 HTML 표준(HTML Living Standard)에서 확인할 수 있습니다.</p>
+</body>
+
+</html>

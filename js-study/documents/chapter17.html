@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 17 (심화 최종본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트의 시작 — Chapter 17 (객체, 심화)</h1>
+  <p>이 문서는 자바스크립트의 <strong>객체(Object, 심화)</strong>를 설명합니다. 객체는 데이터와 기능을 함께 담을 수 있는 구조이며, 자바스크립트에서 매우 중요한 개념입니다.</p>
+
+  <h2>1. 객체 생성 방법</h2>
+  <pre><code>&lt;script&gt;
+  // 객체 리터럴
+  var person = { name: "효빈", age: 25 };
+
+  // 생성자 함수
+  var obj = new Object();
+  obj.name = "지민";
+  obj.age = 30;
+
+  console.log(person, obj);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 {name: "효빈", age: 25}, {name: "지민", age: 30} 출력됩니다.</div>
+
+  <h2>2. 속성과 메서드</h2>
+  <pre><code>&lt;script&gt;
+  var car = {
+    brand: "Hyundai",
+    drive: function() {
+      console.log("운전 중...");
+    }
+  };
+
+  console.log(car.brand);
+  car.drive();
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "Hyundai", "운전 중..."이 출력됩니다.</div>
+
+  <h2>3. 객체 접근 방법</h2>
+  <pre><code>&lt;script&gt;
+  var user = { name: "효빈", age: 25 };
+
+  console.log(user.name);      // 점 표기법
+  console.log(user["age"]);    // 대괄호 표기법
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "효빈", "25"가 출력됩니다.</div>
+
+  <h2>4. 객체 순회</h2>
+  <pre><code>&lt;script&gt;
+  var person = { name: "지민", age: 30 };
+
+  for (var key in person) {
+    console.log(key, person[key]);
+  }
+
+  console.log(Object.keys(person));   // ["name", "age"]
+  console.log(Object.values(person)); // ["지민", 30]
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "name 지민", "age 30", ["name","age"], ["지민",30] 출력됩니다.</div>
+
+  <h2>5. 객체 복사와 병합</h2>
+  <pre><code>&lt;script&gt;
+  var obj1 = { a: 1 };
+  var obj2 = { b: 2 };
+
+  var merged = Object.assign({}, obj1, obj2); // 얕은 복사
+  var spreadCopy = { ...obj1 };               // 얕은 복사
+
+  console.log(merged);     // {a:1, b:2}
+  console.log(spreadCopy); // {a:1}
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 {a:1, b:2}, {a:1} 출력됩니다.</div>
+
+  <h2>6. 참조 타입과 복사</h2>
+  <pre><code>&lt;script&gt;
+  var original = { x: 10 };
+  var copy = original; // 참조 복사
+
+  copy.x = 20;
+  console.log(original.x); // 20 (같은 객체 참조)
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "20"이 출력됩니다.</div>
+
+  <h2>7. 프로토타입과 상속</h2>
+  <pre><code>&lt;script&gt;
+  function Animal(name) {
+    this.name = name;
+  }
+  // 모든 Animal 인스턴스가 speak 메서드를 공유
+  Animal.prototype.speak = function() {
+    console.log(this.name + " 소리를 냅니다.");
+  };
+
+  var dog = new Animal("강아지");
+  dog.speak();
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "강아지 소리를 냅니다."가 출력됩니다.</div>
+
+  <h2>8. 객체 메서드 단축 문법 (ES6)</h2>
+  <pre><code>&lt;script&gt;
+  var person = {
+    name: "효빈",
+    greet() { // function 키워드 없이 메서드 정의
+      console.log("안녕하세요, " + this.name + "님!");
+    }
+  };
+  person.greet();
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "안녕하세요, 효빈님!"이 출력됩니다.</div>
+
+  <h2>9. 객체 구조 분해 할당 (Destructuring)</h2>
+  <pre><code>&lt;script&gt;
+  var user = { name: "지민", age: 30 };
+  var { name, age } = user;
+  console.log(name, age);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "지민", "30"이 출력됩니다.</div>
+
+  <h2>10. 실습 과제</h2>
+  <ul>
+    <li>객체 리터럴과 생성자 함수로 객체 생성하기</li>
+    <li>객체에 속성과 메서드 추가하기</li>
+    <li>점 표기법과 대괄호 표기법으로 속성 접근하기</li>
+    <li>for...in과 Object.keys()로 객체 순회하기</li>
+    <li>Object.assign과 Spread 문법으로 객체 복사/병합하기</li>
+    <li>참조 복사와 값 복사의 차이 확인하기</li>
+    <li>프로토타입을 활용해 메서드 상속하기</li>
+    <li>객체 메서드 단축 문법을 사용해 메서드 작성하기</li>
+    <li>구조 분해 할당으로 객체 속성 꺼내기</li>
+  </ul>
+
+  <h2>11. 다음 학습 안내</h2>
+  <p>Chapter 18에서는 자바스크립트의 <strong>배열(Array)</strong>을 학습합니다. Chapter 17에서 배운 객체와 함께 배열을 이해하면 데이터 구조를 더 폭넓게 다룰 수 있습니다.</p>
+
+</body>
+</html>

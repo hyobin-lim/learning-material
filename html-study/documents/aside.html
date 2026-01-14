@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>&lt;aside&gt; 태그 정리</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 40px; color: #111; }
+    h1 { color: #222; margin-bottom: 8px; }
+    p.lead { color: #555; margin-top: 0; }
+    table { border-collapse: collapse; width: 100%; margin-top: 22px; font-size: 14px; }
+    th, td { border: 1px solid #888; padding: 12px; vertical-align: top; text-align: left; }
+    th { background: #eee; font-weight: 700; }
+    pre { background: #0b1020; color: #e5e7eb; padding: 12px; border-radius: 6px; overflow: auto; margin: 0; }
+    code { background: #f4f4f4; padding: 0 4px; border-radius: 4px; }
+    .demo-aside { border: 1px solid #ccc; padding: 16px; border-radius: 8px; background: #fafafa; }
+    .demo-aside h2 { margin-top: 0; }
+    .tip { background: #eef2ff; border-left: 4px solid #6366f1; padding: 10px 12px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>&lt;aside&gt; 태그 정리</h1>
+  <p class="lead">본문과 직접적인 관련은 없지만, 보조 정보나 참고 자료를 제공하는 영역을 의미합니다.</p>
+
+  <table>
+    <tr>
+      <th>쉬운 설명</th>
+      <th>코드 예제</th>
+      <th>데모 화면</th>
+      <th>베스트 프랙티스 / 주의사항</th>
+    </tr>
+    <tr>
+      <td>
+        <p><strong>의미:</strong> <code>&lt;aside&gt;</code> 태그는 본문과 직접적인 흐름에는 포함되지 않지만, 추가적인 정보나 참고 자료를 제공하는 영역을 나타냅니다. 예를 들어 사이드바, 광고, 관련 글 링크 등이 이에 해당합니다.</p>
+        <p><strong>사용 위치:</strong> 페이지의 옆 영역이나 본문 중간에 배치하여 독자가 참고할 수 있는 보조 정보를 제공합니다.</p>
+        <p><strong>접근성:</strong> 스크린리더는 <code>&lt;aside&gt;</code>를 인식하여 “보조 콘텐츠”라고 알려주므로, 본문과 구분되는 정보임을 사용자에게 전달합니다.</p>
+      </td>
+      <td>
+        <pre>&lt;aside&gt;
+  &lt;h2&gt;관련 글&lt;/h2&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href="/post1"&gt;이전 글 보기&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="/post2"&gt;다음 글 보기&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/aside&gt;</pre>
+      </td>
+      <td>
+        <aside class="demo-aside">
+          <h2>관련 글</h2>
+          <ul>
+            <li><a href="#">이전 글 보기</a></li>
+            <li><a href="#">다음 글 보기</a></li>
+          </ul>
+        </aside>
+      </td>
+      <td>
+        <div class="tip">
+          <ul>
+            <li><strong>보조 정보만:</strong> 본문과 직접적인 흐름에 포함되지 않는 정보만 담으십시오.</li>
+            <li><strong>사이드바 활용:</strong> 광고, 관련 글, 추가 링크 등을 사이드바로 제공할 때 유용합니다.</li>
+            <li><strong>본문 중간 사용 가능:</strong> 본문 중간에 참고 자료를 넣을 때도 사용할 수 있습니다.</li>
+            <li><strong>접근성 향상:</strong> 스크린리더 사용자가 본문과 보조 정보를 쉽게 구분할 수 있습니다.</li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

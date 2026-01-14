@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS z-index 속성 총정리 (완전 통합본)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 24px;
+      color: #222;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 20px 0 36px;
+    }
+
+    th,
+    td {
+      border: 1px solid #dcdcdc;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f5f7fa;
+    }
+
+    code {
+      background: #f6f8fa;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    .example-demo-wrap {
+      display: flex;
+      gap: 40px;
+      /* 예제와 데모 사이 간격 */
+      align-items: flex-start;
+    }
+
+    pre {
+      background: #f5f5f5;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 300px;
+      overflow-x: auto;
+    }
+
+    .z-demo-area {
+      position: relative;
+      height: 220px;
+      border: 1px dashed #aaa;
+      margin-top: 20px;
+    }
+
+    .z-box {
+      width: 80px;
+      height: 80px;
+      border-radius: 6px;
+      position: absolute;
+      text-align: center;
+      line-height: 80px;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .z-box1 {
+      background: coral;
+      top: 40px;
+      left: 40px;
+      z-index: 1;
+    }
+
+    .z-box2 {
+      background: teal;
+      top: 70px;
+      left: 80px;
+      z-index: 2;
+    }
+
+    .z-box3 {
+      background: goldenrod;
+      top: 100px;
+      left: 120px;
+      z-index: -1;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>CSS z-index 속성 총정리</h1>
+
+  <h2>기초 설명</h2>
+  <p>
+    <code>z-index</code>는 요소가 겹칠 때 앞뒤 순서를 결정하는 CSS 속성입니다.
+    값이 클수록 화면의 앞쪽에 표시되고, 값이 작거나 음수일수록 뒤쪽에 배치됩니다.
+  </p>
+  <table>
+    <thead>
+      <tr>
+        <th>코드/속성값</th>
+        <th>한글 해석</th>
+        <th>설명</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>position: absolute</code></td>
+        <td>절대 위치</td>
+        <td>부모나 문서 전체를 기준으로 절대 좌표에 배치</td>
+      </tr>
+      <tr>
+        <td><code>position: relative</code></td>
+        <td>상대 위치</td>
+        <td>원래 위치를 기준으로 상대적으로 이동</td>
+      </tr>
+      <tr>
+        <td><code>position: fixed</code></td>
+        <td>고정 위치</td>
+        <td>화면(Viewport)에 고정되어 스크롤해도 변하지 않음</td>
+      </tr>
+      <tr>
+        <td><code>position: sticky</code></td>
+        <td>스크롤에 따라 붙는 위치</td>
+        <td>스크롤 시 특정 지점까지는 상대 위치처럼 움직이다가 이후에는 고정됨</td>
+      </tr>
+      <tr>
+        <td><code>flex</code></td>
+        <td>플렉스 자식 요소</td>
+        <td>Flexbox 레이아웃의 자식 요소로 z-index 적용 가능</td>
+      </tr>
+      <tr>
+        <td><code>grid</code></td>
+        <td>그리드 자식 요소</td>
+        <td>CSS Grid 레이아웃의 자식 요소로 z-index 적용 가능</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>3차원 좌표 개념</h2>
+  <p>웹 화면은 기본적으로 2차원 평면(x축: 가로, y축: 세로) 위에 요소를 배치합니다. <code>z-index</code>는 여기에 <strong>z축(깊이)</strong>을 추가해 3차원 공간처럼 앞뒤
+    관계를 표현합니다.</p>
+  <ul>
+    <li>x축: 좌우 위치</li>
+    <li>y축: 상하 위치</li>
+    <li>z축: 앞뒤 깊이 → <code>z-index</code> 값으로 제어</li>
+  </ul>
+  <p>즉, <code>z-index</code>는 “2차원 화면에 깊이(z축)를 부여하는 함수”라고 생각하면 직관적으로 이해할 수 있습니다. 값이 클수록 사용자 눈에 더 가까운 위치(앞쪽)에, 값이 작을수록 더
+    먼 위치(뒤쪽)에 놓입니다.</p>
+
+  <h2>값 설명</h2>
+  <table>
+    <tr>
+      <th>값</th>
+      <th>의미</th>
+      <th>예제 코드</th>
+    </tr>
+    <tr>
+      <td><code>auto</code>(자동)</td>
+      <td>기본값. DOM 순서에 따라 겹침 결정. 부모 컨텍스트 규칙에 따라 표시 순서 결정</td>
+      <td>
+        <pre>.box { z-index: auto; }</pre>
+      </td>
+    </tr>
+    <tr>
+      <td><code>0</code></td>
+      <td>스택 레벨 0</td>
+      <td>
+        <pre>.box { z-index: 0; }</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>양수</td>
+      <td>값이 클수록 앞쪽에 표시. 메뉴, 팝업, 모달 등에 사용</td>
+      <td>
+        <pre>.modal { z-index: 999; }</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>음수</td>
+      <td>값이 작을수록 뒤쪽에 표시. 배경 이미지를 뒤로 보낼 때 사용</td>
+      <td>
+        <pre>.bg { z-index: -1; }</pre>
+      </td>
+    </tr>
+    <tr>
+      <td>전역 값</td>
+      <td><code>inherit</code>, <code>initial</code>, <code>unset</code>, <code>revert</code></td>
+      <td>
+        <pre>.box { z-index: inherit; }</pre>
+      </td>
+    </tr>
+  </table>
+
+  <h2>사용 예제와 데모</h2>
+  <div class="example-demo-wrap">
+    <pre>
+/* Box1을 기준으로 배치 */
+.z-box1 {
+  position: absolute;
+  z-index: 1;
+}
+
+/* Box2가 Box1 앞에 표시 */
+.z-box2 {
+  position: absolute;
+  z-index: 2;
+}
+
+/* Box3는 뒤로 배치 */
+.z-box3 {
+  position: absolute;
+  z-index: -1;
+}
+    </pre>
+
+    <div>
+      <h2>데모</h2>
+      <div class="z-demo-area">
+        <div class="z-box z-box1">Box1<br>z-index:1</div>
+        <div class="z-box z-box2">Box2<br>z-index:2</div>
+        <div class="z-box z-box3">Box3<br>z-index:-1</div>
+      </div>
+      <p>Box2(z-index:2)가 Box1(z-index:1) 앞에 표시되고,<br>
+        Box3(z-index:-1)는 뒤로 배치됩니다.</p>
+    </div>
+  </div>
+
+
+  <h2>주의사항</h2>
+  <ul>
+    <li><code>position: static</code>(기본 위치)인 요소에는 적용되지 않습니다. 즉, 기본 위치에 있는 요소는 앞뒤 순서를 바꿀 수 없어요.</li>
+    <li>부모 요소가 <code>opacity &lt; 1</code> (투명도 1보다 작은 경우), <code>transform</code> (변형), <code>filter</code> (필터) 등을 가지면 <br>
+      새로운 <strong>스택 컨텍스트</strong>(Stacking Context, 쌓이는 영역)가 생성되어 자식의 z-index는 그 안에서만 비교되고, 다른 컨텍스트와는 직접 경쟁하지 않아요.</li>
+    <li><code>z-index: auto</code> (자동, 기본값) 또는 같은 값인 경우, HTML 코드에서 뒤에 작성된 요소가 앞쪽에 표시됩니다. 즉, 작성 순서가 곧 표시 순서가 됩니다.</li>
+    <li>브라우저는 렌더링 과정에서 화면을 여러 겹의 **레이어(layer, 투명한 종이)**로 나누어 합성합니다. <br>
+      z-index는 이 레이어가 쌓이는 순서를 결정하는 핵심 요소입니다.
+    </li>
+  </ul>
+
+  <h2>활용 사례</h2>
+  <ul>
+    <li>고정 헤더/네비게이션 바: 콘텐츠 위에 항상 표시되도록 큰 z-index 설정</li>
+    <li>모달/팝업: 페이지의 다른 요소보다 위에 표시</li>
+    <li>드롭다운 메뉴: 다른 콘텐츠와 겹칠 때 메뉴가 위에 오도록 설정</li>
+    <li>배경 이미지: 콘텐츠 뒤로 보내기 위해 음수 값 사용</li>
+  </ul>
+
+  <h2>추가 이해 도움</h2>
+  <p>z-index를 단순히 “숫자가 크면 위”라고만 이해하면 복잡한 UI에서 오류가 생길 수 있습니다. <br> <strong>스택 컨텍스트</strong>와 <strong>3차원 좌표 개념</strong>을
+    함께
+    이해하면, 왜 특정 요소가 예상과 다르게 겹치는지 쉽게 파악할 수 있습니다.</p>
+  <p>즉, z-index는 “2차원 화면에 깊이(z축)를 부여하는 함수”라고 생각하면 직관적으로 이해할 수 있습니다.</p>
+</body>
+
+</html>

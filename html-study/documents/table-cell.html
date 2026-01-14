@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>테이블 속성과 셀 속성 정리</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.6; }
+    table { border-collapse: collapse; width: 100%; margin-bottom: 30px; }
+    th, td { border: 1px solid #333; padding: 8px; text-align: left; }
+    th { background-color: #f0f0f0; }
+    caption { font-weight: bold; margin: 10px; font-size: 1.2em; }
+    code { background: #eee; padding: 2px 4px; }
+  </style>
+</head>
+<body>
+  <h1>HTML 테이블 속성과 셀 속성</h1>
+  <p><strong>테이블 속성</strong>은 표 전체를 꾸미는 역할을 하고, <strong>셀 속성</strong>은 표 안의 칸 하나하나를 꾸미는 역할을 합니다.</p><br>
+
+  <table>
+    <caption>🟦 테이블 속성 (Table Attributes)</caption>
+    <tr><th>속성</th><th>정의</th><th>예시</th></tr>
+    <tr><td>border</td><td>표 테두리 두께를 지정</td><td><code>&lt;table border="1"&gt;</code></td></tr>
+    <tr><td>width</td><td>표 전체 너비를 지정</td><td><code>&lt;table width="80%"&gt;</code></td></tr>
+    <tr><td>align</td><td>표의 위치 정렬 (왼쪽, 가운데, 오른쪽)</td><td><code>&lt;table align="center"&gt;</code></td></tr>
+    <tr><td>cellspacing</td><td>셀 사이 간격</td><td><code>&lt;table cellspacing="2"&gt;</code></td></tr>
+    <tr><td>cellpadding</td><td>셀 안쪽 여백</td><td><code>&lt;table cellpadding="5"&gt;</code></td></tr>
+    <tr><td>caption</td><td>표 제목을 추가</td><td><code>&lt;caption&gt;학생 성적표&lt;/caption&gt;</code></td></tr>
+  </table>
+
+  <table>
+    <caption>🟨 셀 속성 (Cell Attributes)</caption>
+    <tr><th>속성</th><th>정의</th><th>예시</th></tr>
+    <tr><td>colspan</td><td>열 병합 (가로로 여러 칸 합치기)</td><td><code>&lt;th colspan="2"&gt;</code></td></tr>
+    <tr><td>rowspan</td><td>행 병합 (세로로 여러 칸 합치기)</td><td><code>&lt;td rowspan="2"&gt;</code></td></tr>
+    <tr><td>align</td><td>셀 안의 내용 가로 정렬 (left, center, right)</td><td><code>&lt;td align="right"&gt;</code></td></tr>
+    <tr><td>valign</td><td>셀 안의 내용 세로 정렬 (top, middle, bottom)</td><td><code>&lt;td valign="top"&gt;</code></td></tr>
+    <tr><td>bgcolor</td><td>셀 배경색 지정</td><td><code>&lt;td bgcolor="yellow"&gt;</code></td></tr>
+  </table>
+
+  <h2>데모 화면</h2>
+  <table border="1" cellpadding="5" cellspacing="2" width="80%" align="center">
+    <caption>학생 성적표</caption>
+    <tr>
+      <th>이름</th>
+      <th colspan="2">과목</th>
+      <th>평균</th>
+    </tr>
+    <tr>
+      <td rowspan="2">홍길동</td>
+      <td>수학</td>
+      <td>90</td>
+      <td rowspan="2">85</td>
+    </tr>
+    <tr>
+      <td>영어</td>
+      <td>80</td>
+    </tr>
+  </table>
+  
+<h2>예제 코드</h2>
+  <pre><code>&lt;table border="1" cellpadding="5" cellspacing="2" width="80%" align="center"&gt;
+  &lt;caption&gt;학생 성적표&lt;/caption&gt;
+  &lt;tr&gt;
+    &lt;th&gt;이름&lt;/th&gt;
+    &lt;th colspan="2"&gt;과목&lt;/th&gt;
+    &lt;th&gt;평균&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td rowspan="2"&gt;홍길동&lt;/td&gt;
+    &lt;td&gt;수학&lt;/td&gt;
+    &lt;td&gt;90&lt;/td&gt;
+    &lt;td rowspan="2"&gt;85&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;영어&lt;/td&gt;
+    &lt;td&gt;80&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+  
+</body>
+</html>

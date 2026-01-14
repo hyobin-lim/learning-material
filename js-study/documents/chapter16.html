@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 16 (업데이트 최종본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트의 시작 — Chapter 16</h1>
+  <p>이 문서는 자바스크립트의 <strong>함수(Function, 심화)</strong>를 설명합니다. 함수는 코드의 재사용성과 구조화를 높이는 핵심 개념이며, 다양한 형태와 활용법을 가지고 있습니다.</p>
+
+  <h2>1. 함수 선언식과 표현식</h2>
+  <pre><code>&lt;script&gt;
+  // 선언식 (호이스팅됨 → 코드 상단에서도 호출 가능)
+  function add(a, b) {
+    return a + b;
+  }
+
+  // 표현식 (호이스팅되지 않음 → 선언 이후에만 호출 가능)
+  var multiply = function(a, b) {
+    return a * b;
+  };
+
+  console.log(add(2, 3));      // 5
+  console.log(multiply(2, 3)); // 6
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "5", "6"이 출력됩니다.</div>
+
+  <h2>2. 화살표 함수 (Arrow Function)</h2>
+  <pre><code>&lt;script&gt;
+  var greet = (name) => "안녕하세요, " + name + "님!";
+  console.log(greet("효빈"));
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "안녕하세요, 효빈님!"이 출력됩니다.</div>
+  <div class="callout">ℹ️ 화살표 함수는 <code>this</code>를 자신이 속한 외부 스코프에서 가져옵니다.</div>
+
+  <h2>3. 콜백 함수</h2>
+  <pre><code>&lt;script&gt;
+  function processUserInput(callback) {
+    var name = "지민";
+    callback(name);
+  }
+
+  processUserInput(function(user) {
+    console.log("사용자 이름: " + user);
+  });
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "사용자 이름: 지민"이 출력됩니다.</div>
+
+  <h2>4. 고차 함수 (Higher-order Function)</h2>
+  <pre><code>&lt;script&gt;
+  function double(x) {
+    return x * 2;
+  }
+
+  function applyOperation(arr, operation) {
+    return arr.map(operation);
+  }
+
+  console.log(applyOperation([1, 2, 3], double));
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "[2, 4, 6]"이 출력됩니다.</div>
+
+  <h2>5. 스코프와 클로저</h2>
+  <pre><code>&lt;script&gt;
+  function outer() {
+    var count = 0;
+    function inner() {
+      count++;
+      return count;
+    }
+    return inner;
+  }
+
+  var counter = outer();
+  console.log(counter()); // 1
+  console.log(counter()); // 2
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "1", "2"가 출력됩니다.</div>
+
+  <h2>6. 매개변수 기본값과 Rest/Spread</h2>
+  <pre><code>&lt;script&gt;
+  function greet(name = "손님") {
+    console.log("안녕하세요, " + name + "님!");
+  }
+
+  greet();       // 기본값 사용
+  greet("효빈"); // 전달된 값 사용
+
+  function sum(...numbers) {
+    return numbers.reduce((a, b) => a + b, 0);
+  }
+
+  console.log(sum(1, 2, 3, 4)); // 10
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "안녕하세요, 손님님!", "안녕하세요, 효빈님!", "10"이 출력됩니다.</div>
+
+  <h2>7. 즉시 실행 함수 (IIFE)</h2>
+  <pre><code>&lt;script&gt;
+  (function() {
+    console.log("즉시 실행 함수 실행!");
+  })();
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "즉시 실행 함수 실행!"이 출력됩니다.</div>
+
+  <h2>8. 함수의 this 바인딩</h2>
+  <pre><code>&lt;script&gt;
+  var obj = {
+    value: 10,
+    regular: function() { console.log(this.value); },
+    arrow: () => console.log(this.value)
+  };
+
+  obj.regular(); // 10
+  obj.arrow();   // undefined (화살표 함수는 외부 this 사용)
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "10", "undefined"가 출력됩니다.</div>
+
+  <h2>9. 실습 과제</h2>
+  <ul>
+    <li>함수 선언식과 표현식을 각각 작성해보기</li>
+    <li>화살표 함수로 간단한 계산 함수 만들기</li>
+    <li>콜백 함수를 사용해 사용자 입력 처리하기</li>
+    <li>고차 함수를 활용해 배열 요소 변환하기</li>
+    <li>클로저를 사용해 카운터 함수 만들기</li>
+    <li>매개변수 기본값과 Rest/Spread 문법 활용하기</li>
+    <li>즉시 실행 함수(IIFE)를 작성해보기</li>
+    <li>일반 함수와 화살표 함수의 this 차이를 확인하기</li>
+  </ul>
+
+  <h2>10. 다음 학습 안내</h2>
+  <p>Chapter 17에서는 자바스크립트의 <strong>객체(Object)</strong>를 학습합니다. Chapter 16에서 배운 함수와 함께 객체를 이해하면 더 복잡한 데이터 구조를 다룰 수 있습니다.</p>
+
+</body>
+</html>

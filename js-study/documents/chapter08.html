@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 08 (업데이트 최종본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트의 시작 — Chapter 08</h1>
+  <p>이 문서는 자바스크립트의 숫자(Number)를 설명합니다. 숫자는 수학적 계산과 데이터 처리에 필수적인 자료형입니다.</p>
+
+  <h2>1. 숫자 생성</h2>
+  <pre><code>&lt;script&gt;
+  var a = 10;       // 정수
+  var b = 3.14;     // 실수
+  var c = Number("20"); // 문자열을 숫자로 변환
+
+  console.log(a, b, c);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "10 3.14 20"이 출력됩니다.</div>
+
+  <h2>2. 기본 연산</h2>
+  <pre><code>&lt;script&gt;
+  var x = 10;
+  var y = 3;
+
+  console.log(x + y); // 덧셈
+  console.log(x - y); // 뺄셈
+  console.log(x * y); // 곱셈
+  console.log(x / y); // 나눗셈
+  console.log(x % y); // 나머지
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "13", "7", "30", "3.333...", "1"이 출력됩니다.</div>
+
+  <h2>3. Math 객체</h2>
+  <pre><code>&lt;script&gt;
+  console.log(Math.PI);        // 원주율
+  console.log(Math.sqrt(16));  // 제곱근
+  console.log(Math.pow(2, 3)); // 거듭제곱
+  console.log(Math.round(3.6)); // 반올림
+  console.log(Math.floor(3.6)); // 내림
+  console.log(Math.ceil(3.2));  // 올림
+  console.log(Math.random());   // 0 이상 1 미만 난수
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "3.14159...", "4", "8", "4", "3", "4", 난수 값이 출력됩니다.</div>
+
+  <h2>4. 숫자 메서드</h2>
+  <pre><code>&lt;script&gt;
+  var num = 123.456;
+
+  console.log(num.toFixed(2));   // 소수점 둘째 자리까지 반올림된 문자열 반환
+  console.log(num.toString());   // 숫자를 문자열로 변환
+  console.log(Number.isInteger(num)); // 정수 여부 확인
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "123.46", "123.456", "false"가 출력됩니다.</div>
+
+  <h2>5. NaN과 Infinity</h2>
+  <pre><code>&lt;script&gt;
+  console.log(0 / 0);       // NaN (Not a Number)
+  console.log(1 / 0);       // Infinity
+  console.log(-1 / 0);      // -Infinity
+  console.log(isNaN("abc")); // true
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "NaN", "Infinity", "-Infinity", "true"가 출력됩니다.</div>
+
+  <h2>6. 추가 숫자 변환 메서드</h2>
+  <pre><code>&lt;script&gt;
+  console.log(parseInt("123px"));   // 문자열에서 정수 추출 → 123
+  console.log(parseFloat("3.14원")); // 문자열에서 실수 추출 → 3.14
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "123", "3.14"가 출력됩니다.</div>
+
+  <h2>7. isFinite 활용</h2>
+  <pre><code>&lt;script&gt;
+  console.log(isFinite(10));       // true
+  console.log(isFinite(Infinity)); // false
+  console.log(isFinite(NaN));      // false
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "true", "false", "false"가 출력됩니다.</div>
+
+  <h2>8. 실습 과제</h2>
+  <ul>
+    <li>두 숫자를 입력받아 덧셈, 뺄셈, 곱셈, 나눗셈 결과 출력하기</li>
+    <li>Math 객체를 활용해 제곱근, 거듭제곱, 반올림/내림/올림을 계산하기</li>
+    <li>난수를 생성해 주사위(1~6) 시뮬레이션 만들기</li>
+    <li>toFixed를 사용해 소수점 자리수를 제한하기</li>
+    <li>NaN과 Infinity의 동작을 확인하기</li>
+    <li>문자열을 parseInt와 parseFloat으로 숫자로 변환하기</li>
+    <li>isFinite를 사용해 값이 유효한 숫자인지 확인하기</li>
+  </ul>
+
+  <h2>9. 다음 학습 안내</h2>
+  <p>Chapter 09에서는 자바스크립트의 <strong>불(Boolean)</strong>을 학습합니다. Chapter 08에서 배운 숫자와 함께 불 값을 활용하면 조건문과 논리 연산을 더 깊이 이해할 수 있습니다.</p>
+
+</body>
+</html>

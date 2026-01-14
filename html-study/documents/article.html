@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>&lt;article&gt; 태그 정리</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 40px; color: #111; }
+    h1 { color: #222; margin-bottom: 8px; }
+    p.lead { color: #555; margin-top: 0; }
+    table { border-collapse: collapse; width: 100%; margin-top: 22px; font-size: 14px; }
+    th, td { border: 1px solid #888; padding: 12px; vertical-align: top; text-align: left; }
+    th { background: #eee; font-weight: 700; }
+    pre { background: #0b1020; color: #e5e7eb; padding: 12px; border-radius: 6px; overflow: auto; margin: 0; }
+    code { background: #f4f4f4; padding: 0 4px; border-radius: 4px; }
+    .demo-article { border: 1px solid #ccc; padding: 16px; border-radius: 8px; background: #fafafa; }
+    .demo-article h2 { margin-top: 0; }
+    .tip { background: #eef2ff; border-left: 4px solid #6366f1; padding: 10px 12px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <h1>&lt;article&gt; 태그 정리</h1>
+  <p class="lead">독립적으로 배포하거나 재사용할 수 있는 콘텐츠 블록을 의미하며, 기사·블로그 글·게시물 등에 사용됩니다.</p>
+
+  <table>
+    <tr>
+      <th>쉬운 설명</th>
+      <th>코드 예제</th>
+      <th>데모 화면</th>
+      <th>베스트 프랙티스 / 주의사항</th>
+    </tr>
+    <tr>
+      <td>
+        <p><strong>의미:</strong> <code>&lt;article&gt;</code> 태그는 문서 내에서 독립적으로 의미를 가지며, 다른 곳에 재사용하거나 따로 배포할 수 있는 콘텐츠를 나타냅니다. 예를 들어 뉴스 기사, 블로그 글, 포럼 게시물, 사용자 리뷰 등이 이에 해당합니다.</p>
+        <p><strong>사용 위치:</strong> 페이지 본문에서 독립적인 콘텐츠 단위를 구분할 때 사용합니다. 내부에 <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>를 포함하여 제목과 작성자 정보 등을 함께 표현할 수 있습니다.</p>
+        <p><strong>접근성:</strong> 스크린리더는 <code>&lt;article&gt;</code>를 독립적인 콘텐츠 블록으로 인식하므로, 제목(<code>&lt;h2&gt;</code> 등)을 반드시 포함하는 것이 좋습니다.</p>
+      </td>
+      <td>
+        <pre>&lt;article&gt;
+  &lt;header&gt;
+    &lt;h2&gt;블로그 글 제목&lt;/h2&gt;
+    &lt;p&gt;작성자: 홍길동, 2025-12-24&lt;/p&gt;
+  &lt;/header&gt;
+
+  &lt;p&gt;이곳은 블로그 글 본문 내용입니다.
+  독립적으로 의미를 가지며 다른 곳에 공유할 수 있습니다.&lt;/p&gt;
+
+  &lt;footer&gt;
+    &lt;p&gt;댓글 3개 · 좋아요 10개&lt;/p&gt;
+  &lt;/footer&gt;
+&lt;/article&gt;</pre>
+      </td>
+      <td>
+        <article class="demo-article">
+          <header>
+            <h2>블로그 글 제목</h2>
+            <p>작성자: 홍길동, 2025-12-24</p>
+          </header>
+          <p>이곳은 블로그 글 본문 내용입니다. 독립적으로 의미를 가지며 다른 곳에 공유할 수 있습니다.</p>
+          <footer>
+            <p>댓글 3개 · 좋아요 10개</p>
+          </footer>
+        </article>
+      </td>
+      <td>
+        <div class="tip">
+          <ul>
+            <li><strong>독립성:</strong> 다른 문맥과 분리되어도 의미가 유지되는 콘텐츠에만 사용하십시오.</li>
+            <li><strong>헤더 포함:</strong> <code>&lt;article&gt;</code> 내부에는 제목을 반드시 포함하여 콘텐츠의 주제를 명확히 하십시오.</li>
+            <li><strong>중첩 가능:</strong> 기사 안에 또 다른 <code>&lt;article&gt;</code>을 넣을 수 있습니다. 예: 댓글이 독립적인 글일 때.</li>
+            <li><strong>재사용성:</strong> RSS 피드, 검색 결과 등에서 <code>&lt;article&gt;</code> 단위로 콘텐츠를 배포할 수 있습니다.</li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

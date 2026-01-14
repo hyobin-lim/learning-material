@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>인라인 블록 요소 정리</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    .demo {
+      border: 1px solid #222;
+      padding: 10px;
+      margin: 10px 0;
+    }
+
+    .inline-block {
+      display: inline-block;
+      width: 100px;
+      height: 50px;
+      margin: 5px;
+      text-align: center;
+      line-height: 50px;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .red {
+      background: red;
+    }
+
+    .blue {
+      background: blue;
+    }
+
+    .green {
+      background: green;
+    }
+
+    table {
+      border-collapse: collapse;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    th,
+    td {
+      border: 1px solid #666;
+      padding: 8px;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    th {
+      background: #ddd;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>인라인 블록 요소 정리</h1>
+  <h2>쉬운 설명</h2>
+  <p>
+    인라인 블록은 <strong>네모 상자처럼 크기를 정할 수 있으면서도 줄 안에서 옆으로 나란히 놓일 수 있는 상자</strong>예요.<br>
+    마치 <em>레고 블록</em>처럼 옆에 척척 붙을 수 있고, 크기도 정할 수 있어요.<br>
+    글자처럼 줄에 놓이지만, 박스처럼 넓이와 높이를 마음대로 정할 수 있어요.<br>
+    어떤 요소들은 태어날 때부터 기본 성격이 inline-block이라서 따로 CSS를 주지 않아도 이런 성격을 가지고 있어요.
+  </p>
+
+  <h2>대표적인 인라인 블록 요소들</h2>
+  <ul>
+    <li><code>&lt;img&gt;</code> : 이미지는 기본적으로 인라인 블록</li>
+    <li><code>&lt;button&gt;</code> : 버튼도 인라인 블록</li>
+    <li><code>&lt;input&gt;</code>, <code>&lt;select&gt;</code>, <code>&lt;textarea&gt;</code> : 폼 요소들</li>
+    <li><code>&lt;label&gt;</code> : 라벨도 인라인 블록</li>
+    <li><code>&lt;canvas&gt;</code>, <code>&lt;video&gt;</code> : 미디어 요소들</li>
+    <li>그 외 <code>&lt;iframe&gt;</code>, <code>&lt;progress&gt;</code>, <code>&lt;meter&gt;</code> 등도 인라인 블록</li>
+  </ul>
+  <table>
+    <tr>
+      <th>설명</th>
+      <th>예제</th>
+      <th>데모</th>
+      <th>비고</th>
+    </tr>
+    <tr>
+      <td>기본 display 값이 inline-block인 요소들은 줄 안에서 나란히 배치되면서 크기를 지정할 수 있음</td>
+      <td>
+        <pre>
+&lt;img src="https://via.placeholder.com/100x50/ff0000/ffffff?text=IMG"&gt;
+&lt;button&gt;버튼&lt;/button&gt;
+&lt;input type="text" value="입력창"&gt;
+        </pre>
+      </td>
+      <td>
+        <div class="demo">
+          <img src="https://via.placeholder.com/100x50/ff0000/ffffff?text=IMG">
+          <button>버튼</button>
+          <input type="text" value="입력창">
+        </div>
+      </td>
+      <td>대표 요소: img, button, input, select, textarea, label, canvas, video, iframe 등</td>
+    </tr>
+    <tr>
+      <td>display:inline-block을 지정하면 블록처럼 크기를 가지면서 인라인처럼 옆에 나란히 놓일 수 있음</td>
+      <td>
+        <pre>
+&lt;div class="inline-block red"&gt;빨강&lt;/div&gt;
+&lt;div class="inline-block blue"&gt;파랑&lt;/div&gt;
+&lt;div class="inline-block green"&gt;초록&lt;/div&gt;
+        </pre>
+      </td>
+      <td>
+        <div class="demo">
+          <div class="inline-block red">빨강</div>
+          <div class="inline-block blue">파랑</div>
+          <div class="inline-block green">초록</div>
+        </div>
+      </td>
+      <td>활용: 메뉴 버튼, 카드 레이아웃, 아이콘 배치 등에 사용. flexbox, grid와 함께 쓰면 더 강력</td>
+    </tr>
+    <tr>
+      <td>특징</td>
+      <td>인라인처럼 옆에 붙고, 블록처럼 width/height 지정 가능</td>
+      <td>줄바꿈 없이 여러 박스를 한 줄에 배치 가능</td>
+      <td>span, div 등 다양한 요소에 적용 가능</td>
+    </tr>
+  </table>
+</body>
+
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8" />
+  <title>CSS 레이아웃 완전 정리</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      line-height: 1.6;
+      margin: 2rem;
+    }
+
+    h1,
+    h2 {
+      color: #2c3e50;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 1.5rem 0;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 0.75rem;
+      vertical-align: top;
+    }
+
+    th {
+      background: #f4f4f4;
+    }
+
+    code {
+      background: #f3f3f3;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+    }
+
+    ul {
+      margin: 10px 0;
+    }
+
+    .demo {
+      border: 1px solid #ddd;
+      padding: 1rem;
+      margin-top: 0.5rem;
+      background: #fafafa;
+    }
+
+    /* 데모 스타일 */
+    .flex-demo {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background: #eef;
+    }
+
+    .flex-demo div {
+      background: #cce;
+      padding: 0.5rem 1rem;
+    }
+
+    .grid-demo {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      background: #efe;
+      padding: 10px;
+    }
+
+    .grid-demo div {
+      background: #cec;
+      padding: 0.5rem;
+      text-align: center;
+    }
+
+    .textalign-demo {
+      text-align: right;
+      background: #fee;
+      padding: 1rem;
+    }
+
+    .table-demo {
+      display: table;
+      border: 1px solid #999;
+    }
+
+    .table-demo div {
+      display: table-cell;
+      border: 1px solid #999;
+      padding: 0.5rem;
+    }
+
+    .block-demo div {
+      display: block;
+      background: #cce;
+      margin: 5px 0;
+      padding: 10px;
+    }
+
+    .inline-demo span {
+      display: inline;
+      background: #cec;
+      margin: 5px;
+      padding: 10px;
+    }
+
+    .inlineblock-demo div {
+      display: inline-block;
+      width: 80px;
+      height: 40px;
+      background: #ddf;
+      margin: 0.25rem;
+    }
+
+    .float-demo .box {
+      float: left;
+      /* 왼쪽으로 띄우기 */
+      width: 100px;
+      /* 가로 크기 지정 */
+      margin-right: 10px;
+      /* 박스 사이 간격 */
+      padding: 10px;
+      text-align: center;
+      font-weight: bold;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .box1 {
+      background: #add8e6;
+      /* 연한 파랑 */
+    }
+
+    .box2 {
+      background: #90ee90;
+      /* 연한 초록 */
+    }
+
+    .position-demo {
+      position: relative;
+      height: 100px;
+      background: #f9f9f9;
+    }
+
+    .position-demo span {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: #fcc;
+      padding: 0.25rem;
+    }
+
+    .overflow-demo {
+      width: 200px;
+      height: 60px;
+      overflow: auto;
+      border: 1px solid #aaa;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>CSS 레이아웃 완전 정리</h1>
+
+  <h2>1. CSS에서의 레이아웃이란?</h2>
+  <p>
+    CSS 코드 관점에서의 <strong>레이아웃(Layout)</strong>은 웹 페이지의 요소들을 화면에 어떻게 배치하고, 크기를 계산하며, 서로의 관계를 정의하는지를 결정하는 규칙과 속성들의 집합입니다.
+    <br>
+    즉, HTML로 구조를 만들고 CSS로 그 구조를 <strong>어떻게 보이게 할지</strong>를 설계하는 것입니다.
+  </p>
+
+  <h2>2. 전체적인 큰 틀</h2>
+  <ul>
+    <li>CSS 레이아웃은 요소를 화면에 어떻게 배치할지 결정하는 규칙</li>
+    <li><strong>박스 모델</strong>이 기본, 그 위에 <strong>display → position → flex/grid → media query</strong>로 확장</li>
+    <li>최신 레이아웃은 <strong>Flexbox와 Grid</strong> 중심으로 설계, 구식 방식(Float, Table)은 보조적으로 사용</li>
+    <li>레이아웃은 단순히 위치만이 아니라 <strong>크기 계산, 정렬, 흐름, 반응형 대응</strong>까지 포함</li>
+  </ul>
+
+  <h2>3. 주요 속성 그룹</h2>
+  <table>
+    <tr>
+      <th>그룹</th>
+      <th>대표 속성</th>
+      <th>설명</th>
+    </tr>
+    <tr>
+      <td>박스 모델(Box Model)</td>
+      <td><code>margin</code>, <code>padding</code>, <code>border</code>, <code>width</code>, <code>height</code></td>
+      <td>박스 요소 크기와 간격</td>
+    </tr>
+    <tr>
+      <td>디스플레이(Display)</td>
+      <td><code>display</code></td>
+      <td>요소의 기본 배치 방식 결정 (block, inline, flex, grid 등)</td>
+    </tr>
+    <tr>
+      <td>정렬과 흐름(Alignment & Flow)</td>
+      <td><code>text-align</code>, <code>vertical-align</code>, <code>justify-content</code>, <code>align-items</code>
+      </td>
+      <td>요소 내부나 그룹의 정렬 제어 (text-align, justify-content 등)</td>
+    </tr>
+    <tr>
+      <td>위치(Positioning)</td>
+      <td><code>position</code>, <code>top</code>, <code>left</code>, <code>z-index</code></td>
+      <td>요소를 문서 흐름에서 벗어나 좌표 기반 배치</td>
+    </tr>
+    <tr>
+      <td>흐름 제어</td>
+      <td><code>float</code>, <code>clear</code></td>
+      <td>요소를 좌·우로 띄워 문서 흐름 변경</td>
+    </tr>
+    <tr>
+      <td>레이아웃 시스템</td>
+      <td><code>flex</code>(1차원-가로/세로), <code>grid</code>(2차원-행+열)</td>
+      <td>현대적 레이아웃 방식</td>
+    </tr>
+    <tr>
+      <td>반응형 레이아웃</td>
+      <td><code>@media</code>, <code>minmax</code>, <code>fr</code></td>
+      <td>화면 크기·장치 특성에 따라 레이아웃 변화</td>
+    </tr>
+    <tr>
+      <td>콘텐츠 넘침 처리</td>
+      <td><code>overflow</code></td>
+      <td>콘텐츠가 부모 영역을 벗어날 때 처리</td>
+    </tr>
+  </table>
+
+  <h2>4. 속성별 데모와 설명</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>속성</th>
+        <th>코드 예제</th>
+        <th>데모</th>
+        <th>설명</th>
+        <th>대표값</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>text-align</strong></td>
+        <td><code>.textalign-demo { text-align: right; }</code></td>
+        <td>
+          <div class="demo textalign-demo">오른쪽 정렬된 텍스트</div>
+        </td>
+        <td>블록 컨테이너 내부 인라인 콘텐츠의 가로 정렬을 바꿉니다.</td>
+        <td><code>left</code>, <code>right</code>, <code>center</code>, <code>justify</code></td>
+      </tr>
+      <tr>
+        <td><strong>display: inline</strong></td>
+        <td><code>.inline-demo div { display: inline; }</code></td>
+        <td>
+          <div class="demo inline-demo">
+            <span>Inline 1</span><span>Inline 2</span><span>Inline 3</span>
+          </div>
+        </td>
+        <td>Inline 요소는 콘텐츠 크기만큼만 차지하며 줄 안에서 나란히 배치됩니다.</td>
+        <td><code>inline</code>, <code>inline-block</code>, <code>inline-flex</code></td>
+      </tr>
+      <tr>
+        <td><strong>display: block</strong></td>
+        <td><code>.block-demo div { display: block; }</code></td>
+        <td>
+          <div class="demo block-demo">
+            <div>Block 1</div>
+            <div>Block 2</div>
+          </div>
+        </td>
+        <td>Block 요소는 줄 전체를 차지하며 줄바꿈이 발생합니다.</td>
+        <td><code>block</code>, <code>list-item</code>, <code>flow-root</code></td>
+      </tr>
+      <tr>
+        <td><strong>display: inline-block</strong></td>
+        <td><code>.inlineblock-demo div { display: inline-block; }</code></td>
+        <td>
+          <div class="demo inlineblock-demo">
+            <div>박스A</div>
+            <div>박스B</div>
+            <div>박스C</div>
+          </div>
+        </td>
+        <td>인라인 요소처럼 배치되지만 블록 속성도 가집니다. 여러 자식 요소를 한 줄에 배치할 때 유용하며 크기와 여백을 자유롭게 설정할 수 있습니다. <br>
+          공백 문제와 <code>vertical-align</code> 문제를 신경써야 합니다.</td>
+        <td><code>inline-block</code></td>
+      </tr>
+      <tr>
+        <td><strong>display: table / table-cell</strong></td>
+        <td><code>.table-demo { display: table; } .table-demo div { display: table-cell; }</code></td>
+        <td>
+          <div class="demo table-demo">
+            <div>셀A</div>
+            <div>셀B</div>
+          </div>
+        </td>
+        <td>부모를 테이블처럼 동작하게 만들어 자식들을 행·열 구조로 배치합니다. <code>vertical-align</code> 같은 셀 정렬 속성과 함께 사용됩니다.</td>
+        <td><code>table</code>, <code>table-row</code>, <code>table-cell</code></td>
+      </tr>
+      <tr>
+        <td><strong>display: flex</strong></td>
+        <td><code>.flex-demo { display: flex; justify-content: space-around; }</code></td>
+        <td>
+          <div class="demo flex-demo">
+            <div>박스1</div>
+            <div>박스2</div>
+            <div>박스3</div>
+          </div>
+        </td>
+        <td>부모를 플렉스 컨테이너로 만들어 자식들을 가로·세로축 기준으로 배치합니다. 요소 간 간격, 정렬, 순서 변경이 쉽습니다.</td>
+        <td>
+          <code>flex</code>, <code>inline-flex</code><br>
+          <strong>관련 속성:</strong> <code>justify-content</code>(flex-start, flex-end, center, space-between,
+          space-around),
+          <code>align-items</code>(stretch, flex-start, flex-end, center, baseline)
+        </td>
+      </tr>
+      <tr>
+        <td><strong>display: grid</strong></td>
+        <td><code>.grid-demo { display: grid; grid-template-columns: 1fr 1fr 1fr; }</code></td>
+        <td>
+          <div class="demo grid-demo">
+            <div>셀1</div>
+            <div>셀2</div>
+            <div>셀3</div>
+          </div>
+        </td>
+        <td>부모를 그리드 컨테이너로 만들어 자식들을 행과 열로 배치합니다. 복잡한 레이아웃을 직관적으로 설계할 수 있습니다. 격자 형태로 정밀한 배치가 가능합니다.</td>
+        <td>
+          <code>grid</code>, <code>inline-grid</code><br>
+          <strong>관련 속성:</strong> <code>grid-template-columns</code>, <code>grid-template-rows</code>, <code>gap</code>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>float</strong></td>
+        <td><code>.float-demo .box { float: left; width: 100px; margin-right: 10px; }</code></td>
+        <td>
+          <div class="demo float-demo">
+            <div class="box box1">박스1</div>
+            <div class="box box2">박스2</div>
+            <p>이 텍스트는 두 박스 옆으로 흐르며 배치됩니다.</p>
+          </div>
+        </td>
+        <td>원래는 텍스트 주변에 이미지를 배치하기 위한 속성입니다. <br>
+          요소를 좌·우로 띄워 흐름을 바꾸고, 뒤따르는 콘텐츠가 그 옆으로 배치되도록 합니다. <br>
+          오래된 레이아웃 기법으로 관리가 번거롭지만 특정 상황에서 여전히 사용됩니다. <br>
+          clearfix 같은 추가 코드가 필요합니다.
+        </td>
+        <td><code>left</code>, <code>right</code>, <code>none</code></td>
+      </tr>
+      <tr>
+        <td><strong>position</strong></td>
+        <td><code>.position-demo span { position: absolute; top: 20px; left: 20px; }</code></td>
+        <td>
+          <div class="demo position-demo"><span>절대 위치 요소</span></div>
+        </td>
+        <td>부모가 새로운 좌표계를 만들면 자식 요소의 배치 기준이 달라집니다. <code>relative</code>는 기준을 제공하고,
+          <code>absolute</code>/<code>fixed</code>/<code>sticky</code>는 자식 위치를 제어합니다.
+        </td>
+        <td><code>static</code>, <code>relative</code>, <code>absolute</code>, <code>fixed</code>, <code>sticky</code>
+        </td>
+      </tr>
+      <tr>
+        <td><strong>overflow</strong></td>
+        <td><code>.overflow-demo { overflow: auto; }</code></td>
+        <td>
+          <div class="demo overflow-demo">긴 텍스트가 넘칠 경우 스크롤바가 생깁니다. 긴 텍스트가 넘칠 경우 스크롤바가 생깁니다.</div>
+        </td>
+        <td>부모 컨테이너의 넘치는 콘텐츠 처리 방식을 지정합니다. 스크롤바 생성 여부나 자식 요소의 잘림 여부에 직접적인 영향을 줍니다.</td>
+        <td><code>visible</code>, <code>hidden</code>, <code>scroll</code>, <code>auto</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>5. 핵심 요약</h2>
+  <ul>
+    <li><strong>Text-align</strong>: 블록 내부 인라인 콘텐츠 정렬</li>
+    <li><strong>Block / Inline / Inline-block</strong>: 기본 배치 방식의 차이를 이해해야 함</li>
+    <li><strong>Block</strong>: 줄 전체 차지, 줄바꿈 발생</li>
+    <li><strong>Inline</strong>: 콘텐츠 크기만큼, 줄 안에서 배치</li>
+    <li><strong>Inline-block</strong>: 줄 안에서 배치 + 크기 지정 가능</li>
+    <li><strong>Flexbox</strong>: 1차원 레이아웃, 정렬과 크기 조절에 유연</li>
+    <li><strong>Grid</strong>: 2차원 레이아웃, 복잡한 구조를 직관적으로 설계</li>
+    <li><strong>Table</strong>: 행·열 구조, 과거 레이아웃 기법</li>
+    <li><strong>Float</strong>: 요소를 좌·우로 띄워 흐름 변경, 구식이지만 특정 상황에서 사용</li>
+    <li><strong>Position</strong>: 요소의 위치를 세밀하게 제어</li>
+    <li><strong>Overflow</strong>: 넘치는 콘텐츠 처리 방식 지정</li>
+  </ul>
+
+  <h2>6. 추가 팁</h2>
+  <ul>
+    <li><strong>모바일 퍼스트</strong>: 작은 화면부터 레이아웃을 정의하고 점차 확장</li>
+    <li><strong>Flexbox + Grid 혼합 사용</strong>: 큰 틀은 Grid로, 세부 정렬은 Flexbox로 처리하면 효율적</li>
+    <li><strong>box-sizing: border-box</strong>를 활용하면 크기 계산이 쉬워짐</li>
+    <li><strong>브라우저 개발자 도구</strong>로 다양한 화면 크기에서 테스트</li>
+    <li><strong>접근성 고려</strong>: 레이아웃은 시각적 구조뿐 아니라 스크린리더 등 접근성에도 영향</li>
+    <li><strong>최신 기법 활용</strong>: Float, Table은 구식 → Flex와 Grid 중심으로 학습</li>
+  </ul>
+</body>
+
+</html>

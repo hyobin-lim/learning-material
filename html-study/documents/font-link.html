@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>웹 폰트 연결 방법 종합 가이드</title>
+  <style>
+    /* 레이아웃/스타일 */
+    body { font-family: Arial, sans-serif; margin: 30px; background: #f9fafb; line-height: 1.6; color: #1f2937; }
+    h1, h2 { text-align: center; color: #111827; }
+    .section { margin: 30px auto; max-width: 1000px; background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 24px; }
+    .grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; align-items: start; }
+    .card { border: 1px solid #e5e7eb; border-radius: 8px; padding: 16px; background: #ffffff; }
+    .label { font-weight: bold; color: #374151; margin-bottom: 6px; }
+    pre { background: #f3f4f6; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #e5e7eb; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace; }
+    .demo-box { border: 1px dashed #d1d5db; border-radius: 8px; padding: 16px; background: #fafafa; }
+    .note { font-size: 0.95em; color: #4b5563; }
+    .hr { height: 1px; background: #e5e7eb; margin: 24px 0; }
+
+    /* 1) <link> 방식 데모용 */
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+    .demo-link { font-family: 'Noto Sans', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif; }
+
+    /* 2) @import 방식 데모용 (스타일시트 내부에서 로드) */
+    @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+    .demo-import { font-family: 'Indie Flower', cursive; }
+
+    /* 3) @font-face 방식 데모용 (원격 폰트 직접 연결) */
+    @font-face {
+      font-family: 'MyInter';
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap; /* 폰트 로딩 전략: swap 권장 */
+      src: url('https://rsms.me/inter/font-files/Inter-Regular.woff2?v=3.19') format('woff2'),
+           url('https://rsms.me/inter/font-files/Inter-Regular.woff?v=3.19') format('woff');
+      unicode-range: U+000-5FF; /* 라틴 기본 범위 예시 */
+    }
+    .demo-fontface { font-family: 'MyInter', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif; }
+
+    /* 4) 로컬 폰트 우선 + 원격 폴백 */
+    @font-face {
+      font-family: 'LocalFirstInter';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: local('Inter Bold'), local('Inter-Bold'),
+           url('https://rsms.me/inter/font-files/Inter-Bold.woff2?v=3.19') format('woff2');
+    }
+    .demo-local { font-family: 'LocalFirstInter', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif; }
+
+    /* 5) variable font (가변 폰트) 예시 */
+    @font-face {
+      font-family: 'InterVar';
+      font-weight: 100 900; /* 가변 폰트 축 범위 */
+      font-display: swap;
+      src: url('https://rsms.me/inter/font-files/InterVariable.woff2?v=3.19') format('woff2');
+    }
+    .demo-var { font-family: 'InterVar', system-ui, -apple-system, Segoe UI, Roboto, 'Helvetica Neue', Arial, sans-serif; }
+    .weight-controls { display: flex; gap: 10px; align-items: center; margin-top: 8px; }
+    .var-sample { font-size: 24px; }
+
+    /* 작은 부가 스타일 */
+    .kbd { display: inline-block; padding: 2px 6px; border: 1px solid #d1d5db; border-radius: 6px; background: #f9fafb; font-size: 0.95em; }
+    .tip { background: #f0f9ff; border: 1px solid #bae6fd; color: #0c4a6e; padding: 10px; border-radius: 8px; }
+  </style>
+  <!-- 1) <link> 방식은 실제로 head에 링크를 넣어야 적용됨 -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <h1>웹 폰트 연결 방법 종합 가이드</h1>
+
+  <div class="section">
+    <div class="grid">
+      <div class="card">
+        <div class="label">1) &lt;link&gt; 방식 (가장 직관적)</div>
+        <div class="note">
+          HTML의 head에 외부 스타일시트 링크를 추가해 폰트를 로드합니다. 빠르고 간단하며, 대부분의 CDN(예: Google Fonts)에서 권장합니다.
+        </div>
+        <pre><code>&lt;head&gt;
+  &lt;link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&amp;display=swap" rel="stylesheet"&gt;
+&lt;/head&gt;
+&lt;style&gt;
+  body { font-family: 'Noto Sans', sans-serif; }
+&lt;/style&gt;</code></pre>
+      </div>
+      <div class="card demo-box demo-link">
+        이 문장은 &lt;link&gt; 방식으로 로드한 Noto Sans 폰트로 렌더링됩니다.
+        <div class="tip" style="margin-top:10px;">
+          tip: <span class="kbd">display=swap</span>을 사용하면 로딩 중 시스템 폰트로 먼저 표시되어 FOUT(깜빡임)이 줄어듭니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="label">2) @import 방식 (CSS 내부에서 로드)</div>
+        <div class="note">
+          CSS 파일(또는 &lt;style&gt; 블록) 안에서 외부 폰트를 불러옵니다. 유지보수를 CSS에 집중할 때 유용합니다.
+        </div>
+        <pre><code>/* CSS 파일 또는 &lt;style&gt; 블록 상단에 */
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&amp;display=swap');
+
+.title {
+  font-family: 'Indie Flower', cursive;
+}</code></pre>
+      </div>
+      <div class="card demo-box demo-import">
+        이 문장은 @import 방식으로 로드한 Indie Flower 폰트로 렌더링됩니다.
+        <div class="tip" style="margin-top:10px;">
+          tip: @import는 네트워크 요청이 연쇄적으로 발생할 수 있어 성능상 &lt;link&gt;보다 느릴 수 있습니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="label">3) @font-face 방식 (원격/자체 호스팅 파일 직접 연결)</div>
+        <div class="note">
+          서버나 CDN에 올려둔 폰트 파일(woff2 권장)을 직접 연결합니다. 라이선스 관리나 커스텀 폰트 배포에 적합합니다.
+        </div>
+        <pre><code>@font-face {
+  font-family: 'MyInter';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/Inter-Regular.woff2') format('woff2'),
+       url('/fonts/Inter-Regular.woff') format('woff');
+}
+body { font-family: 'MyInter', sans-serif; }</code></pre>
+      </div>
+      <div class="card demo-box demo-fontface">
+        이 문장은 @font-face로 연결한 Inter Regular (원격 파일)로 렌더링됩니다.
+        <div class="tip" style="margin-top:10px;">
+          tip: <span class="kbd">woff2</span> 사용을 권장합니다. 용량이 작고 대부분 브라우저에서 지원됩니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="label">4) 로컬 폰트 우선 + 원격 폴백</div>
+        <div class="note">
+          사용자의 시스템에 폰트가 이미 있다면 로컬을 우선 사용하고, 없을 경우 원격 파일을 내려받게 합니다.
+        </div>
+        <pre><code>@font-face {
+  font-family: 'LocalFirstInter';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local('Inter Bold'), local('Inter-Bold'),
+       url('/fonts/Inter-Bold.woff2') format('woff2');
+}
+h1 { font-family: 'LocalFirstInter', system-ui, sans-serif; }</code></pre>
+      </div>
+      <div class="card demo-box demo-local" style="font-weight:700;">
+        이 문장은 로컬에 Inter Bold가 있으면 로컬을, 없으면 원격 파일을 사용합니다.
+        <div class="tip" style="margin-top:10px;">
+          tip: 로컬 폰트 이름은 OS별로 다를 수 있어 정확한 네이밍이 중요합니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="label">5) 가변 폰트(Variable Font) 연결</div>
+        <div class="note">
+          한 파일로 여러 굵기/너비/기울임을 지원합니다. 파일 수를 줄이고 디자인 유연성을 높입니다.
+        </div>
+        <pre><code>@font-face {
+  font-family: 'InterVar';
+  font-weight: 100 900; /* 지원하는 굵기 범위 */
+  font-display: swap;
+  src: url('/fonts/InterVariable.woff2') format('woff2');
+}
+.text { font-family: 'InterVar', system-ui, sans-serif; }</code></pre>
+      </div>
+      <div class="card demo-box demo-var">
+        <div class="var-sample" id="varText">이 문장은 Inter Variable 폰트로 표시됩니다 (가변 굵기).</div>
+        <div class="weight-controls">
+          <label for="wRange">굵기:</label>
+          <input id="wRange" type="range" min="100" max="900" step="50" value="400"
+                 oninput="document.getElementById('varText').style.fontWeight = this.value;">
+          <span id="wVal">400</span>
+        </div>
+        <script>
+          const wRange = document.getElementById('wRange');
+          const wVal = document.getElementById('wVal');
+          wRange.addEventListener('input', () => { wVal.textContent = wRange.value; });
+        </script>
+        <div class="tip" style="margin-top:10px;">
+          tip: 가변 폰트는 CSS에서 <span class="kbd">font-weight: 100 900</span>처럼 범위를 선언합니다.
+        </div>
+      </div>
+    </div>
+
+    <div class="hr"></div>
+
+    <div class="card">
+      <div class="label">실무 팁 요약</div>
+      <ul class="note">
+        <li><strong>파일 포맷:</strong> woff2 우선, 필요한 경우 woff 폴백.</li>
+        <li><strong>성능:</strong> <span class="kbd">font-display: swap</span>으로 로딩 중 텍스트 가독성 확보.</li>
+        <li><strong>캐싱:</strong> 자체 호스팅 시 적절한 캐시 헤더 설정(immutable, long max-age).</li>
+        <li><strong>문자 범위:</strong> <span class="kbd">unicode-range</span>로 서브셋을 나누면 용량 절감.</li>
+        <li><strong>보안/라이선스:</strong> 상용 폰트는 웹 임베드 허용 범위와 도메인 제한(CORS)을 확인.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>요약</h2>
+  <div class="section">
+    <div class="note">
+      - 가장 간단한 연결: &lt;link&gt; (권장)<br>
+      - CSS 내부 관리: @import<br>
+      - 커스텀/자체 호스팅: @font-face<br>
+      - 최적화: local() 우선, woff2, font-display, unicode-range, variable font 활용
+    </div>
+  </div>
+</body>
+</html>

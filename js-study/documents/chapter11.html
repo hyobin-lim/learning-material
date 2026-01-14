@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 11 (업데이트 최종본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트의 시작 — Chapter 11</h1>
+  <p>이 문서는 자바스크립트의 <strong>형 변환(Type Conversion)</strong>을 설명합니다. 형 변환은 데이터 타입을 다른 타입으로 바꾸는 과정으로, 명시적 변환과 암묵적 변환이 있습니다.</p>
+
+  <h2>1. 명시적 형 변환</h2>
+  <pre><code>&lt;script&gt;
+  var str = "123";
+  var num = Number(str);   // 문자열 → 숫자 (실무에서 자주 사용)
+  var text = String(456);  // 숫자 → 문자열
+  var bool = Boolean(0);   // 숫자 → 불 값
+
+  console.log(num, text, bool);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "123", "456", "false"가 출력됩니다.</div>
+
+  <h2>2. 암묵적 형 변환</h2>
+  <pre><code>&lt;script&gt;
+  console.log("5" * 2);   // 문자열 "5" → 숫자 5 → 결과 10
+  console.log("10" - 3);  // 문자열 "10" → 숫자 10 → 결과 7
+  console.log("5" + 2);   // 문자열 "5" + 숫자 2 → 문자열 "52" (주의: +는 문자열 결합)
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "10", "7", "52"가 출력됩니다.</div>
+
+  <h2>3. parseInt와 parseFloat</h2>
+  <pre><code>&lt;script&gt;
+  console.log(parseInt("123px"));   // 123
+  console.log(parseFloat("3.14원")); // 3.14
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "123", "3.14"가 출력됩니다.</div>
+
+  <h2>4. 불 값 변환</h2>
+  <pre><code>&lt;script&gt;
+  console.log(Boolean(""));   // false (빈 문자열)
+  console.log(Boolean("hi")); // true (문자열 존재)
+  console.log(Boolean(0));    // false
+  console.log(Boolean(1));    // true
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "false", "true", "false", "true"가 출력됩니다.</div>
+
+  <h2>5. 형 변환 주의사항</h2>
+  <pre><code>&lt;script&gt;
+  console.log("10" == 10);  // true (값만 비교 → 암묵적 변환 발생)
+  console.log("10" === 10); // false (값과 자료형 모두 비교)
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "true", "false"가 출력됩니다.</div>
+
+  <h2>6. 자동 형 변환의 함정</h2>
+  <pre><code>&lt;script&gt;
+  console.log(false == 0); // true
+  console.log("" == 0);    // true
+  console.log(null == 0);  // false
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "true", "true", "false"가 출력됩니다.</div>
+
+  <h2>7. isNaN과 Number.isNaN</h2>
+  <pre><code>&lt;script&gt;
+  console.log(isNaN("abc"));        // true (문자열 변환 시 NaN)
+  console.log(Number.isNaN("abc")); // false (엄격하게 NaN만 판별)
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "true", "false"가 출력됩니다.</div>
+
+  <h2>8. 실습 과제</h2>
+  <ul>
+    <li>문자열을 Number()로 변환해보기</li>
+    <li>숫자를 String()으로 변환해보기</li>
+    <li>Boolean()으로 다양한 값의 Truthy/Falsy 확인하기</li>
+    <li>암묵적 형 변환 예제를 직접 만들어보기</li>
+    <li>parseInt와 parseFloat을 사용해 문자열에서 숫자 추출하기</li>
+    <li>==와 === 비교의 차이를 확인하기</li>
+    <li>false == 0, '' == 0 같은 비교 결과 확인하기</li>
+    <li>isNaN과 Number.isNaN의 차이를 확인하기</li>
+  </ul>
+
+  <h2>9. 다음 학습 안내</h2>
+  <p>Chapter 12에서는 자바스크립트의 <strong>제어문(Control Statements)</strong>을 학습합니다. Chapter 11에서 배운 형 변환과 함께 제어문을 활용하면 프로그램의 흐름을 더 정교하게 제어할 수 있습니다.</p>
+
+</body>
+</html>

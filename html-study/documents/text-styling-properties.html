@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 텍스트 꾸밈 속성 정리</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+      background: #f9f9f9;
+      line-height: 1.6;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    table {
+      width: 95%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    th {
+      background: #34495e;
+      color: white;
+    }
+    caption {
+      font-weight: bold;
+      margin: 10px;
+      font-size: 1.2em;
+      color: #2c3e50;
+    }
+    code {
+      background: #eee;
+      padding: 2px 4px;
+      display: block;
+      text-align: left;
+    }
+    tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+    tr:hover {
+      background: #dfe6e9;
+    }
+    /* 데모용 스타일 */
+    .shadow-demo { text-shadow: 2px 2px 4px gray; font-size: 20px; }
+    .decoration-underline { text-decoration: underline; }
+    .decoration-overline { text-decoration: overline; }
+    .decoration-line-through { text-decoration: line-through; }
+    .decoration-none { text-decoration: none; }
+    .transform-uppercase { text-transform: uppercase; }
+    .transform-lowercase { text-transform: lowercase; }
+    .transform-capitalize { text-transform: capitalize; }
+    .letter-spacing-demo { letter-spacing: 4px; }
+    .word-spacing-demo { word-spacing: 12px; }
+  </style>
+</head>
+<body>
+  <h1>CSS 텍스트 꾸밈 속성 정리</h1>
+  <p style="text-align:center;">
+    텍스트를 꾸밀 때 자주 사용하는 속성들을 <strong>설명 → 예제 코드 → 데모</strong>로 정리했습니다.
+  </p>
+
+  <table>
+    <caption>텍스트 꾸밈 속성</caption>
+    <tr>
+      <th>속성</th>
+      <th>설명</th>
+      <th>예제 코드</th>
+      <th>데모</th>
+    </tr>
+    <!-- text-shadow -->
+    <tr>
+      <td><code>text-shadow</code></td>
+      <td>텍스트에 그림자를 추가합니다. (x, y, blur, color)</td>
+      <td><code>text-shadow: 2px 2px 4px gray;</code></td>
+      <td class="shadow-demo">그림자 효과 텍스트</td>
+    </tr>
+    <!-- text-decoration 병합 -->
+    <tr>
+      <td rowspan="4"><code>text-decoration</code></td>
+      <td>밑줄 표시</td>
+      <td><code>text-decoration: underline;</code></td>
+      <td class="decoration-underline">밑줄 텍스트</td>
+    </tr>
+    <tr>
+      <td>윗줄 표시</td>
+      <td><code>text-decoration: overline;</code></td>
+      <td class="decoration-overline">윗줄 텍스트</td>
+    </tr>
+    <tr>
+      <td>취소선 표시</td>
+      <td><code>text-decoration: line-through;</code></td>
+      <td class="decoration-line-through">취소선 텍스트</td>
+    </tr>
+    <tr>
+      <td>꾸밈 제거</td>
+      <td><code>text-decoration: none;</code></td>
+      <td class="decoration-none">꾸밈 없는 텍스트</td>
+    </tr>
+    <!-- text-transform 병합 -->
+    <tr>
+      <td rowspan="3"><code>text-transform</code></td>
+      <td>대문자로 변환</td>
+      <td><code>text-transform: uppercase;</code></td>
+      <td class="transform-uppercase">uppercase demo</td>
+    </tr>
+    <tr>
+      <td>소문자로 변환</td>
+      <td><code>text-transform: lowercase;</code></td>
+      <td class="transform-lowercase">LOWERCASE DEMO</td>
+    </tr>
+    <tr>
+      <td>첫 글자 대문자</td>
+      <td><code>text-transform: capitalize;</code></td>
+      <td class="transform-capitalize">capitalize demo text</td>
+    </tr>
+    <!-- letter-spacing -->
+    <tr>
+      <td><code>letter-spacing</code></td>
+      <td>글자 간격을 조절합니다.</td>
+      <td><code>letter-spacing: 4px;</code></td>
+      <td class="letter-spacing-demo">간격 텍스트</td>
+    </tr>
+    <!-- word-spacing -->
+    <tr>
+      <td><code>word-spacing</code></td>
+      <td>단어 간격을 조절합니다.</td>
+      <td><code>word-spacing: 12px;</code></td>
+      <td class="word-spacing-demo">단어 간격 데모 텍스트</td>
+    </tr>
+  </table>
+
+</body>
+</html>

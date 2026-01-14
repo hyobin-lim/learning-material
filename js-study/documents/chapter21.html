@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 21 (심화 최종본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트의 시작 — Chapter 21 (에러 처리, 심화)</h1>
+  <p>이 문서는 자바스크립트의 <strong>에러 처리(Error Handling, 심화)</strong>를 설명합니다. 에러 처리는 프로그램 실행 중 발생하는 문제를 안전하게 다루고, 예외 상황을 제어하는 방법을 제공합니다.</p>
+
+  <h2>1. 기본 try...catch</h2>
+  <pre><code>&lt;script&gt;
+  try {
+    console.log(unknownVar); // 정의되지 않은 변수
+  } catch (error) {
+    console.log("에러 발생:", error.message);
+  }
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> "에러 발생: unknownVar is not defined"</div>
+
+  <h2>2. finally 블록</h2>
+  <pre><code>&lt;script&gt;
+  try {
+    console.log("작업 실행");
+  } catch (error) {
+    console.log("에러 발생");
+  } finally {
+    console.log("항상 실행되는 finally 블록");
+  }
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> "작업 실행", "항상 실행되는 finally 블록"</div>
+
+  <h2>3. throw로 에러 발생시키기</h2>
+  <pre><code>&lt;script&gt;
+  function divide(a, b) {
+    if (b === 0) {
+      // throw는 프로그램 흐름을 중단시키고 catch 블록으로 제어를 넘김
+      throw new Error("0으로 나눌 수 없습니다!");
+    }
+    return a / b;
+  }
+
+  try {
+    console.log(divide(10, 0));
+  } catch (error) {
+    console.log("에러 발생:", error.message);
+  }
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> "에러 발생: 0으로 나눌 수 없습니다!"</div>
+
+  <h2>4. 사용자 정의 에러 클래스</h2>
+  <pre><code>&lt;script&gt;
+  class CustomError extends Error {
+    constructor(message) {
+      super(message);
+      this.name = "CustomError"; // 에러 이름 지정
+    }
+  }
+
+  try {
+    throw new CustomError("사용자 정의 에러 발생!");
+  } catch (error) {
+    console.log(error.name, error.message);
+  }
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> "CustomError 사용자 정의 에러 발생!"</div>
+
+  <h2>5. 에러 타입별 처리</h2>
+  <pre><code>&lt;script&gt;
+  try {
+    JSON.parse("{ invalid json }");
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      console.log("문법 에러:", error.message);
+    } else {
+      console.log("기타 에러:", error.message);
+    }
+  }
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> "문법 에러: Unexpected token i in JSON..."</div>
+
+  <h2>6. 에러 다시 던지기 (rethrow)</h2>
+  <pre><code>&lt;script&gt;
+  try {
+    throw new Error("문제 발생!");
+  } catch (error) {
+    console.log("에러 처리 중...");
+    throw error; // 에러를 다시 던져 상위에서 처리 가능
+  }
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> "에러 처리 중..." 이후 상위 호출자에서 에러 처리</div>
+
+  <h2>7. JSON.parse 에러 처리 (연결 예제)</h2>
+  <pre><code>&lt;script&gt;
+  var invalid = "{name:'효빈'}"; // 잘못된 JSON
+  try {
+    JSON.parse(invalid);
+  } catch (e) {
+    console.log("JSON 파싱 에러:", e.message);
+  }
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> "JSON 파싱 에러: Unexpected token n in JSON..."</div>
+
+  <h2>8. 실습 과제</h2>
+  <ul>
+    <li>try...catch로 정의되지 않은 변수 에러 처리하기</li>
+    <li>finally 블록을 사용해 항상 실행되는 코드 작성하기</li>
+    <li>throw를 사용해 0으로 나누기 에러 발생시키기</li>
+    <li>사용자 정의 에러 클래스를 만들어보기</li>
+    <li>에러 타입별로 분기 처리하기</li>
+    <li>에러를 다시 던져 상위에서 처리하기</li>
+    <li>JSON.parse 에러를 try...catch로 처리하기</li>
+  </ul>
+
+  <h2>9. 다음 학습 안내</h2>
+  <p>Chapter 22에서는 자바스크립트의 <strong>비동기 처리(Asynchronous Programming)</strong>를 학습합니다. Chapter 21에서 배운 에러 처리와 함께 비동기 처리를 이해하면 안정적이고 효율적인 프로그램을 작성할 수 있습니다.</p>
+
+</body>
+</html>

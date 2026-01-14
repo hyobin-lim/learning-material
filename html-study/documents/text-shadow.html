@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>CSS text-shadow 속성 정리</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      line-height: 1.6;
+      background: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background: white;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background: #34495e;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+
+    .example {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .shadow1 {
+      text-shadow: 2px 2px 2px gray;
+    }
+
+    .shadow2 {
+      text-shadow: -2px -2px 4px red;
+    }
+
+    .shadow3 {
+      text-shadow: 4px 4px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .shadow4 {
+      text-shadow: 0 0 10px blue;
+    }
+
+    .shadow5 {
+      text-shadow: 2px 2px 2px black, -2px -2px 2px orange;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>CSS text-shadow 속성 정리</h1>
+  <p><code>text-shadow</code>는 텍스트에 그림자를 주어 입체감이나 강조 효과를 줄 수 있습니다.</p>
+  <p>text-shadow: offset-x offset-y blur-radius color;</p>
+  <p>offset-x: 그림자의 가로 위치 (양수 → 오른쪽, 음수 → 왼쪽)</p>
+  <p>offset-y: 그림자의 세로 위치 (양수 → 아래, 음수 → 위)</p>
+  <p>blur-radius: 그림자의 흐림 정도 (선택 사항)</p>
+  <p>color: 그림자의 색상</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>예시</th>
+        <th>설명</th>
+        <th>CSS 코드</th>
+        <th>실제 표시</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>기본 그림자</td>
+        <td>오른쪽 아래로 흐린 회색 그림자</td>
+        <td><code>text-shadow: 2px 2px 2px gray;</code></td>
+        <td><span class="example shadow1">Text Shadow</span></td>
+      </tr>
+      <tr>
+        <td>반대 방향 그림자</td>
+        <td>왼쪽 위로 붉은 그림자</td>
+        <td><code>text-shadow: -2px -2px 4px red;</code></td>
+        <td><span class="example shadow2">Text Shadow</span></td>
+      </tr>
+      <tr>
+        <td>투명 그림자</td>
+        <td>반투명 검정 그림자</td>
+        <td><code>text-shadow: 4px 4px 6px rgba(0,0,0,0.5);</code></td>
+        <td><span class="example shadow3">Text Shadow</span></td>
+      </tr>
+      <tr>
+        <td>광채 효과</td>
+        <td>파란색 빛나는 효과</td>
+        <td><code>text-shadow: 0 0 10px blue;</code></td>
+        <td><span class="example shadow4">Text Shadow</span></td>
+      </tr>
+      <tr>
+        <td>다중 그림자</td>
+        <td>검정과 주황 그림자를 동시에 적용</td>
+        <td><code>text-shadow: 2px 2px 2px black, -2px -2px 2px orange;</code></td>
+        <td><span class="example shadow5">Text Shadow</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><b>정리:</b> <code>text-shadow</code>는 위치, 흐림 정도, 색상을 조합해 다양한 그림자 효과를 줄 수 있으며, 여러 개의 그림자를 동시에 적용할 수도 있습니다.</p>
+</body>
+
+</html>

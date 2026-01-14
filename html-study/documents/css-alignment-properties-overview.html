@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 정렬 속성 정리</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; }
+    h1 { color: #333; }
+    pre { background: #f4f4f4; padding: 10px; border: 1px solid #ccc; }
+    .demo-box { border: 1px solid #222; padding: 10px; margin: 10px 0; }
+    .flex-demo { display: flex; height: 100px; border: 1px solid #666; }
+    .flex-item { width: 40px; height: 40px; background: tomato; margin: 5px; text-align:center; line-height:40px; color:#fff; }
+    table { border-collapse: collapse; margin-top: 20px; width: 100%; }
+    th, td { border: 1px solid #666; padding: 8px; text-align: center; vertical-align: middle; }
+    th { background: #ddd; }
+  </style>
+</head>
+<body>
+  <h1>CSS 정렬 속성 정리</h1>
+
+  <table>
+    <tr>
+      <th>설명</th>
+      <th>예제</th>
+      <th>데모</th>
+      <th>비고</th>
+    </tr>
+    <tr>
+      <td>텍스트를 좌/우/가운데/양쪽 맞춤으로 정렬</td>
+      <td><pre>.text-center { text-align: center; }</pre></td>
+      <td>
+        <div class="demo-box" style="text-align:center;">
+          가운데 정렬된 텍스트
+        </div>
+      </td>
+      <td>left, right, center, justify</td>
+    </tr>
+    <tr>
+      <td>인라인 요소나 테이블 셀 안에서 세로 정렬</td>
+      <td><pre>td { vertical-align: middle; }</pre></td>
+      <td>
+        <table style="height:60px; width:100px; border:1px solid #000;">
+          <tr><td style="vertical-align:middle;">세로 중앙</td></tr>
+        </table>
+      </td>
+      <td>top, middle, bottom 등</td>
+    </tr>
+    <tr>
+      <td>플렉스 컨테이너에서 교차축 정렬</td>
+      <td><pre>.flex { display:flex; align-items:center; }</pre></td>
+      <td>
+        <div class="flex-demo" style="align-items:center;">
+          <div class="flex-item">A</div>
+          <div class="flex-item">B</div>
+        </div>
+      </td>
+      <td>stretch, center, flex-start, flex-end</td>
+    </tr>
+    <tr>
+      <td>플렉스 컨테이너에서 여러 줄을 교차축으로 정렬</td>
+      <td><pre>.flex { display:flex; flex-wrap:wrap; align-content:center; }</pre></td>
+      <td>
+        <div class="flex-demo" style="flex-wrap:wrap; align-content:center; height:120px;">
+          <div class="flex-item">A</div>
+          <div class="flex-item">B</div>
+          <div class="flex-item">C</div>
+          <div class="flex-item">D</div>
+        </div>
+      </td>
+      <td>space-between, space-around 등</td>
+    </tr>
+    <tr>
+      <td>개별 아이템의 교차축 정렬</td>
+      <td><pre>.item { align-self:flex-end; }</pre></td>
+      <td>
+        <div class="flex-demo" style="align-items:flex-start;">
+          <div class="flex-item" style="align-self:flex-end;">A</div>
+          <div class="flex-item">B</div>
+        </div>
+      </td>
+      <td>align-items 값을 덮어씀</td>
+    </tr>
+    <tr>
+      <td>플렉스 컨테이너에서 주축 정렬</td>
+      <td><pre>.flex { display:flex; justify-content:center; }</pre></td>
+      <td>
+        <div class="flex-demo" style="justify-content:center;">
+          <div class="flex-item">A</div>
+          <div class="flex-item">B</div>
+        </div>
+      </td>
+      <td>flex-start, center, flex-end, space-between, space-around</td>
+    </tr>
+    <tr>
+      <td>그리드 컨테이너에서 아이템 주축 정렬</td>
+      <td><pre>.grid { display:grid; justify-items:center; }</pre></td>
+      <td>
+        <div style="display:grid; grid-template-columns:repeat(2,50px); justify-items:center; border:1px solid #000; width:120px;">
+          <div style="background:lightgreen;">A</div>
+          <div style="background:lightgreen;">B</div>
+        </div>
+      </td>
+      <td>start, end, center, stretch</td>
+    </tr>
+    <tr>
+      <td>그리드 아이템 개별 주축 정렬</td>
+      <td><pre>.item { justify-self:end; }</pre></td>
+      <td>
+        <div style="display:grid; grid-template-columns:repeat(2,50px); border:1px solid #000; width:120px;">
+          <div style="background:lightcoral; justify-self:end;">A</div>
+          <div style="background:lightcoral;">B</div>
+        </div>
+      </td>
+      <td>justify-items 값을 덮어씀</td>
+    </tr>
+  </table>
+</body>
+</html>

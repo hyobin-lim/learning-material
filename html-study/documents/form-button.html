@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Form 섹션 5 - 버튼</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.65; }
+    h1 { margin-bottom: 8px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    th, td { border: 1px solid #ccc; padding: 12px; vertical-align: top; text-align: left; }
+    th { background: #f2f2f2; }
+    pre { background: #f9f9f9; display: block; padding: 8px; border: 1px solid #ddd; white-space: pre-wrap; }
+    .tip { background:#eef9ff; border:1px solid #a6d8ff; padding:10px; margin-top:16px; }
+  </style>
+</head>
+<body>
+  <h1>Form 섹션 5 - 버튼</h1>
+
+  <h2>전체 설명</h2>
+  <p>
+    버튼(Button, 버튼)은 폼에서 동작을 실행하는 요소입니다.<br>
+    기본적으로 <code>type="submit"</code> (제출 버튼), <code>type="reset"</code> (초기화 버튼), <code>type="button"</code> (일반 버튼)으로 구분됩니다.<br>
+    버튼은 폼 안팎에서 사용할 수 있으며, <code>form</code> (폼 연결) 속성으로 특정 폼에 연결할 수 있습니다.<br>
+    또한 <code>formaction</code> (제출 경로), <code>formmethod</code> (제출 방식), <code>formenctype</code> (인코딩 타입) 같은 속성으로 버튼별 제출 동작을 <strong>오버라이드(override)</strong>할 수 있습니다.
+  </p>
+
+  <h2>상세 설명</h2>
+  <p>
+    제출 버튼은 폼 데이터를 서버로 전송하고, 초기화 버튼은 입력값을 모두 지웁니다.<br>
+    일반 버튼은 자바스크립트 등 원하는 동작을 실행할 때 사용합니다.<br>
+    버튼이 폼 바깥에 있어도 <code>form</code> 속성으로 특정 폼에 연결할 수 있습니다.<br>
+    버튼마다 <code>formaction</code> (제출 경로), <code>formmethod</code> (제출 방식), <code>formenctype</code> (인코딩 타입)을 지정해 기본 폼 설정을 <strong>오버라이드(override)</strong>할 수 있습니다.
+  </p>
+
+  <div class="tip">
+    <strong>오버라이드(override)란?</strong><br>
+    원래 <code>&lt;form&gt;</code> 태그에 지정된 기본 설정을 버튼 단위에서 <em>덮어써서</em> 새로운 동작을 적용하는 것을 말합니다.<br>
+    예를 들어, 폼의 기본 제출 주소가 <code>/default</code>여도 특정 버튼에 <code>formaction="/alt"</code>를 주면 그 버튼은 <code>/alt</code>로 제출됩니다.
+  </div>
+
+  <h2>버튼 종류별 정리</h2>
+  <table>
+    <tr><th>종류</th><th>관련 속성</th><th>설명</th><th>예제 코드</th><th>데모</th></tr>
+    <tr>
+      <td>submit (제출 버튼)</td>
+      <td>type="submit"</td>
+      <td>폼 데이터를 서버로 제출</td>
+      <td><pre>&lt;button type="submit"&gt;제출&lt;/button&gt;</pre></td>
+      <td><button type="submit">제출</button></td>
+    </tr>
+    <tr>
+      <td>reset (초기화 버튼)</td>
+      <td>type="reset"</td>
+      <td>폼 입력값을 초기화</td>
+      <td><pre>&lt;button type="reset"&gt;초기화&lt;/button&gt;</pre></td>
+      <td><button type="reset">초기화</button></td>
+    </tr>
+    <tr>
+      <td>button (일반 버튼)</td>
+      <td>type="button"</td>
+      <td>자바스크립트 등 일반 동작 실행</td>
+      <td><pre>&lt;button type="button" onclick="alert('클릭!')"&gt;일반 버튼&lt;/button&gt;</pre></td>
+      <td><button type="button" onclick="alert('클릭!')">일반 버튼</button></td>
+    </tr>
+    <tr>
+      <td>외부 폼 연결 버튼</td>
+      <td>form (폼 연결)</td>
+      <td>폼 외부에서 특정 폼에 연결</td>
+      <td><pre>&lt;form id="signup"&gt;&lt;input placeholder="이름"&gt;&lt;/form&gt;
+&lt;button type="submit" form="signup"&gt;외부 제출&lt;/button&gt;</pre></td>
+      <td>
+        <form id="signup"><input placeholder="이름"></form>
+        <button type="submit" form="signup">외부 제출</button>
+      </td>
+    </tr>
+    <tr>
+      <td>버튼별 제출 설정</td>
+      <td>
+        formaction (제출 경로)<br>
+        formmethod (제출 방식)<br>
+        formenctype (인코딩 타입)
+      </td>
+      <td>
+        버튼마다 제출 경로/방식/인코딩을 <strong>오버라이드(override)</strong> 가능<br><br>
+        • <strong>formaction (제출 경로)</strong>: 데이터를 제출할 URL 지정<br>
+        • <strong>formmethod (제출 방식)</strong>: GET/POST 방식 지정<br>
+        • <strong>formenctype (인코딩 타입)</strong>: 데이터 인코딩 형식 지정 (파일 업로드 시 multipart/form-data)
+      </td>
+      <td><pre>&lt;button type="submit" formaction="/alt" formmethod="post"&gt;다른 경로&lt;/button&gt;
+&lt;button type="submit" formenctype="multipart/form-data"&gt;파일 제출&lt;/button&gt;</pre></td>
+      <td>
+        <button type="submit" formaction="/alt" formmethod="post">다른 경로</button>
+        <button type="submit" formenctype="multipart/form-data">파일 제출</button>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

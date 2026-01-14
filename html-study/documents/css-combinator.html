@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS 결합자(Combinator) 정리</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 24px; line-height: 1.6; }
+    table { border-collapse: collapse; width: 100%; max-width: 960px; margin-bottom: 32px; }
+    th, td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
+    th { background: #f5f7fb; font-weight: 600; }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    h1 { margin-bottom: 16px; }
+    h2 { margin-top: 32px; }
+    code { background: #f3f3f3; padding: 2px 6px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>CSS 결합자(Combinator) 정리</h1>
+  <p>CSS에서 결합자는 요소 간의 관계를 정의하여 스타일을 적용할 대상을 더 구체적으로 지정합니다. 
+     결합자 자체는 <strong>특이성 점수(Specificity)</strong>를 높이지 않지만, 선택자를 더 구체적으로 만들어 
+     캐스캐이딩에서 우선 적용될 수 있습니다.</p>
+
+  <h2>결합자 종류와 예시</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>결합자</th>
+        <th>이름</th>
+        <th>설명</th>
+        <th>예시</th>
+        <th>적용 대상</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>공백 ( )</code></td>
+        <td>자손 선택자</td>
+        <td>앞 요소의 모든 하위(자손) 요소 선택</td>
+        <td><code>div p { color: blue; }</code></td>
+        <td>&lt;div&gt; 안의 모든 &lt;p&gt;</td>
+      </tr>
+      <tr>
+        <td><code>&gt;</code></td>
+        <td>자식 선택자</td>
+        <td>앞 요소의 <strong>직계 자식</strong>만 선택</td>
+        <td><code>ul &gt; li { color: red; }</code></td>
+        <td>&lt;ul&gt; 바로 아래의 &lt;li&gt;</td>
+      </tr>
+      <tr>
+        <td><code>+</code></td>
+        <td>인접 형제 선택자</td>
+        <td>앞 요소 바로 뒤에 오는 형제 요소 선택</td>
+        <td><code>h1 + p { color: green; }</code></td>
+        <td>&lt;h1&gt; 바로 뒤의 &lt;p&gt;</td>
+      </tr>
+      <tr>
+        <td><code>~</code></td>
+        <td>일반 형제 선택자</td>
+        <td>앞 요소 뒤에 오는 모든 형제 요소 선택</td>
+        <td><code>h1 ~ p { color: orange; }</code></td>
+        <td>&lt;h1&gt; 뒤에 오는 모든 &lt;p&gt;</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>우선순위 설명</h2>
+  <ul>
+    <li>결합자 자체는 <strong>특이성 점수</strong>를 올리지 않습니다.</li>
+    <li>하지만 결합자를 사용하면 선택자가 더 구체적이 되어, 단순한 태그 선택자보다 우선 적용됩니다.</li>
+    <li>예: <code>div p</code> (자손 선택자) vs <code>p</code> (태그 선택자) → 둘 다 특이성 점수는 같지만, 
+        <code>div p</code>가 더 구체적이므로 캐스캐이딩에서 우선 적용됩니다.</li>
+  </ul>
+
+  <h2>정리</h2>
+  <ul>
+    <li><code>공백</code>: 모든 하위 요소</li>
+    <li><code>&gt;</code>: 직계 자식만</li>
+    <li><code>+</code>: 바로 뒤의 형제 하나</li>
+    <li><code>~</code>: 뒤에 오는 모든 형제</li>
+    <li>→ 결합자는 선택 범위를 좁혀주며, 캐스캐이딩에서 더 구체적인 규칙으로 인정됩니다.</li>
+  </ul>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 13 (DOM, 최종본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1 id="dom">자바스크립트의 시작 — Chapter 21 (DOM)</h1>
+  <p>이 문서는 자바스크립트의 <strong>DOM(Document Object Model)</strong>을 설명합니다. DOM은 HTML 문서를 객체로 표현하여 자바스크립트로 제어할 수 있게 합니다.</p>
+
+  <h2>1. 요소 선택</h2>
+  <pre><code>&lt;div id="greeting"&gt;Hello&lt;/div&gt;
+&lt;script&gt;
+  const el1 = document.getElementById("greeting");
+  const el2 = document.querySelector("#greeting");
+  console.log(el1.textContent, el2.textContent);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 결과 화면 예시: "Hello Hello"</div>
+
+  <h2>2. 요소 내용 수정</h2>
+  <pre><code>&lt;div id="greeting"&gt;Hello&lt;/div&gt;
+&lt;script&gt;
+  const el = document.getElementById("greeting");
+  el.textContent = "안녕하세요!";
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 결과 화면 예시: "안녕하세요!"</div>
+
+  <h2>3. 속성 제어</h2>
+  <pre><code>&lt;img id="photo" src="old.png"&gt;
+&lt;script&gt;
+  const img = document.getElementById("photo");
+  img.setAttribute("src", "new.png");
+  img.setAttribute("alt", "새 이미지");
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 결과 화면 예시: 이미지가 new.png로 변경</div>
+
+  <h2>4. 스타일 제어</h2>
+  <pre><code>&lt;div id="box"&gt;박스&lt;/div&gt;
+&lt;script&gt;
+  const box = document.getElementById("box");
+  box.style.backgroundColor = "yellow";
+  box.style.fontWeight = "bold";
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 결과 화면 예시: 노란색 배경 + 굵은 글씨</div>
+
+  <h2>5. 새로운 요소 추가</h2>
+  <pre><code>&lt;ul id="list"&gt;&lt;/ul&gt;
+&lt;script&gt;
+  const list = document.getElementById("list");
+  const item = document.createElement("li");
+  item.textContent = "새 항목";
+  list.appendChild(item);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 결과 화면 예시: 리스트에 "새 항목" 추가</div>
+
+  <h2>6. 요소 삭제/교체</h2>
+  <pre><code>&lt;ul id="list"&gt;
+  &lt;li&gt;첫 번째&lt;/li&gt;
+  &lt;li&gt;두 번째&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script&gt;
+  const list = document.getElementById("list");
+  const first = list.firstElementChild;
+  list.removeChild(first); // 첫 번째 삭제
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 결과 화면 예시: "두 번째"만 남음</div>
+
+  <h2>7. DOM 탐색</h2>
+  <pre><code>&lt;ul id="list"&gt;
+  &lt;li&gt;A&lt;/li&gt;
+  &lt;li&gt;B&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script&gt;
+  const list = document.getElementById("list");
+  console.log(list.children[0].textContent); // A
+  console.log(list.children[1].textContent); // B
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 결과 화면 예시: 콘솔에 "A", "B" 출력</div>
+
+  <h2>8. 실습 과제</h2>
+  <ul>
+    <li>querySelector로 요소 선택하기</li>
+    <li>setAttribute로 이미지 교체하기</li>
+    <li>style 속성으로 배경색 변경하기</li>
+    <li>appendChild로 리스트 항목 추가하기</li>
+    <li>removeChild로 특정 항목 삭제하기</li>
+    <li>children 속성으로 모든 리스트 항목 출력하기</li>
+  </ul>
+
+  <h2>9. 다음 학습 안내</h2>
+  <p>Chapter 14에서는 자바스크립트의 <strong>Events</strong>를 학습합니다. DOM과 함께 이벤트를 이해하면 사용자와 상호작용하는 웹 페이지를 만들 수 있습니다.</p>
+</body>
+</html>

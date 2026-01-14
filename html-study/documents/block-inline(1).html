@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>블록 레벨 & 인라인 레벨 태그 정리</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      margin: 24px;
+      line-height: 1.6;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 960px;
+      margin-bottom: 32px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    th {
+      background: #f5f7fb;
+      font-weight: 600;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fafafa;
+    }
+
+    h1 {
+      margin-bottom: 16px;
+    }
+
+    h2 {
+      margin-top: 32px;
+    }
+
+    code {
+      background: #f3f3f3;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .category {
+      background: #e9ecef;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>블록 레벨 & 인라인 레벨 태그 정리</h1>
+  <h2>블록과 인라인 사용 시 주의할 점</h2>
+  <ul>
+    <li>인라인 요소는 줄 안에서 배치되므로, <strong>width/height 및 상하 margin을 직접 지정하는데 제약</strong>이 있을 수 있습니다. — 크기 지정이 필요하면 display:inline-block 또는 display:block 사용합니다.</li>
+    <li>블록 레벨 요소는 다른 블록 요소와 인라인 요소를 포함할 수 있습니다.</li>
+    <li><strong>&lt;a&gt; 태그</strong>를 예외적으로 제외한 나머지 인라인 요소는 블록 요소를 포함할 수 없습니다. 인라인 내부에는 주로 문장(phrasing) 요소만 넣습니다.</li>
+    <li>br은 인라인 요소 이므로 <strong>&lt;br&gt;&lt;ul&gt;</strong>과 같이 바로 뒤 자식요소로 블록 요소가 오면 안됨</li>
+    <li><strong>&lt;li&gt;&lt;br&gt;</strong>은 가능 하지만 li는 블록 요소로 줄이 기본적으로 바뀌므로 br을 넣는 의미가 없음</li>
+    <li>이미지(&lt;img&gt;)에는 항상 alt 속성을 넣어 접근성 확보.</li>
+    <li>블록 요소는 기본적으로 줄바꿈이 발생하므로, <strong>불필요하게 중첩하거나 남용하지 않도록 주의</strong>합니다.</li>
+    <li>클릭 가능한 요소는 가능한 &lt;a&gt;나 &lt;button&gt; 사용. &lt;div&gt;에 onclick만 쓰면 키보드 접근성/역할 정보 부족 — role/tabindex 추가 필요.</li>
+    <li> <strong>&lt;a&gt;나 &lt;button&gt;</strong> 은 둘다 클릭을 요하는 블록 요소 이므로 같이 사용하면 안된다. </li>
+    <li>인라인 요소는 레이아웃을 나누는 용도로 사용하지 말고, <strong>텍스트나 콘텐츠 일부를 꾸미는 용도로만 사용</strong>해야 합니다.
+    <li>레이아웃 목적에는 시맨틱 태그(<code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;nav&gt;</code> 등)를 우선 사용하여 적절히 활용하면 구조와 의미를 명확히 할 수 있습니다. div는 보조 용도로 사용합니다.</li>
+    <li>CSS로 블록/인라인 성격을 변경할 수 있지만, <strong>본래의 의미와 용도를 고려하여 사용</strong>하는 것이 바람직합니다.</li>
+    </ul>
+
+  <h2>마크업 규칙</h2>
+
+
+  <h2>쉬운 이해</h2>
+  <ul>
+    <li><strong>블록 태그 :</strong> 넓은 상자처럼 공간을 독점. 다음 요소는 아래에 배치됨.</li>
+    <li><strong>인라인 태그 :</strong>문장이나 텍스트 흐름 안에서 특정 부분을 꾸미거나 기능을 추가할 때 사용합니다. 옆에 다른 요소 배치 가능.</li>
+    <li>즉, 큰 틀은 블록 요소로 잡고, 세부적인 꾸밈이나 기능은 인라인 요소로 처리하는 것이 일반적인 패턴입니다.</li>
+  </ul>
+
+
+  <h2>하위 블록 포함 가능 태그</h2>
+  <p>HTML 블록 레벨 요소와 인라인 요소 중 일부는 내부에 다른 블록 레벨 요소를 포함할 수 있습니다.
+    대표적인 태그들을 아래 표로 정리했습니다.</p>
+
+  <h3>블록 레벨 태그 (하위 블록 포함 가능)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>태그</th>
+        <th>설명</th>
+        <th>하위 블록 요소 포함 가능 여부</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>&lt;div&gt;</code></td>
+        <td>일반적인 컨테이너</td>
+        <td>가능</td>
+      </tr>
+      <tr>
+        <td><code>&lt;section&gt;</code></td>
+        <td>문서의 구획을 나타냄</td>
+        <td>가능</td>
+      </tr>
+      <tr>
+        <td><code>&lt;article&gt;</code></td>
+        <td>독립적인 콘텐츠 단위</td>
+        <td>가능</td>
+      </tr>
+      <tr>
+        <td><code>&lt;aside&gt;</code></td>
+        <td>보조 콘텐츠 영역</td>
+        <td>가능</td>
+      </tr>
+      <tr>
+        <td><code>&lt;header&gt;</code></td>
+        <td>머리말 영역</td>
+        <td>가능</td>
+      </tr>
+      <tr>
+        <td><code>&lt;footer&gt;</code></td>
+        <td>꼬리말 영역</td>
+        <td>가능</td>
+      </tr>
+      <tr>
+        <td><code>&lt;nav&gt;</code></td>
+        <td>내비게이션 영역</td>
+        <td>가능</td>
+      </tr>
+      <tr>
+        <td><code>&lt;form&gt;</code></td>
+        <td>사용자 입력을 받는 폼</td>
+        <td>가능</td>
+      </tr>
+      <tr>
+        <td><code>&lt;fieldset&gt;</code></td>
+        <td>폼 요소 그룹화</td>
+        <td>가능</td>
+      </tr>
+      <tr>
+        <td><code>&lt;li&gt;</code></td>
+        <td>목록 항목</td>
+        <td>가능 (중첩 목록 포함 가능)</td>
+      </tr>
+      <tr>
+        <td><code>&lt;td&gt;</code>, <code>&lt;th&gt;</code></td>
+        <td>테이블 셀</td>
+        <td>가능 (셀 안에 블록 요소 포함 가능)</td>
+      </tr>
+      <tr>
+        <td><code>&lt;body&gt;</code></td>
+        <td>문서 본문</td>
+        <td>가능</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>인라인 태그 (하위 블록 포함 가능)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>태그</th>
+        <th>설명</th>
+        <th>하위 블록 요소 포함 가능 여부</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>&lt;a&gt;</code></td>
+        <td>하이퍼링크(anchor). HTML5부터 블록 요소 포함 가능</td>
+        <td>가능</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>

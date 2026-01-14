@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 09 (업데이트 최종본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트의 시작 — Chapter 09</h1>
+  <p>이 문서는 자바스크립트의 불(Boolean)을 설명합니다. 불 값은 <strong>true</strong>와 <strong>false</strong> 두 가지 값만 가지며, 조건문과 논리 연산에서 핵심적으로 사용됩니다.</p>
+
+  <h2>1. 불 값 생성</h2>
+  <pre><code>&lt;script&gt;
+  var isActive = true;
+  var isFinished = false;
+
+  console.log(isActive);
+  console.log(isFinished);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "true", "false"가 출력됩니다.</div>
+
+  <h2>2. 비교 연산자</h2>
+  <pre><code>&lt;script&gt;
+  var a = 10;
+  var b = 20;
+
+  console.log(a > b);    // false
+  console.log(a < b);    // true
+  console.log(a == "10");  // 값만 비교 → true
+  console.log(a === "10"); // 값과 자료형 모두 비교 → false
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "false", "true", "true", "false"가 출력됩니다.</div>
+
+  <h2>3. 논리 연산자</h2>
+  <pre><code>&lt;script&gt;
+  var x = true;
+  var y = false;
+
+  console.log(x && y); // AND → false
+  console.log(x || y); // OR → true
+  console.log(!x);     // NOT → false
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "false", "true", "false"가 출력됩니다.</div>
+
+  <h2>4. 불과 조건문</h2>
+  <pre><code>&lt;script&gt;
+  var isLoggedIn = true;
+
+  if (isLoggedIn) {
+    console.log("로그인 성공!");
+  } else {
+    console.log("로그인이 필요합니다.");
+  }
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "로그인 성공!"이 출력됩니다.</div>
+
+  <h2>5. Truthy와 Falsy</h2>
+  <pre><code>&lt;script&gt;
+  console.log(Boolean(1));    // true
+  console.log(Boolean(0));    // false
+  console.log(Boolean(""));   // false
+  console.log(Boolean("hi")); // true
+  console.log(Boolean(null)); // false
+  console.log(Boolean(undefined)); // false
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "true", "false", "false", "true", "false", "false"가 출력됩니다.</div>
+
+  <h2>6. 불 값 변환 (!! 연산자)</h2>
+  <pre><code>&lt;script&gt;
+  var value = "Hello";
+  console.log(!!value); // true (Truthy 값)
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 콘솔에 "true"가 출력됩니다.</div>
+
+  <h2>7. 단축 평가 (Short-circuit)</h2>
+  <pre><code>&lt;script&gt;
+  var name = "";
+  console.log(name || "손님"); // name이 비어있으면 "손님" 출력
+
+  var isReady = true;
+  isReady && console.log("준비 완료!"); // true일 때만 실행
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 콘솔에 "손님", "준비 완료!"가 출력됩니다.</div>
+
+  <h2>8. 실습 과제</h2>
+  <ul>
+    <li>true와 false 값을 각각 출력해보기</li>
+    <li>비교 연산자를 사용해 두 숫자를 비교하기</li>
+    <li>논리 연산자 AND, OR, NOT을 활용해 결과 확인하기</li>
+    <li>조건문에서 불 값을 사용해 로그인 여부 출력하기</li>
+    <li>Boolean() 함수를 사용해 Truthy/Falsy 값 확인하기</li>
+    <li>문자열과 숫자를 비교해 ==와 ===의 차이를 확인하기</li>
+    <li>!! 연산자를 사용해 값의 Truthy/Falsy 판별하기</li>
+    <li>단축 평가(||, &&)를 활용해 기본값 설정 및 조건 실행하기</li>
+  </ul>
+
+  <h2>9. 다음 학습 안내</h2>
+  <p>Chapter 10에서는 자바스크립트의 <strong>null과 undefined</strong>를 학습합니다. Chapter 09에서 배운 불 값과 결합해 데이터의 존재 여부를 더 정확히 다룰 수 있게 됩니다.</p>
+
+</body>
+</html>

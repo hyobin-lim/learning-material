@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS 박스(box) 요소 정리: width, height, padding, margin</title>
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --border: #d5d9e2;
+      --text: #2c3e50;
+      --muted: #6b778c;
+      --accent: #2d8cff;
+      --demo-bg: #eef4ff;
+      --code-bg: #fbfbfc;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      margin: 0;
+      padding: 24px;
+    }
+
+    h1 {
+      margin: 0 0 16px;
+    }
+
+    p.lead {
+      color: var(--muted);
+      margin: 8px 0 24px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    th,
+    td {
+      border: 1px solid var(--border);
+      padding: 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #f0f3f8;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      /* 긴 줄 자동 줄바꿈 */
+      word-break: break-word;
+      /* 단어 단위로 줄바꿈 */
+    }
+
+    .section {
+      margin: 28px 0;
+    }
+
+    .demo {
+      background: var(--demo-bg);
+      border: 1px dashed var(--accent);
+      padding: 12px;
+      margin-top: 8px;
+    }
+
+    .box {
+      background: #fff;
+      border: 2px solid #2d8cff;
+      padding: 12px;
+      margin: 8px;
+    }
+
+    .inline {
+      display: inline;
+    }
+
+    .inline-block {
+      display: inline-block;
+    }
+
+    .block {
+      display: block;
+    }
+
+    .w100 {
+      width: 100px;
+    }
+
+    .h60 {
+      height: 60px;
+    }
+
+    .pad16 {
+      padding: 16px;
+    }
+
+    .mar16 {
+      margin: 16px;
+    }
+
+    .content-box {
+      box-sizing: content-box;
+    }
+
+    .border-box {
+      box-sizing: border-box;
+    }
+
+    .gray {
+      background: #f4f6fa;
+      border: 1px solid var(--border);
+    }
+
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border);
+      padding: 12px;
+      overflow-x: auto;
+      margin: 8px 0 0;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .cap {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      color: #fff;
+      background: var(--accent);
+      border-radius: 4px;
+      padding: 2px 6px;
+      margin-left: 6px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>CSS 박스(box) 요소 핵심 정리</h1>
+  <p>
+    모든 HTML 요소는 브라우저에서 하나의 박스(Box)로 표현됩니다. <br>
+    이 박스는
+    <strong>콘텐츠(content)</strong>, <strong>패딩(padding)</strong>, <strong>테두리(border)</strong>,
+    <strong>마진(margin)</strong> 네 가지 영역으로 구성되며,
+    <br>이를 합쳐서
+    <strong>CSS 박스 모델(Box Model)</strong>이라고 부릅니다.
+  </p>
+  <p>
+    CSS 박스 모델은 <strong>웹 레이아웃의 뼈대</strong>입니다.
+  <ul>
+    <li>width/height로 크기를 정하고,</li>
+    <li>padding으로 안쪽 여백을 확보하며,</li>
+    <li>margin으로 바깥 간격을 조절하고,</li>
+    <li>box-sizing으로 크기 계산 방식을 통제합니다.</li>
+  </ul>
+  이 네 가지를 이해하면 요소의 크기와 간격을 정확히 제어할 수 있고, 레이아웃을 안정적으로 설계할 수 있습니다.
+  </ul>
+  </p>
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>속성</th>
+        <th>설명</th>
+        <th>예제 코드</th>
+        <th>데모</th>
+        <th>비고</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>width</td>
+        <td>
+          <ul>
+            <li>박스의 가로 크기입니다.</li>
+            <li>기본값은 auto로, 부모 컨테이너나 콘텐츠 영역에 따라 달라집니다.(블록)</li>
+            <li>인라인 요소에는 width가 적용되지 않고, 블록이나 인라인-블록 요소에서만 의미가 있습니다.</li>
+          </ul>
+        </td>
+        <td>
+          <pre><code>.block { display: block; width: 200px; }
+.inline-block { display: inline-block; width: 200px; }
+.inline { display: inline; width: 200px; /* 효과 없음 */ }</code></pre>
+        </td>
+        <td>
+          <div class="demo">
+            <div class="box block" style="width:200px;">블록: width 200px</div>
+            <span class="box inline" style="width:200px;">인라인: width 적용되지 않음</span>
+            <span class="box inline-block" style="width:200px;">인라인-블록: width 200px</span>
+          </div>
+          <div class="cap">인라인은 내용 길이에 따라 너비가 결정되고 width는 무시됨.</div>
+        </td>
+        <td>블록은 가로 전체를 차지하지만 width 지정 시 그만큼만 사용.</td>
+      </tr>
+
+      <tr>
+        <td>height</td>
+        <td>
+          <ul>
+            <li>박스의 세로 크기입니다.</li>
+            <li>기본값은 auto로, 부모 컨테이너나 콘텐츠 높이에 따라 달라집니다.</li>
+            <li>인라인 요소에는 height가 적용되지 않고(라인 높이로 표시), 블록이나 인라인-블록 요소에서만 의미가 있습니다.</li>
+          </ul>
+        </td>
+        <td>
+          <pre><code>.block { height: 80px; }
+.inline-block { display: inline-block; height: 80px; }
+.inline { display: inline; height: 80px; /* 효과 제한적 */ }</code></pre>
+        </td>
+        <td>
+          <div class="demo">
+            <div class="box block" style="height:80px;">블록: height 80px</div>
+            <span class="box inline" style="height:80px;">인라인: height 영향 작음</span>
+            <span class="box inline-block" style="height:80px;">인라인-블록: height 80px</span>
+          </div>
+          <div class="cap">인라인 요소는 height 대신 line-height 영향이 큼.</div>
+        </td>
+        <td>이미지 등 일부 인라인-대체 요소는 height 적용.</td>
+      </tr>
+      <tr>
+        <td>padding</td>
+        <td>
+          <ul>
+            <li>콘텐츠와 테두리 사이의 안쪽 여백입니다.</li>
+            <li>배경색과 배경 이미지는 패딩 영역까지 채워집니다.</li>
+            <li>box-sizing 설정에 따라 총 크기 계산 방식이 달라집니다.</li>
+          </ul>
+        </td>
+        <td>
+          <pre><code>.content-box { box-sizing: content-box; width: 200px; padding: 20px; }
+.border-box { box-sizing: border-box; width: 200px; padding: 20px; }</code></pre>
+        </td>
+        <td>
+          <div class="demo row">
+            <div class="box content-box" style="width:200px; padding:20px;">content-box (총 너비 240px)</div>
+            <div class="box border-box" style="width:200px; padding:20px;">border-box (총 너비 200px)</div>
+          </div>
+          <div class="cap">content-box: width + padding + border. border-box: width 안에 padding/border 포함.</div>
+        </td>
+        <td>텍스트 가독성 향상에 필수. 레이아웃 계산 주의.</td>
+      </tr>
+
+      <tr>
+        <td>margin</td>
+        <td>
+          <ul>
+            <li>박스 바깥쪽 여백입니다.</li>
+            <li>인접한 블록 요소의 위·아래 마진은 겹쳐서 하나의 값으로 표시될 수 있습니다(마진 겹침).
+            </li>
+            <li>좌우 마진은 겹치지 않습니다.</li>
+          </ul>
+        </td>
+        <td>
+          <pre><code>.boxA { margin: 24px 0; }
+.boxB { margin: 32px 0; }
+/* 위아래 마진은 큰 값 하나로 겹침(collapse) */</code></pre>
+        </td>
+        <td>
+          <div class="demo">
+            <div class="box gray" style="margin:24px 0;">박스 A (margin-top/bottom 24px)</div>
+            <div class="box gray" style="margin:32px 0;">박스 B (margin-top/bottom 32px)</div>
+            <div class="cap">A와 B 사이 간격은 24+32가 아닌 32로 표시됨(마진 겹침).</div>
+          </div>
+        </td>
+        <td>좌/우 마진은 겹치지 않음. 인라인 마진은 좌우만 뚜렷함.</td>
+      </tr>
+      <tr>
+        <td>box-sizing</td>
+        <td>
+          <ul>
+            <li>width/height가 포함하는 영역의 기준을 결정합니다.</li>
+            <li>content-box(기본): width/height는 콘텐츠 영역만 포함합니다. → padding과 border는 별도 계산
+            </li>
+            <li>border-box: width/height 안에 padding과 border까지 포함합니다. → 레이아웃 관리가 편리
+            </li>
+          </ul>
+        </td>
+        <td>
+          <pre><code>/* 권장: 전체 문서에 border-box 적용 */
+*, *::before, *::after { box-sizing: border-box; }</code></pre>
+        </td>
+        <td>
+          <div class="demo row">
+            <div class="box content-box" style="width:160px; padding:16px; border:8px solid #2d8cff;">
+              content-box
+            </div>
+            <div class="box border-box" style="width:160px; padding:16px; border:8px solid #2d8cff;">
+              border-box
+            </div>
+          </div>
+          <div class="cap">같은 설정에서도 border-box가 총 크기 관리가 쉬움.</div>
+        </td>
+        <td>디자인 시스템에서 기본을 border-box로 통일하는 경우가 많음.</td>
+      </tr>
+
+      <tr>
+        <td>auto, min/max</td>
+        <td>
+          <ul>
+            <li>auto: 상황(문맥)에 따라 크기가 자동 결정
+            </li>
+            <li>min-width, max-width: 최소·최대 크기를 제한해 반응형 레이아웃에서 유용
+            </li>
+            <li>height: auto: 이미지나 콘텐츠 비율을 유지할 때 자주 사용
+            </li>
+          </ul>
+        </td>
+        <td>
+          <pre><code>.card { width: 100%; max-width: 640px; min-width: 280px; height: auto; }</code></pre>
+        </td>
+        <td>
+          <div class="demo">
+            <div class="box border-box" style="width:100%; max-width:640px; min-width:280px;">
+              반응형 카드: 부모 너비에 맞추되 280~640px 사이로 제한
+            </div>
+          </div>
+        </td>
+        <td>이미지 등 콘텐츠 비율 유지에 height:auto가 유용.</td>
+      </tr>
+
+      <tr>
+        <td>display에 따른 차이</td>
+        <td>
+          display 값에 따라 width/height 적용 여부가 달라짐.
+          <ul>
+            <li>block: 가로 전체를 차지, width/height 적용 가능
+            </li>
+            <li>inline: 줄 흐름을 유지, width/height 적용 제한적
+            </li>
+            <li>inline-block: 줄 흐름 유지하면서도 width/height 적용 가능 → 버튼, 배지 등에 자주 사용
+            </li>
+          </ul>
+        </td>
+        <td>
+          <pre><code>.inline { display: inline; }      /* width/height 적용 제한 */
+.inline-block { display: inline-block; } /* 적용됨 */
+.block { display: block; }        /* 적용됨 */</code></pre>
+        </td>
+        <td>
+          <div class="demo">
+            <span class="box inline" style="width:120px; height:60px;">inline</span>
+            <span class="box inline-block" style="width:120px; height:60px;">inline-block</span>
+            <div class="box block" style="width:120px; height:60px;">block</div>
+          </div>
+          <div class="cap">inline은 크기 지정이 제한적이며 줄 흐름을 유지.</div>
+        </td>
+        <td>버튼/배지 등은 inline-block이 실용적.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section">
+    <h2>추가 팁</h2>
+    <ul>
+      <li><strong>컨테이너 관리:</strong> 레이아웃 안정성을 위해 전체에 border-box를 적용하는 것이 일반적입니다.</li>
+      <li><strong>마진 겹침 회피:</strong> 부모에 padding을 주거나 overflow: auto/hidden을 설정하면 겹침을 피할 수 있습니다.</li>
+      <li><strong>패딩과 배경:</strong> 배경색/이미지는 padding 영역까지 채워집니다.</li>
+      <li><strong>반응형:</strong> 퍼센트 width + max-width 조합이 실전에서 자주 쓰입니다.</li>
+    </ul>
+  </div>
+</body>
+
+</html>

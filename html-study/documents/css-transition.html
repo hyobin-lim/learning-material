@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS transition 속성 정리</title>
+  <style>
+:root {
+  --bg: #f7f9fc;
+  --text: #2c3e50;
+  --primary: #34495e;
+  --accent: #3b82f6;
+  --code-bg: #0b1020;
+  --code-fg: #e5e7eb;
+  --border: #d1d5db;
+}
+* { box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 40px;
+  line-height: 1.65;
+}
+h1, h2 {
+  text-align: center;
+  color: var(--primary);
+  margin: 0 0 8px;
+}
+h1 { font-size: 2rem; }
+h2 { font-size: 1.35rem; }
+p.lead {
+  text-align: center;
+  margin: 0 0 24px;
+  color: #475569;
+}
+section {
+  max-width: 1000px;
+  margin: 36px auto;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 0;
+  overflow: hidden;
+  border-radius: 8px;
+}
+thead th {
+  background: var(--primary);
+  color: #fff;
+  padding: 12px;
+  text-align: center;
+  font-weight: 600;
+}
+tbody td {
+  border: 1px solid var(--border);
+  padding: 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+caption {
+  font-weight: bold;
+  margin: 10px;
+  font-size: 1.2em;
+  color: var(--primary);
+}
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  background: #eef2ff;
+  color: #1f2937;
+  padding: 0 6px;
+  border-radius: 4px;
+}
+pre {
+  background: var(--code-bg);
+  color: var(--code-fg);
+  padding: 14px 16px;
+  border-radius: 8px;
+  overflow: auto;
+  font-size: 0.92rem;
+  margin: 10px 0 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+.demo-card {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  background: #fff;
+}
+.demo-title {
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+.box {
+  width: 100px;
+  height: 100px;
+  margin: 12px auto 0;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 600;
+}
+/* 기본 개념 데모 */
+.box-basic {
+  width: 100px;
+  height: 100px;
+  margin: 20px auto;
+  background-color: #3498db; /* 진한 파란색 */
+  display: grid;
+  place-items: center;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: background-color 0.5s ease, transform 0.5s ease;
+}
+.box-basic:hover {
+  background-color: #e74c3c; /* 빨간색으로 확실히 변화 */
+  transform: scale(1.2);     /* 크기 확대 */
+}
+
+/* 서로 다른 데모 동작 */
+
+/* 1. transition-property */
+.box-property {
+  background: #3b82f6;
+  transition-property: transform;
+  transition-duration: 0.5s;
+}
+.box-property:hover {
+  transform: rotate(25deg); /* property: 회전 */
+}
+
+/* 2. transition-duration */
+.box-duration {
+  background: #22c55e;
+  transition: background-color 2s ease;
+}
+.box-duration:hover {
+  background-color: #16a34a; /* duration: 색상 변경 (느리게) */
+  transform: scale(1.3);     /* 크기 확대 */
+}
+
+/* 3. transition-timing-function */
+.box-timing {
+  background: #f97316;
+  transition: transform 1s ease-in-out;
+}
+.box-timing:hover {
+  transform: scale(1.4); /* timing-function: 확대 (ease-in-out 곡선) */
+}
+
+/* 4. transition-delay */
+.box-delay {
+  background: #a855f7;
+  transition: transform 0.5s ease 1s;
+}
+.box-delay:hover {
+  transform: translateX(100px); /* delay: 일정 시간 후 이동 */
+}
+
+/* 5. transition (축약형) */
+.box-shorthand {
+  background: #6366f1;
+  transition: all 0.8s ease-in-out 0.3s;
+}
+.box-shorthand:hover {
+  background-color: #e11d48;
+  transform: translateY(-40px) scale(1.2);
+  border-radius: 50%; /* 축약형: 색상+위치+크기+모양 동시에 변화 */
+}
+
+/* 타이밍 함수 데모 */
+.bar-wrap { height: 120px; display: grid; place-items: center; }
+.bar { width: 24px; height: 24px; background: #3b82f6; transform: translate(0,0); }
+
+/* 각각 다른 방향/효과 */
+.ease       { transition: transform 900ms ease; }
+.linear     { transition: transform 900ms linear; }
+.ease-in    { transition: transform 900ms ease-in; }
+.ease-out   { transition: transform 900ms ease-out; }
+.ease-in-out{ transition: transform 900ms ease-in-out; }
+.bar.cubic {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px; /* 사각형 모양으로 회전이 보이도록 */
+  background: linear-gradient(90deg, #3b82f6 50%, #ef4444 50%); /* 반반 색 분할 */
+  transition: transform 900ms cubic-bezier(0.68,-0.55,0.27,1.55);
+  transform: rotate(0deg); /* 초기 회전값 */
+  transform-origin: center;
+}
+
+
+/* hover 시 서로 다른 방향/효과 */
+.bar-wrap:hover .ease       { transform: translateX(220px); }   /* 오른쪽 이동 */
+.bar-wrap:hover .linear     { transform: translateY(80px); }    /* 아래쪽 이동 */
+.bar-wrap:hover .ease-in    { transform: translateX(-220px); }  /* 왼쪽 이동 */
+.bar-wrap:hover .ease-out   { transform: translateY(-80px); }   /* 위쪽 이동 */
+.bar-wrap:hover .ease-in-out{ transform: scale(1.8); }          /* 크기 확대 */
+.bar-wrap:hover .bar.cubic {
+  transform: rotate(1turn); /* 360도 회전 */
+}
+
+
+/* 종합 효과 */
+.combo {
+  width: 100px;
+  height: 100px;
+  border-radius: 14px;
+  background: #6366f1;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  margin: 12px auto 0;
+  transition: all 0.8s ease-in-out;
+}
+.combo:hover {
+  background: #4338ca;
+  transform: translateY(-40px) rotate(-15deg) scale(1.2);
+  border-radius: 50%;
+  box-shadow: 0 16px 30px rgba(99,102,241,0.4);
+}
+
+/* 참고 박스 */
+.tip {
+  background: #f1f5f9;
+  border-left: 4px solid var(--accent);
+  padding: 12px 14px;
+  border-radius: 8px;
+  color: #0f172a;
+  margin-top: 10px;
+}
+
+@media (max-width: 860px) {
+  .grid { grid-template-columns: 1fr; }
+}
+  </style>
+</head>
+<body>
+  <h1>CSS transition 속성 정리</h1>
+  <p class="lead">상태 변화(hover, focus, active 등)를 부드러운 애니메이션으로 표현하는 방법을 예제와 데모로 정리합니다.</p>
+
+  <!-- 1. 기본 개념 -->
+  <section>
+  <h2>1. transition 기본 개념</h2>
+  <p>transition은 특정 CSS 속성이 바뀔 때, 그 변화를 지정한 시간과 속도 곡선에 맞춰 자연스럽게 이어지도록 합니다.</p>
+  <pre>
+.box-basic {
+  width: 100px;
+  height: 100px;
+  background-color: #93c5fd;
+  transition: background-color 0.5s ease, transform 0.5s ease;
+}
+.box-basic:hover {
+  background-color: #e74c3c;
+  transform: scale(1.2);
+}
+  </pre>
+  <div class="box-basic">hover</div>
+  <div class="tip"><strong>Tip:</strong> hover 시 색상과 크기가 동시에 바뀌어 transition의 기본 개념을 직관적으로 확인할 수 있습니다.</div>
+</section>
+
+
+  <!-- 2. 관련 속성 설명 -->
+<section>
+  <h2>2. transition 관련 속성</h2>
+  <table>
+    <thead>
+      <tr><th>속성</th><th>설명</th><th>예시</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>transition-property</td>
+        <td>애니메이션할 CSS 속성 지정<br>
+            <em>값:</em> <code>all</code>, <code>background-color</code>, <code>transform</code>, <code>opacity</code> 등</td>
+        <td><code>transition-property: transform;</code></td>
+      </tr>
+      <tr>
+        <td>transition-duration</td>
+        <td>변화가 진행되는 시간<br>
+            <em>값:</em> 시간 단위 <code>s</code>(초), <code>ms</code>(밀리초)</td>
+        <td><code>transition-duration: 2s;</code></td>
+      </tr>
+      <tr>
+        <td>transition-timing-function</td>
+        <td>속도 곡선 지정<br>
+            <em>값:</em> <code>ease</code>, <code>linear</code>, <code>ease-in</code>, <code>ease-out</code>, <code>ease-in-out</code>, <code>cubic-bezier()</code></td>
+        <td><code>transition-timing-function: ease-in-out;</code></td>
+      </tr>
+      <tr>
+        <td>transition-delay</td>
+        <td>변화 시작 전 대기 시간<br>
+            <em>값:</em> 시간 단위 <code>s</code>, <code>ms</code></td>
+        <td><code>transition-delay: 1s;</code></td>
+      </tr>
+      <tr>
+        <td>transition (축약형)</td>
+        <td>위 속성을 한 줄에 작성<br>
+            <em>순서:</em> <code>property(속성) → duration(지속시간) → timing-function(타이밍 함수) → delay(지연시간)</code></td>
+        <td><code>transition: all 0.5s ease 0.2s;</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- 추가 설명 -->
+  <p class="tip">
+    <strong>축약형 설명:</strong> <code>transition</code>은 네 가지 속성을 순서대로 한 줄에 작성할 수 있습니다.<br>
+   예를 들어 <code>transition: all 0.5s ease 0.2s;</code> 는 모든 속성을 0.5초 동안 <code>ease</code> 곡선으로 애니메이션하고,
+    0.2초 후에 시작한다는 의미입니다.<br>
+   </p>
+</section>
+
+  <section>
+  <h2>3. 속성별 예제와 데모</h2>
+  <div class="grid">
+    <!-- transition-property -->
+    <div class="demo-card">
+      <div class="demo-title">transition-property</div>
+      <pre>
+.box-property {
+  transition-property: transform;
+  transition-duration: 0.5s;
+}
+.box-property:hover {
+  transform: rotate(25deg);
+}
+      </pre>
+      <div class="box box-property">rotate</div>
+    </div>
+
+    <!-- transition-duration -->
+    <div class="demo-card">
+      <div class="demo-title">transition-duration</div>
+      <pre>
+.box-duration {
+  transition: background-color 2s ease;
+}
+.box-duration:hover {
+  background-color: #16a34a;
+}
+      </pre>
+      <div class="box box-duration">2s color</div>
+    </div>
+
+    <!-- transition-timing-function -->
+    <div class="demo-card">
+      <div class="demo-title">transition-timing-function</div>
+      <pre>
+.box-timing {
+  transition: transform 1s ease-in-out;
+}
+.box-timing:hover {
+  transform: scale(1.4);
+}
+      </pre>
+      <div class="box box-timing">ease-in-out</div>
+    </div>
+
+    <!-- transition-delay -->
+    <div class="demo-card">
+      <div class="demo-title">transition-delay</div>
+      <pre>
+.box-delay {
+  transition: transform 0.5s ease 1s;
+}
+.box-delay:hover {
+  transform: translateX(100px);
+}
+      </pre>
+      <div class="box box-delay">delay</div>
+    </div>
+
+    <!-- transition (축약형) -->
+    <div class="demo-card">
+      <div class="demo-title">transition (축약형)</div>
+      <pre>
+.box-shorthand {
+  transition: all 0.8s ease-in-out 0.3s;
+}
+.box-shorthand:hover {
+  background-color: #e11d48;
+  transform: translateY(-40px) scale(1.2);
+  border-radius: 50%;
+}
+      </pre>
+      <div class="box box-shorthand">combo</div>
+    </div>
+  </div>
+</section>
+
+  <!-- 4. 타이밍 함수 비교 -->
+  <section>
+    <section>
+  <h2>4. 타이밍 함수 비교</h2>
+  <p>hover 시 점이 서로 다른 방향/효과로 움직입니다. 각 타이밍 함수에 따라 속도 곡선이 달라집니다.</p>
+  <div class="grid">
+    <div class="demo-card"><div class="demo-title">ease (오른쪽)</div><div class="bar-wrap"><div class="bar ease"></div></div></div>
+    <div class="demo-card"><div class="demo-title">linear (아래쪽)</div><div class="bar-wrap"><div class="bar linear"></div></div></div>
+    <div class="demo-card"><div class="demo-title">ease-in (왼쪽)</div><div class="bar-wrap"><div class="bar ease-in"></div></div></div>
+    <div class="demo-card"><div class="demo-title">ease-out (위쪽)</div><div class="bar-wrap"><div class="bar ease-out"></div></div></div>
+    <div class="demo-card"><div class="demo-title">ease-in-out (확대)</div><div class="bar-wrap"><div class="bar ease-in-out"></div></div></div>
+   <div class="demo-card">
+  <div class="demo-title">cubic-bezier (회전)</div>
+  <div class="bar-wrap">
+    <div class="bar cubic"></div>
+  </div>
+</div>
+</div>
+<div class="tip">
+  <strong>Tip:</strong> <code>cubic-bezier(x1, y1, x2, y2)</code>로 커스텀 곡선을 만들면 
+  이동뿐 아니라 <em>회전·확대·축소</em> 같은 다양한 움직임을 자연스럽게 제어할 수 있습니다.
+</div>
+</div>
+  </section>
+
+  <!-- 5. 다양한 transition 효과 -->
+  <section>
+    <h2>5. 다양한 transition 효과</h2>
+    <p>색상 변경, 크기 변경, 위치 이동, 그림자, 테두리 반경 등을 동시에 지정할 수 있습니다.</p>
+    <pre>
+.combo {
+  transition:
+    background-color 400ms ease,
+    transform 500ms ease-in-out,
+    box-shadow 500ms ease,
+    border-radius 400ms ease;
+}
+.combo:hover {
+  background-color: #4338ca;
+  transform: translateY(-40px) rotate(-15deg) scale(1.2);
+  box-shadow: 0 16px 30px rgba(99,102,241,0.4);
+  border-radius: 50%;
+}
+    </pre>
+    <div class="combo">hover</div>
+    <div class="tip"><strong>Tip:</strong> 성능을 고려하면 <code>transform</code>과 <code>opacity</code>는 GPU 가속을 받아 부드럽고 비용이 적습니다. 레이아웃을 다시 계산하는 <code>width</code>, <code>height</code>, <code>top</code>, <code>left</code> 등의 transition은 과도하게 사용하지 않는 것이 좋습니다.</div>
+  </section>
+
+  <!-- 6. 요약 -->
+  <section>
+    <h2>6. 요약</h2>
+    <table>
+      <caption>Transition 핵심 요약</caption>
+      <thead>
+        <tr>
+          <th>항목</th>
+          <th>핵심 포인트</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>속성 선택</td>
+          <td><code>transition-property</code>로 변화시킬 속성을 명확히 지정합니다.</td>
+        </tr>
+        <tr>
+          <td>시간 설계</td>
+          <td><code>duration</code>은 컨텐츠 종류에 맞춰 적절히, <code>delay</code>는 과용하지 않습니다.</td>
+        </tr>
+        <tr>
+          <td>속도 곡선</td>
+          <td>의도에 맞춘 <code>timing-function</code>을 선택하거나 <code>cubic-bezier</code>로 커스텀합니다.</td>
+        </tr>
+        <tr>
+          <td>성능</td>
+          <td><code>transform</code>, <code>opacity</code> 위주로, 레이아웃 변경 속성은 최소화합니다.</td>
+        </tr>
+        <tr>
+          <td>일관성</td>
+          <td>동일 UI 패턴에 같은 transition 값을 적용해 사용자의 예측 가능성을 높입니다.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</body>
+</html>

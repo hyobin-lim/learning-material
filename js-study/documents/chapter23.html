@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>자바스크립트의 시작 — Chapter 23 (심화 최종본)</title>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre { background: #eef2f7; padding: 12px; border-radius: 8px; overflow-x: auto; border: 1px solid #d7dee8; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
+    .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <h1>자바스크립트의 시작 — Chapter 23 (모듈과 최신 문법, 심화)</h1>
+  <p>이 문서는 자바스크립트의 <strong>모듈(Module)과 최신 문법(ES6+)</strong>을 설명합니다. 모듈은 코드를 분리하고 재사용성을 높이며, 최신 문법은 더 간결하고 효율적인 코드를 작성할 수 있게 합니다.</p>
+
+  <h2>1. 모듈 기본 (export / import)</h2>
+  <pre><code>// math.js
+export function add(a, b) {
+  return a + b;
+}
+
+// main.js (브라우저에서는 &lt;script type="module"&gt; 필요)
+import { add } from './math.js';
+console.log(add(2, 3));
+</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 5</div>
+
+  <h2>2. default export</h2>
+  <pre><code>// greet.js
+export default function greet(name) {
+  return `안녕하세요, ${name}님!`;
+}
+
+// main.js
+import greet from './greet.js';
+console.log(greet("효빈"));
+</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> "안녕하세요, 효빈님!"</div>
+
+  <h2>3. 모듈 전체 가져오기</h2>
+  <pre><code>// utils.js
+export function hello() { console.log("Hello"); }
+export function bye() { console.log("Bye"); }
+
+// main.js
+import * as utils from './utils.js';
+utils.hello();
+utils.bye();
+</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> "Hello", "Bye"</div>
+
+  <h2>4. let과 const</h2>
+  <pre><code>&lt;script&gt;
+  let x = 10; // 블록 범위 변수
+  const y = 20; // 상수, 재할당 불가 (단, 객체/배열 내부 값은 변경 가능)
+  console.log(x, y);
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> 10, 20</div>
+
+  <h2>5. 화살표 함수</h2>
+  <pre><code>&lt;script&gt;
+  const add = (a, b) => a + b;
+  console.log(add(5, 3));
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> 8</div>
+
+  <h2>6. 템플릿 리터럴</h2>
+  <pre><code>&lt;script&gt;
+  const name = "효빈";
+  console.log(`안녕하세요, ${name}님!`);
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> "안녕하세요, 효빈님!"</div>
+
+  <h2>7. 객체 구조 분해</h2>
+  <pre><code>&lt;script&gt;
+  const user = { name: "지민", age: 30 };
+  const { name, age } = user;
+  console.log(name, age);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> "지민", 30</div>
+
+  <h2>8. 객체 축약 문법</h2>
+  <pre><code>&lt;script&gt;
+  const name = "효빈";
+  const age = 25;
+  const user = { name, age }; // 키와 변수명이 같으면 축약 가능
+  console.log(user);
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> {name: "효빈", age: 25}</div>
+
+  <h2>9. 스프레드 연산자</h2>
+  <pre><code>&lt;script&gt;
+  const arr1 = [1, 2];
+  const arr2 = [3, 4];
+  const combined = [...arr1, ...arr2];
+  console.log(combined);
+&lt;/script&gt;</code></pre>
+  <div class="demo">💻 <strong>결과 화면 예시:</strong> [1, 2, 3, 4]</div>
+
+  <h2>10. 클래스</h2>
+  <pre><code>&lt;script&gt;
+  class Person {
+    constructor(name) { // 객체 초기화 메서드
+      this.name = name;
+    }
+    greet() {
+      console.log(`안녕하세요, ${this.name}님!`);
+    }
+  }
+
+  const p = new Person("효빈");
+  p.greet();
+&lt;/script&gt;</code></pre>
+  <div class="demo">📊 <strong>결과 화면 예시:</strong> "안녕하세요, 효빈님!"</div>
+
+  <h2>11. 실습 과제</h2>
+  <ul>
+    <li>모듈을 만들어 export/import 사용하기</li>
+    <li>default export와 import 활용하기</li>
+    <li>모듈 전체 가져오기(import * as)</li>
+    <li>let과 const로 변수 선언하기</li>
+    <li>화살표 함수로 간단한 계산 함수 작성하기</li>
+    <li>템플릿 리터럴로 문자열 출력하기</li>
+    <li>객체 구조 분해와 객체 축약 문법 활용하기</li>
+    <li>스프레드 연산자로 배열 합치기</li>
+    <li>클래스를 정의하고 메서드 호출하기</li>
+  </ul>
+
+  <h2>12. 학습 마무리</h2>
+  <p>Chapter 23까지 학습을 완료하면 자바스크립트의 기초부터 심화까지 핵심 개념을 모두 익히게 됩니다.</p>
+
+</body>
+</html>

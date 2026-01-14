@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Units 정리</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+      background: #fff;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 20px;
+    }
+    h2 {
+      margin-top: 30px;
+      color: #1a202c;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      vertical-align: top;
+    }
+    th {
+      background: #f0f0f0;
+      text-align: center;
+    }
+    pre {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 13px;
+      overflow-x: auto;
+    }
+    .demo-box {
+      border: 1px dashed #aaa;
+      padding: 8px;
+      margin-top: 6px;
+      background: #fafafa;
+    }
+    .demo {
+      background: #4CAF50;
+      color: white;
+      padding: 6px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+    .label {
+      font-size: 12px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS 단위 정리 (계산 예시 포함)</h1>
+
+  <!-- 브라우저 기본값 -->
+  <h2>브라우저 기본값</h2>
+  <div class="demo-box">
+    <div class="label">
+      대부분의 브라우저는 <code>html { font-size: 16px; }</code>를 기본으로 합니다.<br>
+      따라서 <b>1rem = 16px</b>, <b>2rem = 32px</b><br>
+      <b>1em = 현재 요소의 font-size</b> (부모가 20px이면 1em = 20px)<br>
+      <code>pt</code>는 인쇄 기준이지만 화면에서는 1pt ≈ 1.333px로 렌더링됩니다.
+    </div>
+  </div>
+
+  <!-- 절대 단위 -->
+  <h2>절대 단위</h2>
+  <table>
+    <tr><th>단위</th><th>설명</th><th>코드</th><th>데모</th></tr>
+    <tr>
+      <td><b>px</b></td>
+      <td>
+        픽셀 단위. 화면에서 항상 동일한 크기를 유지합니다.<br>
+        <i>장점:</i> 예측 가능, 정확한 레이아웃 제어 가능<br>
+        <i>주의:</i> 접근성 확대 시 유연성이 떨어짐<br>
+        <b>예시 계산:</b> <code>width:100px</code> → 항상 100픽셀
+      </td>
+      <td><pre>font-size:16px;</pre></td>
+      <td><div class="demo-box"><div class="demo" style="font-size:16px">텍스트 16px</div></div></td>
+    </tr>
+    <tr>
+      <td><b>pt</b></td>
+      <td>
+        포인트. 인쇄 매체 기준 단위.<br>
+        <i>장점:</i> 인쇄물과 동일한 크기 표현 가능<br>
+        <i>주의:</i> 화면에서는 1pt ≈ 1.333px로 변환됨<br>
+        <b>예시 계산:</b> 12pt ≈ 16px
+      </td>
+      <td><pre>font-size:12pt;</pre></td>
+      <td><div class="demo-box"><div class="demo" style="font-size:12pt">텍스트 12pt</div></div></td>
+    </tr>
+    <tr>
+      <td><b>cm</b></td>
+      <td>
+        센티미터. 실제 물리적 길이.<br>
+        <i>장점:</i> 인쇄용 문서에서 정확한 크기 지정<br>
+        <i>예시 계산:</i> 1cm ≈ 37.8px
+      </td>
+      <td><pre>width:1cm;</pre></td>
+      <td><div class="demo-box"><div class="demo" style="width:1cm">박스 1cm</div></div></td>
+    </tr>
+    <tr>
+      <td><b>mm</b></td>
+      <td>
+        밀리미터. 인쇄용 단위.<br>
+        <i>예시 계산:</i> 10mm ≈ 37.8px
+      </td>
+      <td><pre>width:10mm;</pre></td>
+      <td><div class="demo-box"><div class="demo" style="width:10mm">박스 10mm</div></div></td>
+    </tr>
+    <tr>
+      <td><b>in</b></td>
+      <td>
+        인치. 1in = 96px.<br>
+        <i>장점:</i> 인쇄물과 동일한 크기 표현 가능<br>
+        <b>예시 계산:</b> 0.5in = 48px
+      </td>
+      <td><pre>width:0.5in;</pre></td>
+      <td><div class="demo-box"><div class="demo" style="width:0.5in">박스 0.5in</div></div></td>
+    </tr>
+  </table>
+
+  <!-- 상대 단위: 글꼴 기반 -->
+  <h2>상대 단위 – 글꼴 크기 기반</h2>
+  <table>
+    <tr><th>단위</th><th>설명</th><th>코드</th><th>데모</th></tr>
+    <tr>
+      <td><b>%</b></td>
+      <td>
+        부모 요소 크기를 기준으로 비율 적용.<br>
+        <i>장점:</i> 반응형에 적합<br>
+        <i>주의:</i> 속성마다 기준이 다를 수 있음<br>
+        <b>예시 계산:</b> 부모 너비 300px → 50% = 150px
+      </td>
+      <td><pre>width:50%;</pre></td>
+      <td><div class="demo-box" style="width:300px"><div class="demo" style="width:50%">50%</div><div class="label">부모 300px → 150px</div></div></td>
+    </tr>
+    <tr>
+      <td><b>em</b></td>
+      <td>
+        현재 요소의 <code>font-size</code> 기준.<br>
+        <i>장점:</i> 글꼴 크기에 비례<br>
+        <i>주의:</i> 중첩 시 누적되어 예측 어려움<br>
+        <b>예시 계산:</b> font-size:16px → 1em=16px, font-size:20px → 1em=20px
+      </td>
+      <td><pre>font-size:2em;</pre></td>
+      <td><div class="demo-box" style="font-size:16px"><div class="demo" style="font-size:2em">2em (32px)</div></div></td>
+    </tr>
+    <tr>
+      <td><b>rem</b></td>
+      <td>
+        루트(html)의 <code>font-size</code> 기준.<br>
+        <i>장점:</i> 전체 앱에서 일관성 유지<br>
+        <b>예시 계산:</b> html 기본 16px → 1rem=16px, 2rem=32px
+      </td>
+      <td><pre>font-size:2rem;</pre></td>
+      <td><div class="demo-box"><div class="demo" style="font-size:2rem">2rem (32px)</div></div></td>
+    </tr>
+        <tr>
+      <td><b>ch</b></td>
+      <td>
+        현재 폰트에서 ‘0’ 문자 폭 기준.<br>
+        <i>장점:</i> 코드/모노스페이스 글꼴에서 문자 수 기반 폭 설정에 유용<br>
+        <i>주의:</i> 가변폭 폰트에서는 실제 텍스트 폭과 다를 수 있음<br>
+        <b>예시 계산:</b> Consolas 폰트에서 20ch = 문자 20개 폭
+      </td>
+      <td><pre>width:20ch;</pre></td>
+      <td>
+        <div class="demo-box" style="font-family:Consolas, monospace;">
+          <div class="demo" style="width:20ch">20ch 폭</div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td><b>ex</b></td>
+      <td>
+        소문자 ‘x’ 높이 기준.<br>
+        <i>장점:</i> 폰트의 상대적 높이를 기준으로 크기 조정 가능<br>
+        <i>주의:</i> 폰트마다 ‘x’ 높이가 달라 실제 크기 차이가 발생<br>
+        <b>예시 계산:</b> 특정 폰트에서 1ex ≈ 0.5em
+      </td>
+      <td><pre>font-size:5ex;</pre></td>
+      <td>
+        <div class="demo-box">
+          <div class="demo" style="font-size:5ex">텍스트 5ex</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- 상대 단위: 뷰포트 기반 -->
+  <h2>상대 단위 – 뷰포트 기반</h2>
+  <table>
+    <tr><th>단위</th><th>설명</th><th>코드</th><th>데모</th></tr>
+    <tr>
+      <td><b>vw</b></td>
+      <td>
+        뷰포트 너비의 1%.<br>
+        <i>장점:</i> 화면 크기에 따라 자동 반응<br>
+        <i>주의:</i> 모바일 브라우저 UI 크롬에 따라 값이 달라질 수 있음<br>
+        <b>예시 계산:</b> 뷰포트 너비 1200px → 1vw = 12px
+      </td>
+      <td><pre>width:30vw;</pre></td>
+      <td><div class="demo-box"><div class="demo" style="width:30vw">30vw 박스</div></div></td>
+    </tr>
+    <tr>
+      <td><b>vh</b></td>
+      <td>
+        뷰포트 높이의 1%.<br>
+        <i>장점:</i> 세로 크기 기준 반응형에 유용<br>
+        <b>예시 계산:</b> 뷰포트 높이 800px → 1vh = 8px
+      </td>
+      <td><pre>height:20vh;</pre></td>
+      <td><div class="demo-box"><div class="demo" style="height:20vh; width:50vw">20vh 박스</div></div></td>
+    </tr>
+    <tr>
+      <td><b>vmin</b></td>
+      <td>
+        뷰포트 너비·높이 중 작은 값 기준.<br>
+        <i>장점:</i> 정사각형 유지에 유용<br>
+        <b>예시 계산:</b> 1200×800px → 1vmin = 8px
+      </td>
+      <td><pre>font-size:5vmin;</pre></td>
+      <td><div class="demo-box"><div class="demo" style="font-size:5vmin">텍스트 5vmin</div></div></td>
+    </tr>
+    <tr>
+      <td><b>vmax</b></td>
+      <td>
+        뷰포트 너비·높이 중 큰 값 기준.<br>
+        <i>장점:</i> 큰 화면 기준으로 크기 조정<br>
+        <b>예시 계산:</b> 1200×800px → 1vmax = 12px
+      </td>
+      <td><pre>font-size:5vmax;</pre></td>
+      <td><div class="demo-box"><div class="demo" style="font-size:5vmax">텍스트 5vmax</div></div></td>
+    </tr>
+  </table>
+
+  <!-- 상대 단위: 레이아웃 기반 -->
+  <h2>상대 단위 – 레이아웃(Grid) 기반</h2>
+  <table>
+    <tr><th>단위</th><th>설명</th><th>코드</th><th>데모</th></tr>
+    <tr>
+      <td><b>fr</b></td>
+      <td>
+        Grid에서 남은 공간을 비율로 분배.<br>
+        <i>장점:</i> 레이아웃을 직관적으로 구성 가능<br>
+        <b>예시 계산:</b> 1fr 2fr 3fr → 전체 6등분 중 1:2:3 비율
+      </td>
+      <td><pre>grid-template-columns:1fr 2fr 3fr;</pre></td>
+      <td>
+        <div class="demo-box" style="display:grid; grid-template-columns:1fr 2fr 3fr; gap:5px;">
+          <div class="demo">1fr</div>
+          <div class="demo">2fr</div>
+          <div class="demo">3fr</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- 절대 vs 상대 단위 요약 -->
+  <h2>절대 vs 상대 단위 요약</h2>
+  <table>
+    <tr><th>구분</th><th>특징</th><th>예시 단위</th></tr>
+    <tr><td>절대 단위</td><td>환경과 무관하게 고정된 크기</td><td>px, pt, cm, mm, in</td></tr>
+    <tr><td>상대 단위</td><td>부모, 루트, 뷰포트 등 기준에 따라 변함</td><td>%, em, rem, vw, vh, vmin, vmax, fr, ch, ex</td></tr>
+  </table>
+
+  <!-- 실무 팁 -->
+  <h2>실무 팁</h2>
+  <ul>
+    <li>글꼴 크기와 간격은 <code>rem</code> 기반으로 통일하면 유지보수에 유리합니다.</li>
+    <li>레이아웃은 <code>fr</code>, <code>vw/vh</code>를 활용해 반응형을 구현하세요.</li>
+    <li>인쇄용 문서에는 <code>pt</code>, <code>cm</code>, <code>mm</code>, <code>in</code> 단위를 사용하세요.</li>
+    <li><code>em</code>은 부모 요소에 따라 누적되므로 복잡한 구조에서는 <code>rem</code>을 권장합니다.</li>
+    <li><code>ch</code>와 <code>ex</code>는 폰트 특성에 따라 달라질 수 있으므로 주의하세요.</li>
+  </ul>
+</body>
+</html>

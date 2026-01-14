@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Form 섹션 9 - 자동완성 및 Placeholder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      line-height: 1.65;
+    }
+
+    h1 {
+      margin-bottom: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #f2f2f2;
+    }
+
+    pre {
+      background: #f9f9f9;
+      display: block;
+      padding: 8px;
+      border: 1px solid #ddd;
+      white-space: pre-wrap;
+    }
+
+    .tip {
+      background: #eef9ff;
+      border: 1px solid #a6d8ff;
+      padding: 10px;
+      margin-top: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Form 섹션 9 - 자동완성 및 Placeholder</h1>
+
+  <h2>전체 설명</h2>
+  <p>
+    입력 필드에서는 사용자가 더 쉽게 작성할 수 있도록 다양한 보조 속성을 제공합니다.<br>
+    이 속성들은 입력 힌트를 제공하거나, 브라우저의 자동완성 기능을 제어하거나, 맞춤법 검사 및 모바일 키보드 모드 지정 등 사용자 경험을 향상시키는 역할을 합니다.
+  </p>
+
+  <h2>속성 설명</h2>
+  <p>
+    • <strong>placeholder (힌트 텍스트)</strong>: 입력 전 필드 안에 안내 문구를 표시해 사용자가 어떤 값을 입력해야 하는지 알려줍니다.<br>
+    • <strong>autocomplete (자동완성)</strong>: 브라우저가 이전 입력값을 제안할지 여부를 제어합니다. 로그인 폼이나 민감 정보 입력 시 꺼두는 경우가 많습니다.<br>
+    • <strong>spellcheck (맞춤법 검사)</strong>: 텍스트 입력 시 맞춤법 검사를 적용할지 여부를 지정합니다.<br>
+    • <strong>inputmode (입력 모드)</strong>: 모바일 환경에서 어떤 키보드 레이아웃을 띄울지 지정합니다. 예: 숫자 입력 시 숫자 키패드.<br>
+    • <strong>readonly (읽기 전용)</strong>: 입력값을 수정할 수 없게 하지만 서버로는 전송됩니다.
+  </p>
+
+  <div class="tip">
+    <strong>spellcheck가 텍스트 입력에만 의미가 있는 이유</strong><br>
+    맞춤법 검사는 “글자”를 대상으로 동작합니다. 따라서 <code>&lt;textarea&gt;</code>나 <code>&lt;input type="text"&gt;</code>처럼 글자를 입력하는 필드에서는
+    맞춤법 검사가 적용됩니다.<br>
+    하지만 <code>&lt;input type="number"&gt;</code>나 <code>&lt;input type="date"&gt;</code>처럼 숫자나 날짜를 입력하는 필드에는 글자가 없기 때문에
+    맞춤법 검사가 동작하지 않습니다.<br>
+    즉, spellcheck 속성은 오직 텍스트 기반 입력 필드에서만 의미가 있습니다.
+  </div>
+
+  <h2>속성별 정리</h2>
+  <table>
+    <tr>
+      <th>속성</th>
+      <th>설명</th>
+      <th>예제 코드</th>
+      <th>데모</th>
+    </tr>
+    <tr>
+      <td>placeholder</td>
+      <td>힌트 텍스트 제공</td>
+      <td>
+        <pre>&lt;input placeholder="이름을 입력하세요"&gt;</pre>
+      </td>
+      <td><input placeholder="이름을 입력하세요"></td>
+    </tr>
+    <tr>
+      <td>autocomplete</td>
+      <td>자동완성 on/off</td>
+      <td>
+        <pre>&lt;input autocomplete="off"&gt;</pre>
+      </td>
+      <td><input autocomplete="off" placeholder="자동완성 꺼짐"></td>
+    </tr>
+    <tr>
+      <td>spellcheck</td>
+      <td>맞춤법 검사 적용 여부 (텍스트 입력 필드에만 의미)</td>
+      <td>
+        <pre>&lt;textarea spellcheck="true"&gt;&lt;/textarea&gt;</pre>
+      </td>
+      <td><textarea spellcheck="true" placeholder="맞춤법 검사 가능"></textarea></td>
+    </tr>
+    <tr>
+      <td>inputmode</td>
+      <td>모바일 키보드 레이아웃 지정</td>
+      <td>
+        <pre>&lt;input inputmode="numeric" placeholder="숫자만 입력"&gt;</pre>
+      </td>
+      <td><input inputmode="numeric" placeholder="숫자만 입력"></td>
+    </tr>
+    <tr>
+      <td>readonly</td>
+      <td>읽기 전용 입력 (서버로는 전송됨)</td>
+      <td>
+        <pre>&lt;input readonly value="수정 불가"&gt;</pre>
+      </td>
+      <td><input readonly value="수정 불가"></td>
+    </tr>
+  </table>
+</body>
+
+</html>
