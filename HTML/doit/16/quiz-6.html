@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 사용자에게 숫자를 입력받는다. prompt()는 문자열을 반환하므로 parseInt()로 정수로 변환한다.
+      let number = parseInt(prompt("숫자를 입력하세요."));
+
+      // switch문을 true로 설정한다.
+      // 이렇게 하면 각 case에서 조건식을 평가한 결과(true/false)를 비교할 수 있다.
+      switch (true) {
+        // 첫 번째 case: 입력값이 NaN(Not a Number)인지 확인한다.
+        // isNaN(number)가 true라면, 즉 숫자가 아닌 값을 입력했을 때 실행된다.
+        case isNaN(number):
+          document.write(`<p><strong>숫자</strong>가 아닙니다.</p>`);
+          break;
+
+        // 두 번째 case: 입력한 숫자가 3의 배수인지 확인한다.
+        // number % 3 === 0 이 true라면, 즉 나머지가 0이면 3의 배수이다.
+        case number % 3 === 0:
+          document.write(`<p>이 숫자는 <strong>3의 배수</strong>입니다.</p>`);
+          break;
+
+        // default: 위의 두 조건이 모두 false일 때 실행된다.
+        // 즉, 숫자는 맞지만 3의 배수가 아닌 경우에 해당한다.
+        default:
+          document.write(`<p>이 숫자는 <strong>3의 배수</strong>가 아닙니다.</p>`);
+          break;
+      }
+    </script>
+    <script>
+      let num = prompt();
+
+      switch (num) {
+        case null:
+          alert("입력취소");
+          break;
+        default:
+          parseInt(num) % 3 === 0 ? alert("3의배수") : alert("3의배수 아님");
+      }
+    </script>
+  </body>
+</html>
