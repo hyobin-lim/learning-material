@@ -1,6 +1,7 @@
 body {
   font-family: "Segoe UI", Arial, sans-serif;
   margin: 20px;
+  text-align: center;
 }
 
 .tab-container {
@@ -15,6 +16,8 @@ body {
   display: flex;
   border: 1px solid #aaa;
   background: #e6e6e6;
+  place-content: center;
+  place-items: center;
 }
 
 .tab-menu a {
