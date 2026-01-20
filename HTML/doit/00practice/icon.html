@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>폰트 어썸 cdn (contents delivery network)</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nabla&display=swap" rel="stylesheet">
+	<!-- 링크 태그는 style 태그 위에 와야 합니다 그래야 누적순서 적용이 됩니다.-->
+	<style>
+		@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css);
+		@import url(css/font.css);
+
+		/* 링크를 클릭해서 해당 원본 파일이 실행되고 있는지 확인하는 습관이 필요합니다. */
+		/* @는 적용할 태그 위에 있어야 @아래 있는 항목들에 다 적용이 됩니다 */
+		/* @import는 css에 css 문서를 삽입 */
+		/* @font-face는 파일과 css문서를 연결시켜주는 역할 */
+		body {
+			font-family: 'OngleipParkDahyeon';
+		}
+/* font.css안에 있는 font-face태그의 OngleipParkDahyeon 글씨체 속성을 불러옵니다  */
+		ul {
+			list-style: none;
+			display: flex;
+		}
+
+		li {
+			border: 1px solid #222;
+			padding: 10px 20px;
+			margin-right: 10px;
+		}
+
+		a {
+			text-decoration: none;
+		}
+
+		a:link,
+		a:visited,
+		a:hover {
+			color: #222;
+		}
+/* :link, :visited, :hover는 a링크에 적용되어 링크 상태를 구분하는 의사 클래스로 자동으로 붙여주는 특별한 상태 선택자입니다. */
+/* 브라우저가 자동으로 상태를 관리하고, CSS에서 그 상태별로 스타일을 지정할 수 있습니다. */
+/* 기본값(파란색/보라색) 대신 원하는 색상이나 효과를 주고 싶을 때 사용합니다. */
+
+		.fa-solid {
+			color: blue;
+			font-size: 25px;
+		}
+/* fa-solid 클래스의 속성을 변경합니다. */
+		.fa-dog {
+			color: red;
+			font-size: 40px;
+		}
+/* 개 아이콘 클래스의 속성을 변경합니다 */
+/* 누적순서 적용으로 위의 fa-solid 클래스의 속성이 변경됩니다. */
+		.fa-piggy-bank {
+			color: pink;
+			font-size: 30px;
+		}
+/* 돼지 아이콘 클래스의 속성을 변경합니다 */
+/* 누적순서 적용으로 위의 fa-solid 클래스의 속성이 변경됩니다. */
+		li:nth-last-child(1) {
+			font-family: "Nabla", system-ui;
+		}
+		/* li 태그의 마지막 자손인 메뉴3 태그의 글씨체를 link태그와 연결된 속성으로 변경합니다  */
+		/* 누적순서 적용으로 위의 fa-solid 클래스의 속성이 변경됩니다. */
+	</style>
+	<!-- Do it! 아이콘 폰트 CDN 링크하기 -->
+
+</head>
+
+<body>
+	<nav>
+		<ul>
+			<!-- Do it! 메뉴에 아이콘 폰트 추가하기 -->
+			<li>
+				<i class="fa-solid fa-dog"></i>
+				<a href="#">메뉴1</a>
+			</li>
+			<li>
+				<i class="fa-solid fa-cat"></i>
+				<a href="#">메뉴2</a>
+			</li>
+			<li>
+				<i class="fa-solid fa-piggy-bank fa-bounce"></i>
+				<a href="#">메뉴3</a>
+			</li>
+		</ul>
+	</nav>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  
+  </head>
+  <body class="red">
+    <h1>통지표</h1>
+    <input type="number" class="kor" placeholder="국어 몇점이야!" /><br /><input type="number" class="eng" placeholder="영어 몇점이야!" /><br /><input type="number" class="mat" placeholder="수학 몇점이야!" /><br />
+    <button onclick="clac()">계산</button>
+    <h2></h2>
+    <script>
+      function clac() {
+        /* Number(), String(), Boolean() */
+        let s1 = Number(document.querySelector(".kor").value);
+        console.log(s1);
+        let s2 = Number(document.querySelector(".eng").value);
+        let s3 = Number(document.querySelector(".mat").value);
+        console.log((s1 + s2 + s3) / 3);
+        let result = parseInt ((s1 + s2 + s3) / 3);
+        document.querySelector('h2').innerHTML = `평균: ${result}`
+
+        //조건부 스타일 변경
+        if (result < 70){
+          document.querySelector('.red').style.backgroundColor = "red";
+        }
+
+
+
+
+
+
+      }
+    </script>
+  </body>
+</html>

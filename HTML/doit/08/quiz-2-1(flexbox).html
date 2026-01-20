@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>여가 시간 즐기기</title>
+  <style>
+    a {
+      text-decoration: none;
+      color: #222;
+    }
+
+    #travel {
+      width: 1200px;
+      margin: 0 auto;
+    }
+
+    .title-text {
+      text-align: center;
+    }
+
+    .title-text>h2 {
+      font-size: 2.5em;
+      color: #919191;
+    }
+
+    .title-text>p {
+      font-size: 1.2em;
+      color: #ccc;
+    }
+
+    /* Flexbox 적용 */
+    .travel-list {
+      display: flex;
+      justify-content: space-between;
+      /* 카드들 사이 간격 균등 */
+      flex-wrap: wrap;
+      /* 화면 줄어들면 자동 줄바꿈 */
+      padding: 20px;
+    }
+
+    .travel-card {
+      width: 250px;
+      min-height: 340px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      text-align: center;
+      margin-bottom: 20px;
+      /* 줄바꿈 시 아래 간격 */
+      transition: transform 0.3s;
+    }
+
+    .travel-card:hover {
+      transform: translateY(-5px);
+      /* 살짝 올라가는 효과 */
+    }
+
+    .travel-card img {
+      width: 150px;
+      height: 150px;
+      margin: 15px;
+      border-radius: 50%;
+    }
+
+    .travel-card p {
+      font-size: 16px;
+    }
+
+    pre {
+      text-align: justify;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="travel">
+    <div class="title-text">
+      <h2>여가 시간 즐기기</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, in! Lorem ipsum dolor sit amet.</p>
+    </div>
+    <div class="travel-list">
+      <div class="travel-card">
+        <a href="#">
+          <img src="images/tr-1.png">
+          <h3>도심 투어</h3>
+          <p>Lorem ipsum dolor sit. Lorem ipsum dolor sit.</p>
+        </a>
+      </div>
+      <div class="travel-card">
+        <a href="#">
+          <img src="images/tr-2.png">
+          <h3>바다 즐기기</h3>
+          <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </a>
+      </div>
+      <div class="travel-card">
+        <a href="#">
+          <img src="images/tr-3.png">
+          <h3>등산 도전하기</h3>
+          <p>Lorem ipsum dolor sit amet. Lorem, ipsum dolor.</p>
+        </a>
+      </div>
+      <div class="travel-card">
+        <a href="#">
+          <img src="images/tr-4.png">
+          <h3>관광지 투어</h3>
+          <p>Lorem, ipsum dolor. Lorem ipsum dolor sit amet.</p>
+        </a>
+      </div>
+    </div>
+    <pre>
+      <p>변경 포인트</p>
+<p>
+  - .travel-list를 display: flex;로 변경 → 카드들이 가로로 정렬됨.
+  - justify-content: space-between; → 카드 간격을 균등하게 배치.
+  - flex-wrap: wrap; → 화면이 좁아지면 자동 줄바꿈.
+  - vertical-align 문제 해결 → 두 번째 카드가 위로 올라가는 현상 사라짐.
+  👉 이렇게 하면 카드들이 같은 높이에서 깔끔하게 정렬되고, 반응형으로도 잘 동작합니다.
+</p>
+    </pre>
+  </div>
+</body>
+
+</html>

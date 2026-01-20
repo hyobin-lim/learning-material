@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>불릿 이미지 사용하기</title>
+  <style>
+    ::marker {
+      content: "";
+      /* 목록의 불릿 기호 없애기 */
+    }
+
+    /* Do it! 목록 들여쓰기 */
+    ul {
+      list-style-image: url(images/dot.png);
+      list-style-type: circle;
+      color: blue;
+    }
+
+    /* 글씨 관련 속성은 상위에 있는 부모요소에 넣었을떄 하위에 있는 모든 요소들에 상속이 됨 */
+    .inside {
+      list-style-position: inside;
+    }
+
+    .square {
+      list-style: square inside;
+      border: 1px solid black;
+    }
+
+    /* 축약표기법 short hand */
+  </style>
+</head>
+
+<body>
+  <h1>도서 시리즈</h1>
+  <ul class="inside">
+    <li>Do it! 시리즈</li>
+    <li>된다 시리즈</li>
+    <li>DCM 프로 사진가</li>
+    <li>데이터과학 시리즈</li>
+  </ul>
+  <ol class="square">
+    <li>Do it! 시리즈</li>
+    <li>된다 시리즈</li>
+    <li>DCM 프로 사진가</li>
+    <li>데이터과학 시리즈</li>
+  </ol>
+
+  <ul>
+    <li>Do it! 시리즈</li>
+    <li>된다 시리즈</li>
+    <li>DCM 프로 사진가</li>
+    <li>데이터과학 시리즈</li>
+  </ul>
+</body>
+
+</html>

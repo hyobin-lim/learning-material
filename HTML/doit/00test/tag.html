@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>HTML 부모-자식-손자 태그 상세 구조</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 2rem;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 2rem;
+      }
+      th,
+      td {
+        border: 1px solid #999;
+        padding: 0.6rem;
+        vertical-align: top;
+      }
+      th {
+        background: #f0f0f0;
+        text-align: left;
+      }
+      caption {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        text-align: left;
+      }
+      code {
+        background: #eee;
+        padding: 0.2rem 0.4rem;
+        border-radius: 4px;
+      }
+      pre {
+        background: #f9f9f9;
+        padding: 1rem;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>HTML 부모-자식-손자 태그 상세 구조</h1>
+    <p>
+      아래 표는 HTML에서 부모 태그와 그 자식, 손자 태그를 더 다양하고 상세히
+      정리한 것입니다.
+    </p>
+
+    <table>
+      <caption>
+        문서 기본 구조
+      </caption>
+      <thead>
+        <tr>
+          <th>부모 태그</th>
+          <th>자식 태그</th>
+          <th>손자 태그</th>
+          <th>예시</th>
+          <th>설명</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>&lt;html&gt;</code></td>
+          <td><code>&lt;head&gt;</code>, <code>&lt;body&gt;</code></td>
+          <td>
+            <code>&lt;head&gt;</code> → <code>&lt;title&gt;</code>,
+            <code>&lt;meta&gt;</code>, <code>&lt;link&gt;</code>,
+            <code>&lt;style&gt;</code>, <code>&lt;script&gt;</code><br />
+            <code>&lt;body&gt;</code> → <code>&lt;header&gt;</code>,
+            <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>,
+            <code>&lt;section&gt;</code>, <code>&lt;footer&gt;</code>
+          </td>
+          <td>
+            <pre><code>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;문서 제목&lt;/title&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+    &lt;script src="app.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;header&gt;&lt;h1&gt;머리말&lt;/h1&gt;&lt;/header&gt;
+    &lt;main&gt;&lt;section&gt;본문&lt;/section&gt;&lt;/main&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          </td>
+          <td>문서 전체를 감싸는 루트 요소.</td>
+        </tr>
+        <tr>
+          <td><code>&lt;header&gt;</code></td>
+          <td>
+            <code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code>,
+            <code>&lt;nav&gt;</code>, <code>&lt;p&gt;</code>
+          </td>
+          <td>
+            <code>&lt;nav&gt;</code> → <code>&lt;ul&gt;</code> →
+            <code>&lt;li&gt;</code> → <code>&lt;a&gt;</code>
+          </td>
+          <td>
+            <pre><code>&lt;header&gt;
+  &lt;h1&gt;사이트 제목&lt;/h1&gt;
+  &lt;nav&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href="#"&gt;홈&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href="#"&gt;소개&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+          </td>
+          <td>머리말에는 제목, 내비게이션, 소개 문구 등을 포함.</td>
+        </tr>
+        <tr>
+          <td><code>&lt;section&gt;</code></td>
+          <td>
+            <code>&lt;h2&gt;</code>, <code>&lt;p&gt;</code>,
+            <code>&lt;article&gt;</code>, <code>&lt;aside&gt;</code>
+          </td>
+          <td>
+            <code>&lt;article&gt;</code> → <code>&lt;h3&gt;</code>,
+            <code>&lt;p&gt;</code>, <code>&lt;figure&gt;</code>
+          </td>
+          <td>
+            <pre><code>&lt;section&gt;
+  &lt;h2&gt;섹션 제목&lt;/h2&gt;
+  &lt;article&gt;
+    &lt;h3&gt;기사 제목&lt;/h3&gt;
+    &lt;p&gt;본문 내용&lt;/p&gt;
+    &lt;figure&gt;
+      &lt;img src="img.jpg" alt="이미지"&gt;
+      &lt;figcaption&gt;이미지 설명&lt;/figcaption&gt;
+    &lt;/figure&gt;
+  &lt;/article&gt;
+&lt;/section&gt;</code></pre>
+          </td>
+          <td>섹션은 기사, 본문, 이미지 등을 포함 가능.</td>
+        </tr>
+        <tr>
+          <td><code>&lt;table&gt;</code></td>
+          <td>
+            <code>&lt;caption&gt;</code>, <code>&lt;thead&gt;</code>,
+            <code>&lt;tbody&gt;</code>, <code>&lt;tfoot&gt;</code>
+          </td>
+          <td>
+            <code>&lt;thead&gt;</code> → <code>&lt;tr&gt;</code> →
+            <code>&lt;th&gt;</code><br />
+            <code>&lt;tbody&gt;</code> → <code>&lt;tr&gt;</code> →
+            <code>&lt;td&gt;</code> → <code>&lt;p&gt;</code>,
+            <code>&lt;a&gt;</code>, <code>&lt;img&gt;</code>
+          </td>
+          <td>
+            <pre><code>&lt;table&gt;
+  &lt;caption&gt;회원 목록&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th&gt;이름&lt;/th&gt;&lt;th&gt;나이&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;p&gt;홍길동&lt;/p&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;img src="icon.png" alt="아이콘"&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+          </td>
+          <td>표의 셀 안에는 문단, 이미지, 링크 등 다양한 콘텐츠 가능.</td>
+        </tr>
+        <tr>
+          <td><code>&lt;form&gt;</code></td>
+          <td>
+            <code>&lt;fieldset&gt;</code>, <code>&lt;label&gt;</code>,
+            <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>,
+            <code>&lt;select&gt;</code>, <code>&lt;button&gt;</code>
+          </td>
+          <td>
+            <code>&lt;fieldset&gt;</code> → <code>&lt;legend&gt;</code>,
+            <code>&lt;input&gt;</code><br />
+            <code>&lt;select&gt;</code> → <code>&lt;optgroup&gt;</code> →
+            <code>&lt;option&gt;</code>
+          </td>
+          <td>
+            <pre><code>&lt;form&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;회원 가입&lt;/legend&gt;
+    &lt;label&gt;아이디: &lt;input type="text"&gt;&lt;/label&gt;
+    &lt;label&gt;소개: &lt;textarea&gt;&lt;/textarea&gt;&lt;/label&gt;
+    &lt;select&gt;
+      &lt;optgroup label="지역"&gt;
+        &lt;option&gt;서울&lt;/option&gt;
+        &lt;option&gt;부산&lt;/option&gt;
+      &lt;/optgroup&gt;
+    &lt;/select&gt;
+    &lt;button type="submit"&gt;제출&lt;/button&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;</code></pre>
+          </td>
+          <td>폼은 입력 요소, 선택 항목, 그룹화를 포함.</td>
+        </tr>
+        <tr>
+          <td><code>&lt;figure&gt;</code></td>
+          <td><code>&lt;img&gt;</code>, <code>&lt;figcaption&gt;</code></td>
+          <td>
+            <code>&lt;figcaption&gt;</code> → 텍스트, 인라인
+            태그(<code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>)
+          </td>
+          <td>
+            <pre><code>&lt;figure&gt;
+  &lt;img src="photo.jpg" alt="사진"&gt;
+  &lt;figcaption&gt;&lt;strong&gt;중요&lt;/strong&gt; 사진 설명&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+          </td>
+          <td>이미지와 설명을 함께 표시, 설명 안에 강조 태그 가능.</td>
+        </tr>
+        <tr>
+          <td><code>&lt;details&gt;</code></td>
+          <td><code>&lt;summary&gt;</code>, 기타 콘텐츠</td>
+          <td><code>&lt;summary&gt;</code> → 텍스트, 인라인 태그</td>
+          <td>
+            <pre><code>&lt;details&gt;
+  &lt;summary&gt;&lt;em&gt;더 보기&lt;/em&gt;&lt;/summary&gt;
+  숨겨진 내용 &lt;p&gt;추가 설명&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+          </td>
+          <td>펼침/접기 가능한 영역, 요약 안에 인라인 태그 포함 가능.</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

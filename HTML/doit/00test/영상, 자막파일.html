@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!-- 00:00:00은 시분초를 의미, 뒤의 .000은 프레임, -- 는 어디서부터 어디까지 임을 의미 -->
+  <video src="medias/salad.mp4" controls width="700" poster="images/salad.jpg">
+    <track src="medias/subtitle-en.vtt" kind="subtitles" srclang="en" label="영어">
+    <track src="medias/subtitle-ko.vtt" kind="subtitles" srclang="ko" label="한국어" default>
+    <!-- track은 독립적으로 작용하는 태그로써 열고 닫는 태그가 필요 없음 -->
+    <!-- track는 video 태그 내부에 삽입하여 자막을 추가하는 역할을 함 -->
+    <!-- 자동 완성 기능은 예전에 만들어 놓은 코드를 바탕으로 코드를 완성해 주는 기능으로 최신 반영이 안될 수 있음 -->
+    <!-- 따라서 자동 완성 기능을 너무 맹신하지 말 것, 직접 코드를 확인할 것, 특히 속성명과 속성값이 정확한지 확인할 것, 코드가 맞는지 결과값이 어떻게 나올지 예측할 수 있는 소양을 갖출 것 -->
+    <!-- poster는 비디오의 썸네일 이미지로 사용되는 속성 -->
+    <!-- track은 자막을 삽입하는 태그, kind는 자막의 종류를 나타내는 속성으로 브라우저가 쉽게 인식할 수 있도록 하는 역할, srclang은 자막의 언어를 나타내는 속성, label은 자막의 이름을 나타내는 속성, default는 기본 자막으로 설정하는 속성으로 기본 자막으로 설정하고자 하는 자막에만 default 속성을 추가 -->
+    <!-- iframe는 다른 웹 페이지(html)를 현재 웹 페이지에 삽입하는 태그 -->
+    <!-- 웹표준(w3c)은 iframe 태그를 통한 크로스 도메인 삽입을 허용하지 않음, 하지만 부득이하게 개발자의 의도가 분명한 경우는 사용 가능 -->
+    <!-- iframe는 검색엔진 최적화에 취약함, 웹 페이지(html) 안에 또다른 웹 페이지가 존재, iframe 내부의 콘텐츠는 검색엔진이 인식하지 못함  -->
+    <!-- 따라서 SEO가 중요한 페이지에서는 iframe 사용을 자제하는 것이 좋음  -->
+    <!-- 보안에 취약함, iframe를 통해 악성 코드가 삽입될 수 있음, 신뢰할 수 없는 출처의 콘텐츠를 삽입하는 것은 피할 것 -->
+    <!-- video3.html 참고 -->
+    <!-- http와 https의 차이는 보안 프로토콜의 유무임 -->
+    <!-- http는 보안 프로토콜이 없어서 중간에 해킹당할 위험이 있음 -->
+    <!-- https는 보안 프로토콜이 있어서 중간에 해킹당할 위험이 적음 -->
+  </video>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>멀티미디어 파일 삽입하기</title>
+</head>
+
+<body>
+  <ul>
+    <li>
+      <a href="../../index.html">index로 가기</a>
+    </li>
+  </ul>
+  <h1>웹 문서에 비디오 파일 삽입하기</h1>
+  <!-- Do it! images/salad.jpg 파일을 포스터 이미지로 사용하세요. -->
+
+  <video src="medias/salad.mp4" controls autoplay muted width="700">
+    <track src="medias/subtitle-ko.vtt" kind="subtitles" srclang="ko" label="korean" default>
+    <!-- track은 독립적으로 작용하는 태그로써 열고 닫는 태그가 필요 없음, video 태그 안에 삽입 -->
+    <!-- 자동 완성 기능은 예전에 만들어 놓은 코드를 바탕으로 코드를 완성해 주는 기능으로 최신 반영이 안될 수 있음 -->
+    <!-- 따라서 자동 완성 기능을 너무 맹신하지 말 것, 직접 코드를 확인할 것, 특히 속성명과 속성값이 정확한지 확인할 것, 코드가 맞는지 결과값이 어떻게 나올지 예측할 수 있는 소양을 갖출 것 -->
+    <!-- track은 자막을 삽입하는 태그, kind는 자막의 종류를 나타내는 속성, srclang은 자막의 언어를 나타내는 속성, label은 자막의 이름을 나타내는 속성, default는 기본 자막으로 설정하는 속성 -->
+    <!-- 자막 파일은 medias/subtitle-ko.vtt 파일을 사용하세요. -->
+
+  </video>
+</body>
+
+</html>

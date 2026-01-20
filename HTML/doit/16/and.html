@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조건문</title>
+</head>
+
+<body>
+    <script>
+        // 삼항연산자
+        //조건식 ? true : false
+        // Do it! AND 연산자를 사용해 조건 체크하기
+        let age = 20;
+        let msg = age >= 18 ? '성인인증완료' : '부모님데려와'
+        document.write(`<h1>${msg}</h1>`)
+
+        let now = new Date();
+        let hour = now.getHours();
+        let min = now.getMinutes();
+        console.log(hour, min);
+        hour >= 13 && min > 19 ? document.write(`<h1>점심시간</h1>`):document.write(`<h1>배고파</h1>`)
+    </script>
+</body>
+
+</html>

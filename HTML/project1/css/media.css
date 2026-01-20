@@ -1,0 +1,87 @@
+@charset "UTF-8";
+/*  ---- header---- */
+@media screen and (max-width: 768px) {
+  .logo {
+    position: relative;
+    text-indent: -99999999px;
+  }
+  .logo::after {
+    cursor: pointer;
+    position: absolute;
+    content: "";
+    background: url(../favicon/android-icon-192x192.png);
+    display: block;
+    width: 40px;
+    height: 40px;
+    top: 0px;
+    background-size: 100%;
+    mix-blend-mode: multiply;
+    mix-blend-mode: screen;
+    filter: drop-shadow(2px 3px 4px #fff);
+  }
+  .logo a {
+    font-size: 20px;
+  }
+  nav button {
+    padding: 5px 10px;
+  }
+
+  .lang {
+    padding: 4px 8px;
+  }
+  .header-content {
+    position: unset;
+    transform: none;
+    padding-top: 150px;
+  }
+
+  .header-content h2 {
+    font-size: 48px;
+    line-height: 50px;
+  }
+
+  .header-content h3 {
+    font-size: 20px;
+  }
+
+  .header-content .add-email button {
+    font-size: 12px;
+    padding: 10px 15px;
+  }
+
+  /* 선택 가이드 영역 card의 시작 */
+  .choice-content .card {
+    flex-basis: 100%;
+  }
+.footer-content{
+  display: flex;
+  flex-direction: column;
+}
+
+.col{
+  flex-basis: 100%;
+}
+
+.col h2{
+   color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+  font-size: 28px;
+}
+
+.col h3 {
+   color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+}
+/* 768 끝 */
+
+/* 769~1220 */
+@media screen and (max-width: 769px) and (max-width: 1220px) {
+  /* 선택 가이드 영역 */
+  .choice-content .card {
+    flex-basis: calc(50% - 15px);
+  }
+}
+/* 769~1220 끝*/

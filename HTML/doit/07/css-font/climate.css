@@ -1,0 +1,16 @@
+/* font file의 경로를 연결 */
+@font-face {
+  font-family: "cl";
+  src: url(ClimateCrisisKR-1979.woff);
+  font-weight: 'bold';
+}
+@font-face {
+  font-family: "cl";
+  src: url(ClimateCrisisKR-1990.woff);
+  font-weight: 'reg';
+}
+@font-face {
+  font-family: "cl";
+  src: url(ClimateCrisisKR-2000.woff);
+  font-weight: 'light';
+}

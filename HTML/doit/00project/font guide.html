@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>웹사이트 제작 시 폰트 사용 가이드</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f9fafb;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --accent: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 40px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Noto Sans KR", Helvetica, Arial, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif;
+      line-height: 1.6;
+    }
+    header { max-width: 880px; margin: 0 auto 24px; }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    p.lead { margin: 0; color: var(--muted); }
+    main { max-width: 880px; margin: 0 auto; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+    h2 { margin: 24px 0 12px; font-size: 22px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 15px;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 12px 14px;
+      vertical-align: top;
+    }
+    th {
+      background: #f3f4f6;
+      font-weight: 600;
+      text-align: left;
+    }
+    code {
+      background: #f3f4f6;
+      padding: 2px 6px;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Noto Sans Mono", monospace;
+      font-size: 0.95em;
+    }
+    .summary {
+      margin-top: 18px;
+      padding: 14px 16px;
+      background: #eef2ff;
+      border: 1px solid #e0e7ff;
+      border-radius: 10px;
+    }
+    .summary ul { margin: 8px 0 0 20px; }
+    .footer-note {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .accent { color: var(--accent); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>웹사이트 제작 시 폰트 사용 가이드</h1>
+    <p class="lead">웹폰트와 시스템 기본 폰트를 상업용 웹사이트에서 안전하게 사용하는 방법을 표와 요약으로 정리했습니다.</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>웹폰트 vs 시스템 기본 폰트</h2>
+      <table aria-label="폰트 사용 가이드 표">
+        <thead>
+          <tr>
+            <th>구분</th>
+            <th>예시 폰트</th>
+            <th>상업용 사용 시 주의사항</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="accent">웹폰트</span> (다운로드해서 쓰는 것)</td>
+            <td>Noto Sans KR, Pretendard, SCoreDream, xeicon</td>
+            <td>
+              무료 오픈소스/배포용 라이선스가 제공됨. 웹서버에 올려서
+              <code>@font-face</code>로 배포해도 안전.
+              단, 각 폰트의 라이선스 문서를 확인하는 것을 권장.
+            </td>
+          </tr>
+          <tr>
+            <td><span class="accent">시스템 기본 폰트</span> (운영체제 내장)</td>
+            <td>
+              Arial, Verdana, Tahoma, 굴림, 돋움, AppleGothic, Dotum, Gulim,
+              UnDotum, 본고딕, -apple-system, system-ui, sans-serif
+            </td>
+            <td>
+              CSS에서 <code>font-family</code>로 지정하는 건 안전하며
+              상업용 웹사이트에서도 문제 없음.
+              ⚠️ 단, 폰트 파일을 직접 추출해 서버에 올려
+              배포하면 라이선스 위반 가능성 있음.
+              반드시 사용자 기기에 설치된 폰트를 불러오는 방식만 사용.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="summary">
+        <strong>핵심 요약</strong>
+        <ul>
+          <li><strong>웹폰트</strong>: 무료 배포용이므로 상업용 웹사이트에서 자유롭게 사용 및 배포 가능.</li>
+          <li><strong>시스템 기본 폰트</strong>: CSS로 지정해 사용자 기기에서 불러오는 건 안전. 폰트 파일을 직접 배포하면 라이선스 위반 위험.</li>
+        </ul>
+        <p style="margin-top:10px;"><strong>즉, 웹사이트 제작 시에는 웹폰트는 자유롭게 배포 가능, 시스템 기본 폰트는 배포하지 말고 CSS로만 지정하면 됩니다.</strong></p>
+      </div>
+
+      <p class="footer-note">참고: 각 폰트의 라이선스(예: SIL OFL, Apache-2.0 등)는 버전에 따라 달라질 수 있으므로, 사용 전 공식 저장소 또는 배포 페이지에서 라이선스 조항을 확인하세요.</p>
+    </section>
+  </main>
+</body>
+</html>

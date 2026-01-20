@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .wrap{width: 80%; height: 800px; background-color: red;}
+    .wrap>div{width: 40%; height: 200px; float:left;}
+    .box1{background-color: yellow;}
+    .box2{background-color: green;}
+  </style>
+  <style>
+@media screen and (min-width:700px) and (max-width:1000px) {
+  .wrap>div{float:none;}
+   }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="box1"></div>
+    <div class="box2"></div>
+  </div>
+
+</body>
+</html>

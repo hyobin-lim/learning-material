@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body><h1></h1>
+  <script>
+// 사용자에게 값 입력받기
+    let money = prompt("하루 용돈의 값을 입력하세요:");
+    let a = prompt("교통비의 값을 입력하세요:");
+    let b = prompt("식비의 값을 입력하세요:");
+    let c = prompt("그 외 지출된 값을 입력하세요:");
+
+    // 입력받은 값은 기본적으로 문자열(string)이므로 숫자로 쓰려면 변환 필요
+    money = Number(money);
+    a = Number(a);
+    b = Number(b);
+    c = Number(c);
+    let total = a + b + c;
+
+    // 결과 출력
+    document.write(`하루 용돈 = ${money} 원<br>`);
+    document.write(`교통비 = ${a} 원<br>`);
+    document.write(`식비 = ${b} 원 <br>`);
+    document.write(`그 외 지출 = ${c} 원<br><br>`);
+    document.write(`총 지출 내역 = ${total} 원<br><br><br>`);
+
+    // 삼항 연산자 활용
+    let message = (total > money) 
+      ? `${total - money} 원 초과` 
+      : "용돈 관리를 잘하시네요.";
+
+    document.write(message);
+  </script>
+</body>
+</html>
+
+
+
+ 
+
+  </script>
+</body>
+</html>

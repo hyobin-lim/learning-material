@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!--
+    inline level: 콘텐츠 영역만큼표시 (공간값 제어 불가능)
+    block level: 한행을 다 차지 (공간의 제어 가능)
+  -->
+  <style>
+    h1 {
+      background-color: yellow;
+    }
+
+    /* :before, :after
+      css 문법을 사용해서 가짜로 html 에 콘텐츠를 삽입
+    */
+    h1 {
+      position: relative;
+      /* :after 의 위치제어 */
+      width: 150px;
+    }
+
+    h1:after {
+      content: '';
+      background: red;
+      width: 50%;
+      height: 2px;
+      display: block;
+      /* 인라인레벨->블록레벨 */
+      position: absolute;
+      /* 부모의 위치가 기준이 됨 */
+      bottom: 10px;
+      opacity: 0;
+      transition: 0.5s;
+    }
+
+    h1:hover:after {
+      opacity: 1;
+    }
+
+    nav {
+      display: flex;
+    }
+
+    h2 {
+      position: relative;
+      display: inline-block;
+    }
+
+    h2:before {
+      position: absolute;
+      content: '';
+      background: green;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+
+    }
+
+    h2:after {
+      position: absolute;
+      content: '';
+      background: blueviolet;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      left: 15px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <h1>h1</h1>
+    <h1>h1</h1>
+    <h1>h1</h1>
+    <h1>h1</h1>
+    <h1>h1</h1>
+  </nav>
+  <hr>
+  <h2>h2</h2>
+</body>
+
+</html>

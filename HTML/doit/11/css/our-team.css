@@ -1,0 +1,97 @@
+@charset 'utf-8';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #f5f5f5;
+}
+#container {
+  padding: 1em 7em;
+}
+h1 {
+  font-size: 3.5em;
+  text-align: center;
+}
+.column {
+  width: 100%;
+  padding: 0.5em 0;
+}
+.card {
+  background-color: #fff;
+  color: #1f003b;
+  padding: 3.5em 1em;
+  border-radius: 0.6em;
+  box-shadow: 0 0 2.4em rgba(25, 0, 58, 0.1);
+  cursor: pointer;
+}
+.card .img-container {
+  width: 8em;
+  height: 8em;
+  background-color: #a993ff;
+  padding: 0.5em;
+  border-radius: 50%;
+  margin-bottom: 2em;
+}
+.card img {
+  width: 100%;
+  border-radius: 50%;
+}
+.card h2 {
+  font-weight: 500;
+}
+.card p {
+  font-weight: 300;
+  text-transform: uppercase;
+  margin: 0.5em 0 2em 0;
+  letter-spacing: 2px;
+}
+.card:hover {
+  background: linear-gradient(#6045ea, #8567f7);
+  color: #fff;
+}
+.card:hover a {
+  color: #fff;
+}
+a {
+  text-decoration: none;
+  color: #222;
+}
+a:hover {
+  color: #fff;
+}
+
+/* 개별 카드의 레이아웃 */
+.card {
+  display: flex; /* 카드 내부도 Flexbox 사용 */
+  flex-direction: column; /* 세로 방향으로 요소 배치 */
+  align-items: center; /* 가로 중앙 정렬 */
+}
+
+/* 소셜 아이콘 영역 */
+.social {
+  width: 50%; /* 카드 폭의 절반만 차지 */
+  display: flex; /* 아이콘들을 가로로 배치 */
+  /* social 박스는 card 입장에서는 '아이템'이지만,
+         내부 아이콘들 입장에서는 '컨테이너' 역할을 함 */
+  justify-content: space-between; /* 아이콘들을 양쪽으로 균등하게 배치 */
+}
+
+@media screen and (min-width: 1024px) {
+  #container {
+    padding: 1em;
+  }
+  .row {
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 2em 1em;
+    text-align: center;
+    }
+    .column{
+      flex:0 0 33.33%;
+      max-width: 33.33%;
+      padding: 0 1em;
+    }
+}

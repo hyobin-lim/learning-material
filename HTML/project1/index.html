@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>원두정기구독</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-icon-192x192.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
+    <link rel="manifest" href="favicon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta property="og:title" content="원두정기구독" />
+    <meta property="og:site_name" content="Blendy" />
+    <meta property="og:url" content="coffee.com" />
+    <meta property="og:description" content="신선한 스페셜티 원두를 집으로 정기배송, 매일 새로운 커피 경험을 즐겨보세요." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="images/og.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/media.css" />
+  </head>
+
+  <body>
+    <!-- 헤더 -->
+    <!-- [a-b] kebab case -->
+    <!-- [a_b] snake case -->
+    <!-- [aBc] camel case -->
+    <!-- [Abc] pascal case -->
+    <header>
+      <nav>
+        <h1 class="logo"><a href="index.html">원두정기구독</a></h1>
+        <div>
+          <button class="lang"><i class="fa-solid fa-globe"></i>한국어<i class="fa-solid fa-caret-down"></i></button>
+          <button>로그인</button>
+        </div>
+      </nav>
+      <div class="header-content">
+        <h2>매일 특별한 커피 타임</h2>
+        <h3>고객님의 취향에 맞게 스페셜 커피를 즐겨보세요.</h3>
+        <p>이메일 주소를 보내시면 구독 안내문과 새로운 소식을 보내 드립니다.</p>
+        <form action="#" method="post" class="add-email">
+          <input type="email" placeholder="이메일주소" name="u_mail" required />
+          <button type="submit">보내기</button>
+        </form>
+      </div>
+    </header>
+    <!-- 배너 -->
+    <section id="banner">
+      <div class="banner-content">
+        <h3>정성을 다해 로스팅 한 커피를 매주 보내드립니다.</h3>
+        <p>스위커 매장의 맛있는 커피를 집에서도 즐기세요.</p>
+        <button>자세히 알아보기</button>
+      </div>
+      <h2>지금 막 로스팅 했어요</h2>
+      <select name="roasting" id="roasting" class="select-menu">
+        <option value="light">라이트 로스트</option>
+        <option value="medium">미디엄 로스트</option>
+        <option value="dark">다크 로스트</option>
+      </select>
+    </section>
+    <!-- 맴버쉽 -->
+    <section id="membership">
+      <h2>회원이 되시면</h2>
+      <div class="membership-content">
+        <h3>월간 스위커 회원 혜택</h3>
+        <p>스위커 온라인몰 구매 시 커피 원두, 드립백 상품 3% 할인</p>
+        <p>스위커 온라인몰 5,000원 상품권 증정</p>
+      </div>
+    </section>
+    <!-- 선택 가이드 -->
+    <section id="choice">
+      <h2>타입별 선택 가이드</h2>
+      <div class="choice-content">
+        <div class="card">
+          <h3>너티드 <br />커피</h3>
+          <p>고소한, 구수한, 산미가 약한 커피</p>
+          <div class="bean-img"><img src="images/beans.png" alt="" /></div>
+        </div>
+
+        <div class="card">
+          <h3>비비드 <br />커피</h3>
+          <p>꽃, 허브, 과일, 산미가 있는 커피</p>
+          <div class="bean-img"><img src="images/beans.png" alt="" /></div>
+        </div>
+
+        <div class="card">
+          <h3>다크 커피</h3>
+          <p>쌉쌀한, 달콤한, 산미가 없는 커피</p>
+          <div class="bean-img"><img src="images/beans.png" alt="" /></div>
+        </div>
+
+        <div class="card">
+          <h3>로스티가 추천하는 커피</h3>
+          <div class="bean-img"><img src="images/beans.png" alt="" /></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- F&Q -->
+    <section id="faq">
+      <h2>자주하는 질문과 답변</h2>
+      <ul class="accordian">
+        <li>
+          <input type="radio" name="accordian" id="ac1" />
+          <label for="ac1">주문을 어떻게 하나요?</label>
+          <div class="content">
+            <p>스위커 온라인 몰에서 주문을 하세요.</p>
+          </div>
+        </li>
+        <li>
+          <input type="radio" name="accordian" id="ac2" />
+          <label for="ac2">주문 용량은 어떻게 되나요?</label>
+          <div class="content">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+        </li>
+        <li>
+          <input type="radio" name="accordian" id="ac3" />
+          <label for="ac3">수령 방법은 어떻게 되나요?</label>
+          <div class="content">
+            <p>집에서 수령을 하세요.</p>
+            <p>가까운 편의점에서 수령을 하세요.</p>
+          </div>
+        </li>
+        <li>
+          <input type="radio" name="accordian" id="ac4" />
+          <label for="ac4">원두 추천 메뉴는 어떻게 되나요?</label>
+          <div class="content">
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.</p>
+          </div>
+        </li>
+      </ul>
+
+      <div class="newsletter">
+        <p>이메일 주소를 보내시면</p>
+        <form action="#" method="post" class="add-email"><input type="email" placeholder="이메일 주소" required /><button type="submit">보내기</button></form>
+      </div>
+    </section>
+
+    <!-- 푸터 영역 -->
+    <footer>
+      <div class="footer-content">
+        <div class="col left">
+          <ul class="footer-nav">
+            <li><a href="#">매장안내</a></li>
+            <li><a href="#">이용약관</a></li>
+            <li><a href="#">개인정보 취급방침</a></li>
+            <li><a href="#">이용안내</a></li>
+          </ul>
+
+          <div class="footer-info">
+            <p>상호:xxxxx (대표:홍길동)</p>
+            <p>주소:제주특별자치도 제주시 해안마을 5길</p>
+            <p>전화: 000-0000-0000</p>
+            <p>사업자 등록 번호: <a href="#">000-00-00000</a></p>
+            <p>고객전화:516</p>
+            <p>통신판매업신고번호: 송파 제49</p>
+          </div>
+        </div>
+        <div class="col center">
+          <h2>고객센터</h2>
+          <h3>000-0000-0000</h3>
+          <p>월-금 09시~19시</p>
+          <ul class="socials">
+            <li>
+              <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            </li>
+            <li>
+              <a href="#"><i class="fa-brands fa-threads"></i></a>
+            </li>
+          </ul>
+        </div>
+        <div class="col right">
+          <h2>커뮤니티</h2>
+          <p><a href="#">공지사항</a></p>
+          <p><a href="#">이벤트</a></p>
+          <p><a href="#">상품 Q&A</a></p>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>Copyright &copy; 스테이위드 커피. All rights reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가상 선택자</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      gap: 20px;
+    }
+
+    .container {
+      width: 300px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    /* Do it! 가상 선택자를 사용해 항목 선택하기 */
+
+    /* 클래스 컨테이너의 자식들 중 첫째 자식만 */
+    .container :first-child {
+      background-color: #fcc;
+    }
+
+    /* 클래스 컨테이너 중에서 첫째 자식인 컨테이너 */
+    .container:first-child {
+      color: rgb(81, 14, 182);
+    }
+
+    /* 컨테이너의 자식 p요소 중 첫번째 자식 p만 */
+    .container p:first-child {
+      color: #cf2;
+    }
+
+    /* 클래스 컨테이너의 자식들 중 마지막 자식만 */
+    .container :last-child {
+      background-color: #2cf;
+    }
+
+    /* 컨테이너의 자식들 중 유일하게 하나만 있는 div */
+    .container div:only-child {
+      color: red;
+      border-bottom: 3px dashed red;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <p>첫 번째</p>
+    <div>두 번째</div>
+    <p>세 번째</p>
+    <div>네 번째</div>
+  </div>
+  <div class="container">
+    <div>혼자~</div>
+  </div>
+</body>
+
+</html>

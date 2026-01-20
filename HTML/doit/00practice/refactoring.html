@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>리펙토링 레이아웃</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #wrap {
+      width: 1000px;
+      margin: auto;
+      text-align: center;
+      font-family: sans-serif;
+    }
+
+    header, nav, footer {
+      height: 100px;
+      background-color: #17ad65;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    main {
+      display: flex;
+      height: 600px;
+    }
+
+    aside {
+      flex: 0 0 300px;
+      background-color: #70e1e5;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    section {
+      flex: 1;
+      background-color: #85a120;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    footer {
+      clear: both;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrap">
+    <header>header</header>
+    <nav>nav</nav>
+    <main>
+      <aside>aside</aside>
+      <section>section</section>
+    </main>
+    <footer>footer</footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인폼</title>
+</head>
+
+<body>
+  <form action="#" method="post">
+    <fieldset>
+      <legend>로그인</legend>
+      <label for="userid">아이디:</label>
+      <input type="text" id="userid" name="userid">
+      <!-- fieldset 태그는 form태그 안에서 관련된 항목들을 묶어주는 역할(그룹핑)을 합니다. -->
+      <!-- legend 태그는 fieldset태그의 제목을 지정합니다. fieldset태그 안에 위치해야 합니다. -->
+      <!-- label 태그는 input 태그와 함께 사용되어 입력 필드의 설명을 제공합니다. -->
+      <!-- label 태그의 for 속성은 연결된 input 태그의 id 속성과 일치해야 합니다. -->
+      <!-- label 태그를 클릭하면 연결된 input 태그에 포커스가 맞춰집니다. -->
+      <!-- id 속성은 유일해야 합니다. 동일한 id를 여러 요소에 사용하면 안됩니다. -->
+      <!-- label 태그의 for 속성은 생략할 수 있지만 접근성을 위해 사용하는 것이 좋습니다. -->
+      <br>
+      <label>비밀번호:
+        <input type="password"></label>
+      <!-- label 태그를 닫기 전에 input 태그를 넣는 방법(랩핑)도 있습니다. -->
+      <!-- input 태그를 label 태그 안에 넣으면 for 속성을 생략할 수 있습니다. -->
+      <!-- input 태그를 label 태그 안에 넣으면 클릭 시 입력 필드에 포커스가 맞춰지는 장점이 있습니다. -->
+      <br>
+      <input type="submit" value="로그인">
+      <!-- type="submit" 은 폼 데이터를 서버로 전송하는 버튼을 만듭니다. -->
+      <!-- submit 버튼은 form 태그 안에 위치해야 합니다. -->
+      <!-- 클릭시 form 태그의 action 속성에 지정된 URL로 데이터를 전송합니다. -->
+      <!-- value 속성은 버튼에 표시될 텍스트를 지정합니다. -->
+      <input type="reset" value="초기화">
+      <!-- type="reset" 은 폼의 모든 입력 필드를 초기화하는 버튼을 만듭니다. -->
+      <!-- reset 버튼을 클릭하면 폼의 모든 입력 필드가 기본값으로 재설정됩니다. -->
+      <!-- reset 버튼은 form 태그 안에 위치해야 합니다. -->
+      <!-- reset, submit 버튼은 웹브라우저에 저장된 기본 스타일이 적용됩니다.  -->
+    </fieldset>
+
+
+  </form>
+</body>
+
+</html>

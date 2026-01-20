@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>조건문</title>
+</head>
+
+<body>
+    <script>
+        let gender = '여자';
+        console.log(gender);
+        document.write(`당신은 ${gender} 이므로 `)
+        if (gender === '남자') {
+            document.write(`바지를 입으세요`)
+        }
+        if (gender === '여자') {
+            document.write(`치마를 입으세요<br><br>`)
+        }
+        // Do it! 사용자가 입력한 숫자가 3의 배수인지 판별하기
+        let userNum = prompt("숫자를 입력하세요:");
+
+
+        // 입력받은 값은 기본적으로 문자열(string)이므로 숫자로 쓰려면 변환 필요
+
+
+
+        // if문
+        if (userNum !== null) {
+            if (parseInt(userNum) % 3 === 0) {
+                alert(`3의 배수 입니다`)
+            }
+            else {
+                alert(`3의 배수가 아닙니다`)
+            }
+        } else { alert(`입력이 취소 되었습니다.`) }
+
+
+        // 3항연산자
+        /* (userNum % 3 === 0) ? alert(`3의 배수 입니다`) : alert(`3의 배수가 아닙니다`) */
+
+
+
+    </script>
+</body>
+
+</html>

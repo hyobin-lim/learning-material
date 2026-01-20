@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>조건문</title>
+</head>
+<body>
+  <script>
+
+    //  Do it! OR 연산자를 사용해 조건 체크하기 
+//50보다 작은 숫자 2개를 입력 받아 둘 중 하나가 10보다 작은지 판단
+
+let num1 = parseInt(prompt('50 미만의 숫자를 입력하세요.'))
+let num2 = parseInt(prompt('50 미만의 숫자를 입력하세요.'))
+/* if (num1 < 10 || num2 < 10) {
+alert('숫자 2개중 하나는 10 미만 입니다.')
+}
+else{
+  alert('숫자 2개 모두 10 이상 입니다.')
+} */
+if (parseInt(num1) < 10 && parseInt(num2) < 10) {alert('숫자 2개 모두 10 미만 입니다.')
+}
+else{
+  alert('숫자 2개 중 하나는 10 이상 입니다.')
+} 
+
+console.log(false);
+//!반대의 값 반환
+console.log(!false);
+//A!==B 값의 비교 후 다르면 true
+console.log(true!==false);
+
+  </script>
+</body>
+</html>

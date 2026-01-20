@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원정보입력</title>
+</head>
+
+<body>
+  <ul>
+    <li>
+      <a href="../../index.html">index로 가기</a>
+    </li>
+  </ul>
+  <form action="register.php" method="post">
+    <fieldset>
+      <legend>회원정보입력</legend>
+      <!-- label+br+input+br*2 -->
+      <label for="uname">name:</label>
+      <br>
+      <input type="text" id="uname" placeholder="write your name" value=""><br><br>
+      <!-- label 태그는 입력 필드와 같은 폼 요소에 대한 설명을 제공하는 데 사용됩니다. -->
+      <!-- 사용자 편의 개선을 위해 사용되며 접근성 향상에도 기여합니다. 널리 사용되는 속성으로는 for 속성이 있습니다. for 속성은 label 태그와 연결된 입력 필드의 id 속성과 일치해야 합니다. -->
+      <!-- 넓은 클릭 영역을 제공하여 사용자가 입력 필드를 더 쉽게 선택할 수 있도록 도와줍니다. -->
+      <!-- input 앞에는 반드시 label 태그만 와야 합니다. -->
+
+      <!-- placeholder는 임시 텍스트를 입력 필드에 표시하는 속성입니다. -->
+      <!-- 사용자가 입력 필드에 값을 입력하기 전까지 표시됩니다. -->
+      <!-- value는 input 필드의 기본값을 지정하는 속성입니다. -->
+      <!-- value 속성은 input 태그에서 꼭 있어야 하는 것은 아니지만, 자주 사용됩니다. -->
+      <!-- 폼 전송 시 서버로 어떤 값이 전달될지를 제어하려면 꼭 지정하는 게 좋음 -->
+      <!-- value 속성은 실제 값으로 사용자가 입력한 값이 데이터에 반영되기 전까지 표시됩니다. -->
+      <!-- 사용자가 입력한 값을 담아 서버로 전송할 때 사용됩니다. -->
+      <label for="uemail">email:</label>
+      <br>
+      <input type="text" id="uemail" placeholder="write your email id" value="">
+      <input type="text" list="emailDomains" placeholder="select your email" value="">
+      <datalist id="emailDomains">
+        <option value="@naver.com">
+        <option value="@gmail.com">
+        <option value="@daum.net">
+        <option value="@hotmail.com">
+        <option value="@nate.com">
+      </datalist>
+      <br><br>
+ <!-- datalist 태그는 미리 정의된 옵션 목록을 제공하여 사용자가 입력 필드에 값을 입력할 때 선택할 수 있도록 도와줍니다. -->
+  <!-- list는 input 태그의 속성으로, 사용자가 입력할 수 있는 값의 목록을 지정합니다. -->
+      <!-- datalist 태그는 input 태그와 함께 사용되며, input 태그의 list 속성에 datalist의 id 값을 지정하여 연결합니다. -->
+      <!-- option 태그는 datalist 태그 내에서 사용되며, 사용자가 선택할 수 있는 옵션을 정의합니다. -->
+      <!-- option 태그의 value 속성은 사용자가 선택할 수 있는 값을 지정합니다. -->
+      <!-- option 태그는 닫을 필요가 없습니다. -->
+
+      <label for="utel">tel:</label>
+      <br>
+      <input type="tel" id="utel" placeholder="write your tel" value=""><br><br>
+      <p>성별: </p>
+      <label>남성: <input type="radio" name="gender" value="man" checked></label>
+      <!-- label>input: -->
+      <label>여성: <input type="radio" name="gender" value="woman"></label><br><br>
+      <!-- radio 버튼은 여러 개의 옵션 중에서 하나만 선택할 수 있는 입력 필드입니다. -->
+      <!-- radio 버튼은 선택영역이 확보되기 위해서라도 꼭 label 태그와 함께 사용하는 것이 좋습니다. -->
+      <!-- name 속성은 동일한 그룹의 radio 버튼들을 묶어주는 역할을 합니다. -->
+      <!-- name 속성이 동일한 radio 버튼들 중에서 하나만 선택할 수 있습니다. -->
+      <!-- name 속성이 다르면 각각 독립적인 radio 버튼이 됩니다. -->
+      <!-- value 속성은 라디오 버튼에서 사용자가 선택한 값을 서버로 전송할 때 사용됩니다. -->
+      <!-- checked 속성은 해당 라디오 버튼이 웹페이지 화면에서 기본적으로 선택되어 있도록 설정하는 속성입니다. -->
+      <p>취미: </p>
+      <label><input type="checkbox" name="hobby" value="sports">스포츠</label><br><br>
+      <label><input type="checkbox" name="hobby" value="music">음악</label><br><br>
+      <label><input type="checkbox" name="hobby" value="coding">코딩</label><br><br>
+      <!-- checkbox는 여러 개의 옵션 중에서 하나 이상을 선택(중복 적용 가능)할 수 있는 입력 필드입니다. -->
+      <!-- checkbox는 선택영역이 확보되기 위해서라도 꼭 label 태그와 함께 사용하는 것이 좋습니다. -->
+
+      <p>국가: </p>
+      <input type="text" list="countryList" placeholder="select your country">
+      <datalist id="countryList">
+        <option value="대한민국">
+        <option value="미국">
+        <option value="일본">
+        <option value="중국">
+        <option value="영국">
+      </datalist><br><br>
+     
+
+      <select name="country" id="country">
+        <option>-----선택 하세요-----</option>
+        <option value="kr">대한민국</option>
+        <option value="us">미국</option>
+        <option value="jp">일본</option>
+        <option value="cn">중국</option>
+        <option value="eg">영국</option>
+      </select><br><br>
+      <!-- select 태그는 input 태그와 달리 미리 정의된 옵션 목록에서 선택할 수 있는 드롭다운 메뉴를 생성합니다. -->
+      <!-- select 태그는 여러 개의 option 태그를 포함하여 사용자가 선택할 수 있는 옵션을 제공합니다. -->
+      <!-- select 태그의 name 속성은 폼이 제출될 때 선택된 값을 서버로 전송하는 데 사용됩니다. -->
+      <!-- option 태그는 select 태그 내에서 사용되며, 사용자가 선택할 수 있는 옵션을 정의합니다. -->
+
+      <p>자기소개</p>
+      <textarea name="msg" id="msg" rows="4" cols="30"></textarea>
+      <hr>
+      <input type="submit" value="전송">
+      <input type="button" value="취소">
+      <input type="reset" value="초기화">
+      <hr>
+      <input type="color" name="color" id="color">
+      <input type="file" name="file" id="file">
+      <input type="number" name="amount" id="amount" min="0" max="100" step="2">
+      <hr>
+      <input type="date" name="date" id="date">
+      <input type="datetime-local" name="datetime" id="datetime">
+<br>
+<input type="range" name="range" id="range" value="0" min="0" max="10" step="2">
+
+
+      <button type="submit">전송</button>
+      <button>취소</button>
+    </fieldset>
+  </form>
+</body>
+
+</html>
+<!-- 모든 웹 브라우저의 디자인을 최대한 같게 표시하는 것을 크로스 브라우징이라고 합니다. -->
+<!-- 따라서 제작하는 웹페이지가 다양한 브라우저에서 동일하게 보이도록 하기 위해서는 기본 스타일을 재정의하는 것이 중요합니다. -->
+<!-- 웹 브라우저마다 테스트를 해보는 것이 중요합니다 -->

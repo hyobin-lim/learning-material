@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>form 태그 교안</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        h1,
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        .example {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #007bff;
+            border-radius: 5px;
+        }
+
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .demo {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .note {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>form 태그 교안</h1>
+
+    <!-- 1. form 태그란 -->
+    <h2>1. form 태그란?</h2>
+    <div class="example">
+        <p>form 태그는 사용자로부터 정보를 입력받고 서버로 전송하는 역할을 합니다.</p>
+        <p>회원가입, 로그인, 검색, 문의하기 등 사용자 입력이 필요한 곳에 사용됩니다.</p>
+    </div>
+
+    <!-- 2. form 태그의 속성 -->
+    <h2>2. form 태그의 주요 속성</h2>
+    <table>
+        <tr>
+            <th>속성</th>
+            <th>설명</th>
+            <th>예시</th>
+        </tr>
+        <tr>
+            <td>action</td>
+            <td>폼 데이터를 전송할 서버 주소</td>
+            <td>action="login.php"</td>
+        </tr>
+        <tr>
+            <td>method</td>
+            <td>데이터 전송 방식 (GET, POST)</td>
+            <td>method="POST"</td>
+        </tr>
+        <tr>
+            <td>name</td>
+            <td>폼의 이름</td>
+            <td>name="loginForm"</td>
+        </tr>
+        <tr>
+            <td>enctype</td>
+            <td>파일 업로드 시 사용</td>
+            <td>enctype="multipart/form-data"</td>
+        </tr>
+    </table>
+
+    <!-- 3. 기본 구조 -->
+    <h2>3. form 태그의 기본 구조</h2>
+    <div class="example">
+        <code>&lt;form action="서버주소" method="POST"&gt;</code><br>
+        <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;이름:&lt;/label&gt;</code><br>
+        <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" name="username"&gt;</code><br>
+        <code>&lt;/form&gt;</code>
+    </div>
+
+    <!-- 4. 입력 필드 종류 -->
+    <h2>4. 주요 입력 필드</h2>
+    <table>
+        <tr>
+            <th>input 타입</th>
+            <th>설명</th>
+            <th>예시</th>
+        </tr>
+        <tr>
+            <td>text</td>
+            <td>일반 텍스트 입력</td>
+            <td>&lt;input type="text"&gt;</td>
+        </tr>
+        <tr>
+            <td>password</td>
+            <td>비밀번호 입력 (숨김)</td>
+            <td>&lt;input type="password"&gt;</td>
+        </tr>
+        <tr>
+            <td>email</td>
+            <td>이메일 입력</td>
+            <td>&lt;input type="email"&gt;</td>
+        </tr>
+        <tr>
+            <td>number</td>
+            <td>숫자만 입력</td>
+            <td>&lt;input type="number"&gt;</td>
+        </tr>
+        <tr>
+            <td>checkbox</td>
+            <td>중복 선택 가능</td>
+            <td>&lt;input type="checkbox"&gt;</td>
+        </tr>
+        <tr>
+            <td>radio</td>
+            <td>하나만 선택 가능</td>
+            <td>&lt;input type="radio"&gt;</td>
+        </tr>
+        <tr>
+            <td>file</td>
+            <td>파일 선택</td>
+            <td>&lt;input type="file"&gt;</td>
+        </tr>
+        <tr>
+            <td>submit</td>
+            <td>제출 버튼</td>
+            <td>&lt;input type="submit"&gt;</td>
+        </tr>
+    </table>
+
+    <!-- 5. 실습 예제 -->
+    <h2>5. 로그인 폼 예제</h2>
+    <div class="demo">
+        <h3>예제 코드:</h3>
+        <div class="example">
+            <code>&lt;form action="login.php" method="POST"&gt;</code><br>
+            <code>&nbsp;&nbsp;&lt;fieldset&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend&gt;로그인&lt;/legend&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;label for="id"&gt;아이디:&lt;/label&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" id="id" name="id"&gt;&lt;br&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;label for="pw"&gt;비밀번호:&lt;/label&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="password" id="pw" name="pw"&gt;&lt;br&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="submit" value="로그인"&gt;</code><br>
+            <code>&nbsp;&nbsp;&lt;/fieldset&gt;</code><br>
+            <code>&lt;/form&gt;</code>
+        </div>
+
+        <h3>실제 동작:</h3>
+        <form action="#" method="POST">
+            <fieldset>
+                <legend>로그인</legend>
+                <label for="id">아이디:</label><br>
+                <input type="text" id="id" name="id" placeholder="아이디 입력"><br><br>
+                <label for="pw">비밀번호:</label><br>
+                <input type="password" id="pw" name="pw" placeholder="비밀번호 입력"><br><br>
+                <input type="submit" value="로그인">
+            </fieldset>
+        </form>
+    </div>
+
+    <!-- 6. 회원가입 폼 예제 -->
+    <h2>6. 회원가입 폼 예제</h2>
+    <div class="demo">
+        <h3>예제 코드:</h3>
+        <div class="example">
+            <code>&lt;form action="register.php" method="POST"&gt;</code><br>
+            <code>&nbsp;&nbsp;&lt;fieldset&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;legend&gt;회원 정보 입력&lt;/legend&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;label for="uname"&gt;이름:&lt;/label&gt;&lt;br&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" id="uname" name="username"&gt;&lt;br&gt;&lt;br&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;label for="uemail"&gt;이메일:&lt;/label&gt;&lt;br&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="email" id="uemail" name="email"&gt;&lt;br&gt;&lt;br&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;label for="uphone"&gt;전화번호:&lt;/label&gt;&lt;br&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="text" id="uphone" name="phone"&gt;&lt;br&gt;&lt;br&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;성별:&lt;/label&gt;&lt;br&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="radio" name="gender" value="male"&gt; 남성</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="radio" name="gender" value="female"&gt; 여성&lt;br&gt;&lt;br&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt;관심사:&lt;/label&gt;&lt;br&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="checkbox" name="interest" value="sports"&gt; 스포츠</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="checkbox" name="interest" value="music"&gt; 음악</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="checkbox" name="interest" value="coding"&gt; 코딩&lt;br&gt;&lt;br&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;label for="country"&gt;국가:&lt;/label&gt;&lt;br&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;select id="country" name="country"&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option&gt;--- 선택 ---&lt;/option&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="korea"&gt;대한민국&lt;/option&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="usa"&gt;미국&lt;/option&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;option value="japan"&gt;일본&lt;/option&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;/select&gt;&lt;br&gt;&lt;br&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;label for="message"&gt;자기소개:&lt;/label&gt;&lt;br&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;textarea id="message" name="message" rows="4" cols="30"&gt;&lt;/textarea&gt;&lt;br&gt;&lt;br&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="submit" value="가입하기"&gt;</code><br>
+            <code>&nbsp;&nbsp;&nbsp;&nbsp;&lt;input type="reset" value="초기화"&gt;</code><br>
+            <code>&nbsp;&nbsp;&lt;/fieldset&gt;</code><br>
+            <code>&lt;/form&gt;</code>
+        </div>
+
+        <h3>실제 동작:</h3>
+        <form action="#" method="POST">
+            <fieldset>
+                <legend>회원 정보 입력</legend>
+
+                <label for="uname">이름:</label><br>
+                <input type="text" id="uname" name="username" placeholder="이름"><br><br>
+
+                <label for="uemail">이메일:</label><br>
+                <input type="email" id="uemail" name="email" placeholder="example@email.com"><br><br>
+
+                <label for="uphone">전화번호:</label><br>
+                <input type="text" id="uphone" name="phone" placeholder="010-1234-5678"><br><br>
+
+                <label>성별:</label><br>
+                <input type="radio" name="gender" value="male"> 남성
+                <input type="radio" name="gender" value="female"> 여성<br><br>
+
+                <label>관심사:</label><br>
+                <input type="checkbox" name="interest" value="sports"> 스포츠
+                <input type="checkbox" name="interest" value="music"> 음악
+                <input type="checkbox" name="interest" value="coding"> 코딩<br><br>
+
+                <label for="country">국가:</label><br>
+                <select id="country" name="country">
+                    <option>--- 선택 ---</option>
+                    <option value="korea">대한민국</option>
+                    <option value="usa">미국</option>
+                    <option value="japan">일본</option>
+                </select><br><br>
+
+                <label for="message">자기소개:</label><br>
+                <textarea id="message" name="message" rows="4" cols="30" placeholder="자기소개를 입력하세요"></textarea><br><br>
+
+                <input type="submit" value="가입하기">
+                <input type="reset" value="초기화">
+            </fieldset>
+        </form>
+    </div>
+
+    <!-- 7. GET vs POST -->
+    <h2>7. GET vs POST 메서드</h2>
+    <table>
+        <tr>
+            <th>구분</th>
+            <th>GET</th>
+            <th>POST</th>
+        </tr>
+        <tr>
+            <td>데이터 위치</td>
+            <td>URL에 표시</td>
+            <td>요청 본문에 숨김</td>
+        </tr>
+        <tr>
+            <td>보안</td>
+            <td>낮음</td>
+            <td>높음</td>
+        </tr>
+        <tr>
+            <td>데이터 크기</td>
+            <td>제한적 (약 2KB)</td>
+            <td>많음</td>
+        </tr>
+        <tr>
+            <td>사용 예</td>
+            <td>검색, 필터링</td>
+            <td>로그인, 회원가입</td>
+        </tr>
+    </table>
+
+    <!-- 8. 유용한 팁 -->
+    <h2>8. 유용한 팁</h2>
+    <div class="note">
+        <strong>✓ label 태그 사용하기:</strong><br>
+        &lt;label for="id"&gt;아이디&lt;/label&gt;<br>
+        &lt;input type="text" id="id" name="id"&gt;<br>
+        <br>label의 for 속성과 input의 id를 연결하면 사용성이 좋아집니다!
+    </div>
+
+    <div class="note">
+        <strong>✓ name 속성 필수:</strong><br>
+        name 속성이 없으면 서버로 전송되지 않습니다.<br>
+        반드시 각 입력 필드에 고유한 name을 지정하세요!
+    </div>
+
+    <div class="note">
+        <strong>✓ fieldset과 legend:</strong><br>
+        &lt;fieldset&gt;과 &lt;legend&gt;를 사용하면 폼이 논리적으로 그룹화되고 접근성이 향상됩니다.
+    </div>
+
+    <div class="note">
+        <strong>✓ placeholder 사용:</strong><br>
+        placeholder는 입력 필드의 예시를 표시합니다.<br>
+        &lt;input type="text" placeholder="예시 텍스트"&gt;
+    </div>
+
+</body>
+
+</html>

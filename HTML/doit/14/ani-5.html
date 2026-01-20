@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      animation: bg 1.5s infinite alternate, ro 1.5s infinite alternate;
+    }
+
+    @keyframes bg {
+      from {
+        background-color: #ff0000;
+      }
+
+      50% {
+        background-color: green;
+      }
+
+      100% {
+        background-color: blue;
+      }
+    }
+
+    @keyframes ro {
+      0% {
+        transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+      }
+      50%{
+        transform: perspective(120px) rotateX(-180deg) rotateY(0deg);
+      }
+      100% {
+        transform: perspective(120px) rotateX(-180deg) rotateY(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box"></div>
+</body>
+
+</html>

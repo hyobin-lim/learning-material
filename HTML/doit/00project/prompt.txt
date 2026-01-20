@@ -1,0 +1,42 @@
+Clone this site EXACTLY as shown: [https://www.mentalhealth.go.kr/]
+
+IMPORTANT - TECH STACK:
+- Use ONLY HTML, CSS, and JavaScript (NO React, Vue, or frameworks)
+- CLIENT-SIDE ONLY (NO server, backend, or database)
+- Pure vanilla JavaScript only
+
+FONT REPLACEMENT:
+- Replace existing fonts with Korean fonts as follows:
+  - [SCoreDream] → [GangwonEducationModuche]
+  
+  - Load fonts from CDN: [Load fonts directly via @font-face]
+- Update all corresponding font-family declarations in CSS
+- Keep font weights and styles intact
+
+@font-face {
+    font-family: 'GangwonEducationModuche';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-2201-2@1.0/GangwonEdu-OTFLightA.woff') format('woff');
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GangwonEducationModuche';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-2201-2@1.0/GangwonEdu-OTFBoldA.woff') format('woff');
+    font-weight: 700;
+    font-display: swap;
+}
+
+JAVASCRIPT LIBRARY:
+- Use [gsap core,gsap scroll] instead of any existing libraries
+- Load from CDN: [https://cdnjs.cloudflare.com/ajax/libs/Swiper/11.0.5/swiper-bundle.min.js], [https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js],[https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollToPlugin.min.js],[https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js]
+
+REQUIREMENTS:
+- Make it pixel-perfect match to the original layout and design
+- Make it responsive
+- Include all animations and interactions
+- Recreate every section exactly as it appears
+- Frontend only - no backend implementation needed
+- Only change fonts, keep all other styling
+
+Build complete working website using HTML/CSS/JS ONLY.

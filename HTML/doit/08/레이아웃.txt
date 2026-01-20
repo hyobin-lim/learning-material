@@ -1,0 +1,8 @@
+1. display: inline-block
+2. float:left, right
+
+공통점: 아이템박스에 선언
+차이점:
+  - inline-block 콘텐츠로 취급 공백이 생김
+  - float: 원래 html문서의 흐름을 무시하면서 한층 위로 뜨는 성질을 가짐
+    다음에 오는 형제요소에 해제를 해야함

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>layout1</title>
+  <style>
+    .wrap {
+      margin: auto;
+      width: 1000px;
+    }
+
+    header,
+    nav,
+    footer {
+      width: 1000px;
+      height: 100px;
+      background-color: #17ad65;
+      color: white;
+    }
+
+    aside {
+      width: 300px;
+      height: 600px;
+      background-color: #0f603957;
+      color: white;
+    }
+
+    section {
+      width: 700px;
+      height: 600px;
+      background-color: #bf2727;
+      color: white;
+    }
+
+    .fl {
+      float: left;
+    }
+    /* 코드의 최적화->리팩토링 */
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>header</header>
+    <nav>nav</nav>
+    <aside class="fl">side</aside>
+    <section class="fl">content</section>
+    <footer class="fl">footer</footer>
+  </div>
+</body>
+
+</html>

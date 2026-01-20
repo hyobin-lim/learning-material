@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>박스모델 - 마진 예시</title>
+	<style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    div {
+      width:200px;
+      height:100px;
+      display:inline-block;
+      border:1px solid #222;
+      color:#000;
+      text-align:center;
+      line-height:100px;
+      font-weight:bold;
+    }
+
+    /* 박스 모델에 마진 지정하기 */
+    #margin1 {
+      margin: 10px; /* 모든 방향 동일 */
+      background: lightcoral;
+    }
+    #margin2 {
+      margin: 20px 40px; /* 위아래 20px, 좌우 40px */
+      background: lightblue;
+    }
+    #margin3 {
+      margin: 30px 10px 50px 70px; /* 위, 오른쪽, 아래, 왼쪽 */
+      background: lightgreen;
+    }
+    #margin4 {
+      margin-top: 40px; /* 위쪽만 */
+      background: khaki;
+    }
+    #margin5 {
+      margin-left: 60px; /* 왼쪽만 */
+      background: plum;
+    }
+	</style>
+</head>
+<body>
+  <h2>박스 모델 - 마진 지정하기</h2>
+  <p>아래 박스들은 각각 다른 margin 속성을 적용한 예시입니다.</p>
+
+  <div id="margin1">margin: 10px</div>
+  <div id="margin2">margin: 20px 40px</div>
+  <div id="margin3">margin: 30px 10px 50px 70px</div>
+  <div id="margin4">margin-top: 40px</div>
+  <div id="margin5">margin-left: 60px</div>
+</body>
+</html>

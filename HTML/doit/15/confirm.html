@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>confirm</title>
+</head>
+<body>
+	<!-- Do it! 확인 창 만들기 -->
+	<script>		
+	  let reply = confirm("삭제하시겠습니까?");
+		console.log(reply);
+		if(reply == true){
+			document.querySelector('body').style.background = 'red';
+		}
+	</script>
+</body>
+</html>

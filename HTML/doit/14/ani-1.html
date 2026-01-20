@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Animation</title>
+  <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: #fa0;
+      /* Do it! 2초 동안 애니메이션 실행하기 */
+      animation-name: right;
+      animation-duration: 1000ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease;
+      animation-direction: alternate;
+      animation-play-state: paused;
+    }
+
+    /* Do it! @keyframes로 애니메이션 정의하기 */
+    @keyframes right {
+      from {
+        border-radius: 0;
+        transform: translateX(0) rotate(0);
+      }
+
+      to {
+        border-radius: 50%;
+        transform: translateX(500px) rotate(360deg);
+      }
+    }
+    button:hover~.box{
+      animation-play-state: running;
+    }
+    .box:nth-of-type(2){
+      animation-delay: 2s;
+    }
+  </style>
+  <style>
+    .ball{
+      width: 50px;
+      height: 50px;
+      background:pink;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <button>hover</button>
+  <div class="box"> </div>
+  <div class="box"> </div>
+  <div class="ball"></div>
+</body>
+
+</html>

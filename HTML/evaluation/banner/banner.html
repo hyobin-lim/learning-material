@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafe In Banner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .banner {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            background: url('images/img02.png') center/cover no-repeat;
+            overflow: hidden;
+        }
+
+        .content-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 80px;
+        }
+
+        .left-section {
+            position: relative;
+            z-index: 10;
+            flex: 0 0 auto;
+        }
+
+        .coffee-image {
+            width: auto;
+            height:700px;
+            display: block;
+            margin-left: -185px;
+            margin-top: -100px;
+        }
+
+        .right-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 80px;
+            position: relative;
+            z-index: 10;
+            padding-right: 60px;
+        }
+
+        .top-content {
+            text-align: right;
+        }
+
+        .subtitle {
+            font-size: 40px;
+            color: #2d5a3d;
+            font-weight: 600;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+            line-height: 1.4;
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            justify-content: flex-end;
+        }
+
+        .brand-name {
+            font-size: 90px;
+            font-weight: bold;
+            color: #000;
+            letter-spacing: 4px;
+            font-family: Arial, sans-serif;
+        }
+
+        .icon {
+            width: 100px;
+            height: auto;
+            display: block;
+        }
+
+        .bottom-content {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .logo {
+            width: 240px;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 1200px) {
+            .coffee-image {
+                width: 450px;
+            }
+            
+            .brand-name {
+                font-size: 70px;
+            }
+            
+            .subtitle {
+                font-size: 26px;
+            }
+            
+            .icon {
+                width: 80px;
+            }
+            
+            .logo {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+  <br><br><br>
+  <ul>
+    <li><a href="../evaluation.html">위로 가기</a></li>
+  </ul><br><br><br>
+    <div class="banner">
+        <div class="content-wrapper">
+            <div class="left-section">
+                <img src="images/coffee01.png" alt="Coffee Cup" class="coffee-image">
+            </div>
+            
+            <div class="right-section">
+                <div class="top-content">
+                    <p class="subtitle">지친 업무 속, 따뜻한 커피 한 잔의 여유</p>
+                    <div class="brand-container">
+                        <h1 class="brand-name">cafe in</h1>
+                        <img src="images/icon.png" alt="Icon" class="icon">
+                    </div>
+                </div>
+                
+                <div class="bottom-content">
+                    <img src="images/logo01.png" alt="Fresh Brewed Coffee" class="logo">
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

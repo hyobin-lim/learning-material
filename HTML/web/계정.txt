@@ -1,0 +1,5 @@
+호스트 아이디 : hyobin0085
+기본 제공 도메인 : hyobin0085.dothome.co.kr
+웹서버 아이피	112.175.185.146
+FTP 아이디	hyobin0085
+FTP 비밀번호 a@asfg1245

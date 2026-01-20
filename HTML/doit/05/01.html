@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>기본구조</title>
+</head>
+
+<body>
+  <form action="#" method="get"> </form>
+  <!-- action은 데이터를 전송할 서버의 주소를 지정하는 속성, 오직 form태그만 갖을 수 있음 -->
+  <!-- action="#" 은 현재 페이지로 전송한다는 의미 -->
+  <!-- method는 데이터를 전송하는 방식을 지정하는 속성 -->
+  <!-- get과 post 두가지 방식이 있음 -->
+  <!-- get은 데이터를 URL의 쿼리 스트링으로 전송하는 방식 -->
+  <!-- get 값은 사용자가 검색한 데이터가 주소표시줄에 그대로 노출이 됨 -->
+  <!-- 다른 사람들과 공유된 정보들을 표시할때 사용 -->
+  <form action="#" method="post"></form>
+  <!-- post는 데이터의 값을 감싸주는 역할 -->
+  <!-- post는 데이터를 HTTP 메시지의 본문에 포함시켜 전송하는 방식 -->
+  <!-- 아이디나 비번을 입력 하는 등의 민감한 정보를 작성하는 곳에서는 post를 사용하여 
+   주소표시줄에 흔적이 남지 않도록 함 -->
+  <label for="search">검색어 입력</label>
+  <input type="text">
+  <!-- input 속성은 사용자가 입력할 수 있는 다양한 형태의 입력 필드를 정의합니다. -->
+   <!-- input 태그는 반드시 닫는 태그가 없어야 합니다. -->
+   </body>
+
+</html>

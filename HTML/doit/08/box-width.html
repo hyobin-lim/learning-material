@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>박스모델</title>
+	<style>
+    div {
+      border: 1px solid #000;
+      margin-bottom: 20px;
+    }
+    /* Do it! 박스 모델의 너비와 높이 지정하기 */
+    .box1{
+      /* 고정너비 */
+      width:400px;
+      /* 고정높이 */
+      height: 100px;
+      padding: 50px;
+      margin:100px;
+    }
+    .box2{
+      /* 가변너비 */
+      width: 50%;
+      /* 세로는 높이 무한대 이므로 % 계산 불가 */
+      height: 50%;
+      /* 웹페이지는 문서이므로 문자가 제일중요 */
+      /* 고정높이 */
+      height: 150px;
+      align-content: center;
+      text-align: center;
+    }
+	</style>
+</head>
+<body>
+  <div class="box1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis, dignissimos. Impedit perferendis fugiat facere molestiae!</div>
+  <div class="box2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur laboriosam ullam, excepturi vitae ratione quos.</div>
+</body>
+</html>

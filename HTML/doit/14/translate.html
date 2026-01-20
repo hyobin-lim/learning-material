@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>Transform - translate</title>
+    <style>
+			.container {
+				width:800px;
+				height:200px;
+				margin:20px auto;
+			}
+			.origin {
+				width: 100px;
+				height: 100px;
+				border: 1px solid black;
+				float: left;
+				margin: 40px;
+			}
+			.origin > div {				
+				width:100px;
+				height:100px;
+				background-color:orange;
+				transition: 1s;
+			}
+
+      /* Do it! 마우스 오버하면 사각형 이동하기 */
+#movex:hover{
+transform:translate(50px);/* -는 왼쪽, +는 오른쪽 방향 첫번째 자리는 x축 */
+}
+#movey:hover{
+transform:translate(0,20px);/* -는 위로, +는 아래로, 두번째 자리는 y축인데 인식을 하게 하려면 첫번째 자리가 채워져 있어야 함 */
+/* translate(0,20px); 대신 translateY(20px); 로 직접 지정을 해도 됨 */
+}
+#movexy:hover{
+transform:translate(20px,50px);
+}
+		</style>
+	</head>
+	<body>		
+		<div class="container">
+			<div class="origin">
+				<div id="movex"></div>		
+			</div>
+			<div class="origin">
+				<div id="movey"></div>	
+			</div>
+			<div class="origin">
+				<div id="movexy"></div>		
+			</div>
+		</div>
+	</body>
+</html>

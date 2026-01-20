@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>블록 레벨 vs 인라인 레벨 요소 사용 가이드</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 24px; line-height: 1.6; }
+    table { border-collapse: collapse; width: 100%; max-width: 960px; margin-bottom: 32px; }
+    th, td { border: 1px solid #ddd; padding: 10px 12px; text-align: left; }
+    th { background: #f5f7fb; font-weight: 600; }
+    tbody tr:nth-child(even) { background: #fafafa; }
+    h1 { margin-bottom: 16px; }
+    h2 { margin-top: 32px; }
+    code { background: #f3f3f3; padding: 2px 6px; border-radius: 4px; }
+    .category { background: #e9ecef; font-weight: bold; text-align: center; }
+  </style>
+</head>
+<body>
+  <h1>블록 레벨 요소와 인라인 레벨 요소 사용 가이드</h1>
+  <p>HTML 요소는 크게 <strong>블록 레벨 요소</strong>와 <strong>인라인 레벨 요소</strong>로 나뉩니다. 
+     각각의 특성과 사용 시점을 아래 표로 정리했습니다.</p>
+
+  <h2>블록 레벨 요소</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>특징</th>
+        <th>사용 시점</th>
+        <th>예시 태그</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>항상 새로운 줄에서 시작하며 기본적으로 전체 너비를 차지</td>
+        <td>문서의 구조를 나눌 때, 큰 레이아웃이나 구획을 정의할 때</td>
+        <td><code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;h1&gt;~&lt;h6&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code></td>
+      </tr>
+      <tr>
+        <td>다른 블록 요소와 인라인 요소를 포함할 수 있음</td>
+        <td>제목, 문단, 목록, 표 등 독립적인 콘텐츠 단위를 표현할 때</td>
+        <td><code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code>, <code>&lt;table&gt;</code>, <code>&lt;form&gt;</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>인라인 레벨 요소</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>특징</th>
+        <th>사용 시점</th>
+        <th>예시 태그</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>줄 안에서 이어지며 필요한 만큼의 너비만 차지</td>
+        <td>텍스트 일부를 꾸미거나 강조할 때</td>
+        <td><code>&lt;span&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;a&gt;</code></td>
+      </tr>
+      <tr>
+        <td>블록 요소 안에서 사용되며 다른 인라인 요소와 나란히 배치 가능</td>
+        <td>문장 중간에 링크, 이미지, 입력 필드 등을 삽입할 때</td>
+        <td><code>&lt;img&gt;</code>, <code>&lt;br&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;label&gt;</code></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>정리</h2>
+  <ul>
+    <li><strong>블록 레벨 요소</strong>: 문서의 큰 구조나 레이아웃을 정의할 때 사용합니다.</li>
+    <li><strong>인라인 레벨 요소</strong>: 문장이나 텍스트 흐름 안에서 특정 부분을 꾸미거나 기능을 추가할 때 사용합니다.</li>
+    <li>즉, <em>큰 틀은 블록 요소로 잡고, 세부적인 꾸밈이나 기능은 인라인 요소로 처리</em>하는 것이 일반적인 패턴입니다.</li>
+  </ul>
+
+  <h2>사용 시 주의할 점</h2>
+  <ul>
+    <li>블록 레벨 요소는 다른 블록 요소와 인라인 요소를 포함할 수 있지만, <strong>인라인 요소는 블록 요소를 포함할 수 없습니다</strong>.</li>
+    <li>인라인 요소는 레이아웃을 나누는 용도로 사용하지 말고, <strong>텍스트나 콘텐츠 일부를 꾸미는 용도로만 사용</strong>해야 합니다.</li>
+    <li>블록 요소는 기본적으로 줄바꿈이 발생하므로, <strong>불필요하게 중첩하거나 남용하지 않도록 주의</strong>합니다.</li>
+    <li>인라인 요소는 줄 안에서 배치되므로, <strong>너비와 높이를 직접 지정하는 데 제약</strong>이 있을 수 있습니다.</li>
+    <li>시맨틱 태그(<code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;nav&gt;</code> 등)를 적절히 활용하면 구조와 의미를 명확히 할 수 있습니다.</li>
+    <li>CSS로 블록/인라인 성격을 변경할 수 있지만, <strong>본래의 의미와 용도를 고려하여 사용</strong>하는 것이 바람직합니다.</li>
+  </ul>
+</body>
+</html>

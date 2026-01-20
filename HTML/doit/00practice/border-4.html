@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>박스모델</title>
+	<style>
+		/* Do it! 테두리 스타일 묶어서 지정하기 */
+		h1 {
+			padding-bottom: 5px;
+			border-bottom: 3px solid rgb(75, 70, 70);
+		}
+		p {
+			padding: 10px ;
+			border: 3px dotted blue;
+		}
+		div {
+			width: 200px;
+			height: 100px;
+			display: inline-block;
+			margin: 15px;
+			border-style: solid;
+			/* 테두리 스타일 - 선으로 된 점선 dashed */
+			/* 테두리 스타일 - 실선 solid */
+			border-width: 2px;
+			/* 테두리 굵기 - 2px */
+			text-align: center;
+			font-size:20px;
+			line-height:100px;		
+		}
+.BOX1{border-style: solid; }
+.BOX2{border-style: dashed; }
+.BOX3{border-style: dotted; }
+.BOX3:hover{border-style: none; }
+		/* Do it! 박스 모델의 테두리 색상 지정하기  */
+		.box1 {
+			border-color: red;
+		}
+
+		.box2 {
+			border-top-color: blue;
+			border-left-color: red;
+		}
+		.Box1{border-width: 2px;}
+.Box2{border-width: thick thin;}
+/* 예약어 표현법 thin | medium | think */
+.Box3{border-width: 2px 10px;}
+/* 값 표현이 2개일때 상하 | 우좌 -시계방향으로 돌기때문에 대립된 부분이 먼저 표현 상하(대립) 우좌(대립) */
+.Box3{border-width: 2px 10px 50px;}
+/* 값 표현이 3개일때 상 | 우좌 | 하 -시계방향으로 돌기때문에  */
+.Box4{border-width: 2px 10px 15px 1px;}
+/* 값 표현이 4개일때 상 | 우 | 하 | 좌-시계방향으로 돌기때문에  */
+
+	</style>
+</head>
+<body>
+	<div class="BOX1">실선 테두리 </div>
+	<div class="BOX2">점선 테두리 </div>
+	<div class="BOX3">점선 테두리 hover</div><br><br>
+	<div class="Box1"></div>
+<div class="Box2"></div>
+<div class="Box3"></div>
+<div class="Box4"></div> <br><br>
+	<div class="box1"></div>
+	<div class="box2"></div><br><br>
+	<h1>박스 모델</h1>
+	<p>박스 모델은 실제 콘텐츠 영역, 박스와 콘텐츠 영역 사이의 여백인 패딩(padding), 박스의 테두리(border), 그리고 여러 박스 모델 간의 여백인 마진(margin) 등의 요소로 구성되어 있습니다. </p>	
+</body>
+</html>

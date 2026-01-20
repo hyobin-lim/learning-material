@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>text-shadow</title>
+  <style>
+    h1 {
+      font-size: 60px;
+    }
+
+    /* Do it! text-shadow 속성으로 텍스트 그림자 추가하기 */
+    h2 {
+      font-size: 50px;
+    }
+
+    h3 {
+      font-size: 40px;
+    }
+
+    .shadow1 {
+      color: red;
+      text-shadow: 3px 3px 10px black, -3px -3px 0px blue;
+    }
+
+    /* text-shadow: x-offset y-offset blur 색상 */
+    .shadow2 {
+      text-shadow: 0 0 5px #0ff, 0 0 15px #0ff, 0 0 25px #0ff;
+      animation: a 5s infinite alternate;
+    }
+
+    .shadow3 {
+      animation: moveShadow 3s infinite;
+    }
+
+    @keyframes moveShadow {
+      0% {
+        text-shadow: 2px 2px 5px gray;
+      }
+
+      25% {
+        text-shadow: -2px 2px 5px gray;
+      }
+
+      50% {
+        text-shadow: -2px -2px 5px gray;
+      }
+
+      75% {
+        text-shadow: 2px -2px 5px gray;
+      }
+
+      100% {
+        text-shadow: 2px 2px 5px gray;
+      }
+    }
+
+    @keyframes a {
+      0% {
+        color: aliceblue;
+      }
+
+      100% {
+        color: black;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="shadow1">HTML</h1>
+  <h2 class="shadow2">CSS</h2>
+  <h3 class="shadow3">자바스크립트</h3>
+</body>
+
+</html>

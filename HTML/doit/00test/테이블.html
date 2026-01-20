@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Table 태그 교안</title>
+</head>
+
+<body>
+  <h1>HTML Table 태그</h1>
+  <h2>1. 기본 구조</h2>
+  <p><strong>&lt;table&gt;</strong>: 표 전체를 감싸는 컨테이너</p>
+  <p><strong>&lt;tr&gt;</strong>: 표의 행(row)</p>
+  <p><strong>&lt;td&gt;</strong>: 표의 데이터 셀(cell)</p>
+  <p><strong>&lt;th&gt;</strong>: 표의 헤더 셀</p>
+  <h3>예시</h3>
+  <pre>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;이름&lt;/th&gt;
+    &lt;th&gt;나이&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;김철수&lt;/td&gt;
+    &lt;td&gt;25&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+  <h3>결과</h3>
+  <table border="1">
+    <tr>
+      <th>이름</th>
+      <th>나이</th>
+    </tr>
+    <tr>
+      <td>김철수</td>
+      <td>25</td>
+    </tr>
+  </table>
+  <h2>2. 구조 요소</h2>
+  <h3>&lt;caption&gt;</h3>
+  <p>표의 제목을 정의합니다.</p>
+  <pre>&lt;table&gt;
+  &lt;caption&gt;학생 명단&lt;/caption&gt;
+  &lt;tr&gt;
+    &lt;th&gt;이름&lt;/th&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+  <h3>&lt;thead&gt;, &lt;tbody&gt;, &lt;tfoot&gt;</h3>
+  <p>표를 논리적으로 구분합니다.</p>
+  <ul>
+    <li><strong>&lt;thead&gt;</strong>: 머리글 영역</li>
+    <li><strong>&lt;tbody&gt;</strong>: 본문 영역</li>
+    <li><strong>&lt;tfoot&gt;</strong>: 바닥글 영역</li>
+  </ul>
+  <pre>&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;항목&lt;/th&gt;
+      &lt;th&gt;금액&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;사과&lt;/td&gt;
+      &lt;td&gt;3000원&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tfoot&gt;
+    &lt;tr&gt;
+      &lt;td&gt;합계&lt;/td&gt;
+      &lt;td&gt;3000원&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tfoot&gt;
+&lt;/table&gt;</pre>
+  <h3>결과</h3>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>항목</th>
+        <th>금액</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>사과</td>
+        <td>3000원</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>합계</td>
+        <td>3000원</td>
+      </tr>
+    </tfoot>
+  </table>
+  <h2>3. 셀 병합</h2>
+  <h3>colspan</h3>
+  <p>열을 병합합니다.</p>
+  <pre>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th colspan="2"&gt;개인정보&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;이름&lt;/td&gt;
+    &lt;td&gt;나이&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+  <h3>결과</h3>
+  <table border="1">
+    <tr>
+      <th colspan="2">개인정보</th>
+    </tr>
+    <tr>
+      <td>이름</td>
+      <td>나이</td>
+    </tr>
+  </table>
+  <h3>rowspan</h3>
+  <p>행을 병합합니다.</p>
+  <pre>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th rowspan="2"&gt;학생&lt;/th&gt;
+    &lt;td&gt;국어&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;수학&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+  <h3>결과</h3>
+  <table border="1">
+    <tr>
+      <th rowspan="2">학생</th>
+      <td>국어</td>
+    </tr>
+    <tr>
+      <td>수학</td>
+    </tr>
+  </table>
+  <h2>4. 열 그룹</h2>
+  <h3>&lt;colgroup&gt;, &lt;col&gt;</h3>
+  <p>열의 스타일을 지정합니다.</p>
+  <pre>&lt;table&gt;
+  &lt;colgroup&gt;
+    &lt;col style="background-color: #f0f0f0"&gt;
+    &lt;col&gt;
+  &lt;/colgroup&gt;
+  &lt;tr&gt;
+    &lt;td&gt;A&lt;/td&gt;
+    &lt;td&gt;B&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+  <h2>5. 접근성 속성</h2>
+  <h3>scope</h3>
+  <p>&lt;th&gt; 태그가 어떤 셀의 헤더인지 명시합니다.</p>
+  <ul>
+    <li><strong>row</strong>: 행 헤더</li>
+    <li><strong>col</strong>: 열 헤더</li>
+  </ul>
+  <pre>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th scope="col"&gt;이름&lt;/th&gt;
+    &lt;th scope="col"&gt;나이&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;th scope="row"&gt;학생1&lt;/th&gt;
+    &lt;td&gt;20&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+  <h3>headers</h3>
+  <p>복잡한 표에서 셀과 헤더를 연결합니다.</p>
+  <pre>&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th id="n"&gt;이름&lt;/th&gt;
+    &lt;th id="a"&gt;나이&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td headers="n"&gt;김철수&lt;/td&gt;
+    &lt;td headers="a"&gt;25&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</pre>
+  <h2>6. 요약</h2>
+  <table border="1">
+    <caption>Table 태그 요소</caption>
+    <thead>
+      <tr>
+        <th scope="col">태그</th>
+        <th scope="col">설명</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>&lt;table&gt;</td>
+        <td>표 컨테이너</td>
+      </tr>
+      <tr>
+        <td>&lt;caption&gt;</td>
+        <td>표 제목</td>
+      </tr>
+      <tr>
+        <td>&lt;thead&gt;</td>
+        <td>머리글 영역</td>
+      </tr>
+      <tr>
+        <td>&lt;tbody&gt;</td>
+        <td>본문 영역</td>
+      </tr>
+      <tr>
+        <td>&lt;tfoot&gt;</td>
+        <td>바닥글 영역</td>
+      </tr>
+      <tr>
+        <td>&lt;tr&gt;</td>
+        <td>행</td>
+      </tr>
+      <tr>
+        <td>&lt;th&gt;</td>
+        <td>헤더 셀</td>
+      </tr>
+      <tr>
+        <td>&lt;td&gt;</td>
+        <td>데이터 셀</td>
+      </tr>
+      <tr>
+        <td>&lt;colgroup&gt;</td>
+        <td>열 그룹</td>
+      </tr>
+      <tr>
+        <td>&lt;col&gt;</td>
+        <td>열 정의</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>

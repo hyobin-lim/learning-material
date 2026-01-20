@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>미디어 쿼리</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 4rem;
+    }
+
+    h2 {
+      font-size: 3rem;
+    }
+  </style>
+  <style>
+    @media screen and (min-width:768px) and (max-width: 1023px) {
+      body {
+        background-color: aquamarine;
+        display: block;
+        text-align: center;
+      }
+      .hidden{
+        display: none;
+      }
+
+    }
+
+    @media screen and (min-width: 1024px) {
+      body {
+        background-image: url(images/bg-dark.jpg) no-repeat;
+        background-size: cover;
+      }
+
+      h1 {
+        color: white;
+      }
+  
+    }
+  </style>
+
+</head>
+
+<body>
+  <h1>안녕하세요?</h1>
+  <h2 class="hidden">안녕하세요</h2>
+</body>
+
+</html>

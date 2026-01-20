@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>prompt</title>
+</head>
+
+<body>
+	<script>
+		// 식별자 name 의 let 변수를 선언
+		let name;
+		// name 에 "공원이"를 할당
+		name = "공원이";
+		// document.write() 메서드를 사용해서 name 출력
+		document.write(name)
+	</script>
+	<script>
+		// Do it! 상수 사용해서 원 넓이 구하기
+		const PI = 3.14; /* PI라는 식별자를 변수로 선언하고 3.14 로 초기화 */
+		console.log(PI + PI);
+		let radius = prompt("반지름을 입력하세요");
+		console.log(radius);
+		let area = PI * radius * radius;	/* 원넓이 */
+		document.write('<h1>원넓이는 ' + area + ' 입니다</h1>')
+	</script>
+</body>
+
+</html>

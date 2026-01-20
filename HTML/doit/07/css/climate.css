@@ -1,0 +1,16 @@
+/* font-face는 파일의 경로를 연결하는 역할을 합니다. */
+@font-face {
+  font-family: 'ca';
+  src: url(css-fonts/ClimateCrisisKR-2050.woff2);
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'cb';
+  src: url(css-fonts/ClimateCrisisKR-1979.woff2);
+  font-weight: 200;
+  }
+@font-face {
+  font-family: 'cc';
+  src: url(css-fonts/ClimateCrisisKR-2030.woff2);
+  font-weight: 300;
+}

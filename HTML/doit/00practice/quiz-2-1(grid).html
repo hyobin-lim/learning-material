@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>여가 시간 즐기기 - Grid 버전</title>
+  <style>
+    a {
+      text-decoration: none;
+      color: #222;
+    }
+
+    #travel {
+      width: 1200px;
+      margin: 0 auto;
+    }
+
+    .title-text {
+      text-align: center;
+    }
+
+    .title-text > h2 {
+      font-size: 2.5em;
+      color: #919191;
+    }
+
+    .title-text > p {
+      font-size: 1.2em;
+      color: #ccc;
+    }
+
+    /* Grid 적용 */
+    .travel-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px; /* 카드 간격 */
+      padding: 20px;
+    }
+
+    .travel-card {
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      text-align: center;
+      min-height: 340px;
+      transition: transform 0.3s;
+      background: #fff;
+    }
+
+    .travel-card:hover {
+      transform: translateY(-5px); /* 살짝 올라가는 효과 */
+    }
+
+    .travel-card img {
+      width: 150px;
+      height: 150px;
+      margin: 15px;
+      border-radius: 50%;
+    }
+
+    .travel-card h3 {
+      margin: 10px 0;
+    }
+
+    .travel-card p {
+      font-size: 16px;
+      padding: 0 10px;
+    }
+
+     pre{
+      text-align: justify;
+    }
+  </style>
+</head>
+<body>
+  <div id="travel">
+    <div class="title-text">
+      <h2>여가 시간 즐기기</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, in! Lorem ipsum dolor sit amet.</p>
+    </div>
+    <div class="travel-list">
+      <div class="travel-card">
+        <a href="#">
+          <img src="images/tr-1.png">
+          <h3>도심 투어</h3>
+          <p>Lorem ipsum dolor sit. Lorem ipsum dolor sit.</p>
+        </a>
+      </div>
+      <div class="travel-card">
+        <a href="#">
+          <img src="images/tr-2.png">
+          <h3>바다 즐기기</h3>
+          <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </a>
+      </div>
+      <div class="travel-card">
+        <a href="#">
+          <img src="images/tr-3.png">
+          <h3>등산 도전하기</h3>
+          <p>Lorem ipsum dolor sit amet. Lorem, ipsum dolor.</p>
+        </a>
+      </div>
+      <div class="travel-card">
+        <a href="#">
+          <img src="images/tr-4.png">
+          <h3>관광지 투어</h3>
+          <p>Lorem, ipsum dolor. Lorem ipsum dolor sit amet.</p>
+        </a>
+      </div>
+    </div>
+    <pre><p>변경 포인트</p>
+<p>- .travel-list를 display: grid;로 변경.
+- grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); → 화면 크기에 맞춰 자동으로 카드 개수를 조정.
+- gap: 20px; → 카드 간격을 일정하게 유지.
+- 반응형으로도 잘 동작해서 화면이 좁아지면 카드들이 자동으로 줄바꿈되어 깔끔한 격자 형태로 배치됩니다.
+👉 이제 Flexbox 버전과 Grid 버전을 모두 갖게 되었네요.
+Flexbox는 한 줄 정렬에 강하고, Grid는 격자 배치에 강합니다.
+</p></pre>
+  </div>
+</body>
+</html>

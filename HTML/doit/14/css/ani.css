@@ -1,0 +1,123 @@
+@charset 'UTF-8';
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+/* reset.css */
+* {
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+
+/* common.css */
+html {
+  overflow-y: scroll;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* layout.css */
+header {
+  height: 100vh;
+  display: flex; /* 자식요소 수평수직 중앙정렬 */
+  align-items: center; /* 수직중앙정렬, 높이 필수 */
+  justify-content: center; /* 가로 중앙정렬 */
+  text-align: center;
+  position: relative;
+  perspective: 100px;
+  overflow: hidden;
+}
+/* 장식용 이미지는 모두 가상선택자로 만들어서 검색을 할 수 없게 만듬 */
+/* 특별한 기능이 없이 사용자에게 시각적인 즐거움을 위한건 css로 가상선택자 사용 */
+/* 기계에게 인식 시켜야하는건 모두 html문서에 작성 */
+/* css2 :hover, :before, :nth-child() */
+/* css3 ::hover, ::before, :nth-child() */
+header::before {
+  position: absolute;
+  content: "";
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), url(https://placedog.net/1200) no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100%; /*  가상선택자 중 before와 after만 자식으로 들어감 */
+  z-index: -1;
+  animation: fade-slide-down 2s 0.5s cubic-bezier(0, 0.5, 0, 1) forwards;
+}
+header:after {
+  background: #f9fcff;
+  content: "";
+  position: absolute; /* 에프터는 헤더의 자식요소이므로 헤더에 선언된 포지션의 값에 따름 */
+  top: 90%; /* 헤더 요소의 0점에 맞춰짐 */
+  height: 40rem;
+  left: -5%;
+  right: -5%;
+  transform-origin: 0 0;
+  z-index: 0;
+  animation: rotate-up 0.5s 0.5s cubic-bezier(0, 0.5, 0, 1) forwards;
+}
+span.material-symbols-outlined {
+  font-size: 200px;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  animation: pop-in 0.6s cubic-bezier(0, 0.9, 0.3, 1.2) forwards;
+  animation-delay: 0.6s;
+}
+.header-button {
+  transform: translateZ(0.1px);
+  animation: pop-in 0.6s cubic-bezier(0, 0.9, 0.3, 1.2) forwards;
+  animation-delay: 1.2s;
+  background-color: white;
+  width: 50%;
+  margin: auto;
+  padding: 10px;
+  a {
+    color: brown;
+  };
+}
+
+.header-button:hover{
+  background-color: rgba(255,255,255,0.5);
+}
+
+.header-title{animation-delay: 0.8s;}
+.header-subtitle{animation-delay: 1s;}
+.header-title,
+.header-subtitle {
+  color: #fff;
+  animation: pop-in 0.6s cubic-bezier(0, 0.9, 0.3, 1.2) forwards;
+  margin-bottom: 2rem;
+}
+
+/* keyframes */
+@keyframes fade-slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-20rem);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-10rem) scale(0.1);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes rotate-up {
+  100% {
+    transform: rotateZ(-4deg);
+  }
+}

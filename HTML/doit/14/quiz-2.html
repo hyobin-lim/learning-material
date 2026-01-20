@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>Animation</title>
+	<style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      width: 450px;
+      padding: 10px;
+      border: 1px solid #222;
+    }
+    .box{
+      width: 50px;
+      height: 50px;
+      background-color: #d7f4ff;
+      animation: changecolor 3s infinite, move 3s infinite;
+    }
+    @keyframes changecolor {
+      0%{background-color: yellow;}
+      50%{background-color: orange;}
+      100%{background-color: blue;}
+    }
+
+    @keyframes move {
+      to{
+        transform: translateX(400px);
+      }
+    }
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="box"></div>
+	</div>
+</body>
+</html>

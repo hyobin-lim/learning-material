@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container{
+      width: 500px;
+      height: 500px;
+      background-color: red;
+      position: relative;
+    }
+    .box{
+      width: 10%;
+      height:10%;
+      background-color: yellow;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      /* margin-top: -5%;
+      margin-left: -5%; */
+      transform: translate(-50%,-50%);
+      /* translate는 x,y의 축약 속성임 */
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <div class="container">
+    <div class="box"></div>
+  </div>
+</div>
+</body>
+</html>

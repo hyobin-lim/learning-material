@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>가상 선택자</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      gap: 20px;
+    }
+
+    .container {
+      width: 300px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      text-align: center;
+    }
+
+    /* Do it! 가상 선택자를 사용해 항목 선택하기 */
+    /* 셋째 이후 */
+    .container :nth-child(n+3) {
+      background-color: #2fc;
+    }
+
+    /* 1~2 */
+    /* -는 뭐뭐 까지의 의미 */
+    .container :nth-child(-n+2) {
+      background-color: #fc2;
+    }
+
+    /* 3~5까지 */
+    .container :nth-child(n+3):nth-child(-n+5) {
+      background-color: #f00;
+    }
+
+    /* 짝수번째 */
+    .container :nth-child(even) {
+      background-color: purple;
+    }
+
+    .container :nth-child(even)::before {
+      border: 5px dashed pink;
+      content: '짝';
+    }
+
+    /* 홀수번째 */
+    .container :nth-child(odd)::after {
+      border: 5px solid plum;
+      content: '홀';
+      border-radius: 50%;
+    }
+
+    .container :nth-child(even) {
+      background-color: purple;
+    }
+
+        .container p:nth-of-type(2) {
+      font-size: 2em;
+    }
+
+    .container div:nth-of-type(1) {
+      font-size: 1.5em;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <p>첫번째</p>
+    <div>두번째</div>
+    <p>세번째</p>
+    <div>네번째</div>
+    <p>다섯번째</p>
+    <div>여섯번째</div>
+    <p>일곱번째</p>
+    <div>여덟번째</div>
+  </div>
+</body>
+
+</html>

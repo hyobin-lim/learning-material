@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>리펙토링 레이아웃</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .wrap {
+      width: 1000px;
+      margin: auto;
+      color: black;
+      /* 배경색이 밝아서 글씨는 검정 */
+      font-family: sans-serif;
+    }
+
+    header,
+    nav,
+    footer {
+      height: 100px;
+      display: flex;
+      background-color: aqua;
+      align-items: center;
+      justify-content: center;
+    }
+
+    main {
+      display: flex;
+      height: 600px;
+    }
+
+    .lside,
+    .rside {
+      flex: 0 0 300px;
+      background-color: bisque;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .content {
+      flex: 1;
+      background-color: aliceblue;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <header>header</header>
+    <nav>nav</nav>
+    <main>
+      <div class="lside">lside</div>
+      <div class="content">content</div>
+      <div class="rside">rside</div>
+    </main>
+    <footer>footer</footer>
+  </div>
+</body>
+
+</html>

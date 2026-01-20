@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>박스 모델</title>
+  <style>
+    button {
+      box-sizing: border-box;
+      width: calc(50% - 20px);
+      padding: 10px 20px;
+      margin: 10px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+    }
+
+    span {
+      display: none;
+      width: 100px;
+      height: 100px;
+      border: 1px solid;
+      background: yellow;
+    }
+
+    .wrap {
+      /* text-align: center; */
+      width: 250px;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <span>span1</span><span>span2</span>
+  <!-- inline-block
+        input, img
+  -->
+  <div class="wrap">
+    <button>button1</button><button>button2</button>
+  </div>
+</body>
+
+</html>

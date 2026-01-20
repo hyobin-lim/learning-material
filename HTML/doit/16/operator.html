@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>operater</title>
+    <style>
+      .box {
+        width: 80%;
+        background-color: #000;
+        color: #fff;
+        padding: 10%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>산술 연산자</h1>
+    <div class="box box1"></div>
+    <script>
+      const a = 10;
+      const b = "10";
+      const c = 5;
+      const box1 = document.querySelector(".box1");
+      box1.innerHTML = `a+b는 ${a + b}<br>`;
+      box1.innerHTML += `a+c는 ${a + c}`;
+      box1.style.fontSize = "32px";
+      box1.innerHTML += `<br>a-c는 ${a - c}`;
+      box1.innerHTML += `<br>a*c는 ${a * c}`;
+      box1.innerHTML += `<br>a/c는 ${a / c}`;
+      box1.innerHTML += `<br>a%c는 ${a % c}`; /* %는 나누고 남은 나머지 */
+      box1.innerHTML += `<br>a**c는 ${a ** c}`; /* a의 c제곱 */
+      let num = a + b;
+      console.log(typeof num);
+    </script>
+    <script>
+      console.log(`======산술연산자와 다양한 자료형을 조합해 보자======`);
+      const t1 = "망고는 ";
+      const t2 = 8;
+      const t3 = " 살 ";
+      const t4 = true;
+      const result = t1 + t2 + t3 + t4; //망고는 8 살
+      console.log(result);
+      console.log(typeof result);
+
+    </script>
+  </body>
+</html>

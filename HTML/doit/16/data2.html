@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>참조타입</title>
+</head>
+
+<body>
+  <script>
+    //Array 배열 [] Array literal
+    //`` template literal
+    let zoo = [];
+    console.log(typeof zoo);
+    zoo = 'koala'
+    console.log(zoo); /* 'koala' */
+    zoo = 'dog';    /* 'dog' */
+    console.log(zoo);
+    zoo = ['koala', 'dog', 'cat']
+    console.log(zoo);
+    document.write(`<h1>${zoo},${zoo[1]}는 예뻐요</h1>`)
+
+    //Object 객체
+    let mango = {
+      age: 8,
+      feature: "귀여워",
+      /* 함수>method */
+      act: function () {
+        alert("놀자")
+      }
+    }
+    console.log();
+    document.write(`망고는${mango.age}살 입니다.<br> 엄청 ${mango.feature} !!`);
+    //mango.act();
+
+    //Function 함수
+    function addNum(a, b) {
+      //실행문
+      return a + b;
+    }
+    // alert(addNum(1,2));
+    // alert(addNum(51929491,2573651));
+
+  </script>
+  <script>
+    // 배열조작
+    let arr = [10, 20, 30, 40, 50, 60]
+    // length 6
+    // index 0~5
+    console.log(`🎈arr: ${arr}`);
+    //arr = 70; /* 재할당 */
+    /* 마지막 추가 */
+    arr.push(70)
+    arr.push(80, 90)
+    console.log(`🎈arr: ${arr}`);
+    /* 마지막 삭제 */
+    arr.pop()
+    console.log(`🎈arr: ${arr}`);
+    /* 앞에 추가,삭제 */
+    arr.unshift('(╯°□°）╯︵ ┻━┻', 'ಠ_ಠ')
+    console.log(`🎈arr: ${arr}`);
+    arr.shift();
+    console.log(`🎈arr: ${arr}`);
+    /* 중간 추가,삭제 */
+    arr.splice(2, 1); /* 인덱스 2부터 1개삭제 */
+    console.log(`🎈arr: ${arr}`);
+    arr.splice(2, 0, '🎭'); /* 인덱스 2에 추가 */
+    console.log(`🎈arr: ${arr}`);
+    arr.splice(2, 4, '🎗'); /* 인덱스 2부터 4개 삭제후 그 자리에 이모지 */
+    console.log(`🎈arr: ${arr}`);
+  </script>
+</body>
+
+</html>

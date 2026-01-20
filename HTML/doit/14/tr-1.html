@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Transition</title>
+	<style>
+		.box {
+			margin: 50px auto;
+			width: 100px;
+			height: 100px;
+			background-color: #fb5;
+			border: 1px solid #222;
+			/* Do it! 모든 대상에 2초 동안 ease-in 속도 곡선을 적용하는 트랜지션 */
+			transform-origin: 0px 0px;
+			transition-property: width, height, background-color;
+			transition-duration: 3s;
+			transition-timing-function: linear(0, 0.76 4.4%, 0.928 6.2%, 0.984 8%, 0.92 9.9%, 0.731 11.9%, -0.506 20.3%, -0.667 22.2%, -0.731 24%, -0.731 24.8%, -0.712 25.7%, -0.615 27.5%, 0.252 35.9%, 0.4 38.1%, 0.463 40.3%, 0.455 41.9%, 0.399 43.7%, -0.106 51.9%, -0.195 54.1%, -0.235 56.3%, -0.235 57.9%, -0.209 59.7%, 0.019 67.5%, 0.061 69.6%, 0.082 71.7%, 0.085 73.3%, 0.077 75.1%, 0.011 81.9%, -0.009 85.5%, 0);
+		}
+
+		.box:hover {
+			/* 여기에 있는 속성이 모두 트랜지션 대상 */
+			width: 200px;
+			height: 200px;
+			background-color: #f50;
+			transform: rotate(270deg);
+		}
+
+		.box1 {
+			transform-origin: 50% 50%;
+			transition: all 3s ease 5s;
+			transition-delay: 1s;
+		}
+
+		[class^=ball] {
+			width: 50px;
+			height: 50px;
+			background: red;
+			border-radius: 50%;
+			transform: translateX(0);
+			transition: transform 3s;
+		}
+
+		button:hover~[class^=ball] {
+			transform: translateX(200px);
+		}
+
+		.ball2 {
+			transition-delay: 1s;
+		}
+		button{
+			background-color: rgba(0,0,0,0);
+			border-color: rgba(0,0,0,0);
+			color:rgba(0,0,0,0);
+			/* opacity: 0; */
+		}
+	</style>
+</head>
+
+<body>
+	<button>click</button>
+	<div class="box"></div>
+	<div class="box box1"></div>
+	<div class="ball1"></div>
+	<div class="ball2"></div>
+</body>
+
+</html>

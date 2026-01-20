@@ -1,0 +1,59 @@
+#container {
+  max-width: 1000px;
+  margin: 20px auto;
+  width: 100%;
+}
+
+h1 {
+  text-align: center;
+}
+
+.prod-list {
+  list-style: none;
+  padding: 0;
+  display: flex; /* Flexbox를 사용하도록 설정 */
+  flex-wrap: wrap; /* 항목이 컨테이너 너비를 초과하면 다음 줄로 이동 */
+  justify-content: space-around; /* 항목 사이의 여백을 균등하게 분배 */
+}
+
+.prod-list li {
+  padding: 0;
+  margin: 10px;
+  overflow: hidden;
+  flex-basis: calc(33.333% - 20px); /* 3개의 항목을 한 줄에 표시, 항목 사이의 마진 고려 */
+  position: relative;
+}
+.prod-list li::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 35px;
+  background: red;
+  bottom: 0;
+  left: 0;
+  transition: width 2s;
+}
+.prod-list li:hover::after {
+  width: 100%;
+}
+.prod-list img {
+  width: 100%; /* 이미지가 항목의 너비에 맞게 조정 */
+  height: 100%; /* 이미지 비율 유지 */
+  object-fit: cover;
+}
+.caption {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  color: white;
+  transition: all 0.5s ease;
+  transform: translateY(100%);
+}
+.prod-list li:hover .caption {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafe In - Freshly Brewed Coffee</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #f5f0e8;
+    }
+
+    .banner-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 60px 40px;
+      background-color: #f5f0e8;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .left-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .logo {
+      width: 200px;
+      height: auto;
+    }
+
+    .text-content {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .main-title {
+      font-size: 52px;
+      font-weight: bold;
+      color: #6b4423;
+      line-height: 1.1;
+      letter-spacing: 2px;
+    }
+
+    .discount-badge {
+      display: inline-block;
+      background-color: #a67553;
+      color: #f5f0e8;
+      padding: 16px 40px;
+      border-radius: 50px;
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      width: fit-content;
+    }
+
+    .website-link {
+      display: inline-block;
+      border: 2px solid #6b4423;
+      color: #6b4423;
+      padding: 16px 50px;
+      border-radius: 50px;
+      font-size: 22px;
+      text-decoration: none;
+      text-align: center;
+      width: fit-content;
+      transition: all 0.3s ease;
+    }
+
+    .website-link:hover {
+      background-color: #6b4423;
+      color: #f5f0e8;
+    }
+
+    .right-section {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .coffee-image {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
+    }
+
+    @media (max-width: 968px) {
+      .banner-container {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      .left-section {
+        align-items: center;
+      }
+
+      .main-title {
+        font-size: 42px;
+      }
+
+      .discount-badge,
+      .website-link {
+        font-size: 18px;
+        padding: 14px 35px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .main-title {
+        font-size: 32px;
+      }
+
+      .logo {
+        width: 150px;
+      }
+
+      .discount-badge,
+      .website-link {
+        font-size: 16px;
+        padding: 12px 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <br><br><br>
+  <ul>
+    <li><a href="../evaluation.html">위로 가기</a></li>
+  </ul><br><br><br>
+  <div class="banner-container">
+    <div class="left-section">
+      <img src="images/logo.png" alt="Cafe In Logo" class="logo">
+
+      <div class="text-content">
+        <h1 class="main-title">FRESHLY BREWED<br> COFFEE</h1>
+
+        <div class="discount-badge">10% OFF FIRST ORDER</div>
+
+        <a href="https://www.website.com" class="website-link">www.website.com</a>
+      </div>
+    </div>
+
+    <div class="right-section">
+      <img src="images/coffee.png" alt="Coffee with Latte Art" class="coffee-image">
+    </div>
+  </div>
+</body>
+</html>

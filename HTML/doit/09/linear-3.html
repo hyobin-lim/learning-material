@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>선형 그러데이션</title>
+  <style>
+    div {
+      width: 500px;
+      height: 300px;
+    }
+
+    /* Do it! 위에서 아래로, 시작 위치 #06f, 30% 위치 white, 끝 위치 #06f로 변하는 선형 그러데이션 .grad 스타일 만들기 */
+    .grad {
+      background: linear-gradient(136deg, #06f, white 30%, red 30%, red 35%, white 35%, white 40%, red 40%, #06f);
+    }
+
+    h1 {
+      font-size: 1000px;
+      background: linear-gradient(136deg, #06f, white 30%, red 30%, red 35%, white 35%, white 40%, red 40%, #06f);
+      background-clip: text;
+      color: transparent;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>TEXT</h1>
+  <div class="grad"></div>
+</body>
+
+</html>

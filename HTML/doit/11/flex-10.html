@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>플렉스 박스 레이아웃</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    .container {
+      width: 800px;
+      height: 100px;
+      display: flex;
+      border: 1px solid #222;
+      gap: 10px; /* 박스 사이 간격 */
+    }
+
+    .box {
+      flex-basis: 150px; /* 기본 너비 */
+    }
+
+    .box:nth-child(odd) {
+      background-color: #ffc400;
+    }
+
+    .box:nth-child(even) {
+      background-color: #a6ff00;
+    }
+
+    p {
+      font-weight: bold;
+      text-align: center;
+    }
+
+    /* flex-grow 적용 */
+    #box1 { flex-grow: 1; } /* 150 + 34 = 184px */
+    #box2 { flex-grow: 1; } /* 150 + 34 = 184px */
+    #box3 { flex-grow: 1; } /* 150 + 34 = 184px */
+    #box4 { flex-grow: 2; } /* 150 + 68 = 218px */
+
+    /*
+      컨테이너 총 너비: 800px
+      gap 총합: 10px × 3 = 30px
+      아이템 기본 총 너비: 150px × 4 = 600px
+      gap 포함 총합: 600 + 30 = 630px
+      남는 공간: 800 - 630 = 170px
+
+      flex-grow 합계: 1 + 1 + 1 + 2 = 5
+      남는 공간 분배 단위: 170 ÷ 5 = 34px
+
+      box1, box2, box3 → 150 + 34 = 184px
+      box4 → 150 + (34 × 2) = 218px
+    */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box" id="box1"><p>1</p></div>
+    <div class="box" id="box2"><p>2</p></div>
+    <div class="box" id="box3"><p>3</p></div>
+    <div class="box" id="box4"><p>4</p></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>비교연산자</title>
+  </head>
+  <body>
+    <script>
+      let x = 10;
+      let y = 20;
+      let z = "20";
+      document.write(`x >= y : ${x >= y} <hr>`);
+      document.write(`x <= y : ${x <= y} <hr>`);
+      document.write(`x != y : ${x != y} <hr>`);
+      /* !=  는 값만 비교합니다. 타입(자료형)이 달라도, 자바스크립트가 자동으로 형 변환(type coercion)을 해서 값이 같으면 false, 다르면 true를 반환합니다.*/
+      document.write(`z != y : ${z != y} <hr>`); // false (값은 같다고 판단, 숫자 5 == 문자열 "5")
+
+      /* ! == 는 값과 타입 모두 비교합니다. 값이 같아도 타입이 다르면 true를 반환합니다.*/
+      document.write(`z !== y : ${z !== y} <hr>`); //true (값은 같지만, 타입이 다름: number vs string)
+
+      /* 같아? */
+      document.write(`z == y : ${z == y} <hr>`);
+      /* 진짜 같아? */
+      document.write(`z === y : ${z === y} <hr>`);
+
+      document.write(`==================== <hr>`);
+
+      let i = x > y; //false
+      let j = x < y; //true
+
+      /* and 연산자 : 좌항, 우항 모두 참이어야 참 */
+      document.write(`i && j : ${i && j} <hr>`);
+
+      /* or 연산자 : 좌항, 우항 중 하나만 참이어도 참 */
+      document.write(`i || j : ${i || j} <hr>`);
+
+      /* not 연산자 : 거짓이면 참 */
+      document.write(`!i : ${!i} <hr>`)
+      
+    </script>
+  </body>
+</html>

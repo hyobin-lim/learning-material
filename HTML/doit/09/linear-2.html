@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<title>선형 그러데이션</title>
+	<style>
+		body {
+			background: 0% 0% / 100px 100px repeat radial-gradient(circle farthest-side at 100% 100%, #5000e6ff 0% 12.5%, #5987fcff 12.5% 25%, #4a55f2ff 25% 37.5%, #808080ff 37.5% 50%, #37383eff 50% 62.5%, #4a55f2ff 62.5% 75%, #5987fcff 75% 87.5%, #5c59fc00 87.5% 100%), 0% 0% / 100px 100px repeat radial-gradient(circle farthest-side at 0% 0%, #5c59fc00 0% 12.5%, #5987fcff 12.5% 25%, #4a55f2ff 25% 37.5%, #37383eff 37.5% 50%, #808080ff 50% 62.5%, #4a55f2ff 62.5% 75%, #5987fcff 75% 87.5%, #5000e6ff 87.5% 100%, #ffffff00 100% 100%), linear-gradient(to top, #8000ffff 0%, #004cffff 100%), radial-gradient(farthest-corner at 50% 100%, #ff008499 0%, #0084ffff 100%);
+			background-blend-mode: screen;
+		}
+
+		div {
+			width: 500px;
+			height: 300px;
+			border-radius: 10px;
+		}
+
+		/* Do it! 45도 각도로, #f00에서 #fff로 변하는 선형 그러데이션 .grad 스타일 만들기 */
+		.grad {
+			background: linear-gradient(244.17deg, #4AED83 -4.54%, #2FC5EF 45.76%, #A22EB4 101.03%);
+		}
+
+		h1 {
+			font-size: 14em;
+			background: linear-gradient(244.17deg, #4AED83 -4.54%, #2FC5EF 45.76%, #A22EB4 70%, #4AED83 100%);
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+			animation: g 3s linear infinite;
+			background-size: 200%;
+		}
+
+		@keyframes g {
+			to {
+				background-position: 200% 200%;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<h1>TEXT</h1>
+	<div class="grad"></div>
+</body>
+
+</html>

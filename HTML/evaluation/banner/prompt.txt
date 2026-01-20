@@ -1,0 +1,7 @@
+1. images/caffe-banner.jpg 이미지를 html, css로 구현해줘
+2. 전체적인 배경 이미지는 img02인데 경로는 images/img02.png이야
+3. 왼쪽 이미지는 coffee01인데 경로는 images/coffee01.png이야
+4. 오른쪽 위에 있는 이미지는 icon인데 경로는 images/icon.png이야 
+5. 오른쪽 아래 있는 이미지는 logo01인데 경로는 images/logo01.png이야
+6. cafe in 텍스트콘텐츠 옆에 icon이미지가 있어야 해
+7. 배경 이미지인 img02.png에서 왼쪽에 있는 종이컵 그림 위에 coffee01 이미지가 완전히 덮어져 있어야 해

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>poistion</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    .container {
+      height: 300px;
+      width: 500px;
+      border: 3px solid #000;
+      position:relative;
+      /* relative는 다음에 오는 형제요소를 밀어버리면서 상대적으로 좌표값을 갖음 */
+      position:fixed;
+      position: static;
+      /* 기본값 */
+      position:absolute;
+      /* absolute는 autolayout 무시 */
+      top: 200px;
+      left: 200px;
+    }
+
+    .box {
+      width: 100px;
+      height: 100px;
+    }
+
+    .box:nth-child(1) {
+      background-color: red;
+
+    }
+
+    .box:nth-child(2) {
+      background-color: green;
+    }
+
+    .box:nth-child(3) {
+      background-color: blue;
+    }
+
+    .box1 {
+      position: relative;
+      left: 100px;
+      top: 100px;
+      z-index: 5;
+    }
+
+    .box2 {
+      position: relative;
+      left: 150px;
+      top: -50px;
+    }
+
+    .box3 {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    /* 부모에 static이 아닌 다른 position 속성이 들어가면 apsolute의 position 속성을 가진 자식은 부모요소 기준으로 배치됨 */
+    /* 속성 값이 0인 것은 단위가 아니라 초기값으로 돌아간다는 의미 */
+  </style>
+</head>
+
+<body>
+  <h2>Lorem ipsum dolor amet</h2>
+  <div class="container">
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+  </div>
+  <h2>Lorem ipsum dolor amet</h2>
+</body>
+
+</html>

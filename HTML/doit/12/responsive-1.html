@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS Grid 주요 템플릿 속성 설명</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 20px;
+      line-height: 1.6;
+      background: #fff;
+      color: #333;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 15px;
+      vertical-align: top;
+    }
+    th {
+      background: #f0f0f0;
+      text-align: left;
+    }
+    pre {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 10px;
+      overflow-x: auto;
+    }
+    .demo-box {
+      display: grid;
+      background: #f9f9f9;
+      padding: 10px;
+      gap: 5px;
+      margin-top: 10px;
+    }
+    .demo-box div {
+      background: #4CAF50;
+      color: white;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>CSS Grid 주요 템플릿 속성 설명</h1>
+
+  <table>
+    <tr>
+      <th>설명</th>
+      <th>코드</th>
+      <th>데모</th>
+    </tr>
+
+    <!-- grid-template-rows -->
+    <tr>
+      <td>
+        <strong>grid-template-rows</strong><br>
+        그리드의 행(row) 높이를 정의합니다.
+      </td>
+      <td>
+        <pre>
+.container {
+  display: grid;
+  grid-template-rows: 50px 100px 1fr;
+}</pre>
+      </td>
+      <td>
+        <div class="demo-box" style="grid-template-rows: 50px 100px 1fr; grid-template-columns: 100px;">
+          <div>1</div><div>2</div><div>3</div>
+        </div>
+      </td>
+    </tr>
+
+    <!-- grid-template-columns -->
+    <tr>
+      <td>
+        <strong>grid-template-columns</strong><br>
+        그리드의 열(column) 너비를 정의합니다.
+      </td>
+      <td>
+        <pre>
+.container {
+  display: grid;
+  grid-template-columns: 100px 1fr 2fr;
+}</pre>
+      </td>
+      <td>
+        <div class="demo-box" style="grid-template-columns: 100px 1fr 2fr; grid-template-rows: 60px;">
+          <div>1</div><div>2</div><div>3</div>
+        </div>
+      </td>
+    </tr>
+
+    <!-- grid-template-areas -->
+    <tr>
+      <td>
+        <strong>grid-template-areas</strong><br>
+        이름이 지정된 영역을 정의하여 요소를 배치합니다.
+      </td>
+      <td>
+        <pre>
+.container {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+  grid-template-columns: 100px 1fr;
+  grid-template-rows: 50px 1fr 30px;
+}</pre>
+      </td>
+      <td>
+        <div class="demo-box" style="
+          grid-template-areas:
+            'header header'
+            'sidebar main'
+            'footer footer';
+          grid-template-columns: 100px 1fr;
+          grid-template-rows: 50px 1fr 30px;
+          height: 180px;">
+          <div style='grid-area: header; background:#2196F3;'>Header</div>
+          <div style='grid-area: sidebar; background:#9C27B0;'>Sidebar</div>
+          <div style='grid-area: main; background:#4CAF50;'>Main</div>
+          <div style='grid-area: footer; background:#FF9800;'>Footer</div>
+        </div>
+      </td>
+    </tr>
+
+    <!-- grid-auto-rows -->
+    <tr>
+      <td>
+        <strong>grid-auto-rows</strong><br>
+        명시적으로 정의되지 않은 행의 기본 높이를 설정합니다.
+      </td>
+      <td>
+        <pre>
+.container {
+  display: grid;
+  grid-template-columns: 100px;
+  grid-auto-rows: 60px;
+}</pre>
+      </td>
+      <td>
+        <div class="demo-box" style="grid-template-columns: 100px; grid-auto-rows: 60px;">
+          <div>1</div><div>2</div><div>3</div><div>4</div>
+        </div>
+      </td>
+    </tr>
+
+    <!-- grid-auto-columns -->
+    <tr>
+      <td>
+        <strong>grid-auto-columns</strong><br>
+        명시적으로 정의되지 않은 열의 기본 너비를 설정합니다.
+      </td>
+      <td>
+        <pre>
+.container {
+  display: grid;
+  grid-template-rows: 60px;
+  grid-auto-columns: 80px;
+}</pre>
+      </td>
+      <td>
+        <div class="demo-box" style="grid-template-rows: 60px; grid-auto-columns: 80px;">
+          <div style="grid-column: 1;">1</div>
+          <div style="grid-column: 2;">2</div>
+          <div style="grid-column: 3;">3</div>
+        </div>
+      </td>
+    </tr>
+
+    <!-- grid-auto-flow -->
+    <tr>
+      <td>
+        <strong>grid-auto-flow</strong><br>
+        자동 배치 방향을 설정합니다. 기본값은 <code>row</code>이며, <code>column</code>으로 설정하면 열 방향으로 배치됩니다.
+      </td>
+      <td>
+        <pre>
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 80px);
+  grid-auto-flow: column;
+}</pre>
+      </td>
+      <td>
+        <div class="demo-box" style="grid-template-columns: repeat(2, 80px); grid-auto-flow: column;">
+          <div>1</div><div>2</div><div>3</div><div>4</div>
+        </div>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

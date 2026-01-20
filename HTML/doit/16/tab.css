@@ -1,0 +1,86 @@
+@charset "UTF-8"; /* CSS 파일의 문자 인코딩을 UTF-8로 지정 */
+
+/* 모든 요소에 기본 스타일 초기화 */
+* {
+  margin: 0; /* 기본 여백 제거 */
+  padding: 0; /* 기본 패딩 제거 */
+  box-sizing: border-box; /* 요소 크기 계산 시 border와 padding 포함 */
+  -webkit-font-smoothing: antialised; /* 웹킷 브라우저에서 폰트 렌더링을 부드럽게 */
+}
+
+/* 링크 기본 스타일 */
+a {
+  text-decoration: none; /* 밑줄 제거 */
+  color: #333; /* 글자색 진한 회색 */
+}
+
+/* 탭 전체를 감싸는 컨테이너 */
+.tab-wrapper {
+  width: 960px; /* 고정 너비 */
+  margin: auto; /* 화면 가운데 정렬 */
+  background: beige;
+}
+
+/* 탭 메뉴 영역 */
+.tab-menu {
+  padding-left: 0; /* 기본 왼쪽 패딩 제거 */
+  display: flex;
+  background: #ebebeb;
+  gap: 10px;
+}
+
+/* 탭 메뉴의 각 항목(li) */
+.tab-menu li {
+  float: left; /* 가로로 나열 */
+  list-style: none; /* 불릿 제거 */
+  background: #ebebeb; /* 배경색 연한 회색 */
+  margin-right: 10px; /* 오른쪽 간격 */
+}
+
+/* float 해제용 clearfix */
+.tab-menu:after {
+  content: ''; /* 가상 요소 생성 */
+  display: block; /* 블록 요소로 표시 */
+  clear: both; /* float 해제 */
+}
+
+/* 탭 메뉴의 링크 스타일 */
+.tab-menu li a {
+  color: #999; /* 글자색 회색 */
+  text-transform: uppercase; /* 대문자로 변환 */
+  font-weight: bold; /* 굵은 글씨 */
+  line-height: 27px; /* 줄 높이 */
+  text-decoration: none; /* 밑줄 제거 */
+  display: block; /* 블록 요소로 표시 */
+  padding: 10px 20px;
+  font-size: 24px; /* 좌우 여백 */
+}
+
+/* 활성화된 탭 메뉴 링크 */
+.tab-menu li a.active {
+  background: #000; /* 배경색 검정 */
+  color: #fff; /* 글자색 흰색 */
+}
+
+/* 탭 콘텐츠 영역 */
+.tab-content {
+  position: relative; /* 내부 div를 절대 위치로 배치하기 위한 기준 */
+  min-height: 300px; /* 최소 높이 지정 */
+}
+
+/* 탭 콘텐츠의 각 div */
+.tab-content > div {
+  position: absolute; /* 부모(tab-content)를 기준으로 절대 위치 */
+  top: 0; /* 위쪽 0 */
+  left: 0; /* 왼쪽 0 */
+  display: none; /* 기본적으로 숨김 */
+  background: #e7b36e27 url(http://qwerew.cafe24.com/example/javascript/chicken.png) no-repeat 100px top;
+  /* 배경색 반투명 + 치킨 이미지 삽입, x축 100px 위치, y축 상단에 배치 */
+  background-size: 40px; /* 배경 이미지 크기 40px */
+  padding: 1em; /* 내부 여백 */
+}
+
+/* 활성화된 탭 콘텐츠 */
+.tab-content > div.active {
+  display: block; /* 보이도록 설정 */
+}

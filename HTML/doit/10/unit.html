@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div{
+      width: 500px;
+      height: 300px;
+      margin-bottom: 20px;
+      border: 1px solid;
+      display: flow-root;
+    }
+
+span{
+  display: block;
+}
+
+/* 뷰 포트 단위는 상대단위로 브라우저 화면이 기준 */
+.viewport{
+background-color: lemonchiffon;
+width: 50vw; /* view width */
+height: 50vh; /* view height */
+}
+
+.viewport .b1{
+  background-color: red;
+  width: 100vw;
+  padding: 10px;
+}
+
+/* 퍼센트 단위는 상대단위로 부모가 기준 */
+/* 웹 페이지의 컨텐츠는 높이는 무한대이므로 높이는 퍼센트가 나오지 않음 */
+.percent{
+background-color: lemonchiffon;
+width: 50%;
+}
+
+.percent .b1{
+  background-color: red;
+  width: 30%;
+  float: left;
+}
+
+.percent .b2{
+  background-color: green;
+  width: 30%;
+  float: left;
+}
+
+.viewport .b2{
+  background-color: green;
+  width: 80%;
+  height: 30px;
+}
+  </style>
+</head>
+
+<body>
+  <h2>뷰포트</h2>
+  <div class="viewport">
+    <span class="b1"></span>
+    <span class="b2"></span>
+  </div>
+  <h2>퍼센트</h2>  
+  <!-- 글씨가 없으면 크기가 보이지 않음 -->
+  <!-- 글씨가 있으면 글씨가 차지한 만큼 보임 -->
+   <!-- 따라서 글씨가 있으면 높이는 안줘도 됨 -->
+  <div class="percent">
+    <span class="b1">ddd</span>
+    <span class="b2">ddd</span>
+  </div>
+</body>
+
+</html>
