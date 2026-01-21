@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>브라우저에 삽입하기(Insert JavaScript)</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.7;
+        margin: 24px;
+        background: #f7f9fc;
+        color: #222;
+      }
+      h1,
+      h2 {
+        color: #192044;
+      }
+      h3 {
+        color: #2c3e7a;
+        margin-top: 18px;
+      }
+      p {
+        margin: 8px 0;
+      }
+      ul {
+        margin: 8px 0 12px 20px;
+      }
+      li {
+        margin: 4px 0;
+      }
+      pre {
+        background: #eef2f7;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        border: 1px solid #d7dee8;
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+      .demo {
+        background: #fff;
+        border: 1px solid #d7dee8;
+        border-radius: 8px;
+        padding: 10px;
+        margin: 10px 0;
+      }
+      .callout {
+        background: #e9f7ff;
+        border-left: 4px solid #00aaff;
+        padding: 10px;
+        margin: 14px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="insert-javascript">브라우저에 삽입하기(Insert JavaScript)</h1>
+    <p>브라우저는 자바스크립트 <strong>해석기(Interpreter)</strong>를 내장하고 있어, HTML 문서에 <code>&lt;script&gt;</code> 태그를 삽입하면 실행됩니다. 즉, 자바스크립트는 HTML과 함께 동작하며, 웹 페이지에 동적인 기능을 추가하는 역할을 합니다.</p>
+
+    <h2>내부 스크립트</h2>
+    <p>HTML 문서 안에 직접 <code>&lt;script&gt;</code> 태그를 작성하는 방식입니다. 작은 기능을 빠르게 테스트하거나 간단한 로직을 작성할 때 유용합니다.</p>
+    <pre><code>&lt;script&gt;
+  // 1. 문서에서 id="heading" 요소를 선택합니다.
+  var heading = document.querySelector('#heading');
+
+  // 2. 선택한 요소에 클릭 이벤트를 등록합니다.
+  heading.onclick = function() {
+    // 3. 클릭 시 글자색을 빨간색으로 변경합니다.
+    heading.style.color = "red";
+    // 4. 콘솔에 메시지를 출력합니다.
+    console.log("제목이 클릭되었습니다.");
+  };
+&lt;/script&gt;</code></pre>
+    <div class="demo">💻 실행 결과: 제목을 클릭하면 글자색이 빨간색으로 바뀌고 콘솔에 메시지가 출력됩니다.</div>
+
+    <h2>외부 스크립트</h2>
+    <p>자바스크립트를 별도의 파일로 분리해 관리하는 방식입니다. 코드가 길어지거나 여러 페이지에서 재사용할 때 훨씬 효율적입니다.</p>
+    <pre><code>&lt;!-- 외부 파일을 불러오는 방식 --&gt;
+&lt;script src="js/change-color.js"&gt;&lt;/script&gt;</code></pre>
+    <pre><code>// js/change-color.js
+
+// 1. DOMContentLoaded 이벤트: HTML 문서가 모두 로드된 후 실행됩니다.
+document.addEventListener('DOMContentLoaded', function() {
+  // 2. id="heading" 요소를 선택합니다.
+  var heading = document.querySelector('#heading');
+
+  // 3. 요소가 존재하지 않으면 함수 종료 (안전 장치).
+  if (!heading) return;
+
+  // 4. 클릭 이벤트 등록: 제목을 클릭하면 글자색을 빨간색으로 변경합니다.
+  heading.addEventListener('click', function() {
+    heading.style.color = 'red';
+    console.log("외부 스크립트로 색상이 변경되었습니다.");
+  });
+});
+</code></pre>
+    <div class="demo">📊 실행 결과: 내부 스크립트와 동일하지만, 코드가 외부 파일로 분리되어 관리가 편리합니다.</div>
+
+    <h2>&lt;script&gt; 위치와 로딩 전략</h2>
+    <p>스크립트는 HTML 문서 어디에 두느냐에 따라 실행 시점이 달라집니다. 올바른 위치와 로딩 전략을 선택하면 성능과 안정성이 좋아집니다.</p>
+    <ul>
+      <li><strong>권장 위치:</strong> <code>&lt;/body&gt;</code> 직전 — DOM 요소가 로드된 후 실행</li>
+      <li><strong>defer:</strong> 문서 파싱 완료 후 순서대로 실행</li>
+      <li><strong>async:</strong> 다운로드 완료 즉시 실행 (순서 보장 없음)</li>
+    </ul>
+
+    <h2>defer와 async 추가 설명</h2>
+    <p><strong>defer</strong>는 HTML 파싱이 끝난 뒤 실행되며, 여러 스크립트가 있으면 작성된 순서대로 실행됩니다. DOM이 완성된 후 실행되므로 안전하게 요소를 조작할 수 있습니다.</p>
+    <p><strong>async</strong>는 다운로드가 끝나는 즉시 실행되며, 실행 순서가 보장되지 않습니다. 독립적인 스크립트(광고, 분석 코드 등)에 적합합니다.</p>
+    <pre><code>&lt;!-- defer 예시 --&gt;
+&lt;script src="script1.js" defer&gt;&lt;/script&gt;
+&lt;script src="script2.js" defer&gt;&lt;/script&gt;
+&lt;!-- script1.js → script2.js 순서대로 실행됨 --&gt;
+
+&lt;!-- async 예시 --&gt;
+&lt;script src="script1.js" async&gt;&lt;/script&gt;
+&lt;script src="script2.js" async&gt;&lt;/script&gt;
+&lt;!-- 다운로드가 먼저 끝난 파일부터 실행됨 (순서 보장 없음) --&gt;
+</code></pre>
+
+    <h2>추가 개념</h2>
+    <ul>
+      <li><strong>&lt;noscript&gt;:</strong> 자바스크립트를 지원하지 않는 브라우저에서 대체 콘텐츠 제공</li>
+    </ul>
+    <pre><code>&lt;noscript&gt;
+  자바스크립트가 비활성화되어 있습니다. 기능을 사용하려면 활성화하세요.
+&lt;/noscript&gt;</code></pre>
+
+    <ul>
+      <li><strong>&lt;script type="module"&gt;:</strong> ES6 모듈 로딩 방식, import/export 사용 가능</li>
+    </ul>
+    <pre><code>&lt;script type="module"&gt;
+  import { greet } from './greet.js';
+  greet("효빈");
+&lt;/script&gt;</code></pre>
+
+    <div class="callout">Tip: 메인 로직은 <code>defer</code>를 사용하고, 광고·분석 같은 독립 스크립트는 <code>async</code>를 사용하는 것이 일반적입니다. 내부 스크립트는 빠른 테스트에, 외부 스크립트는 유지보수와 재사용에 적합합니다.</div>
+  </body>
+</html>

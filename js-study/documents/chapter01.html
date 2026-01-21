@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>자바스크립트의 시작 — Chapter 01</title>
   <style>
     body { font-family: Arial, sans-serif; line-height: 1.7; margin: 24px; background: #f7f9fc; color: #222; }
@@ -14,15 +14,13 @@
     code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
     .demo { background: #fff; border: 1px solid #d7dee8; border-radius: 8px; padding: 10px; margin: 10px 0; }
     .callout { background: #e9f7ff; border-left: 4px solid #00aaff; padding: 10px; margin: 14px 0; }
-    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
     a { color: #0066cc; text-decoration: none; }
     a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
   <h1>자바스크립트의 시작 — Chapter 01</h1>
-  <p>이 문서는 자바스크립트의 역할, 브라우저 삽입 방법, 기본 용어, 브라우저가 코드를 해석하는 과정을 자세히 설명합니다. 각 예제에는 실행 결과 설명을 포함했습니다.</p>
+  <p>이 문서는 자바스크립트의 역할, 브라우저 삽입 방법, 기본 용어, 브라우저가 코드를 해석하는 과정, 그리고 기초 문법 요소(변수, 데이터 타입, 연산자, 네이밍 규칙, 주석, 출력 방법, 스코프, typeof, 템플릿 리터럴, 기본 에러)를 설명합니다.</p>
 
   <h2>1. 자바스크립트의 역할</h2>
   <ul>
@@ -31,109 +29,130 @@
     <li><strong>다양한 라이브러리 사용:</strong> React, Vue, Angular, jQuery 등 풍부한 생태계가 있습니다.</li>
     <li><strong>서버 개발:</strong> Node.js로 백엔드 개발까지 가능—프런트+백엔드를 모두 다루는 풀스택 개발자로 성장할 수 있습니다.</li>
   </ul>
-  <div class="callout">
-    참고 링크: 
-    <a href="https://www.ecma-international.org/publications-and-standards/standards/ecma-262/" target="_blank" rel="noopener">ECMAScript 표준</a> ·
-    <a href="https://ko.javascript.info/" target="_blank" rel="noopener">모던 자바스크립트 튜토리얼</a> ·
-    <a href="https://developer.mozilla.org/ko/docs/Web/JavaScript" target="_blank" rel="noopener">MDN JavaScript</a>
-  </div>
 
   <h2>2. 브라우저에 삽입하기</h2>
   <p>브라우저는 자바스크립트 <strong>해석기(Interpreter)</strong>를 내장하고 있어, HTML 문서에 <code>&lt;script&gt;</code> 태그로 코드를 삽입하면 실행됩니다.</p>
 
   <h3>2.1 내부 스크립트 예제</h3>
-  <pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="ko"&gt;
-&lt;head&gt;
-  &lt;meta charset="UTF-8"&gt;
-  &lt;title&gt;글자색 바꾸기&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h1 id="heading"&gt;자바스크립트&lt;/h1&gt;
-  &lt;p id="text"&gt;위 텍스트를 클릭해 보세요&lt;/p&gt;
-
-  &lt;script&gt;
-    // document.querySelector('#heading') → id가 'heading'인 요소를 찾아 반환
+  <pre><code>&lt;script&gt;
     var heading = document.querySelector('#heading');
-
-    // 요소에 클릭 이벤트 핸들러를 등록합니다.
     heading.onclick = function() {
-      // 클릭 시 글자색을 빨간색으로 변경합니다.
       heading.style.color = "red";
     };
-  &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-  <div class="demo"><strong>실행 결과:</strong> 페이지가 열리면 "자바스크립트"라는 파란색 글자가 보입니다. 글자를 클릭하면 빨간색으로 바뀝니다.</div>
-  <div class="callout">Tip: 내부 스크립트는 빠르게 테스트하기 좋지만, 규모가 커지면 유지보수가 어려워집니다.</div>
+&lt;/script&gt;</code></pre>
 
   <h3>2.2 외부 스크립트 예제</h3>
-  <pre><code>&lt;!-- HTML 문서 --&gt;
-&lt;script src="js/change-color.js"&gt;&lt;/script&gt;</code></pre>
-  <pre><code>// js/change-color.js (외부 파일)
-// 외부 파일로 분리하면 재사용과 캐싱, 유지보수에 유리합니다.
-
-document.addEventListener('DOMContentLoaded', function() {
-  var heading = document.querySelector('#heading');
-  if (!heading) return; // 요소가 없을 경우 방어 코드
-
-  heading.addEventListener('click', function() {
-    heading.style.color = 'red';
-  });
-});</code></pre>
-  <div class="demo"><strong>실행 결과:</strong> 내부 예제와 동일하게 "자바스크립트" 글자를 클릭하면 빨간색으로 바뀝니다. 코드가 외부 파일에 분리되어 관리가 더 편리합니다.</div>
+  <pre><code>&lt;script src="js/change-color.js"&gt;&lt;/script&gt;</code></pre>
 
   <h3>2.3 &lt;script&gt; 위치와 로딩 전략</h3>
   <ul>
-    <li><strong>권장 위치:</strong> <code>&lt;/body&gt;</code> 직전—DOM 요소가 로드된 후 실행되어 오류를 줄입니다.</li>
-    <li><strong>defer:</strong> HTML 파싱을 막지 않고, 문서 파싱 완료 후 순서대로 실행합니다.</li>
-    <li><strong>async:</strong> 다운로드 완료 즉시 실행(순서 보장 없음)—분리 가능한 스크립트에 적합합니다.</li>
+    <li><strong>권장 위치:</strong> <code>&lt;/body&gt;</code> 직전</li>
+    <li><strong>defer:</strong> 문서 파싱 완료 후 실행</li>
+    <li><strong>async:</strong> 다운로드 완료 즉시 실행</li>
   </ul>
 
   <h2>3. 자바스크립트의 기본 용어</h2>
-  <p>자바스크립트의 명령은 크게 <strong>식(Expression)</strong>과 <strong>문(Statement)</strong>으로 나뉩니다.</p>
   <ul>
-    <li><strong>식:</strong> 값을 만들어낼 수 있는 모든 것(변수에 저장 가능)</li>
-    <li><strong>문:</strong> 명령을 수행하는 구문(보통 끝에 <code>;</code>), 조건문·반복문 등</li>
+    <li><strong>식(Expression):</strong> 값을 만들어낼 수 있는 모든 것</li>
+    <li><strong>문(Statement):</strong> 명령을 수행하는 구문</li>
   </ul>
-  <pre><code>// 아래는 모두 '식'입니다. 값으로 평가됩니다.
-inch * 2.54;      // 연산식: inch 값을 cm로 변환하는 계산식
-('안녕하세요');   // 문자열 리터럴: 문자열 자체가 값
-5;                // 숫자 리터럴: 숫자 자체가 값
 
-// '문'은 보통 제어 흐름이나 선언 등 명령을 수행합니다.
-var x = 5;        // 변수 선언문(문) + 할당식(식)을 포함
-if (x &gt; 3) {      // 조건문(문)
-  console.log('x는 3보다 큽니다'); // 함수 호출문(문)
-}</code></pre>
-  <div class="demo"><strong>실행 결과:</strong> 콘솔에 <code>x는 3보다 큽니다</code>가 출력됩니다.</div>
+  <h2>4. 기초 문법 요소</h2>
+  <h3>4.1 변수 선언</h3>
+  <ul>
+    <li><code>var</code>: 오래된 방식, 함수 스코프</li>
+    <li><code>let</code>: 블록 스코프, 값 재할당 가능</li>
+    <li><code>const</code>: 블록 스코프, 값 재할당 불가</li>
+  </ul>
 
-    <h2>4. 브라우저가 스크립트를 해석하는 과정</h2>
+  <h3>4.2 데이터 타입</h3>
+  <ul>
+    <li>숫자(Number)</li>
+    <li>문자열(String)</li>
+    <li>불(Boolean)</li>
+    <li>null / undefined</li>
+    <li>객체(Object)</li>
+  </ul>
+
+  <h3>4.3 연산자</h3>
+  <ul>
+    <li>산술: <code>+ - * / %</code></li>
+    <li>대입: <code>= += -= *= /=</code></li>
+    <li>비교: <code>=== !== &lt; &gt; &lt;= &gt;=</code></li>
+    <li>논리: <code>&amp;&amp; || !</code></li>
+    <li>삼항: <code>조건 ? 값1 : 값2</code></li>
+  </ul>
+
+  <h3>4.4 네이밍 규칙</h3>
+  <ul>
+    <li>대소문자 구분 (case-sensitive)</li>
+    <li>변수/함수: camelCase (예: <code>addEventListener</code>)</li>
+    <li>클래스/생성자: PascalCase (예: <code>EventListener</code>)</li>
+    <li>상수: 대문자 + 언더스코어 (예: <code>MAX_VALUE</code>)</li>
+  </ul>
+
+  <h3>4.5 주석(Comment)</h3>
+  <pre><code>// 한 줄 주석
+/*
+  여러 줄 주석
+*/</code></pre>
+
+  <h3>4.6 출력 방법</h3>
+  <ul>
+    <li><code>alert("메시지")</code>: 팝업 창</li>
+    <li><code>console.log("메시지")</code>: 개발자 콘솔 출력</li>
+    <li><code>document.write("메시지")</code>: HTML 문서에 직접 출력</li>
+  </ul>
+
+  <h3>4.7 스코프와 호이스팅</h3>
+  <ul>
+    <li><code>var</code>: 함수 스코프, 선언이 끌어올려짐(호이스팅)</li>
+    <li><code>let/const</code>: 블록 스코프, 호이스팅되지만 초기화 전 접근 불가</li>
+  </ul>
+
+  <h3>4.8 typeof 연산자</h3>
+  <pre><code>typeof 123;        // "number"
+typeof "hello";    // "string"
+typeof true;       // "boolean"
+typeof undefined;  // "undefined"
+typeof null;       // "object" (버그)</code></pre>
+
+  <h3>4.9 템플릿 리터럴</h3>
+  <pre><code>let name = "효빈";
+console.log(`안녕하세요, ${name}님!`);</code></pre>
+
+  <h3>4.10 기본 에러</h3>
+  <ul>
+    <li><code>SyntaxError</code>: 문법 오류</li>
+    <li><code>ReferenceError</code>: 정의되지 않은 변수 참조</li>
+    <li><code>TypeError</code>: 잘못된 타입 사용</li>
+  </ul>
+
+  <h2>5. 브라우저가 스크립트를 해석하는 과정</h2>
   <ol>
-    <li><strong>HTML 파싱:</strong> <code>&lt;!DOCTYPE html&gt;</code> 확인 후, <code>&lt;html&gt;</code> 내부의 <code>&lt;head&gt;</code>, <code>&lt;body&gt;</code> 구조와 포함 관계를 파싱합니다.</li>
-    <li><strong>CSS 파싱:</strong> <code>&lt;style&gt;</code> 또는 외부 CSS를 파싱해 스타일 규칙을 적용합니다.</li>
-    <li><strong>JS 실행:</strong> <code>&lt;script&gt;</code>를 만나면 내장된 자바스크립트 해석기로 코드를 전달해 실행합니다.</li>
-    <li><strong>렌더링:</strong> 파싱된 HTML과 CSS를 화면에 표시하고, 자바스크립트가 DOM을 조작하면 그 결과를 반영합니다.</li>
+    <li>HTML 파싱</li>
+    <li>CSS 파싱</li>
+    <li>JS 실행</li>
+    <li>렌더링</li>
   </ol>
-  <div class="demo"><strong>실행 결과:</strong> HTML과 CSS가 먼저 화면에 표시된 후, 자바스크립트가 실행되어 요소의 동작(예: 클릭 시 색상 변경)이 반영됩니다.</div>
-  <div class="callout">Tip: DOM 조작이 많은 스크립트는 <code>defer</code> 속성이나 <code>DOMContentLoaded</code> 이벤트를 활용하면 안전합니다.</div>
 
-  <h2>5. 자바스크립트의 장점과 한계</h2>
+    <h2>6. 자바스크립트의 장점과 한계</h2>
   <ul>
     <li><strong>장점:</strong> 모든 브라우저에서 실행 가능, 방대한 라이브러리 생태계, 프런트/백엔드 모두 활용 가능</li>
     <li><strong>한계:</strong> 브라우저마다 동작 차이가 있을 수 있음, 보안에 취약할 수 있어 주의 필요</li>
   </ul>
 
-  <h2>6. 실습 과제</h2>
+  <h2>7. 실습 과제</h2>
   <p>아래 과제를 직접 시도해 보세요:</p>
   <ul>
     <li>버튼을 클릭하면 배경색이 바뀌도록 코드 작성하기</li>
     <li>사용자 이름을 입력받아 화면에 출력하기</li>
     <li>조건문을 사용해 입력한 숫자가 짝수인지 홀수인지 판별하기</li>
+    <li><code>typeof</code>를 활용해 입력값의 타입을 확인해보기</li>
+    <li>템플릿 리터럴을 사용해 "안녕하세요, ○○님!" 출력하기</li>
   </ul>
 
-  <h2>7. 다음 학습 안내</h2>
+  <h2>8. 다음 학습 안내</h2>
   <p>Chapter 02에서는 자바스크립트의 <strong>입출력(alert, confirm, prompt)</strong>, <strong>오류 확인</strong>, <strong>코딩 컨벤션</strong>을 학습합니다. Chapter 01에서 배운 기초 개념을 바탕으로, 실제 사용자와 상호작용하는 방법을 익히게 됩니다.</p>
-
 </body>
 </html>

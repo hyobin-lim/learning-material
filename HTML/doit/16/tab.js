@@ -1,55 +1,22 @@
-// 모든 탭 래퍼를 선택
-const tabWrappers = document.querySelectorAll('.tab-wrapper');
+const tabs = document.querySelectorAll(".tab-menu a");
+const panels = document.querySelectorAll(".tab-content>div");
 
-tabWrappers.forEach(wrapper => {
-  // 현재 래퍼 안의 탭 메뉴 링크와 콘텐츠 선택
-  const targetLinks = wrapper.querySelectorAll('.tab-menu a');
-  const tabContents = wrapper.querySelectorAll('.tab-content > div');
-
-  for (let i = 0; i < targetLinks.length; i++) {
-    //console.log(targetLinks[i].getAttribute("href"));
-    //console.log(wrapper.querySelector(targetLinks[i].getAttribute("href")));
-    targetLinks[i].addEventListener('click', function (e) {
-      console.log(e);
-      
-      const a = targetLinks[i].getAttribute("href");
-      for (let k = 0; k < targetLinks.length; k++) {
-      targetLinks[k].classList.remove('active');
-      tabContents[k].classList.remove('active');}
-        targetLinks[i].classList.add('active');
-
-document.querySelector(a).classList.add('active');});
-  }
-
-
-
-  // 각 링크에 클릭 이벤트 등록
-  targetLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-
-      // 모든 링크와 콘텐츠에서 active 제거
-      targetLinks.forEach(l => l.classList.remove('active'));
-      tabContents.forEach(c => c.classList.remove('active'));
-
-      // 현재 클릭한 링크 활성화
-      link.classList.add('active');
-
-      // href 속성값(#tabs-1 같은 id)을 가져와서 wrapper 내부에서 콘텐츠 찾기
-      const currentId = link.getAttribute('href');
-      const currentContent = wrapper.querySelector(currentId);
-
-      // 해당 콘텐츠 활성화
-      if (currentContent) {
-        currentContent.classList.add('active');
-      }
-    });
+// 반복문
+for (let i = 0; i < 3; i++) {
+  //console.log(tabs[i].getAttribute("href"));
+  //console.log(document.querySelector(tabs[i].getAttribute("href")));
+  tabs[i].addEventListener("click", function (k) {
+    k.preventDefault();
+    const a = tabs[i].getAttribute("href");
+    for (let k = 0; k < 3; k++) {
+      tabs[k].classList.remove("active");
+      panels[k].classList.remove("active");
+    }
+    tabs[i].classList.add("active");
+    document.querySelector(a).classList.add("active");
   });
+}
 
-  // 초기 상태: 첫 번째 탭과 콘텐츠 활성화
-  if (targetLinks.length > 0 && tabContents.length > 0) {
-    targetLinks[0].classList.add('active');
-    tabContents[0].classList.add('active');
-  }
-});
-
+//배열자료형의 특정 데이터만 취득하고싶을땐 배열[index]
+//const arr = [1, 2, 3];
+//console.log(arr[0]);

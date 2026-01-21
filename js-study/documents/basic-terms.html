@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>기본 용어(Basic Terms)</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+      margin: 24px;
+      background: #f7f9fc;
+      color: #222;
+    }
+    h1, h2 { color: #192044; }
+    h3 { color: #2c3e7a; margin-top: 18px; }
+    p { margin: 8px 0; }
+    ul { margin: 8px 0 12px 20px; }
+    li { margin: 4px 0; }
+    pre {
+      background: #eef2f7;
+      padding: 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+      border: 1px solid #d7dee8;
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    table {
+      border-collapse: collapse;
+      margin: 12px 0;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #d7dee8;
+      padding: 8px;
+      text-align: left;
+    }
+    th { background: #f0f3f8; }
+    .callout {
+      background: #e9f7ff;
+      border-left: 4px solid #00aaff;
+      padding: 10px;
+      margin: 14px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="basic-terms">기본 용어(Basic Terms)</h1>
+  <p>
+    자바스크립트의 기본 용어를 이해하는 것은 언어의 뼈대를 잡는 과정입니다. 
+    <strong>식(Expression)</strong>, <strong>문(Statement)</strong>, <strong>값(Value)</strong>, 
+    <strong>리터럴(Literal)</strong>, <strong>식별자(Identifier)</strong>, <strong>변수와 상수</strong>는 모든 코드의 기초가 됩니다.  
+    단순히 “이렇게 쓴다”가 아니라 “왜 이렇게 쓰는지, 어떤 역할을 하는지”를 이해해야 실제로 활용할 수 있습니다.
+  </p>
+
+  <h2>식(Expression)</h2>
+  <p>
+    식은 <strong>값을 만들어내는 구문</strong>입니다. 실행하면 결과값을 반환하며, 변수에 저장하거나 다른 연산에 사용할 수 있습니다.  
+    즉, 식은 프로그램이 계산을 통해 새로운 데이터를 만들어내는 도구입니다.
+  </p>
+  <pre><code>// 숫자 자체도 '식'입니다. → 실행하면 숫자 5라는 값을 반환
+5;
+
+// 문자열도 '식'입니다. → 실행하면 "Hello"라는 문자열 값을 반환
+"Hello";
+
+// 연산식 → 변수 x의 값에 10을 더한 결과를 반환
+x + 10;
+
+// 불 값도 '식'입니다. → true라는 불리언 값을 반환
+true;
+</code></pre>
+
+  <h2>문(Statement)</h2>
+  <p>
+    문은 <strong>명령을 수행하는 구문</strong>입니다. 프로그램의 실행 흐름을 제어하며, 조건에 따라 실행하거나 반복을 수행합니다.  
+    즉, 문은 프로그램이 “무엇을 할지”를 지시하는 역할을 합니다.
+  </p>
+  <ul>
+    <li><strong>조건문:</strong> 특정 조건을 만족할 때만 실행 (<code>if</code>, <code>switch</code>)</li>
+    <li><strong>반복문:</strong> 같은 동작을 여러 번 반복 실행 (<code>for</code>, <code>while</code>)</li>
+    <li><strong>선언문:</strong> 변수나 함수를 정의 (<code>var</code>, <code>let</code>, <code>const</code>, <code>function</code>)</li>
+  </ul>
+  <pre><code>// 변수 선언문: 변수 x를 만들고 값 5를 저장
+var x = 5;
+
+// 조건문: x가 3보다 크면 블록 안의 코드 실행
+if (x > 3) {
+  console.log("x는 3보다 큽니다");
+}
+
+// switch 조건문: 여러 경우 중 하나를 선택해서 실행
+switch(x) {
+  case 5:
+    console.log("x는 5입니다");
+    break;
+}
+
+// 반복문 (for): i가 0부터 2까지 증가하며 반복 실행
+for (let i = 0; i < 3; i++) {
+  console.log(i);
+}
+
+// 반복문 (while): count가 3보다 작을 동안 반복 실행
+let count = 0;
+while (count < 3) {
+  console.log(count);
+  count++;
+}
+</code></pre>
+
+  <h2>값(Value)과 리터럴(Literal)</h2>
+  <p>
+    <strong>값(Value)</strong>은 프로그램에서 실제로 사용되는 데이터입니다.  
+    <strong>리터럴(Literal)</strong>은 그 값을 코드에 직접 적어 표현한 것입니다.  
+    즉, 리터럴은 값의 “직접적인 표현”이고, 값은 프로그램이 다루는 “실제 데이터”입니다.
+  </p>
+  <pre><code>10;                        // 숫자 리터럴 → 값 10
+"효빈";                    // 문자열 리터럴 → 값 "효빈"
+true;                      // 불 리터럴 → 값 true
+null;                      // null 리터럴 → '값 없음'
+{ name: "효빈", age: 20 }; // 객체 리터럴 → 여러 속성을 가진 데이터
+[1, 2, 3];                 // 배열 리터럴 → 여러 값을 순서대로 저장
+</code></pre>
+
+  <h2>식별자(Identifier)</h2>
+  <p>
+    식별자는 <strong>변수, 함수, 객체, 클래스 등을 구분하기 위한 이름</strong>입니다.  
+    왜 필요한가? → 프로그램은 수많은 데이터를 다루는데, 각각을 구분하기 위해 이름이 반드시 필요합니다.
+  </p>
+  <ul>
+    <li>영문자, 숫자, 밑줄(_), 달러($) 사용 가능</li>
+    <li>첫 글자는 숫자가 될 수 없음</li>
+    <li>예약어(if, for, let 등)는 사용할 수 없음</li>
+    <li>가독성을 위해 네이밍 규칙을 따르는 것이 좋음:
+      <ul>
+        <li><strong>camelCase:</strong> 변수/함수 이름 → 예: <code>userName</code></li>
+        <li><strong>PascalCase:</strong> 클래스/생성자 이름 → 예: <code>UserProfile</code></li>
+        <li><strong>UPPER_SNAKE_CASE:</strong> 상수 이름 → 예: <code>MAX_VALUE</code></li>
+      </ul>
+    </li>
+  </ul>
+  <pre><code>var userName = "효빈";   // camelCase 변수명
+function greetUser() {}  // camelCase 함수명
+class UserProfile {}     // PascalCase 클래스명
+const MAX_VALUE = 100;   // UPPER_SNAKE_CASE 상수명
+</code></pre>
+
+  <h2>변수와 상수</h2>
+  <p>
+    변수와 상수는 <strong>데이터를 저장하고 관리하기 위한 공간</strong>입니다.  
+    왜 필요한가? → 프로그램은 데이터를 기억하고 수정해야 하므로, 이를 담을 공간이 필요합니다.
+  </p>
+  <table>
+    <tr>
+      <th>키워드</th>
+      <th>스코프</th>
+      <th>재할당 가능 여부</th>
+      <th>특징</th>
+    </tr>
+    <tr>
+      <td>var</td>
+      <td>함수 스코프</td>
+      <td>가능</td>
+      <td>호이스팅 발생, 권장되지 않음</td>
+    </tr>
+    <tr>
+      <td>let</td>
+      <td>블록 스코프</td>
+      <td>가능</td>
+      <td>최신 방식, 안전</td>
+    </tr>
+        <tr>
+      <td>const</td>
+      <td>블록 스코프</td>
+      <td>불가</td>
+      <td>상수 선언, 객체/배열은 내용 변경 가능</td>
+    </tr>
+  </table>
+  <pre><code>let age = 20;       // let으로 선언한 변수 → 값 변경 가능
+age = 21;           // 값 변경 성공
+
+const PI = 3.14;    // const로 선언한 상수 → 값 변경 불가
+// PI = 3.14159;    // ❌ 오류 발생 (상수는 재할당 불가)
+
+var nickname = "효빈"; // var로 선언한 변수 → 함수 스코프, 호이스팅 발생
+</code></pre>
+
+  <h2>왜 변수와 상수를 구분해서 쓰는가?</h2>
+  <p>
+    - <strong>변수(let)</strong>는 값이 변할 수 있는 데이터를 저장할 때 사용합니다. 예를 들어 사용자의 나이나 점수처럼 시간이 지나면서 바뀌는 값입니다.<br>
+    - <strong>상수(const)</strong>는 변하지 않는 데이터를 저장할 때 사용합니다. 예를 들어 원주율(π)이나 설정 값처럼 항상 일정해야 하는 값입니다.<br>
+    - <strong>var</strong>는 과거 방식으로, 호이스팅 문제 때문에 예측하기 어려운 동작을 할 수 있어 현재는 권장되지 않습니다.
+  </p>
+
+  <div class="callout">
+    Tip: 변수를 사용할 때는 "이 값이 바뀔 수 있는가?"를 먼저 생각하세요.  
+    바뀔 수 있다면 <code>let</code>, 바뀌지 않는다면 <code>const</code>를 쓰는 것이 안전하고 가독성도 좋습니다.
+  </div>
+</body>
+</html>

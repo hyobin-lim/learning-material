@@ -1,7 +1,0 @@
-{
-  "[html]": {
-    "editor.defaultFormatter": "vscode.html-language-features"
-  },
-  "prettier.htmlWhitespaceSensitivity": "css",
-  "liveServer.settings.port": 5501
-}

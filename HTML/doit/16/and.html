@@ -20,7 +20,11 @@
         let hour = now.getHours();
         let min = now.getMinutes();
         console.log(hour, min);
-        hour >= 13 && min > 19 ? document.write(`<h1>점심시간</h1>`):document.write(`<h1>배고파</h1>`)
+
+        // 오후6시가 되면 회식가자로 나오게 수정하세요
+        hour >= 13 && min > 19 ?
+        document.write(`<h1>점심시간</h1>`):
+        document.write(`<h1>배고파</h1>`)
     </script>
 </body>
 

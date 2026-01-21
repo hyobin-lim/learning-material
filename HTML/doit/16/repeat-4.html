@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <h1>반복문종합예제</h1>
+    <h2>for</h2>
+    <div id="for"></div>
+    <hr />
+    <h2>foreach</h2>
+    <div id="foreach"></div>
+    <hr />
+    <h2>forof</h2>
+    <div id="forof"></div>
+    <hr />
+    <h2>forin</h2>
+    <div id="forin"></div>
+    <hr />
+    <h2>dowhile</h2>
+    <div id="dowhile"></div>
+    <hr />
+    <script>
+      let foods = ["떡볶이", "순대", "오뎅", "김치찌개", "피자", "메로나", "김밥", "두쫀쿠"];
+      console.log(foods.length);
+
+      // for
+      for (let i = 0; i < foods.length; i++) {
+        document.querySelector("#for").innerHTML += `${i} : ${foods[i]}<br>`;
+      }
+
+      // forEach
+      foods.forEach(function (element, index, array) {
+        console.log(element);
+        console.log(index);
+        console.log(array);
+      });
+
+      foods.forEach(function (a, b, c) {
+        document.querySelector("#foreach").innerHTML += `${b + 1} : ${a}<br>`;
+      });
+
+      // for(of)
+      for (let food of foods) {
+        document.querySelector("#forof").innerHTML += `${food}<br>`;
+      }
+
+      // for(in)
+      for (let food in foods) {
+        document.querySelector("#forin").innerHTML += `${foods[food]}<br>`;
+      }
+
+      // dowhile
+/* let
+do{}
+while() */
+let d = 0;
+do {
+  document.getElementById('dowhile').innerHTML += `${foods[d]}<br>` 
+  d++;
+}
+while (d < foods.length);
+
+    </script>
+  </body>
+</html>

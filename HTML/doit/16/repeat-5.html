@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h2>for</h2>
+  <ul class="menu1">
+    <li>list1</li>
+    <li>list2</li>
+    <li>list3</li>
+    <li>list4</li>
+  </ul>
+  <h2>foreach</h2>
+  <ul class="menu2">
+    <li>list1</li>
+    <li>list2</li>
+    <li>list3</li>
+    <li>list4</li>
+  </ul>
+  <h2>forin</h2>
+  <ul class="menu3">
+    <li>list1</li>
+    <li>list2</li>
+    <li>list3</li>
+    <li>list4</li>
+  </ul>
+  <h2>dowhile</h2>
+  <ul class="menu4">
+    <li>list1</li>
+    <li>list2</li>
+    <li>list3</li>
+    <li>list4</li>
+  </ul>
+  <ul class="menu5">
+    <li>list1</li>
+    <li>list2</li>
+    <li>list3</li>
+    <li>list4</li>
+  </ul>
+  <script>
+    let menus = {
+      m1: document.querySelectorAll('.menu1 li'),
+      m2: document.querySelectorAll('.menu2 li'),
+      m3: document.querySelectorAll('.menu3 li'),
+      m4: document.querySelectorAll('.menu4 li'),
+    }
+    // for
+    for (let i = 0; i < menus.m1.length; i++) {
+      menus.m1[i].style.color = 'blue'
+    }
+    //foreach
+    menus.m2.forEach(function (_, idx) {
+      //ele.style.color = 'blue'
+
+      menus.m2[idx].addEventListener('mouseover', function () {
+        menus.m2[idx].style.color = 'red'
+        menus.m3[idx].style.background = 'yellow'
+      })
+      menus.m2[idx].addEventListener('mouseout', function () {
+        menus.m2[idx].style.color = 'blue'
+      })
+    })
+    //forin
+    for (let i in menus.m3) {
+      /* i 인덱스번호로 원소가 반환되므로 실제 원소의 값을 확인할수 없기에 원소의 style 속성 유무 확인 */
+      if (menus.m3[i].style)
+        menus.m3[i].style.color = 'blue'
+    }
+    //dowhile
+    let j = 0
+    do {
+      menus.m4[j].style.color = 'blue'
+      j++
+    }
+    while (j < menus.m4.length)
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>기초 문법 요소(Basic Syntax)</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.7;
+        margin: 24px;
+        background: #f7f9fc;
+        color: #222;
+      }
+      h1,
+      h2 {
+        color: #192044;
+      }
+      h3 {
+        color: #2c3e7a;
+        margin-top: 18px;
+      }
+      p {
+        margin: 8px 0;
+      }
+      ul {
+        margin: 8px 0 12px 20px;
+      }
+      li {
+        margin: 4px 0;
+      }
+      pre {
+        background: #eef2f7;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        border: 1px solid #d7dee8;
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+      .callout {
+        background: #e9f7ff;
+        border-left: 4px solid #00aaff;
+        padding: 10px;
+        margin: 14px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="basic-syntax">기초 문법 요소(Basic Syntax)</h1>
+    <p><strong>기초 문법 요소</strong>란 자바스크립트에서 가장 기본이 되는 문법 규칙과 표현 방식으로, 모든 프로그램의 뼈대를 이루는 개념입니다. <br />단순히 “어떻게 쓰는지”뿐 아니라 “왜 이렇게 쓰는지, 어떤 역할을 하는지”를 이해하는 것이 중요합니다.</p>
+
+    <h2>변수 선언</h2>
+    <p>변수는 데이터를 저장하는 이름표입니다. 프로그램이 데이터를 기억하고 활용할 수 있게 해줍니다.</p>
+    <ul>
+      <li><code>var</code>: 함수 스코프를 가지며 호이스팅 발생. 오래된 방식이라 현재는 권장되지 않음.</li>
+      <li><code>let</code>: 블록 스코프를 가지며 값 재할당 가능. 변하는 데이터를 저장할 때 사용.</li>
+      <li><code>const</code>: 블록 스코프를 가지며 값 재할당 불가. 변하지 않는 값을 저장할 때 사용.</li>
+    </ul>
+    <pre><code>// let: 값 변경 가능
+let age = 20;
+age = 21;
+
+// const: 값 변경 불가
+const PI = 3.14;
+// PI = 3.14159; // ❌ 오류 발생
+
+// var: 함수 스코프, 호이스팅 발생
+var name = "효빈";
+</code></pre>
+
+    <h2>데이터 타입</h2>
+    <p>데이터 타입은 값의 종류를 의미합니다. 자바스크립트는 다양한 타입을 지원합니다.</p>
+    <ul>
+      <li><strong>숫자(Number):</strong> 정수와 실수. 예: <code>42</code>, <code>3.14</code></li>
+      <li><strong>문자열(String):</strong> 텍스트 데이터. 예: <code>"Hello"</code></li>
+      <li><strong>불(Boolean):</strong> 참/거짓. 예: <code>true</code>, <code>false</code></li>
+      <li><strong>null / undefined:</strong> 값이 없음을 표현. <code>null</code>은 명시적, <code>undefined</code>는 값이 할당되지 않은 상태.</li>
+      <li><strong>객체(Object):</strong> 여러 속성을 묶어 표현. 예: <code>{name: "효빈", age: 20}</code></li>
+      <li><strong>배열(Array):</strong> 여러 값을 순서대로 저장. 예: <code>[1, 2, 3]</code></li>
+      <li><strong>함수(Function):</strong> 실행 가능한 코드 블록도 값으로 취급됨.</li>
+      <li><strong>심볼(Symbol):</strong> 고유한 식별자를 만들 때 사용.</li>
+      <li><strong>BigInt:</strong> 아주 큰 정수를 표현할 때 사용.</li>
+      <li><strong>특수 값:</strong> <code>NaN</code>(숫자가 아님), <code>Infinity</code>(무한대)</li>
+    </ul>
+
+    <h2>연산자</h2>
+    <p>연산자는 값을 계산하거나 비교할 때 사용하는 기호입니다.</p>
+    <ul>
+      <li><strong>산술:</strong> 수학 계산 (<code>+ - * / % ++ --</code>)</li>
+      <li><strong>대입:</strong> 변수에 값을 저장 (<code>= += -= *= /=</code>)</li>
+      <li><strong>비교:</strong> 두 값을 비교해 참/거짓 반환 (<code>== === !== &lt; &gt; &lt;= &gt;=</code>)</li>
+      <li><strong>논리:</strong> 조건을 결합하거나 반전 (<code>&amp;&amp; || !</code>)</li>
+      <li><strong>삼항:</strong> 조건에 따라 두 값 중 하나 선택 (<code>조건 ? 값1 : 값2</code>)</li>
+    </ul>
+    <pre><code>// 산술 연산자
+let x = 10, y = 5;
+console.log(x + y);   // 15
+
+// 비교 연산자
+console.log(5 == "5");   // true (값만 비교)
+console.log(5 === "5");  // false (값과 타입 모두 비교)
+
+// 논리 연산자
+console.log(true && false); // false
+console.log(true || false); // true
+
+// 삼항 연산자
+console.log(x > y ? "x가 큼" : "y가 큼");
+</code></pre>
+
+    <h2>네이밍 규칙</h2>
+    <p>코드의 가독성을 높이기 위해 이름을 짓는 규칙입니다.</p>
+    <ul>
+      <li><strong>camelCase:</strong> 첫 단어는 소문자, 이후 단어는 대문자 시작. 변수/함수 이름에 사용.</li>
+      <li><strong>PascalCase:</strong> 모든 단어 첫 글자를 대문자로. 클래스/생성자 이름에 사용.</li>
+      <li><strong>UPPER_SNAKE_CASE:</strong> 모든 글자를 대문자로 쓰고 단어 사이를 밑줄로 구분. 상수에 사용.</li>
+    </ul>
+
+    <h2>주석</h2>
+    <p>코드에 설명을 달아 다른 사람이나 미래의 자신이 이해하기 쉽게 합니다.</p>
+    <pre><code>// 한 줄 주석
+/*
+  여러 줄 주석
+*/
+</code></pre>
+
+    <h2>출력 방법</h2>
+    <p>프로그램 실행 결과를 사용자에게 보여주는 방법입니다.</p>
+    <ul>
+      <li><code>alert("메시지")</code>: 브라우저 팝업 창으로 알림 표시.</li>
+      <li><code>console.log("메시지")</code>: 개발자 도구 콘솔에 메시지 출력. 디버깅에 가장 많이 사용.</li>
+      <li><code>document.write("메시지")</code>: HTML 문서에 직접 출력. 현재는 잘 사용하지 않음.</li>
+    </ul>
+
+    <h2>스코프와 호이스팅</h2>
+    <p>변수가 유효한 범위와 선언이 끌어올려지는 현상입니다.</p>
+    <ul>
+      <li><code>var</code>: 함수 스코프, 선언이 끌어올려짐. 초기화 전 접근 시 undefined.</li>
+      <li><code>let/const</code>: 블록 스코프, 호이스팅되지만 TDZ 때문에 초기화 전 접근 불가.</li>
+    </ul>
+
+    <h2>typeof 연산자</h2>
+    <p>값의 데이터 타입을 확인할 때 사용합니다. 자바스크립트는 동적 타입 언어라서 변수에 어떤 값이 들어있는지 확인할 때 유용합니다.</p>
+    <pre><code>typeof 123;        // "number"
+typeof "hello";    // "string"
+typeof true;       // "boolean"
+typeof undefined;  // "undefined"
+typeof null;       // "object" (자바스크립트의 오래된 버그)
+typeof [1,2,3];    // "object" (배열도 객체로 인식)
+typeof function(){}; // "function"
+</code></pre>
+
+    <h2>템플릿 리터럴</h2>
+    <p>
+      백틱(`)을 사용하여 문자열을 작성하는 방식입니다.
+      <code>${변수명}</code> 형태를 사용하면 문자열 안에 변수를 삽입할 수 있습니다.<br> 예를 들어 <code>${name}</code>은 변수 <code>name</code>의 값을 문자열 안에 넣어줍니다. 이는 문자열과 변수를 <code>+</code>로 이어붙이는 것보다 훨씬 가독성이 좋습니다.
+    </p>
+    <pre><code>// 변수 삽입
+let name = "효빈";
+console.log(`안녕하세요, ${name}님!`);
+// 출력 결과: 안녕하세요, 효빈님!
+
+// 같은 의미지만 불편한 방식
+console.log("안녕하세요, " + name + "님!");
+
+// 여러 줄 문자열 작성 가능
+let text = `여러 줄을
+그대로 작성할 수 있습니다.`;
+console.log(text);
+</code></pre>
+
+    <h2>기본 에러</h2>
+    <p>코드 실행 중 발생할 수 있는 대표적인 오류입니다.</p>
+    <ul>
+      <li><code>SyntaxError:</code> 문법 오류. 예: 괄호 누락.</li>
+      <li><code>ReferenceError:</code> 정의되지 않은 변수 참조.</li>
+      <li><code>TypeError:</code> 잘못된 타입 사용. 예: 숫자에 문자열 메서드 호출.</li>
+    </ul>
+    <pre><code>// SyntaxError 예시 (실행 시 오류 발생)
+// console.log("Hello" // 괄호 누락
+
+// ReferenceError 예시
+console.log(notDefined); // ❌ 정의되지 않은 변수
+
+// TypeError 예시
+let num = 5;
+num.toUpperCase(); // ❌ 숫자에 문자열 메서드 호출
+</code></pre>
+
+    <h2>추가 개념</h2>
+    <p>자바스크립트에서 자주 마주치는 개념들입니다.</p>
+    <ul>
+      <li><strong>Truthy/Falsy 값:</strong> 조건문에서 true/false처럼 동작하는 값</li>
+    </ul>
+    <pre><code>// 0은 Falsy
+if (0) console.log("실행 안 됨");
+
+// "hello"는 Truthy
+if ("hello") console.log("실행 됨");
+
+// 빈 문자열 ""은 Falsy
+if ("") console.log("실행 안 됨");
+
+// undefined는 Falsy
+let value;
+if (value) console.log("실행 안 됨");
+
+// 배열이나 객체는 Truthy
+if ([]) console.log("빈 배열도 Truthy → 실행 됨");
+if ({}) console.log("빈 객체도 Truthy → 실행 됨");
+</code></pre>
+
+    <ul>
+      <li>
+        <strong>undefined vs null:</strong>
+        <ul>
+          <li><code>undefined</code>: 변수가 선언되었지만 값이 할당되지 않은 상태</li>
+          <li><code>null</code>: 값이 없음을 명시적으로 표현한 상태</li>
+        </ul>
+      </li>
+      <li>
+        <strong>호이스팅(Hoisting):</strong>
+        <ul>
+          <li><code>var</code>는 선언이 코드 상단으로 끌어올려져 초기화 전에도 참조 가능 (값은 undefined)</li>
+          <li><code>let</code>과 <code>const</code>는 호이스팅되지만 TDZ(Temporal Dead Zone) 때문에 초기화 전 접근 불가</li>
+        </ul>
+      </li>
+    </ul>
+    <pre><code>// var 호이스팅 예시
+console.log(a); // undefined
+var a = 10;
+
+// let/const 호이스팅 예시
+// console.log(b); // ❌ ReferenceError
+let b = 20;
+</code></pre>
+
+    <h2>추가로 알아두면 좋은 개념</h2>
+    <ul>
+      <li><strong>NaN (Not a Number):</strong> 숫자 연산이 실패했을 때 반환되는 값. 예: <code>parseInt("abc")</code></li>
+      <li><strong>Infinity:</strong> 무한대를 나타내는 값. 예: <code>1/0</code></li>
+      <li><strong>isNaN 함수:</strong> 값이 NaN인지 확인하는 함수</li>
+      <li><strong>에러 처리 (try...catch/finally):</strong> 코드 실행 중 발생하는 오류를 잡아내고 처리하는 구문</li>
+    </ul>
+    <pre><code>// NaN 예시
+console.log(parseInt("abc")); // NaN
+
+// Infinity 예시
+console.log(1/0); // Infinity
+
+// isNaN 예시
+console.log(isNaN("abc")); // true
+
+// 에러 처리 예시
+try {
+  throw new Error("에러 발생!");
+} catch (e) {
+  console.log("에러를 잡았습니다:", e.message);
+} finally {
+  console.log("항상 실행되는 finally 블록");
+}
+</code></pre>
+
+    <div class="callout">
+      Tip: 기초 문법 요소는 자바스크립트의 뼈대를 이루는 개념입니다. <br />
+      <code>${변수}</code> 같은 문법은 문자열 안에 변수를 삽입하는 방법으로, 실제 개발에서 매우 자주 사용되므로 “왜 이렇게 쓰는지”를 이해하고 익혀두는 것이 중요합니다.<br />
+      Truthy/Falsy, undefined와 null의 차이, 호이스팅, NaN/Infinity, 에러 처리 같은 개념을 이해하면 실제 개발에서 발생하는 다양한 상황을 올바르게 다룰 수 있습니다.
+    </div>
+  </body>
+</html>

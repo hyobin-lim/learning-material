@@ -11,36 +11,32 @@
     <script>
         let gender = '여자';
         console.log(gender);
-        document.write(`당신은 ${gender} 이므로 `)
+        document.write(`당신은${gender} 이므로 `)
         if (gender === '남자') {
-            document.write(`바지를 입으세요`)
+            document.write(`치마를 입으세요`)
         }
         if (gender === '여자') {
-            document.write(`치마를 입으세요<br><br>`)
+            document.write(`바지를 입으세요`)
         }
+
+    </script>
+    <script>
         // Do it! 사용자가 입력한 숫자가 3의 배수인지 판별하기
-        let userNum = prompt("숫자를 입력하세요:");
+        //userNum 변수를 선언하고 사용자로부터 숫자를 입력받으세요
+        document.write(`<hr>`)
+        let userNum = prompt();
 
-
-        // 입력받은 값은 기본적으로 문자열(string)이므로 숫자로 쓰려면 변환 필요
-
-
-
-        // if문
         if (userNum !== null) {
             if (parseInt(userNum) % 3 === 0) {
-                alert(`3의 배수 입니다`)
-            }
-            else {
-                alert(`3의 배수가 아닙니다`)
-            }
-        } else { alert(`입력이 취소 되었습니다.`) }
+                alert('3의 배수 입니다');
+            } else
+                alert('3의 배수가 아닙니다')
+        } else
+            alert('입력이 취소 되었습니다.')
+        // Not a Number
 
-
-        // 3항연산자
-        /* (userNum % 3 === 0) ? alert(`3의 배수 입니다`) : alert(`3의 배수가 아닙니다`) */
-
-
+        //(userNum % 3 === 0) ? alert('3의 배수 입니다') : alert('3의 배수 아닙니다')
+        //조건 ? true : false
 
     </script>
 </body>

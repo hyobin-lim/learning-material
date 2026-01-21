@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>장점과 한계(Advantages and Limitations)</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.7;
+        margin: 24px;
+        background: #f7f9fc;
+        color: #222;
+      }
+      h1,
+      h2 {
+        color: #192044;
+      }
+      h3 {
+        color: #2c3e7a;
+        margin-top: 18px;
+      }
+      p {
+        margin: 8px 0;
+      }
+      ul {
+        margin: 8px 0 12px 20px;
+      }
+      li {
+        margin: 4px 0;
+      }
+      pre {
+        background: #eef2f7;
+        padding: 12px;
+        border-radius: 8px;
+        overflow-x: auto;
+        border: 1px solid #d7dee8;
+      }
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      }
+      .callout {
+        background: #e9f7ff;
+        border-left: 4px solid #00aaff;
+        padding: 10px;
+        margin: 14px 0;
+      }
+      table {
+        border-collapse: collapse;
+        margin: 12px 0;
+        width: 100%;
+      }
+      th,
+      td {
+        border: 1px solid #d7dee8;
+        padding: 8px;
+        text-align: left;
+      }
+      th {
+        background: #f0f3f8;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="advantages-limitations">장점과 한계(Advantages and Limitations)</h1>
+    <p>자바스크립트는 웹 개발에서 가장 널리 쓰이는 언어입니다. 하지만 모든 기술이 그렇듯 <strong>장점과 한계</strong>가 존재합니다. 이를 이해하면 올바른 상황에서 자바스크립트를 활용하고, 문제를 피할 수 있습니다.</p>
+
+    <h2>장점</h2>
+    <ul>
+      <li><strong>즉시 실행:</strong> 브라우저에 내장된 엔진으로 별도 설치 없이 바로 실행 가능 → 접근성이 뛰어남</li>
+      <li><strong>동적 기능:</strong> HTML과 CSS를 제어해 사용자와 상호작용하는 웹 페이지 제작 가능 → UX 향상</li>
+      <li><strong>광범위한 생태계:</strong> 수많은 라이브러리와 프레임워크 지원 → 생산성 증가</li>
+      <li><strong>풀스택 개발:</strong> Node.js 덕분에 서버와 클라이언트를 모두 자바스크립트로 개발 가능 → 하나의 언어로 전체 시스템 구축</li>
+      <li><strong>커뮤니티:</strong> 방대한 개발자 커뮤니티와 자료 → 학습과 문제 해결이 쉬움</li>
+    </ul>
+
+    <h2>한계</h2>
+    <ul>
+      <li><strong>보안 취약점:</strong> XSS 같은 공격에 노출될 수 있음 → 입력값 검증 필수</li>
+      <li><strong>성능 제약:</strong> 복잡한 연산은 브라우저 성능을 저하시킬 수 있음 → 연산 집약적 작업은 서버/다른 언어 활용</li>
+      <li><strong>브라우저 호환성:</strong> 브라우저마다 지원하는 기능이 달라 오류 발생 가능 → 폴리필이나 트랜스파일러 필요</li>
+      <li><strong>비동기 복잡성:</strong> 콜백 지옥, Promise 체인 관리 어려움 → async/await로 개선 가능</li>
+      <li><strong>빠른 변화:</strong> 생태계가 너무 빠르게 변해 학습 부담이 큼 → 꾸준한 학습 필요</li>
+    </ul>
+
+    <h2>비교 요약</h2>
+    <table>
+      <tr>
+        <th>구분</th>
+        <th>장점</th>
+        <th>한계</th>
+      </tr>
+      <tr>
+        <td>실행</td>
+        <td>브라우저에서 즉시 실행</td>
+        <td>복잡한 연산 시 성능 저하</td>
+      </tr>
+      <tr>
+        <td>기능</td>
+        <td>HTML/CSS 제어, 동적 UI</td>
+        <td>보안 취약점 존재</td>
+      </tr>
+      <tr>
+        <td>생태계</td>
+        <td>풍부한 라이브러리/프레임워크</td>
+        <td>빠른 변화로 학습 부담</td>
+      </tr>
+      <tr>
+        <td>개발 범위</td>
+        <td>프런트엔드 + 백엔드 모두 가능</td>
+        <td>브라우저 호환성 문제</td>
+      </tr>
+    </table>
+
+    <div class="callout">Tip: 자바스크립트의 장점은 “빠른 실행과 풍부한 생태계”이고, 한계는 “보안과 성능 문제”입니다. 따라서 자바스크립트를 사용할 때는 <strong>보안 검증, 성능 최적화, 호환성 고려</strong>를 반드시 병행해야 합니다.</div>
+  </body>
+</html>

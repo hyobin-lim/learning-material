@@ -20,24 +20,25 @@
 	<script>
 		let num = 0;
 		//num = num + 1;//1
-		num += 1; //1
-		num += 1; //2
-		num += 1; //3
-		num += 1; //4
-		num += 1; //5
-		num += 1; //6
-console.log(num);
-
-// for(초기값;조건식(펄스가 나오면 멈춤);증가식){실행문}
-for (let i = 1; i<=3; i++) {console.log(`i: ${i}`);
-}
-</script>
+		num += 1;	//1
+		num += 1;	//2
+		num += 1;	//3
+		num += 1;	//4
+		num += 1;	//5
+		num += 1;	//6
+		console.log(num);
+		for (let i = 1; i <= 3; i++) {
+			console.log(`i: ${i}`);
+		}
+	</script>
 	<script>
-		
-// for(초기값;조건식(펄스가 나오면 멈춤);증가식){실행문}
-let initNum = 0;
-for (let i = 1; i<=5; i++) {initNum += i;}document.write(`${initNum}`);
-</script>
+		// Do it! 1부터 5까지 더하기
+		let initNum = 0;	/* 전역변수 */
+		for (let i = 1; i <= 5; i++) {
+			initNum = initNum + i;
+		}
+		document.write(`${initNum}`);
+	</script>
 </body>
 
 </html>
